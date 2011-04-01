@@ -1,0 +1,125 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Shadowed.master.cs" Inherits="PhishMarket.Master.Shadowed" %>
+
+<%@ Register TagPrefix="uc" TagName="TopMenuControl" Src="~/Controls/TopMenuControl.ascx" %>
+<%@ Register TagPrefix="uc" TagName="RecentTopicsControl" Src="~/Controls/RecentTopics.ascx" %>
+<%@ Register TagPrefix="uc" TagName="AdminMenu" Src="~/Controls/AdminMenu.ascx" %>
+<%@ Register TagPrefix="uc" TagName="RecentShowReviewsControl" Src="~/Controls/RecentShowReviews.ascx" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Shadowed   
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20100613
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>The Phish Market - <%= Title %></title>
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascript/jquery.betterTooltip.js"></script>
+    <script type="text/javascript" src="/javascript/jquery.jalert.packed.js"></script>
+    <script type="text/javascript" src="/javascript/jquery-ui-1.8.11.custom.min.js"></script>
+    
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.tTip').betterTooltip({ speed: 150, delay: 300 });
+            
+        });
+    </script>
+    
+    <asp:ContentPlaceHolder ID="Head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+    <link href="/css/Shadowed/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="/css/Shadowed/extra.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="/css/ExtraAjax.css" rel="stylesheet" type="text/css" media="screen" />
+    
+</head>
+<body>
+    <form id="form" method="post" runat="server">
+    <ajaxToolkit:ToolkitScriptManager ID="tksm1" EnablePartialRendering="true" runat="server" CombineScripts="false">
+    </ajaxToolkit:ToolkitScriptManager>
+    <div id="wrapper">
+        <div id="header">
+            <div id="logo">
+                <h1>
+                    <a href="#">The Phish Market</a>
+                </h1>
+                <p>
+                    a CoreDweller Production</p>
+            </div>
+        </div>
+        <!-- end #header -->
+        <div id="menu">
+            <ul>
+                <asp:ContentPlaceHolder ID="TopMenu" runat="server">
+                    <uc:TopMenuControl ID="TopMenuControl1" runat="server"></uc:TopMenuControl>
+                </asp:ContentPlaceHolder>
+            </ul>
+        </div>
+        <!-- end #menu -->
+        <div id="page">
+            <div id="page-bgtop">
+                <div id="page-bgbtm">
+                    <div id="content">
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                        <div style="clear: both;">
+                            &nbsp;</div>
+                    </div>
+                    <!-- end #content -->
+                    <div id="sidebar">
+                        <ul>
+                            <%--<li>
+                                <div id="search">
+                                    <form method="get" action="#">
+                                    <div>
+                                        <input type="text" name="s" id="search-text" value="" />
+                                        <input type="submit" id="search-submit" value="GO" />
+                                    </div>
+                                    </form>
+                                </div>
+                                <div style="clear: both;">
+                                    &nbsp;</div>
+                            </li>--%>
+                            <asp:ContentPlaceHolder ID="LeftSideBar" runat="server">
+                                <uc:RecentTopicsControl ID="RecentTopicsControl1" runat="server" />
+                                <uc:RecentShowReviewsControl ID="RecentShowReviewsControl1" runat="server" />
+                            </asp:ContentPlaceHolder>
+                            <%--
+                            KEEPING THIS AS AN EXAMPLE OF THE STYLE NEEDED FOR THIS SECTION
+                            <li>
+                                <h2>
+                                    Archives</h2>
+                                <ul>
+                                    <li><a href="#">Aliquam libero</a></li>
+                                    <li><a href="#">Consectetuer adipiscing elit</a></li>
+                                    <li><a href="#">Proin gravida orci porttitor</a></li>
+                                </ul>
+                            </li>--%>
+                        </ul>
+                    </div>
+                    <!-- end #sidebar -->
+                    <div style="clear: both;">
+                        &nbsp;</div>
+                </div>
+            </div>
+        </div>
+        <!-- end #page -->
+    </div>
+    </form>
+    <div id="footer">
+        <p>
+            Copyright (c) 2011 PhishMarket.net. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">
+                Free CSS Templates</a>.</p>
+    </div>
+    <!-- end #footer -->
+</body>
+</html>

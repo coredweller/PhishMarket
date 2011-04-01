@@ -1,0 +1,867 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E2B6FCAE-F877-4ADA-8049-8B24506D9F84}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PhishMarket</RootNamespace>
+    <AssemblyName>PhishMarket</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.5.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\AjaxControlToolkit.Binary.NET35 (1)\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.1.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="YAF.Classes.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\YAF LATEST DLLS\YAF.Classes.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="YAF.Classes.Config, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\YAF-v1.9.3-FINAL-SRC\YetAnotherForum.NET\Bin\Net3.5\YAF.Classes.Config.dll</HintPath>
+    </Reference>
+    <Reference Include="YAF.Classes.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\YAF-v1.9.3-FINAL-SRC\YetAnotherForum.NET\Bin\Net3.5\YAF.Classes.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="YAF.Classes.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\YAF LATEST DLLS\YAF.Classes.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="YAF.Classes.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\YAF LATEST DLLS\YAF.Classes.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="YAF.Controls, Version=1.9.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\YAF LATEST DLLS\YAF.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="YAF.Providers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\YAF LATEST DLLS\YAF.Providers.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\default.css" />
+    <Content Include="css\license.txt" />
+    <Content Include="Default.aspx" />
+    <Content Include="images\spacer.gif" />
+    <Content Include="MyPhishMarket\MyShows.aspx" />
+    <Content Include="MyPhishMarket\UpcomingShows.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddSetsSpecial.aspx.cs">
+      <DependentUpon>AddSetsSpecial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddSetsSpecial.aspx.designer.cs">
+      <DependentUpon>AddSetsSpecial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddSetsToShow.aspx.cs">
+      <DependentUpon>AddSetsToShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddSetsToShow.aspx.designer.cs">
+      <DependentUpon>AddSetsToShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CreateGuessWholeShow.aspx.cs">
+      <DependentUpon>CreateGuessWholeShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CreateGuessWholeShow.aspx.designer.cs">
+      <DependentUpon>CreateGuessWholeShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EditSongNames.aspx.cs">
+      <DependentUpon>EditSongNames.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditSongNames.aspx.designer.cs">
+      <DependentUpon>EditSongNames.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Shows.aspx.cs">
+      <DependentUpon>Shows.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Shows.aspx.designer.cs">
+      <DependentUpon>Shows.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Code\GifImageFormatSpec.cs" />
+    <Compile Include="Code\JpegImageFormatSpec.cs" />
+    <Compile Include="Code\PngImageFormatSpec.cs" />
+    <Compile Include="AboutUs.aspx.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AboutUs.aspx.designer.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AdminMenu.ascx.cs">
+      <DependentUpon>AdminMenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\AdminMenu.ascx.designer.cs">
+      <DependentUpon>AdminMenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RecentShowReviews.ascx.cs">
+      <DependentUpon>RecentShowReviews.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\RecentShowReviews.ascx.designer.cs">
+      <DependentUpon>RecentShowReviews.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SelectAlbumControl.ascx.cs">
+      <DependentUpon>SelectAlbumControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\SelectAlbumControl.ascx.designer.cs">
+      <DependentUpon>SelectAlbumControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\BaseHandler.cs" />
+    <Compile Include="Handlers\ImageHandler.cs" />
+    <Compile Include="Handlers\ImageHandler2.ashx.cs">
+      <DependentUpon>ImageHandler2.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\Profile\jsonreturner.aspx.cs">
+      <DependentUpon>jsonreturner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\Profile\jsonreturner.aspx.designer.cs">
+      <DependentUpon>jsonreturner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Anthropod.Master.cs">
+      <DependentUpon>Anthropod.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Anthropod.Master.designer.cs">
+      <DependentUpon>Anthropod.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Creative.Master.cs">
+      <DependentUpon>Creative.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Creative.Master.designer.cs">
+      <DependentUpon>Creative.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Creevy.Master.cs">
+      <DependentUpon>Creevy.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Creevy.Master.designer.cs">
+      <DependentUpon>Creevy.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Distill.Master.cs">
+      <DependentUpon>Distill.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Distill.Master.designer.cs">
+      <DependentUpon>Distill.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Equivalency.Master.cs">
+      <DependentUpon>Equivalency.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Equivalency.Master.designer.cs">
+      <DependentUpon>Equivalency.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Interchange.Master.cs">
+      <DependentUpon>Interchange.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Interchange.Master.designer.cs">
+      <DependentUpon>Interchange.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Myth.Master.cs">
+      <DependentUpon>Myth.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Myth.Master.designer.cs">
+      <DependentUpon>Myth.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Offrecord.Master.cs">
+      <DependentUpon>Offrecord.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Offrecord.Master.designer.cs">
+      <DependentUpon>Offrecord.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Program.Master.cs">
+      <DependentUpon>Program.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Program.Master.designer.cs">
+      <DependentUpon>Program.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Robot.Master.cs">
+      <DependentUpon>Robot.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Robot.Master.designer.cs">
+      <DependentUpon>Robot.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Safflower.Master.cs">
+      <DependentUpon>Safflower.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Safflower.Master.designer.cs">
+      <DependentUpon>Safflower.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Sapphire.Master.cs">
+      <DependentUpon>Sapphire.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Sapphire.Master.designer.cs">
+      <DependentUpon>Sapphire.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Shadowed.Master.cs">
+      <DependentUpon>Shadowed.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Shadowed.Master.designer.cs">
+      <DependentUpon>Shadowed.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Tattoo.Master.cs">
+      <DependentUpon>Tattoo.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Tattoo.Master.designer.cs">
+      <DependentUpon>Tattoo.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Vertabrata.Master.cs">
+      <DependentUpon>Vertabrata.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Vertabrata.Master.designer.cs">
+      <DependentUpon>Vertabrata.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Waive.Master.cs">
+      <DependentUpon>Waive.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Waive.Master.designer.cs">
+      <DependentUpon>Waive.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\_Concurrence.Master.cs">
+      <DependentUpon>_Concurrence.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\_Concurrence.Master.designer.cs">
+      <DependentUpon>_Concurrence.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\AddMyShow.aspx.cs">
+      <DependentUpon>AddMyShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\AddMyShow.aspx.designer.cs">
+      <DependentUpon>AddMyShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\AddPhoto.aspx.cs">
+      <DependentUpon>AddPhoto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\AddPhoto.aspx.designer.cs">
+      <DependentUpon>AddPhoto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\EditArt.aspx.cs">
+      <DependentUpon>EditArt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\EditArt.aspx.designer.cs">
+      <DependentUpon>EditArt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\EditPoster.aspx.cs">
+      <DependentUpon>EditPoster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\EditPoster.aspx.designer.cs">
+      <DependentUpon>EditPoster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\EditTicketStub.aspx.cs">
+      <DependentUpon>EditTicketStub.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\EditTicketStub.aspx.designer.cs">
+      <DependentUpon>EditTicketStub.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\FindForShow.aspx.cs">
+      <DependentUpon>FindForShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\FindForShow.aspx.designer.cs">
+      <DependentUpon>FindForShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\FullShowReview.aspx.cs">
+      <DependentUpon>FullShowReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\FullShowReview.aspx.designer.cs">
+      <DependentUpon>FullShowReview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyAnalysis.aspx.cs">
+      <DependentUpon>MyAnalysis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyAnalysis.aspx.designer.cs">
+      <DependentUpon>MyAnalysis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyPictures.aspx.cs">
+      <DependentUpon>MyPictures.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyPictures.aspx.designer.cs">
+      <DependentUpon>MyPictures.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyPosters.aspx.cs">
+      <DependentUpon>MyPosters.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyPosters.aspx.designer.cs">
+      <DependentUpon>MyPosters.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyTicketStubs.aspx.cs">
+      <DependentUpon>MyTicketStubs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyTicketStubs.aspx.designer.cs">
+      <DependentUpon>MyTicketStubs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\Profile\ChangeProfile.aspx.cs">
+      <DependentUpon>ChangeProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\Profile\ChangeProfile.aspx.designer.cs">
+      <DependentUpon>ChangeProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\Profile\Step1.aspx.cs">
+      <DependentUpon>Step1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\Profile\Step1.aspx.designer.cs">
+      <DependentUpon>Step1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyPicturesByShow.aspx.cs">
+      <DependentUpon>MyPicturesByShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyPicturesByShow.aspx.designer.cs">
+      <DependentUpon>MyPicturesByShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\Profile\Step2.aspx.cs">
+      <DependentUpon>Step2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\Profile\Step2.aspx.designer.cs">
+      <DependentUpon>Step2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\Profile\Step3.aspx.cs">
+      <DependentUpon>Step3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\Profile\Step3.aspx.designer.cs">
+      <DependentUpon>Step3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\ShowAnalysis.aspx.cs">
+      <DependentUpon>ShowAnalysis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\ShowAnalysis.aspx.designer.cs">
+      <DependentUpon>ShowAnalysis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\SongReviews.aspx.cs">
+      <DependentUpon>SongReviews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\SongReviews.aspx.designer.cs">
+      <DependentUpon>SongReviews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\ViewProfile.aspx.cs">
+      <DependentUpon>ViewProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\ViewProfile.aspx.designer.cs">
+      <DependentUpon>ViewProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\ShowReviews.aspx.cs">
+      <DependentUpon>ShowReviews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\ShowReviews.aspx.designer.cs">
+      <DependentUpon>ShowReviews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\WantedList.aspx.cs">
+      <DependentUpon>WantedList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\WantedList.aspx.designer.cs">
+      <DependentUpon>WantedList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="News.aspx.cs">
+      <DependentUpon>News.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="News.aspx.designer.cs">
+      <DependentUpon>News.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhishMarketRegistry.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SlideService.asmx.cs">
+      <DependentUpon>SlideService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Stats\Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stats\Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stats\TourPlayed.aspx.cs">
+      <DependentUpon>TourPlayed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stats\TourPlayed.aspx.designer.cs">
+      <DependentUpon>TourPlayed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhishNetImporterTestPage.aspx.cs">
+      <DependentUpon>PhishNetImporterTestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PhishNetImporterTestPage.aspx.designer.cs">
+      <DependentUpon>PhishNetImporterTestPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tour\AddSongsToSet.aspx.cs">
+      <DependentUpon>AddSongsToSet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tour\AddSongsToSet.aspx.designer.cs">
+      <DependentUpon>AddSongsToSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CreatePost.aspx.cs">
+      <DependentUpon>CreatePost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CreatePost.aspx.designer.cs">
+      <DependentUpon>CreatePost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CreateSet.aspx.cs">
+      <DependentUpon>CreateSet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CreateSet.aspx.designer.cs">
+      <DependentUpon>CreateSet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CreateShow.aspx.cs">
+      <DependentUpon>CreateShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CreateShow.aspx.designer.cs">
+      <DependentUpon>CreateShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CreateSong.aspx.cs">
+      <DependentUpon>CreateSong.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CreateSong.aspx.designer.cs">
+      <DependentUpon>CreateSong.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CreateTopic.aspx.cs">
+      <DependentUpon>CreateTopic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CreateTopic.aspx.designer.cs">
+      <DependentUpon>CreateTopic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CreateTour.aspx.cs">
+      <DependentUpon>CreateTour.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CreateTour.aspx.designer.cs">
+      <DependentUpon>CreateTour.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BaseControl.ascx.cs">
+      <DependentUpon>BaseControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\BaseControl.ascx.designer.cs">
+      <DependentUpon>BaseControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CreateSetControl.ascx.cs">
+      <DependentUpon>CreateSetControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\CreateSetControl.ascx.designer.cs">
+      <DependentUpon>CreateSetControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Login.ascx.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Login.ascx.designer.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RecentPosts.ascx.cs">
+      <DependentUpon>RecentPosts.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\RecentPosts.ascx.designer.cs">
+      <DependentUpon>RecentPosts.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RecentTopics.ascx.cs">
+      <DependentUpon>RecentTopics.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\RecentTopics.ascx.designer.cs">
+      <DependentUpon>RecentTopics.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TopMenuControl.ascx.cs">
+      <DependentUpon>TopMenuControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TopMenuControl.ascx.designer.cs">
+      <DependentUpon>TopMenuControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CreateUser.aspx.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CreateUser.aspx.designer.cs">
+      <DependentUpon>CreateUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="JQueryTestForm.aspx.cs">
+      <DependentUpon>JQueryTestForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="JQueryTestForm.aspx.designer.cs">
+      <DependentUpon>JQueryTestForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\PhishMarket1.Master.cs">
+      <DependentUpon>PhishMarket1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\PhishMarket1.Master.designer.cs">
+      <DependentUpon>PhishMarket1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\PhishMarket3.Master.cs">
+      <DependentUpon>PhishMarket3.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\PhishMarket3.Master.designer.cs">
+      <DependentUpon>PhishMarket3.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyShows.aspx.cs">
+      <DependentUpon>MyShows.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyShows.aspx.designer.cs">
+      <DependentUpon>MyShows.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\UpcomingShows.aspx.cs">
+      <DependentUpon>UpcomingShows.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\UpcomingShows.aspx.designer.cs">
+      <DependentUpon>UpcomingShows.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PhishMarketBasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tour\GetScore.aspx.cs">
+      <DependentUpon>GetScore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tour\GetScore.aspx.designer.cs">
+      <DependentUpon>GetScore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tour\PredictSetBasedShow.aspx.cs">
+      <DependentUpon>PredictSetBasedShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tour\PredictSetBasedShow.aspx.designer.cs">
+      <DependentUpon>PredictSetBasedShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tour\PredictShow.aspx.cs">
+      <DependentUpon>PredictShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tour\PredictShow.aspx.designer.cs">
+      <DependentUpon>PredictShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tour\PredictTour.aspx.cs">
+      <DependentUpon>PredictTour.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tour\PredictTour.aspx.designer.cs">
+      <DependentUpon>PredictTour.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tour\PredictWholeShow.aspx.cs">
+      <DependentUpon>PredictWholeShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tour\PredictWholeShow.aspx.designer.cs">
+      <DependentUpon>PredictWholeShow.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\default2.css" />
+    <Content Include="css\default3.css" />
+    <Content Include="css\layout.css" />
+    <Content Include="Global.asax" />
+    <Content Include="images\img01.gif" />
+    <Content Include="images\img02.gif" />
+    <Content Include="images\img03.gif" />
+    <Content Include="images\img04.gif" />
+    <Content Include="images\img05.gif" />
+    <Content Include="images\img06.gif" />
+    <Content Include="Login.aspx" />
+    <Content Include="Master\PhishMarket1.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AddSetsSpecial.aspx" />
+    <Content Include="Admin\AddSetsToShow.aspx" />
+    <Content Include="Admin\CreateGuessWholeShow.aspx" />
+    <Content Include="Admin\EditSongNames.aspx" />
+    <Content Include="Admin\Shows.aspx" />
+    <Content Include="AboutUs.aspx" />
+    <Content Include="Controls\AdminMenu.ascx" />
+    <Content Include="Controls\RecentShowReviews.ascx" />
+    <Content Include="Controls\SelectAlbumControl.ascx" />
+    <Content Include="css\ExtraAjax.css" />
+    <Content Include="css\Shadowed\license.txt" />
+    <Content Include="css\Shadowed\style.css" />
+    <Content Include="css\Tattoo\images\css.jpg" />
+    <Content Include="css\Tattoo\images\footer.jpg" />
+    <Content Include="css\Tattoo\images\header.jpg" />
+    <Content Include="css\Tattoo\images\main.jpg" />
+    <Content Include="css\Tattoo\images\side.jpg" />
+    <Content Include="css\Tattoo\images\xhtml.jpg" />
+    <Content Include="css\Tattoo\reset.css" />
+    <Content Include="css\Tattoo\style.css" />
+    <Content Include="ForgotPassword.aspx" />
+    <Content Include="images\NoImagesFound.jpg" />
+    <Content Include="images\Shows\coretest2634103905143710561.jpg" />
+    <Content Include="MyPhishMarket\AddMyShow.aspx" />
+    <Content Include="MyPhishMarket\AddPhoto.aspx" />
+    <Content Include="MyPhishMarket\EditArt.aspx" />
+    <Content Include="MyPhishMarket\EditPoster.aspx" />
+    <Content Include="MyPhishMarket\EditTicketStub.aspx" />
+    <Content Include="MyPhishMarket\FindForShow.aspx" />
+    <Content Include="MyPhishMarket\FullShowReview.aspx" />
+    <Content Include="MyPhishMarket\Profile\jsonreturner.aspx" />
+    <Content Include="MyPhishMarket\MyAnalysis.aspx" />
+    <Content Include="MyPhishMarket\MyPictures.aspx" />
+    <Content Include="MyPhishMarket\MyPosters.aspx" />
+    <Content Include="MyPhishMarket\MyTicketStubs.aspx" />
+    <Content Include="MyPhishMarket\Profile\ChangeProfile.aspx" />
+    <Content Include="MyPhishMarket\Profile\Step1.aspx" />
+    <Content Include="MyPhishMarket\Dashboard.aspx" />
+    <Content Include="MyPhishMarket\MyPicturesByShow.aspx" />
+    <Content Include="MyPhishMarket\Profile\Step2.aspx" />
+    <Content Include="MyPhishMarket\Profile\Step3.aspx" />
+    <Content Include="MyPhishMarket\ShowAnalysis.aspx" />
+    <Content Include="MyPhishMarket\SongReviews.aspx" />
+    <Content Include="MyPhishMarket\ViewProfile.aspx" />
+    <Content Include="MyPhishMarket\ShowReviews.aspx" />
+    <Content Include="MyPhishMarket\WantedList.aspx" />
+    <Content Include="News.aspx" />
+    <Content Include="SlideService.asmx" />
+    <Content Include="Stats\Report.aspx" />
+    <Content Include="Stats\TourPlayed.aspx" />
+    <Content Include="PhishNetImporterTestPage.aspx" />
+    <Content Include="Tour\AddSongsToSet.aspx" />
+    <Content Include="Admin\CreatePost.aspx" />
+    <Content Include="Admin\CreateSet.aspx" />
+    <Content Include="Admin\CreateShow.aspx" />
+    <Content Include="Admin\CreateSong.aspx" />
+    <Content Include="Admin\CreateTopic.aspx" />
+    <Content Include="Admin\CreateTour.aspx" />
+    <Content Include="Controls\BaseControl.ascx" />
+    <Content Include="Controls\CreateSetControl.ascx" />
+    <Content Include="Controls\Login.ascx" />
+    <Content Include="Controls\RecentPosts.ascx" />
+    <Content Include="Controls\RecentTopics.ascx" />
+    <Content Include="Controls\TopMenuControl.ascx" />
+    <Content Include="CreateUser.aspx" />
+    <Content Include="JQueryTestForm.aspx" />
+    <Content Include="Logout.aspx" />
+    <Content Include="Master\PhishMarket3.Master" />
+    <Content Include="Tour\GetScore.aspx" />
+    <Content Include="Tour\PredictSetBasedShow.aspx" />
+    <Content Include="Tour\PredictShow.aspx" />
+    <Content Include="Tour\PredictTour.aspx" />
+    <Content Include="Tour\PredictWholeShow.aspx" />
+    <Content Include="Master\Robot.Master" />
+    <Content Include="Master\Waive.Master" />
+    <Content Include="Master\Tattoo.Master" />
+    <Content Include="Master\Myth.Master" />
+    <Content Include="Master\Sapphire.Master" />
+    <Content Include="Master\Safflower.Master" />
+    <Content Include="Master\Creative.Master" />
+    <None Include="css\Tattoo\images\Thumbs.db" />
+    <Content Include="Master\_Concurrence.Master" />
+    <Content Include="Master\Anthropod.Master" />
+    <Content Include="Master\Creevy.Master" />
+    <Content Include="Master\Distill.Master" />
+    <Content Include="Master\Equivalency.Master" />
+    <Content Include="Master\Interchange.Master" />
+    <Content Include="Master\Offrecord.Master" />
+    <Content Include="Master\Program.Master" />
+    <Content Include="Master\Shadowed.Master" />
+    <Content Include="Master\Vertabrata.Master" />
+    <Content Include="Handlers\ImageHandler2.ashx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PhishPond\PhishPond.csproj">
+      <Project>{4C136CF5-71C5-4E33-A77A-F4B74E9545AD}</Project>
+      <Name>PhishPond</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheCore\TheCore.csproj">
+      <Project>{F301AEB1-C976-4243-A726-F9757851F6A5}</Project>
+      <Name>TheCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yaf\Yaf.csproj">
+      <Project>{6B7F0DDB-6419-4285-B5E5-A4DC4CE09974}</Project>
+      <Name>Yaf</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="images\Rating\" />
+    <Folder Include="javascript\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\WebProfileBuilder\WebProfileBuilder.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56465</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

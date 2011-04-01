@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F301AEB1-C976-4243-A726-F9757851F6A5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TheCore</RootNamespace>
+    <AssemblyName>TheCore</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.4.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\PhishNetImporter\bin\Debug\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.1.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\AppConfigManager.cs" />
+    <Compile Include="Configuration\ConfigurationSettings.cs" />
+    <Compile Include="Configuration\IAppConfigManager.cs" />
+    <Compile Include="Configuration\IConfigurationSettings.cs" />
+    <Compile Include="CoreRegistry.cs" />
+    <Compile Include="Exceptions\AlreadyExistsException.cs" />
+    <Compile Include="Exceptions\EntityInUseException.cs" />
+    <Compile Include="Exceptions\ObjectCreationException.cs" />
+    <Compile Include="Extensions\DateTimeExtension.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Guess\ITopic.cs" />
+    <Compile Include="Guess\SetBasedSongList.cs" />
+    <Compile Include="Guess\SetName.cs" />
+    <Compile Include="Guess\SongNote.cs" />
+    <Compile Include="Helpers\Checks.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\DisposableResource.cs" />
+    <Compile Include="Helpers\JSON.cs" />
+    <Compile Include="Helpers\JSONifier.cs" />
+    <Compile Include="Helpers\JSONParser.cs" />
+    <Compile Include="Helpers\LinkBuilder.cs" />
+    <Compile Include="Helpers\ScriptHelper.cs" />
+    <Compile Include="Helpers\SystemTime.cs" />
+    <Compile Include="Infrastructure\Images\FullImageSize.cs" />
+    <Compile Include="Infrastructure\Images\IImageFormatSpec.cs" />
+    <Compile Include="Infrastructure\Images\IImageMediaFormats.cs" />
+    <Compile Include="Infrastructure\Images\IImageSizes.cs" />
+    <Compile Include="Infrastructure\Images\ImageFormatSpec.cs" />
+    <Compile Include="Infrastructure\Images\ImageMediaFormats.cs" />
+    <Compile Include="Infrastructure\Images\ImageSize.cs" />
+    <Compile Include="Infrastructure\Images\ThumbnailSize.cs" />
+    <Compile Include="Infrastructure\IoC\DependencyResolver.cs" />
+    <Compile Include="Infrastructure\IoC\DependencyResolverFactory.cs" />
+    <Compile Include="Infrastructure\IoC\IDependencyResolver.cs" />
+    <Compile Include="Infrastructure\IoC\IDependencyResolverFactory.cs" />
+    <Compile Include="Infrastructure\IoC\Ioc.cs" />
+    <Compile Include="Infrastructure\UoW\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\UoW\UnitOfWork.cs" />
+    <Compile Include="Interfaces\IAnalysis.cs" />
+    <Compile Include="Interfaces\IArt.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\IFavoriteVersion.cs" />
+    <Compile Include="Interfaces\IGuessWholeShow.cs" />
+    <Compile Include="Interfaces\IMyShow.cs" />
+    <Compile Include="Interfaces\IMyShowArt.cs" />
+    <Compile Include="Interfaces\IMyShowPoster.cs" />
+    <Compile Include="Interfaces\IMyShowTicketStub.cs" />
+    <Compile Include="Interfaces\IPost.cs" />
+    <Compile Include="Interfaces\IPhoto.cs" />
+    <Compile Include="Interfaces\IPoster.cs" />
+    <Compile Include="Interfaces\IProfile.cs" />
+    <Compile Include="Interfaces\ISet.cs" />
+    <Compile Include="Interfaces\ISetSong.cs" />
+    <Compile Include="Interfaces\IShow.cs" />
+    <Compile Include="Interfaces\ISong.cs" />
+    <Compile Include="Interfaces\ITempImageStorage.cs" />
+    <Compile Include="Interfaces\ITicketStub.cs" />
+    <Compile Include="Interfaces\ITour.cs" />
+    <Compile Include="Interfaces\IVideo.cs" />
+    <Compile Include="Interfaces\IWantedList.cs" />
+    <Compile Include="Interfaces\IWholeShowScore.cs" />
+    <Compile Include="Membership\IMembershipProvider.cs" />
+    <Compile Include="Membership\PhishMarketMemberProvider.cs" />
+    <Compile Include="Membership\PhishMarketRoleProvider.cs" />
+    <Compile Include="Membership\PhishMarketSqlMembershipProvider.cs" />
+    <Compile Include="Membership\PhishMarketSqlRoleProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IAnalysisRepository.cs" />
+    <Compile Include="Repository\IArtRepository.cs" />
+    <Compile Include="Repository\IFavoriteVersionRepository.cs" />
+    <Compile Include="Repository\IGetAllVersions.cs" />
+    <Compile Include="Repository\IGetFavoriteVersionResult.cs" />
+    <Compile Include="Repository\IGuessWholeShowRepository.cs" />
+    <Compile Include="Repository\IMyShowArtRepository.cs" />
+    <Compile Include="Repository\IMyShowPosterRepository.cs" />
+    <Compile Include="Repository\IMyShowRepository.cs" />
+    <Compile Include="Repository\IMyShowTicketStubRepository.cs" />
+    <Compile Include="Repository\IPhotoRepository.cs" />
+    <Compile Include="Repository\IPosterRepository.cs" />
+    <Compile Include="Repository\IPostRepository.cs" />
+    <Compile Include="Repository\IProfileRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\ISetRepository.cs" />
+    <Compile Include="Repository\ISetSongRepository.cs" />
+    <Compile Include="Repository\IShowRepository.cs" />
+    <Compile Include="Repository\ISongRepository.cs" />
+    <Compile Include="Repository\ITicketStubRepository.cs" />
+    <Compile Include="Repository\ITopicRepository.cs" />
+    <Compile Include="Repository\ITourRepository.cs" />
+    <Compile Include="Repository\IVideoRepository.cs" />
+    <Compile Include="Repository\IWantedListRepository.cs" />
+    <Compile Include="Repository\IYafGetRecentPostsResult.cs" />
+    <Compile Include="Repository\IYafGetRecentTopicsResult.cs" />
+    <Compile Include="Repository\IYafGetUserResult.cs" />
+    <Compile Include="Repository\IYafRepository.cs" />
+    <Compile Include="Services\AnalysisService.cs" />
+    <Compile Include="Services\ArtService.cs" />
+    <Compile Include="Services\FavoriteVersionService.cs" />
+    <Compile Include="Services\GuessWholeShowService.cs" />
+    <Compile Include="Services\ImageResizerService.cs" />
+    <Compile Include="Services\Interfaces\IImageResizerService.cs" />
+    <Compile Include="Services\MyShowArtService.cs" />
+    <Compile Include="Services\MyShowPosterService.cs" />
+    <Compile Include="Services\MyShowService.cs" />
+    <Compile Include="Services\MyShowTicketStubService.cs" />
+    <Compile Include="Services\PhotoService.cs" />
+    <Compile Include="Services\PosterService.cs" />
+    <Compile Include="Services\PostService.cs" />
+    <Compile Include="Services\ProfileService.cs" />
+    <Compile Include="Services\SetService.cs" />
+    <Compile Include="Services\SetSongService.cs" />
+    <Compile Include="Services\ShowService.cs" />
+    <Compile Include="Services\SongService.cs" />
+    <Compile Include="Services\TempImageStorageService.cs" />
+    <Compile Include="Services\TicketStubService.cs" />
+    <Compile Include="Services\TopicService.cs" />
+    <Compile Include="Services\TourService.cs" />
+    <Compile Include="Services\VideoService.cs" />
+    <Compile Include="Services\WantedListService.cs" />
+    <Compile Include="Services\YafService.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace TheCore.Helpers
+{
+    public class ScriptHelper
+    {
+        public string ScriptName { get; set; }
+        public string DivName { get; set; }
+        public string Message { get; set; }
+
+        private string Script { get; set; }
+
+        public ScriptHelper(string scriptName, string divName, string message)
+        {
+            ScriptName = scriptName;
+            DivName = divName;
+            Message = message;
+        }
+
+        public string GetSuccessScript()
+        {
+           return GenerateScript("success");
+        }
+
+        public string GetWarningScript()
+        {
+            return GenerateScript("warning");
+        }
+
+        public string GetFatalScript()
+        {
+            return GenerateScript("fatal");
+        }
+
+        public string GetInfoScript()
+        {
+            return GenerateScript("info");
+        }
+
+        private string GenerateScript(string type)
+        {
+            return string.Format("<script type=\"text/javascript\"> $('#{0}').jAlert('{1}', \"{2}\"); </script>", DivName, Message, type);
+        }
+    }
+}

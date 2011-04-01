@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Resources theme="Core Test 1" dir="soclean">
+  <page name="THEME">
+    <Resource tag="CREDIT">Core Theme By DP the Chronologer AKA the CoreDweller</Resource>
+  </page>
+  <page name="FORUM">
+    <Resource tag="BANNER">~/forum_banner.jpg</Resource>
+  </page>
+	<page name="ICONS">
+    <Resource tag="PM">~/icon_home.png</Resource>
+    <Resource tag="EMAIL">~/icon_home.png</Resource>
+    <Resource tag="HOME">~/icon_home.png</Resource>
+    <Resource tag="BLOG">~/icon_home.png</Resource>
+    <Resource tag="MSN">~/icon_home.png</Resource>
+    <Resource tag="AIM">~/icon_home.png</Resource>
+    <Resource tag="YIM">~/icon_home.png</Resource>
+    <Resource tag="ICQ">~/icon_home.png</Resource>
+    <Resource tag="SKYPE">~/icon_home.png</Resource>
+		<Resource tag="SEARCH">~/icon_home.png</Resource>
+    <Resource tag="TOPIC_NEW">~/icon_home.png</Resource>
+		<Resource tag="TOPIC">~/icon_home.png</Resource>
+		<Resource tag="TOPIC_ANNOUNCEMENT">~/icon_home.png</Resource>
+		<Resource tag="TOPIC_ANNOUNCEMENT_NEW">~/icon_home.png</Resource>
+		<Resource tag="TOPIC_NEW_LOCKED">~/icon_home.png</Resource>
+		<Resource tag="TOPIC_LOCKED">~/icon_home.png</Resource>
+		<Resource tag="TOPIC_STICKY">~/icon_home.png</Resource>
+		<Resource tag="TOPIC_MOVED">~/icon_home.png</Resource>
+		<Resource tag="TOPIC_POLL">~/icon_home.png</Resource>
+		<Resource tag="TOPIC_POLL_NEW">~/icon_home.png</Resource>
+		<Resource tag="SUBFORUM">~/icon_home.gif</Resource>
+		<Resource tag="SUBFORUM_NEW">~/icon_home.gif</Resource>
+		<Resource tag="FORUM">~/icon_home.png</Resource>
+		<Resource tag="FORUM_NEW">~/icon_home.png</Resource>
+		<Resource tag="FORUM_LOCKED">~/icon_home.png</Resource>
+		<Resource tag="FORUM_STATS">~/icon_home.png</Resource>
+		<Resource tag="FORUM_USERS">~/icon_home.png</Resource>
+		<Resource tag="ICON_NEWEST">~/icon_home.gif</Resource>
+		<Resource tag="ICON_LATEST">~/icon_home.gif</Resource>
+		<Resource tag="ATTACHED_FILE">~/icon_home.gif</Resource>
+    <Resource tag="PANEL_EXPAND">~/icon_home.gif</Resource>
+    <Resource tag="PANEL_COLLAPSE">~/icon_home.gif</Resource>
+	</page>
+	<page name="SORT">
+		<Resource tag="ASCENDING">~/icon_home.gif</Resource>
+		<Resource tag="DESCENDING">~/icon_home.gif</Resource>
+	</page>
+	<page name="VOTE">
+		<Resource tag="LCAP">~/icon_home.gif</Resource>
+		<Resource tag="RCAP">~/icon_home.gif</Resource>
+		<Resource tag="BAR">~/icon_home.gif</Resource>
+	</page>
+</Resources>

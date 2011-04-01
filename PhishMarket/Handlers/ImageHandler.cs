@@ -1,0 +1,45 @@
+﻿using System;
+using System.Web;
+using System.IO;
+using TheCore.Infrastructure;
+using TheCore.Services;
+using TheCore.Repository;
+
+namespace PhishMarket.Handlers
+{
+    public class ImageHandler : BaseHandler
+    {
+        public ImageHandler() { Ioc.BuildUp(this); }
+
+        public PhotoService PService { get; set; }
+
+        public override void ProcessRequest(HttpContextBase context)
+        {
+            const int CountWidthBuffer = 6;
+
+            HttpRequestBase request = context.Request;
+            string id = request.QueryString["id"];
+
+            HttpResponseBase response = context.Response;
+
+            Guid idG = new Guid(id);
+            if (idG == Guid.Empty)
+            { //invalid guid
+                return;
+            }
+
+            PService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
+
+            var tmpImage = PService.GetPhoto(idG);
+
+            if (tmpImage == null) { return; }
+
+            using (MemoryStream msIn = new MemoryStream(tmpImage.Image))
+            {
+                response.ContentType = tmpImage.ContentType;
+                msIn.WriteTo(response.OutputStream);
+            }
+
+        }
+    }
+}

@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 28.375, 12.75" name="PhishPond">
+  <DataContextMoniker Name="/PhishDatabase" />
+  <nestedChildShapes>
+    <classShape Id="dacb00fd-2840-4830-8016-7e6b021171a3" absoluteBounds="5.375, 3.625, 2, 4.21875244140625">
+      <DataClassMoniker Name="/PhishDatabase/Show" />
+      <nestedChildShapes>
+        <elementListCompartment Id="89fae931-eab7-474b-8bd9-c15cfbf6d3ed" absoluteBounds="5.3900000000000006, 4.085, 1.9700000000000002, 3.65875244140625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d10755ff-9c74-4488-aa1e-3604e9de5372" absoluteBounds="0.5, 8.375, 2, 3.0683211263020826">
+      <DataClassMoniker Name="/PhishDatabase/Song" />
+      <nestedChildShapes>
+        <elementListCompartment Id="84fa90c0-c161-4575-8fb9-c384f1a12ff9" absoluteBounds="0.51499999999999968, 8.835, 1.9700000000000002, 2.508321126302083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="330fa0a8-1e9f-4fb7-ac24-f3df9dd1ddc0" absoluteBounds="2.875, 5.375, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/PhishDatabase/Set" />
+      <nestedChildShapes>
+        <elementListCompartment Id="de284b65-3baf-4d8f-a26c-7d74c78d7174" absoluteBounds="2.89, 5.835, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="45b5eb25-c0e2-4f85-918b-ee17cfe5dc41" absoluteBounds="3.25, 0.5, 2, 2.24658447265625">
+      <DataClassMoniker Name="/PhishDatabase/Tour" />
+      <nestedChildShapes>
+        <elementListCompartment Id="32316fec-6dca-4ff1-9603-4aec87851267" absoluteBounds="3.2649999999999997, 0.96, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6715e7d9-b028-4358-867c-b65466fafa81" absoluteBounds="16.875, 4.125, 2, 3.8900577799479166">
+      <DataClassMoniker Name="/PhishDatabase/Photo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="38a10b55-88d7-440f-9eb7-f479a5be2031" absoluteBounds="16.89, 4.5850000000000009, 1.9700000000000002, 3.3300577799479165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b4799960-93c7-4aea-9074-d3574f409294" isExpanded="false" absoluteBounds="5.75, 11.875, 2, 0.45">
+      <DataClassMoniker Name="/PhishDatabase/Video" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8e54f251-2f8f-427a-92ef-878991d617ba" absoluteBounds="5.7650000000000006, 12.335, 1.9700000000000002, 2.67266845703125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.375 : 6.58046590169271); (4.875 : 6.58046590169271)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Show/Show_Set" />
+      <nodes>
+        <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
+        <classShapeMoniker Id="330fa0a8-1e9f-4fb7-ac24-f3df9dd1ddc0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.375 : 6.89296590169271); (14.6666666666667 : 6.89296590169271 : JumpStart); (14.8333333333333 : 6.89296590169271 : JumpEnd); (16.875 : 6.89296590169271)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Show/Show_Photo" />
+      <nodes>
+        <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
+        <classShapeMoniker Id="6715e7d9-b028-4358-867c-b65466fafa81" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.28125 : 7.84375244140625); (6.28125 : 11.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Show/Show_Video" />
+      <nodes>
+        <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
+        <classShapeMoniker Id="b4799960-93c7-4aea-9074-d3574f409294" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.09375 : 2.74658447265625); (5.09375 : 4.46875); (5.375 : 4.46875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Tour/Tour_Show" />
+      <nodes>
+        <classShapeMoniker Id="45b5eb25-c0e2-4f85-918b-ee17cfe5dc41" />
+        <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d02ca4f8-8f9e-4d3f-94bd-3b2ed17ae46a" absoluteBounds="22.625, 0.5, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/PhishDatabase/Post" />
+      <nestedChildShapes>
+        <elementListCompartment Id="53bb6da8-8bb8-4ee4-87f0-f4346b052967" absoluteBounds="22.64, 0.96000000000000085, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dbee288f-8ac1-4d5f-81fe-3d00aa405f14" absoluteBounds="0.5, 0.5, 2, 2.73962646484375">
+      <DataClassMoniker Name="/PhishDatabase/Topic" />
+      <nestedChildShapes>
+        <elementListCompartment Id="99e1b5d5-d0c5-4afe-b769-c8d2a2d3b726" absoluteBounds="0.51500000000000057, 0.96, 1.9700000000000002, 2.17962646484375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.25 : 1.62329223632813); (2.5 : 1.62329223632813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Tour/Tour_Topic" />
+      <nodes>
+        <classShapeMoniker Id="45b5eb25-c0e2-4f85-918b-ee17cfe5dc41" />
+        <classShapeMoniker Id="dbee288f-8ac1-4d5f-81fe-3d00aa405f14" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.10937375 : 3.625); (6.10937375 : 3.02435546875); (2.5 : 3.02435546875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Show/Show_Topic" />
+      <nodes>
+        <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
+        <classShapeMoniker Id="dbee288f-8ac1-4d5f-81fe-3d00aa405f14" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f275dff4-74c9-461e-b4ee-69543e40447c" absoluteBounds="0.5, 4, 2, 2.2465844726562496">
+      <DataClassMoniker Name="/PhishDatabase/GuessWholeShow" />
+      <nestedChildShapes>
+        <elementListCompartment Id="56a49b3b-e12a-4735-9620-441f8a5b3a8c" absoluteBounds="0.515, 4.46, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.5 : 3.23962646484375); (1.5 : 4)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Topic/Topic_GuessWholeShow" />
+      <nodes>
+        <classShapeMoniker Id="dbee288f-8ac1-4d5f-81fe-3d00aa405f14" />
+        <classShapeMoniker Id="f275dff4-74c9-461e-b4ee-69543e40447c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.875 : 5.81079223632812); (2.5 : 5.81079223632812)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Set/Set_GuessWholeShow" />
+      <nodes>
+        <classShapeMoniker Id="330fa0a8-1e9f-4fb7-ac24-f3df9dd1ddc0" />
+        <classShapeMoniker Id="f275dff4-74c9-461e-b4ee-69543e40447c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="5f5ae868-b0ad-45f4-8d60-7c828773c440" absoluteBounds="3.5, 8.625, 2, 3.8900577799479166">
+      <DataClassMoniker Name="/PhishDatabase/SetSong" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dbd52f9d-b24f-4ee5-abc3-c66ae63e5971" absoluteBounds="3.515, 9.085, 1.9700000000000002, 3.3300577799479165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.1875 : 7.78593180338542); (4.1875 : 8.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Set/Set_SetSong" />
+      <nodes>
+        <classShapeMoniker Id="330fa0a8-1e9f-4fb7-ac24-f3df9dd1ddc0" />
+        <classShapeMoniker Id="5f5ae868-b0ad-45f4-8d60-7c828773c440" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.5 : 10.034160563151); (3.5 : 10.034160563151)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Song/Song_SetSong" />
+      <nodes>
+        <classShapeMoniker Id="d10755ff-9c74-4488-aa1e-3604e9de5372" />
+        <classShapeMoniker Id="5f5ae868-b0ad-45f4-8d60-7c828773c440" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="cf7ee6de-92b2-454c-8698-7bb037e79db9" absoluteBounds="26.125, 5.25, 2, 4.2187524414062487">
+      <DataClassMoniker Name="/PhishDatabase/aspnet_Membership" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b48261d3-4bf7-4520-aa85-5b3ac1abab2a" absoluteBounds="26.14, 5.71, 1.9700000000000002, 3.65875244140625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b67e8858-a31d-4509-bca9-f482197ff439" absoluteBounds="22.375, 4.75, 2, 1.9178898111979166">
+      <DataClassMoniker Name="/PhishDatabase/aspnet_User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c6f960a4-a93f-4d98-91d7-292aa8b5cc71" absoluteBounds="22.39, 5.2100000000000009, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(24.375 : 5.95894490559896); (26.125 : 5.95894490559896)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/aspnet_User/aspnet_User_aspnet_Membership" />
+      <nodes>
+        <classShapeMoniker Id="b67e8858-a31d-4509-bca9-f482197ff439" />
+        <classShapeMoniker Id="cf7ee6de-92b2-454c-8698-7bb037e79db9" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ea102d30-032d-4c06-92bc-eabf759e58e3" absoluteBounds="25.625, 1.875, 2, 3.23266845703125">
+      <DataClassMoniker Name="/PhishDatabase/Profile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2de7c906-8121-42dc-8b36-f519d18c5b1a" absoluteBounds="25.64, 2.335, 1.9700000000000002, 2.67266845703125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(22.46875 : 4.75); (22.46875 : 3.86171540169271); (25.625 : 3.86171540169271)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/aspnet_User/aspnet_User_Profile" />
+      <nodes>
+        <classShapeMoniker Id="b67e8858-a31d-4509-bca9-f482197ff439" />
+        <classShapeMoniker Id="ea102d30-032d-4c06-92bc-eabf759e58e3" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8e96f037-1d12-4bb7-b287-06de89a56074" absoluteBounds="22.625, 7.875, 2, 2.0822371419270831">
+      <DataClassMoniker Name="/PhishDatabase/FavoriteVersion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d3f7aa8c-ea4d-4ddd-8999-7498329f8327" absoluteBounds="22.64, 8.335, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(23.5 : 6.66788981119792); (23.5 : 7.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/aspnet_User/aspnet_User_FavoriteVersion" />
+      <nodes>
+        <classShapeMoniker Id="b67e8858-a31d-4509-bca9-f482197ff439" />
+        <classShapeMoniker Id="8e96f037-1d12-4bb7-b287-06de89a56074" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="dd036f80-a875-4d17-85b6-683bc6cc4020" absoluteBounds="9, 8.75, 2, 3.7257104492187505">
+      <DataClassMoniker Name="/PhishDatabase/Poster" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8dda2daa-8e03-493c-a01f-4c862caeab36" absoluteBounds="9.015, 9.21, 1.9700000000000002, 3.16571044921875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6342b396-f63d-4d41-954e-95b82530594c" absoluteBounds="7.625, 0.5, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/PhishDatabase/TicketStub" />
+      <nestedChildShapes>
+        <elementListCompartment Id="64efe084-ad1d-44b3-8ef6-fb5551e9eb37" absoluteBounds="7.6400000000000006, 0.96, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.375 : 7.39961167154948); (10.75 : 7.39961167154948); (10.75 : 8.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Show/Show_Poster" />
+      <nodes>
+        <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
+        <classShapeMoniker Id="dd036f80-a875-4d17-85b6-683bc6cc4020" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.9062525 : 3.625); (6.9062525 : 1.70546590169271); (7.625 : 1.70546590169271)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Show/Show_TicketStub" />
+      <nodes>
+        <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
+        <classShapeMoniker Id="6342b396-f63d-4d41-954e-95b82530594c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="3d70842f-bbc2-438c-8d5d-a2fb5eedfb57" absoluteBounds="8.5, 3.875, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/PhishDatabase/Art" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c458820b-581d-442d-a25e-ccfeda89ace0" absoluteBounds="8.515, 4.3350000000000009, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.375 : 5.2134346062932); (8.5 : 5.2134346062932)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Show/Show_Art" />
+      <nodes>
+        <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
+        <classShapeMoniker Id="3d70842f-bbc2-438c-8d5d-a2fb5eedfb57" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="43ea92a9-4332-48be-8616-c3e7fcdd78b1" absoluteBounds="13.5, 0.625, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/PhishDatabase/MyShow" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bbb13082-11db-4391-90ca-436017aba5fa" absoluteBounds="13.515, 1.085, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.23999860276264 : 3.625); (13.53125 : 3.625); (13.53125 : 3.03593180338542)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Show/Show_MyShow" />
+      <nodes>
+        <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
+        <classShapeMoniker Id="43ea92a9-4332-48be-8616-c3e7fcdd78b1" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d6c19b55-4f38-46ba-8114-091f7ed1c8b9" absoluteBounds="13.75, 4.125, 2, 1.9178898111979166">
+      <DataClassMoniker Name="/PhishDatabase/MyShowPoster" />
+      <nestedChildShapes>
+        <elementListCompartment Id="caf35e72-2634-407a-9f4c-a2252f35a1ed" absoluteBounds="13.765, 4.5850000000000009, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(11 : 10.6128552246094); (14.75 : 10.6128552246094); (14.75 : 6.04288981119792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Poster/Poster_MyShowPoster" />
+      <nodes>
+        <classShapeMoniker Id="dd036f80-a875-4d17-85b6-683bc6cc4020" />
+        <classShapeMoniker Id="d6c19b55-4f38-46ba-8114-091f7ed1c8b9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.625 : 3.03593180338542); (14.625 : 4.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PhishDatabase/MyShow/MyShow_MyShowPoster" />
+      <nodes>
+        <classShapeMoniker Id="43ea92a9-4332-48be-8616-c3e7fcdd78b1" />
+        <classShapeMoniker Id="d6c19b55-4f38-46ba-8114-091f7ed1c8b9" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="2f66e8b8-d109-43ac-a91b-f8339e9f4df3" absoluteBounds="10.25, 0.75, 2, 1.9178898111979166">
+      <DataClassMoniker Name="/PhishDatabase/MyShowTicketStub" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7c223145-066b-4cef-a009-3521c72d0a64" absoluteBounds="10.265, 1.2100000000000009, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.625 : 1.70894490559896); (10.25 : 1.70894490559896)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/TicketStub/TicketStub_MyShowTicketStub" />
+      <nodes>
+        <classShapeMoniker Id="6342b396-f63d-4d41-954e-95b82530594c" />
+        <classShapeMoniker Id="2f66e8b8-d109-43ac-a91b-f8339e9f4df3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(13.5 : 1.70894490559896); (12.25 : 1.70894490559896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PhishDatabase/MyShow/MyShow_MyShowTicketStub" />
+      <nodes>
+        <classShapeMoniker Id="43ea92a9-4332-48be-8616-c3e7fcdd78b1" />
+        <classShapeMoniker Id="2f66e8b8-d109-43ac-a91b-f8339e9f4df3" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d6f58942-6ff7-4279-91e1-c8f3b275e45e" absoluteBounds="11, 4.25, 2, 1.9178898111979166">
+      <DataClassMoniker Name="/PhishDatabase/MyShowArt" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c7840607-d3ce-400b-969c-8a87cb6fb651" absoluteBounds="11.015, 4.7100000000000009, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(10.5 : 5.20894490559896); (11 : 5.20894490559896)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/PhishDatabase/Art/Art_MyShowArt" />
+      <nodes>
+        <classShapeMoniker Id="3d70842f-bbc2-438c-8d5d-a2fb5eedfb57" />
+        <classShapeMoniker Id="d6f58942-6ff7-4279-91e1-c8f3b275e45e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(13.6406275 : 3.03593180338542); (13.6406275 : 6.13663981119792); (13 : 6.13663981119792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PhishDatabase/MyShow/MyShow_MyShowArt" />
+      <nodes>
+        <classShapeMoniker Id="43ea92a9-4332-48be-8616-c3e7fcdd78b1" />
+        <classShapeMoniker Id="d6f58942-6ff7-4279-91e1-c8f3b275e45e" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f6be4759-49d4-4ac5-aba6-51fe10636894" absoluteBounds="15.875, 9.625, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/PhishDatabase/Analysis" />
+      <nestedChildShapes>
+        <elementListCompartment Id="32020ae4-785e-4ecb-bd9a-acc4fbb09dd9" absoluteBounds="15.89, 10.085, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7f6cb058-75d5-452f-b477-7f5091e4c5c4" absoluteBounds="19.75, 9.625, 2, 2.5752791341145826">
+      <DataClassMoniker Name="/PhishDatabase/WantedList" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1c0520db-9304-4739-838b-483149142825" absoluteBounds="19.765, 10.085, 1.9700000000000002, 2.015279134114583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

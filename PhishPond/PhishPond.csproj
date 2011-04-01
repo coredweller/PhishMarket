@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C136CF5-71C5-4E33-A77A-F4B74E9545AD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PhishPond</RootNamespace>
+    <AssemblyName>PhishPond</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\log4net-1.2.10\bin\net\2.0\release\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.1.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Entity.Design">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Concrete\Analysis.cs" />
+    <Compile Include="Concrete\Art.cs" />
+    <Compile Include="Concrete\EventArgs\SelectAlbumCommandEventArgs.cs" />
+    <Compile Include="Concrete\FavoriteLiveSongList.cs" />
+    <Compile Include="Concrete\FavoriteSetSong.cs" />
+    <Compile Include="Concrete\FavoriteVersion.cs" />
+    <Compile Include="Concrete\FavoriteVersionSongList.cs" />
+    <Compile Include="Concrete\LiveSongList.cs" />
+    <Compile Include="Concrete\MyShow.cs" />
+    <Compile Include="Concrete\MyShowArt.cs" />
+    <Compile Include="Concrete\MyShowPoster.cs" />
+    <Compile Include="Concrete\MyShowTicketStub.cs" />
+    <Compile Include="Concrete\profileGetAllVersions.cs" />
+    <Compile Include="Concrete\profileGetFavoriteVersionsResult.cs" />
+    <Compile Include="Concrete\GuessSetBased.cs" />
+    <Compile Include="Concrete\GuessWholeShow.cs" />
+    <Compile Include="Concrete\Post.cs" />
+    <Compile Include="Concrete\Profile.cs" />
+    <Compile Include="Concrete\Set.cs" />
+    <Compile Include="Concrete\SetSong.cs" />
+    <Compile Include="Concrete\TempImageStorage.cs" />
+    <Compile Include="Concrete\Topic.cs" />
+    <Compile Include="Concrete\Tour.cs" />
+    <Compile Include="Concrete\Photo.cs" />
+    <Compile Include="Concrete\Poster.cs" />
+    <Compile Include="Concrete\Show.cs" />
+    <Compile Include="Concrete\Song.cs" />
+    <Compile Include="Concrete\TicketStub.cs" />
+    <Compile Include="Concrete\Video.cs" />
+    <Compile Include="Concrete\SetBasedScore.cs" />
+    <Compile Include="Concrete\WantedList.cs" />
+    <Compile Include="Concrete\WholeShowScore.cs" />
+    <Compile Include="Concrete\WholeShowSongList.cs" />
+    <Compile Include="LoggedActionFactory.cs" />
+    <Compile Include="PhishPond.cs">
+      <DependentUpon>PhishPond.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="PhishPond.designer.cs">
+      <DependentUpon>PhishPond.dbml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="PhishPondRegistry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\AnalysisRepository.cs" />
+    <Compile Include="Repository\ArtRepository.cs" />
+    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\ConnectionString.cs" />
+    <Compile Include="Repository\DebuggerWriter.cs" />
+    <Compile Include="Repository\FavoriteVersionRepository.cs" />
+    <Compile Include="Repository\GuessWholeShowRepository.cs" />
+    <Compile Include="Repository\IConnectionString.cs" />
+    <Compile Include="Repository\ILogWriter.cs" />
+    <Compile Include="Repository\IPhishDatabase.cs" />
+    <Compile Include="Repository\IPhishDatabaseFactory.cs" />
+    <Compile Include="Repository\LogWriter.cs" />
+    <Compile Include="Repository\MyShowArtRepository.cs" />
+    <Compile Include="Repository\MyShowPosterRepository.cs" />
+    <Compile Include="Repository\MyShowRepository.cs" />
+    <Compile Include="Repository\MyShowTicketStubRepository.cs" />
+    <Compile Include="Repository\PhishDatabase.cs" />
+    <Compile Include="Repository\PhishDatabaseFactory.cs" />
+    <Compile Include="Repository\PhotoRepository.cs" />
+    <Compile Include="Repository\PosterRepository.cs" />
+    <Compile Include="Repository\PostRepository.cs" />
+    <Compile Include="Repository\ProfileRepository.cs" />
+    <Compile Include="Repository\SetRepository.cs" />
+    <Compile Include="Repository\SetSongRepository.cs" />
+    <Compile Include="Repository\ShowRepository.cs" />
+    <Compile Include="Repository\SongRepository.cs" />
+    <Compile Include="Repository\TicketStubRepository.cs" />
+    <Compile Include="Repository\TopicRepository.cs" />
+    <Compile Include="Repository\TourRepository.cs" />
+    <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="Repository\VideoRepository.cs" />
+    <Compile Include="Repository\WantedListRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PhishPond.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>PhishPond.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="PhishPond.dbml.layout">
+      <DependentUpon>PhishPond.dbml</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheCore\TheCore.csproj">
+      <Project>{F301AEB1-C976-4243-A726-F9757851F6A5}</Project>
+      <Name>TheCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
