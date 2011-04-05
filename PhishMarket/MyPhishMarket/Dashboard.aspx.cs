@@ -22,7 +22,7 @@ namespace PhishMarket.MyPhishMarket
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //THIS IS A NEW SHIT
+            //THIS IS A NEW SHIT TWICE
             userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 
             lnkChangeProfile.NavigateUrl = LinkBuilder.ChangeProfileLink();

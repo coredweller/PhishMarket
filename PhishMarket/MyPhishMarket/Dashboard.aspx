@@ -17,7 +17,7 @@
             <asp:HyperLink ID="lnkChangeProfile" runat="server" Text="Change your Profile HERE"></asp:HyperLink>
         </h3>
     </div>
-    <div class="ClearBoth">
+    <div class="ClearBoth" style="">
         <%--<br />--%>
         <br />
         <table>
