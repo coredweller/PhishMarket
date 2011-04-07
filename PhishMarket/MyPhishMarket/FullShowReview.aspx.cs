@@ -35,10 +35,9 @@ namespace PhishMarket.MyPhishMarket
 
             if (myShow != null)
             {
-                Page.Title = ((MyShow)myShow).Show.ShowName + "'s Review";
+                Page.Title = "Review of " + ((MyShow)myShow).Show.GetShowName();
 
                 lblReview.Text = myShow.Notes;
-
             }
         }
     }

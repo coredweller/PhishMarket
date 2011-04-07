@@ -14,6 +14,8 @@ namespace PhishMarket.MyPhishMarket
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = "Analyze all Phish Shows Here!";
+
             if (!IsPostBack)
             {
                 Bind();

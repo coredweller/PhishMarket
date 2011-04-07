@@ -46,6 +46,8 @@ namespace PhishMarket.MyPhishMarket
 
             var show = (Show)showService.GetShow(showId);
 
+            Page.Title = "Review of " + show.GetShowName();
+
             ShowName = show.GetShowName();
 
             var ss = (from set in show.Sets.OrderBy(x => x.SetNumber)

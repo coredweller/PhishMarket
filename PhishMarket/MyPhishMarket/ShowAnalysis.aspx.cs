@@ -89,6 +89,9 @@ namespace PhishMarket.MyPhishMarket
             var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
 
             var show = showService.GetShow(showId);
+
+            Page.Title = "Analyze " + show.GetShowName();
+
             lblShow.Text = show.GetShowName();
             var sets = setService.GetSetsForShow(showId);
 

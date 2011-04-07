@@ -100,8 +100,6 @@
     <Content Include="css\license.txt" />
     <Content Include="Default.aspx" />
     <Content Include="images\spacer.gif" />
-    <Content Include="MyPhishMarket\MyShows.aspx" />
-    <Content Include="MyPhishMarket\UpcomingShows.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -531,20 +529,6 @@
     </Compile>
     <Compile Include="Master\PhishMarket3.Master.designer.cs">
       <DependentUpon>PhishMarket3.Master</DependentUpon>
-    </Compile>
-    <Compile Include="MyPhishMarket\MyShows.aspx.cs">
-      <DependentUpon>MyShows.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MyPhishMarket\MyShows.aspx.designer.cs">
-      <DependentUpon>MyShows.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MyPhishMarket\UpcomingShows.aspx.cs">
-      <DependentUpon>UpcomingShows.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MyPhishMarket\UpcomingShows.aspx.designer.cs">
-      <DependentUpon>UpcomingShows.aspx</DependentUpon>
     </Compile>
     <Compile Include="PhishMarketBasePage.cs">
       <SubType>ASPXCodeBehind</SubType>

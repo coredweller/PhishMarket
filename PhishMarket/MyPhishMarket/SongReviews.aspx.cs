@@ -43,6 +43,8 @@ namespace PhishMarket.MyPhishMarket
             lnkReviewShow.NavigateUrl = LinkBuilder.AnalysisLink(show.ShowId);
             lnkNoReviews.NavigateUrl = LinkBuilder.AnalysisLink(show.ShowId);
 
+            Page.Title = "Review of " + SongName + " from " + ShowName;
+
             BindReviews(setSongId);
         }
 

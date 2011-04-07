@@ -34,7 +34,9 @@ namespace PhishMarket.MyPhishMarket
             if (string.IsNullOrEmpty(Request.QueryString["userId"]) && string.IsNullOrEmpty(Request.QueryString["u"]))
                 return;
 
-            Guid userId = Request.QueryString["userId"] != null ? new Guid(Request.QueryString["userId"]) : GetUserIdFromYafId(Request.QueryString["u"]); ;
+            Guid userId = Request.QueryString["userId"] != null ? new Guid(Request.QueryString["userId"]) : GetUserIdFromYafId(Request.QueryString["u"]);
+
+
 
             BindProfile(userId);
             BindPosters(userId);
@@ -46,7 +48,7 @@ namespace PhishMarket.MyPhishMarket
 
         private void BindShowsReviewed(Guid userId)
         {
-            ///LEFT OFF HERE
+            ///LEFT OFF HERE   Not sure when this was added but I found it on 4/6/11 so im going to leave it and see if i ever remember
         }
 
         private void BindMyShows(Guid userId)
