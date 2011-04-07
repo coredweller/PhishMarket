@@ -12,7 +12,7 @@ using PhishPond.Concrete;
 
 namespace PhishMarket.MyPhishMarket
 {
-    public partial class FullShowReview : System.Web.UI.Page
+    public partial class FullShowReview : PhishMarketBasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,7 +35,7 @@ namespace PhishMarket.MyPhishMarket
 
             if (myShow != null)
             {
-                Page.Title = "Review of " + ((MyShow)myShow).Show.GetShowName();
+                SetPageTitle("Review of " + ((MyShow)myShow).Show.GetShowName());
 
                 lblReview.Text = myShow.Notes;
             }

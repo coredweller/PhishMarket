@@ -46,7 +46,7 @@ namespace PhishMarket.MyPhishMarket
 
             var show = (Show)showService.GetShow(showId);
 
-            Page.Title = "Review of " + show.GetShowName();
+            SetPageTitle("Review of " + show.GetShowName());
 
             ShowName = show.GetShowName();
 

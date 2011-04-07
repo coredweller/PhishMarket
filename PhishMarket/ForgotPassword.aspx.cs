@@ -11,7 +11,7 @@ namespace PhishMarket
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            SetPageTitle("Forgot Your Phish Market Password?");
         }
     }
 }

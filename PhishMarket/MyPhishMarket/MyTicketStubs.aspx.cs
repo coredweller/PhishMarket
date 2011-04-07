@@ -16,7 +16,7 @@ namespace PhishMarket.MyPhishMarket
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Page.Title = "Add Ticket Stubs for Phish Shows Here!";
+            SetPageTitle("Add Ticket Stubs for Phish Shows Here!");
 
             userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 

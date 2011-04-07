@@ -16,6 +16,8 @@ namespace PhishMarket
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("What's New with Phish Market");
+
             if (!IsPostBack)
             {
                 Bind();

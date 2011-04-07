@@ -16,7 +16,7 @@ namespace PhishMarket.MyPhishMarket
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Page.Title = "Add Pictures for Phish Shows Here!";
+            SetPageTitle("Add Pictures for Phish Shows Here!");
 
             userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 

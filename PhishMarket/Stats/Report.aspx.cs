@@ -18,6 +18,8 @@ namespace PhishMarket.Stats
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("Statistic Reports");
+
             if (!IsPostBack)
             {
                 Bind();

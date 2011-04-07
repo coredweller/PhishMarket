@@ -29,7 +29,7 @@ namespace PhishMarket.MyPhishMarket
             var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
             var show = showService.GetShow(showId);
 
-            Page.Title = "My Pictures for " + show.GetShowName();
+            SetPageTitle("My Pictures for " + show.GetShowName());
 
             SlideShowExtender1.ContextKey = string.Format("{0};{1}", userId, showId);
         }

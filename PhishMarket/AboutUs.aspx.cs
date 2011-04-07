@@ -6,6 +6,8 @@ namespace PhishMarket
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("About Me");
+
             if (!IsPostBack)
             {
 

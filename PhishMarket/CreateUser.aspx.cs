@@ -6,10 +6,9 @@ namespace PhishMarket
 {
     public partial class CreateUser : PhishMarketBasePage
     {
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("Create Phish Market User");
         }
 
         public void createControl_ContinueButtonClick(object sender, EventArgs e)

@@ -120,7 +120,9 @@ namespace PhishMarket
 
         protected override void OnLoad(EventArgs e)
         {
-            Page.Title = DefaultTitle;
+            //Set it to the Default initially but any 
+            // inheriting page can call SetPageTitle as well
+            SetPageTitle(DefaultTitle);
 
             base.OnLoad(e);
         }

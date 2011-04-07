@@ -90,7 +90,7 @@ namespace PhishMarket.MyPhishMarket
 
             var show = showService.GetShow(showId);
 
-            Page.Title = "Analyze " + show.GetShowName();
+            SetPageTitle("Analyze " + show.GetShowName());
 
             lblShow.Text = show.GetShowName();
             var sets = setService.GetSetsForShow(showId);

@@ -42,7 +42,7 @@ namespace PhishMarket.MyPhishMarket
 
             if (user != null)
             {
-                Page.Title = user.UserName + "'s Profile";
+                SetPageTitle(user.UserName + "'s Profile");
             }
 
             BindProfile(userId);
