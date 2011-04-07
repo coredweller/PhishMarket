@@ -21,9 +21,9 @@ namespace PhishPond.Repository.LinqToSql
             return Database.PhishSetDataSource.Where(x => x.Deleted == false);
         }
 
-        public IList<ISet> FindAll()
+        public IQueryable<ISet> FindAll()
         {
-            return GetAll().OrderBy(s => s.SetId).ToList();
+            return GetAll().OrderBy(s => s.SetId);
         }
 
         public ISet FindBySetId(Guid setId)
@@ -31,9 +31,9 @@ namespace PhishPond.Repository.LinqToSql
             return GetAll().SingleOrDefault(set => set.SetId == setId);
         }
 
-        public IList<ISet> FindByShowId(Guid showId)
+        public IQueryable<ISet> FindByShowId(Guid showId)
         {
-            return GetAll().Where(set => set.ShowId == showId).OrderBy(x => x.SetNumber).ToList();
+            return GetAll().Where(set => set.ShowId == showId).OrderBy(x => x.SetNumber);
         }
 
         public override void Add(ISet entity)

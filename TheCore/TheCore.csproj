@@ -115,6 +115,7 @@
     <Compile Include="Interfaces\ITempImageStorage.cs" />
     <Compile Include="Interfaces\ITicketStub.cs" />
     <Compile Include="Interfaces\ITour.cs" />
+    <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Interfaces\IVideo.cs" />
     <Compile Include="Interfaces\IWantedList.cs" />
     <Compile Include="Interfaces\IWholeShowScore.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Repository\IMyShowPosterRepository.cs" />
     <Compile Include="Repository\IMyShowRepository.cs" />
     <Compile Include="Repository\IMyShowTicketStubRepository.cs" />
+    <Compile Include="Repository\IPhishMarketUserRepository.cs" />
     <Compile Include="Repository\IPhotoRepository.cs" />
     <Compile Include="Repository\IPosterRepository.cs" />
     <Compile Include="Repository\IPostRepository.cs" />
@@ -163,6 +165,7 @@
     <Compile Include="Services\MyShowService.cs" />
     <Compile Include="Services\MyShowThumbnail.cs" />
     <Compile Include="Services\MyShowTicketStubService.cs" />
+    <Compile Include="Services\PhishMarketUserService.cs" />
     <Compile Include="Services\PhotoService.cs" />
     <Compile Include="Services\PosterService.cs" />
     <Compile Include="Services\PostService.cs" />

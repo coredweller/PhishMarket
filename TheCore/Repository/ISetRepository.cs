@@ -1,6 +1,7 @@
 ﻿using System;
 using TheCore.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TheCore.Repository
 {
@@ -9,7 +10,7 @@ namespace TheCore.Repository
         void Add(ISet entity);
         ISet FindBySetId(Guid id);
         void Remove(ISet entity);
-        IList<ISet> FindAll();
-        IList<ISet> FindByShowId(Guid showId);
+        IQueryable<ISet> FindAll();
+        IQueryable<ISet> FindByShowId(Guid showId);
     }
 }

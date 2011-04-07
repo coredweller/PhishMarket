@@ -188,6 +188,13 @@ namespace PhishPond
                 .Ctor<IPhishDatabaseFactory>("factory").IsTheDefault();
 
             SelectConstructor<WantedListRepository>(() => new WantedListRepository((IPhishDatabaseFactory)null));
+
+            For<IPhishMarketUserRepository>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use<PhishMarketUserRepository>()
+                .Ctor<IPhishDatabaseFactory>("factory").IsTheDefault();
+
+            SelectConstructor<PhishMarketUserRepository>(() => new PhishMarketUserRepository((IPhishDatabaseFactory)null));
         }
     }
 }

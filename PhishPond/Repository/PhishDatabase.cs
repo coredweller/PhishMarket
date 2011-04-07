@@ -135,7 +135,10 @@ namespace PhishPond.Repository.LinqToSql
             get { return GetQueryable<WantedList>().Cast<IWantedList>(); }
         }
 
-
+        public IQueryable<IUser> UserDataSource
+        {
+            get { return GetQueryable<aspnet_User>().Cast<IUser>(); }
+        }
 
 
 

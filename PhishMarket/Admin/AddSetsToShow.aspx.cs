@@ -199,7 +199,7 @@ namespace PhishMarket.Admin
 
             SetService setService = new SetService(Ioc.GetInstance<ISetRepository>());
 
-            var sets = setService.GetSetsForShow(showId);
+            var sets = setService.GetSetsForShow(showId).ToList();
 
             FinalSetNumber = 1;
 

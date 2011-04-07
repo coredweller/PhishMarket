@@ -14,6 +14,7 @@ namespace PhishMarket.MyPhishMarket
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Title = "My Wanted List";
             userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 
             if (!IsPostBack)

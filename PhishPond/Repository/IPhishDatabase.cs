@@ -42,6 +42,7 @@ namespace PhishPond.Repository.LinqToSql
         IQueryable<IMyShowArt> MyShowArtDataSource { get; }
         IQueryable<IAnalysis> AnalysisDataSource { get; }
         IQueryable<IWantedList> WantedListDataSource { get; }
+        IQueryable<IUser> UserDataSource { get; }
         Table<Photo> Photos { get; }
         Table<Poster> Posters { get; }
         Table<Set> Sets { get; }

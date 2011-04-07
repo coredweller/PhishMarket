@@ -4,6 +4,7 @@ using TheCore.Repository;
 using TheCore.Helpers;
 using TheCore.Interfaces;
 using TheCore.Infrastructure;
+using System.Linq;
 
 namespace TheCore.Services
 {
@@ -17,7 +18,7 @@ namespace TheCore.Services
             _repo = repo;
         }
 
-        public IList<ISet> GetAllSets()
+        public IQueryable<ISet> GetAllSets()
         {
             return _repo.FindAll();
         }
@@ -27,7 +28,7 @@ namespace TheCore.Services
             return _repo.FindBySetId(setId);
         }
 
-        public IList<ISet> GetSetsForShow(Guid showId)
+        public IQueryable<ISet> GetSetsForShow(Guid showId)
         {
             return _repo.FindByShowId(showId);
         }

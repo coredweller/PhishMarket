@@ -36,7 +36,14 @@ namespace PhishMarket.MyPhishMarket
 
             Guid userId = Request.QueryString["userId"] != null ? new Guid(Request.QueryString["userId"]) : GetUserIdFromYafId(Request.QueryString["u"]);
 
+            var userService = new PhishMarketUserService(Ioc.GetInstance<IPhishMarketUserRepository>());
 
+            var user = userService.GetUserById(userId);
+
+            if (user != null)
+            {
+                Page.Title = user.UserName + "'s Profile";
+            }
 
             BindProfile(userId);
             BindPosters(userId);

@@ -72,6 +72,7 @@
     <Compile Include="Concrete\MyShowArt.cs" />
     <Compile Include="Concrete\MyShowPoster.cs" />
     <Compile Include="Concrete\MyShowTicketStub.cs" />
+    <Compile Include="Concrete\PhishMarketUser.cs" />
     <Compile Include="Concrete\profileGetAllVersions.cs" />
     <Compile Include="Concrete\profileGetFavoriteVersionsResult.cs" />
     <Compile Include="Concrete\GuessSetBased.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Repository\MyShowTicketStubRepository.cs" />
     <Compile Include="Repository\PhishDatabase.cs" />
     <Compile Include="Repository\PhishDatabaseFactory.cs" />
+    <Compile Include="Repository\PhishMarketUserRepository.cs" />
     <Compile Include="Repository\PhotoRepository.cs" />
     <Compile Include="Repository\PosterRepository.cs" />
     <Compile Include="Repository\PostRepository.cs" />
