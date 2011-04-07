@@ -40,6 +40,14 @@ namespace TheCore.Services
             return _repo.FindAll().Where(x => x.ShowId == showId);
         }
 
+        public IPhoto GetPhotoThumbnail(Guid id)
+        {
+            var photo = _repo.FindByPhotoId(id);
+            var thumbnail = GetAllPhotos().Where(x => x.Thumbnail == true && x.NickName == photo.NickName && x.UserId == photo.UserId && x.ShowId == photo.ShowId).FirstOrDefault();
+
+            return thumbnail;
+        }
+
         public void SaveCommit(IPhoto photo, IImageFormatSpec mediaFormat, out bool success)
         {
             using (var unitOfWork = UnitOfWork.Begin())

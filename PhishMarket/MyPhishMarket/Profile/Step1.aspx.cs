@@ -13,6 +13,8 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("PhishMarket Profile Step 1");
+
             btnSubmit.Attributes.Add("onmouseover", "this.src = '/images/buttons/greySaveButtonRollover.jpg'");
             btnSubmit.Attributes.Add("onmouseout", "this.src = '/images/buttons/greySaveButton.jpg'");
 

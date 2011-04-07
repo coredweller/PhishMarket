@@ -62,23 +62,25 @@ namespace TheCore.Services
             return myShowArts;
         }
 
-        public KeyValuePair<IMyShowArt, IArt> GetAnyMyShowArtForUser(Guid userId)
+        public MyShowThumbnail<IMyShowArt> GetAnyMyShowArtForUser(Guid userId)
         {
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
             var artService = new ArtService(Ioc.GetInstance<IArtRepository>());
+            var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
 
             var myShows = myShowService.GetMyShowsForUser(userId);
 
-            var myShowArt = GetAllMyShowArt().Where(x => myShows.Any(y => y.MyShowId == x.MyShowId)).OrderByDescending(z => z.CreatedDate).FirstOrDefault();
+            var myShowArts = GetAllMyShowArt().Where(x => myShows.Any(y => y.MyShowId == x.MyShowId)).OrderByDescending(z => z.CreatedDate);
 
-            IArt art = null;
-
-            if (myShowArt != null)
+            foreach (var myShowArt in myShowArts)
             {
-                art = artService.GetArt(myShowArt.ArtId);
+                var art = artService.GetArt(myShowArt.ArtId);
+                var photo = photoService.GetPhotoThumbnail(art.PhotoId.Value);
+                if (photo.Thumbnail)
+                    return new MyShowThumbnail<IMyShowArt>(myShowArt, photo);
             }
-
-            return new KeyValuePair<IMyShowArt, IArt>(myShowArt, art);
+            
+            return null;
         }
 
         public void SaveCommit(IMyShowArt myShow, out bool success)

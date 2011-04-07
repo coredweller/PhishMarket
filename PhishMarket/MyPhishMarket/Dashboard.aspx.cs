@@ -22,7 +22,8 @@ namespace PhishMarket.MyPhishMarket
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //THIS IS A NEW SHIT TWICE
+            SetPageTitle("My Phish Market Dashboard");
+
             userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 
             lnkChangeProfile.NavigateUrl = LinkBuilder.ChangeProfileLink();
@@ -32,7 +33,7 @@ namespace PhishMarket.MyPhishMarket
                 Bind();
             }
         }
-        
+
         private void Bind()
         {
             BindProfile();
@@ -58,26 +59,26 @@ namespace PhishMarket.MyPhishMarket
             var myShowTicketStubService = new MyShowTicketStubService(Ioc.GetInstance<IMyShowTicketStubRepository>());
             var myShowArtService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
 
-            var myShowPosterAndPoster = myShowPosterService.GetAnyMyShowPosterForUser(userId);
-            var myShowTicketStubAndTicketStub = myShowTicketStubService.GetAnyMyShowTicketStubForUser(userId);
-            var myShowArtAndArt = myShowArtService.GetAnyMyShowArtForUser(userId);
+            var myShowPosterThumbnail = myShowPosterService.GetAnyMyShowPosterForUser(userId);
+            var myShowTicketStubThumbnail = myShowTicketStubService.GetAnyMyShowTicketStubForUser(userId);
+            var myShowArtThumbnail = myShowArtService.GetAnyMyShowArtForUser(userId);
 
-            if (myShowPosterAndPoster.Value != null)
+            if (myShowPosterThumbnail != null)
             {
                 phMyPoster.Visible = true;
-                imgPoster.ImageUrl = LinkBuilder.GetImageLink(myShowPosterAndPoster.Value.PhotoId.Value);
+                imgPoster.ImageUrl = LinkBuilder.GetImageLink(myShowPosterThumbnail.Thumbnail.PhotoId);
             }
 
-            if (myShowTicketStubAndTicketStub.Value != null)
+            if (myShowTicketStubThumbnail != null)
             {
                 phTicketStub.Visible = true;
-                imgTicketStub.ImageUrl = LinkBuilder.GetImageLink(myShowTicketStubAndTicketStub.Value.PhotoId.Value);
+                imgTicketStub.ImageUrl = LinkBuilder.GetImageLink(myShowTicketStubThumbnail.Thumbnail.PhotoId);
             }
 
-            if (myShowArtAndArt.Value != null)
+            if (myShowArtThumbnail != null)
             {
                 phArt.Visible = true;
-                imgArt.ImageUrl = LinkBuilder.GetImageLink(myShowArtAndArt.Value.PhotoId.Value);
+                imgArt.ImageUrl = LinkBuilder.GetImageLink(myShowArtThumbnail.Thumbnail.PhotoId);
             }
         }
 

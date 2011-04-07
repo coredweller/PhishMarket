@@ -12,6 +12,8 @@ namespace PhishMarket.MyPhishMarket
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("Edit your Picture");
+
             if (!IsPostBack)
             {
                 Bind();

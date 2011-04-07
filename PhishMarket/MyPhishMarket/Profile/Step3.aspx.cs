@@ -17,6 +17,8 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("PhishMarket Profile Step 3");
+
             if (!IsPostBack)
             {
                 Bind();

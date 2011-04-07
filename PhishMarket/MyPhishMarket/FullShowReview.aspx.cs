@@ -8,6 +8,7 @@ using TheCore.Helpers;
 using TheCore.Services;
 using TheCore.Infrastructure;
 using TheCore.Repository;
+using PhishPond.Concrete;
 
 namespace PhishMarket.MyPhishMarket
 {
@@ -32,7 +33,13 @@ namespace PhishMarket.MyPhishMarket
 
             var myShow = myShowService.GetMyShow(myShowId);
 
-            lblReview.Text = myShow.Notes;
+            if (myShow != null)
+            {
+                Page.Title = ((MyShow)myShow).Show.ShowName + "'s Review";
+
+                lblReview.Text = myShow.Notes;
+
+            }
         }
     }
 }

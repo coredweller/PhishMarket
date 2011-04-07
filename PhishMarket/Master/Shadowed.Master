@@ -17,9 +17,9 @@ Released   : 20100613
 
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head runat="server">
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>The Phish Market - <%= Title %></title>
+    <%--<title>The Phish Market - <%= Title %></title>--%>
     
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <script type="text/javascript" src="/javascript/jquery.betterTooltip.js"></script>

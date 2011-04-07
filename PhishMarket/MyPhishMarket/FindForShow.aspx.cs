@@ -20,6 +20,8 @@ namespace PhishMarket.MyPhishMarket
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("Find a picture, poster, or ticket stub for a show");
+
             if (string.IsNullOrEmpty(Request.QueryString["showId"]))
             {
                 Response.Redirect(LinkBuilder.DashboardLink());

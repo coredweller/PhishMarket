@@ -25,6 +25,8 @@ namespace PhishMarket.MyPhishMarket
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("Add Shows to your collection");
+
             if (!IsPostBack)
             {
                 Bind();

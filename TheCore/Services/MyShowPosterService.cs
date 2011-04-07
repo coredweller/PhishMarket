@@ -62,23 +62,25 @@ namespace TheCore.Services
             return myShowPosters;
         }
 
-        public KeyValuePair<IMyShowPoster, IPoster> GetAnyMyShowPosterForUser(Guid userId)
+        public MyShowThumbnail<IMyShowPoster> GetAnyMyShowPosterForUser(Guid userId)
         {
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
             var posterService = new PosterService(Ioc.GetInstance<IPosterRepository>());
+            var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
 
             var myShows = myShowService.GetMyShowsForUser(userId);
 
-            var myShowPoster = GetAllMyShowPosters().Where(x => myShows.Any(y => y.MyShowId == x.MyShowId)).OrderByDescending(z => z.CreatedDate).FirstOrDefault();
+            var myShowPosters = GetAllMyShowPosters().Where(x => myShows.Any(y => y.MyShowId == x.MyShowId)).OrderByDescending(z => z.CreatedDate);
 
-            IPoster poster = null;
-
-            if (myShowPoster != null)
+            foreach (var myShowPoster in myShowPosters)
             {
-                poster = posterService.GetPoster(myShowPoster.PosterId);
+                var poster = posterService.GetPoster(myShowPoster.PosterId);
+                var photo = photoService.GetPhotoThumbnail(poster.PhotoId.Value);
+                if (photo.Thumbnail)
+                    return new MyShowThumbnail<IMyShowPoster>(myShowPoster, photo);
             }
 
-            return new KeyValuePair<IMyShowPoster, IPoster>(myShowPoster, poster);
+            return null;
         }
 
         public void SaveCommit(IMyShowPoster myShow, out bool success)

@@ -190,124 +190,12 @@
     <Compile Include="MyPhishMarket\Profile\jsonreturner.aspx.designer.cs">
       <DependentUpon>jsonreturner.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Master\Anthropod.Master.cs">
-      <DependentUpon>Anthropod.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Anthropod.Master.designer.cs">
-      <DependentUpon>Anthropod.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Creative.Master.cs">
-      <DependentUpon>Creative.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Creative.Master.designer.cs">
-      <DependentUpon>Creative.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Creevy.Master.cs">
-      <DependentUpon>Creevy.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Creevy.Master.designer.cs">
-      <DependentUpon>Creevy.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Distill.Master.cs">
-      <DependentUpon>Distill.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Distill.Master.designer.cs">
-      <DependentUpon>Distill.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Equivalency.Master.cs">
-      <DependentUpon>Equivalency.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Equivalency.Master.designer.cs">
-      <DependentUpon>Equivalency.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Interchange.Master.cs">
-      <DependentUpon>Interchange.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Interchange.Master.designer.cs">
-      <DependentUpon>Interchange.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Myth.Master.cs">
-      <DependentUpon>Myth.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Myth.Master.designer.cs">
-      <DependentUpon>Myth.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Offrecord.Master.cs">
-      <DependentUpon>Offrecord.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Offrecord.Master.designer.cs">
-      <DependentUpon>Offrecord.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Program.Master.cs">
-      <DependentUpon>Program.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Program.Master.designer.cs">
-      <DependentUpon>Program.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Robot.Master.cs">
-      <DependentUpon>Robot.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Robot.Master.designer.cs">
-      <DependentUpon>Robot.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Safflower.Master.cs">
-      <DependentUpon>Safflower.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Safflower.Master.designer.cs">
-      <DependentUpon>Safflower.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Sapphire.Master.cs">
-      <DependentUpon>Sapphire.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Sapphire.Master.designer.cs">
-      <DependentUpon>Sapphire.Master</DependentUpon>
-    </Compile>
     <Compile Include="Master\Shadowed.Master.cs">
       <DependentUpon>Shadowed.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Master\Shadowed.Master.designer.cs">
       <DependentUpon>Shadowed.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Tattoo.Master.cs">
-      <DependentUpon>Tattoo.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Tattoo.Master.designer.cs">
-      <DependentUpon>Tattoo.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Vertabrata.Master.cs">
-      <DependentUpon>Vertabrata.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Vertabrata.Master.designer.cs">
-      <DependentUpon>Vertabrata.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\Waive.Master.cs">
-      <DependentUpon>Waive.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\Waive.Master.designer.cs">
-      <DependentUpon>Waive.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Master\_Concurrence.Master.cs">
-      <DependentUpon>_Concurrence.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Master\_Concurrence.Master.designer.cs">
-      <DependentUpon>_Concurrence.Master</DependentUpon>
     </Compile>
     <Compile Include="MyPhishMarket\AddMyShow.aspx.cs">
       <DependentUpon>AddMyShow.aspx</DependentUpon>
@@ -789,24 +677,8 @@
     <Content Include="Tour\PredictShow.aspx" />
     <Content Include="Tour\PredictTour.aspx" />
     <Content Include="Tour\PredictWholeShow.aspx" />
-    <Content Include="Master\Robot.Master" />
-    <Content Include="Master\Waive.Master" />
-    <Content Include="Master\Tattoo.Master" />
-    <Content Include="Master\Myth.Master" />
-    <Content Include="Master\Sapphire.Master" />
-    <Content Include="Master\Safflower.Master" />
-    <Content Include="Master\Creative.Master" />
     <None Include="css\Tattoo\images\Thumbs.db" />
-    <Content Include="Master\_Concurrence.Master" />
-    <Content Include="Master\Anthropod.Master" />
-    <Content Include="Master\Creevy.Master" />
-    <Content Include="Master\Distill.Master" />
-    <Content Include="Master\Equivalency.Master" />
-    <Content Include="Master\Interchange.Master" />
-    <Content Include="Master\Offrecord.Master" />
-    <Content Include="Master\Program.Master" />
     <Content Include="Master\Shadowed.Master" />
-    <Content Include="Master\Vertabrata.Master" />
     <Content Include="Handlers\ImageHandler2.ashx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

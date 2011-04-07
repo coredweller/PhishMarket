@@ -16,6 +16,7 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("PhishMarket Profile Step 2");
             JSONifier j = new JSONifier("record", "ID", "Show");
             if (!IsPostBack)
             {

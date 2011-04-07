@@ -161,6 +161,7 @@
     <Compile Include="Services\MyShowArtService.cs" />
     <Compile Include="Services\MyShowPosterService.cs" />
     <Compile Include="Services\MyShowService.cs" />
+    <Compile Include="Services\MyShowThumbnail.cs" />
     <Compile Include="Services\MyShowTicketStubService.cs" />
     <Compile Include="Services\PhotoService.cs" />
     <Compile Include="Services\PosterService.cs" />

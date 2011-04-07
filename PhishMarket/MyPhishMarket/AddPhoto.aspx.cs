@@ -17,6 +17,8 @@ namespace PhishMarket.MyPhishMarket
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("Add a Photo");
+
             if (!IsPostBack)
             {
                 if (Request.QueryString["showId"] == null || Request.QueryString["type"] == null)

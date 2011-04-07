@@ -62,23 +62,25 @@ namespace TheCore.Services
             return myShowTicketStubs;
         }
 
-        public KeyValuePair<IMyShowTicketStub, ITicketStub> GetAnyMyShowTicketStubForUser(Guid userId)
+        public MyShowThumbnail<IMyShowTicketStub> GetAnyMyShowTicketStubForUser(Guid userId)
         {
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
             var ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
+            var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
 
             var myShows = myShowService.GetMyShowsForUser(userId);
 
-            var myShowTicketStub = GetAllMyShowTicketStubs().Where(x => myShows.Any(y => y.MyShowId == x.MyShowId)).OrderByDescending(z => z.CreatedDate).FirstOrDefault();
+            var myShowTicketStubs = GetAllMyShowTicketStubs().Where(x => myShows.Any(y => y.MyShowId == x.MyShowId)).OrderByDescending(z => z.CreatedDate);
 
-            ITicketStub ticketStub = null;
-
-            if (myShowTicketStub != null)
+            foreach (var myShowTicketStub in myShowTicketStubs)
             {
-                ticketStub = ticketStubService.GetTicketStub(myShowTicketStub.TicketStubId);
+                var ticketStub = ticketStubService.GetTicketStub(myShowTicketStub.TicketStubId);
+                var photo = photoService.GetPhotoThumbnail(ticketStub.PhotoId.Value);
+                if (photo.Thumbnail)
+                    return new MyShowThumbnail<IMyShowTicketStub>(myShowTicketStub, photo);
             }
 
-            return new KeyValuePair<IMyShowTicketStub, ITicketStub>(myShowTicketStub, ticketStub);
+            return null;
         }
 
         public void SaveCommit(IMyShowTicketStub myShow, out bool success)

@@ -9,8 +9,6 @@ namespace PhishMarket.Master
 {
     public partial class Shadowed : System.Web.UI.MasterPage
     {
-        public string Title { get; set; }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 

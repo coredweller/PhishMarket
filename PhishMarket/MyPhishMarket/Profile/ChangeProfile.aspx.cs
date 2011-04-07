@@ -6,6 +6,7 @@ namespace PhishMarket.MyPhishMarket
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetPageTitle("Change Your Profile");
         }
 
         public void imgLinkStep3_Click(object sender, System.Web.UI.ImageClickEventArgs e)
