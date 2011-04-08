@@ -29,7 +29,7 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
 
                 if (shows != null && shows.Count > 0)
                 {
-                    var jsonifier = new JSONifier("records", "ID", "Show", "-1", "Keep your current selection");
+                    var jsonifier = new BasicJSONifier("records", "ID", "Show", "-1", "Keep your current selection");
    
                     shows.ForEach(x =>
                             {
@@ -41,14 +41,14 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
                 }
                 else
                 {
-                    var jsonifier = new JSONifier("records", "ID", "Show");
+                    var jsonifier = new BasicJSONifier("records", "ID", "Show");
                     jsonifier.Add("-1", "There are no shows for this tour");
                     final = jsonifier.GetFinalizedJSON();
                 }
             }
             else
             {
-                var jsonifier = new JSONifier("records", "ID", "Show");
+                var jsonifier = new BasicJSONifier("records", "ID", "Show");
                 jsonifier.Add("-1", "Please choose a tour");
                 final = jsonifier.GetFinalizedJSON();
             }
@@ -59,80 +59,80 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
             Response.End();
         }
 
-        private StringBuilder CreateJson(StringBuilder sb, string id, string text)
-        {
-            sb.Append("{");
-            sb.AppendFormat("\"Show\":\"{0}\",", text);
-            sb.AppendFormat("\"ID\":\"{0}\"", id);
-            sb.Append("},");
+        //private StringBuilder CreateJson(StringBuilder sb, string id, string text)
+        //{
+        //    sb.Append("{");
+        //    sb.AppendFormat("\"Show\":\"{0}\",", text);
+        //    sb.AppendFormat("\"ID\":\"{0}\"", id);
+        //    sb.Append("},");
 
-            return sb;
-        }
+        //    return sb;
+        //}
 
-        private void BackUpBitch()
-        {
-            var tourIdStr = Request.QueryString["t"];
-            StringBuilder sb = new StringBuilder();
+        //private void BackUpBitch()
+        //{
+        //    var tourIdStr = Request.QueryString["t"];
+        //    StringBuilder sb = new StringBuilder();
 
-            if (tourIdStr != "-1")
-            {
-                var tourId = new Guid(tourIdStr);
+        //    if (tourIdStr != "-1")
+        //    {
+        //        var tourId = new Guid(tourIdStr);
 
-                ShowService showService = new ShowService(Ioc.GetInstance<IShowRepository>());
-                var shows = showService.GetOfficialShows(tourId).ToList();
-                var jsonifier = new JSONifier("records", "ID", "Show", "-1", "Keep your current selection");
+        //        ShowService showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+        //        var shows = showService.GetOfficialShows(tourId).ToList();
+        //        var jsonifier = new BasicJSONifier("records", "ID", "Show", "-1", "Keep your current selection");
 
-                sb.Append("{\"records\":");
+        //        sb.Append("{\"records\":");
 
-                if (shows != null && shows.Count > 0)
-                {
-                    sb.Append("[");
+        //        if (shows != null && shows.Count > 0)
+        //        {
+        //            sb.Append("[");
 
-                    sb.Append("{");
-                    sb.AppendFormat("\"Show\":\"{0}\",", "Keep your current selection");
-                    sb.AppendFormat("\"ID\":\"{0}\"", "-1");
-                    sb.Append("},");
+        //            sb.Append("{");
+        //            sb.AppendFormat("\"Show\":\"{0}\",", "Keep your current selection");
+        //            sb.AppendFormat("\"ID\":\"{0}\"", "-1");
+        //            sb.Append("},");
 
-                    shows.ForEach(x =>
-                    {
-                        CreateJson(sb, x.ShowId.ToString(), x.GetShowName());
-                        //sb.Append("{");
-                        //sb.AppendFormat("\"Show\":\"{0}\",", x.GetShowName());
-                        //sb.AppendFormat("\"ID\":\"{0}\"", x.ShowId.ToString());
-                        //sb.Append("},");
-                    }
-                        );
+        //            shows.ForEach(x =>
+        //            {
+        //                CreateJson(sb, x.ShowId.ToString(), x.GetShowName());
+        //                //sb.Append("{");
+        //                //sb.AppendFormat("\"Show\":\"{0}\",", x.GetShowName());
+        //                //sb.AppendFormat("\"ID\":\"{0}\"", x.ShowId.ToString());
+        //                //sb.Append("},");
+        //            }
+        //                );
 
-                    sb.Append("]}");
-                }
-                else
-                {
-                    sb.Append("[");
+        //            sb.Append("]}");
+        //        }
+        //        else
+        //        {
+        //            sb.Append("[");
 
-                    sb.Append("{");
-                    sb.Append("\"Show\":\"There are no shows for this tour\",");
-                    sb.Append("\"ID\":\"-1\"");
-                    sb.Append("},");
+        //            sb.Append("{");
+        //            sb.Append("\"Show\":\"There are no shows for this tour\",");
+        //            sb.Append("\"ID\":\"-1\"");
+        //            sb.Append("},");
 
-                    sb.Append("]}");
-                }
-            }
-            else
-            {
-                sb.Append("[");
+        //            sb.Append("]}");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        sb.Append("[");
 
-                sb.Append("{");
-                sb.Append("\"Show\":\"Please choose a tour\",");
-                sb.Append("\"ID\":\"-1\"");
-                sb.Append("},");
+        //        sb.Append("{");
+        //        sb.Append("\"Show\":\"Please choose a tour\",");
+        //        sb.Append("\"ID\":\"-1\"");
+        //        sb.Append("},");
 
-                sb.Append("]}");
-            }
+        //        sb.Append("]}");
+        //    }
 
-            Response.ContentType = "application/json";
-            Response.ContentEncoding = Encoding.UTF8;
-            Response.Write(sb.ToString());
-            Response.End();
-        }
+        //    Response.ContentType = "application/json";
+        //    Response.ContentEncoding = Encoding.UTF8;
+        //    Response.Write(sb.ToString());
+        //    Response.End();
+        //}
     }
 }

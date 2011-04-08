@@ -74,8 +74,11 @@
     <Compile Include="Helpers\Checks.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\DisposableResource.cs" />
+    <Compile Include="Helpers\IJSONifier.cs" />
+    <Compile Include="Helpers\ImageItem.cs" />
+    <Compile Include="Helpers\ImageJSONifier.cs" />
     <Compile Include="Helpers\JSON.cs" />
-    <Compile Include="Helpers\JSONifier.cs" />
+    <Compile Include="Helpers\BasicJSONifier.cs" />
     <Compile Include="Helpers\JSONParser.cs" />
     <Compile Include="Helpers\LinkBuilder.cs" />
     <Compile Include="Helpers\ScriptHelper.cs" />

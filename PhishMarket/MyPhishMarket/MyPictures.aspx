@@ -1,6 +1,36 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MyPictures.aspx.cs" Inherits="PhishMarket.MyPhishMarket.MyPictures"
     MasterPageFile="~/Master/Shadowed.Master" %>
 
+<asp:Content ContentPlaceHolderID="Head" runat="server">
+
+    <script type="text/javascript" src="/../javascript/galleria/galleria-1.2.2.min.js"></script>
+
+    <script type="text/javascript">
+        Galleria.loadTheme('/../javascript/galleria/classic/galleria.classic.min.js');
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(
+            $('#btnShowBrih').click(function() {
+                
+            })
+        )
+    
+        function showPictures(showId) {
+
+            $.getJSON("jsonreturner.aspx", { s: showId }, function(data) {
+
+                $.each(data.records, function() {
+
+                    $("<img>").attr("value", this['ID'])
+                                                        .text(this['Show'])
+                                                        .appendTo("#ddlFavoriteLiveShow");
+                });
+            });
+        }
+    </script>
+
+</asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <h2>
@@ -65,11 +95,15 @@
                         OnClick="btnShowFromTour_Click" />--%>
                 </td>
                 <td>
+                    <input id="btnShowBrih" runat="server" value="Click Me Biatch" onclick="" />
                     <asp:Button ID="btnShowFromShow" runat="server" Text="Show My Pictures from Show"
                         OnClick="btnShowFromShow_Click" />
                 </td>
             </tr>
         </table>
+    </div>
+    <div id="gallery">
+        <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
     </div>
     <asp:PlaceHolder ID="phMain" runat="server" Visible="true">
         <div>
@@ -109,4 +143,12 @@
             </asp:PlaceHolder>
         </div>
     </asp:PlaceHolder>
+
+    <script type="text/javascript">
+        $('#gallery').galleria({
+            width: 500,
+            height: 500
+        });
+    </script>
+
 </asp:Content>
