@@ -7,8 +7,9 @@
         function dynamic_Select(tourId) {
 
 
-            $.getJSON("jsonreturner.aspx", { t: tourId }, function(data) {
+            //$.getJSON("jsonreturner.aspx", { t: tourId }, function(data) {
 
+            $.getJSON("/../../Handlers/ShowHandler.ashx", { t: tourId }, function(data) {
                 $("select[id$=ddlFavoriteLiveShow] > option").remove();
 
                 $.each(data.records, function() {

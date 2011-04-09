@@ -181,6 +181,9 @@
     <Compile Include="Handlers\ImageHandler2.ashx.cs">
       <DependentUpon>ImageHandler2.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\ShowHandler.ashx.cs">
+      <DependentUpon>ShowHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="MyPhishMarket\Profile\jsonreturner.aspx.cs">
       <DependentUpon>jsonreturner.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -664,6 +667,7 @@
     <None Include="css\Tattoo\images\Thumbs.db" />
     <Content Include="Master\Shadowed.Master" />
     <Content Include="Handlers\ImageHandler2.ashx" />
+    <Content Include="Handlers\ShowHandler.ashx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

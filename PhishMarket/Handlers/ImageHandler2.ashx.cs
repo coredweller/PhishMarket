@@ -16,8 +16,6 @@ namespace PhishMarket.Handlers
 
         public override void ProcessRequest(HttpContextBase context)
         {
-            const int CountWidthBuffer = 6;
-
             HttpRequestBase request = context.Request;
             string id = request.QueryString["id"];
 
