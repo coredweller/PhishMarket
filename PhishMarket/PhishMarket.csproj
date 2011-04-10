@@ -181,15 +181,11 @@
     <Compile Include="Handlers\ImageHandler2.ashx.cs">
       <DependentUpon>ImageHandler2.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\MyPicturesHandler.ashx.cs">
+      <DependentUpon>MyPicturesHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\ShowHandler.ashx.cs">
       <DependentUpon>ShowHandler.ashx</DependentUpon>
-    </Compile>
-    <Compile Include="MyPhishMarket\Profile\jsonreturner.aspx.cs">
-      <DependentUpon>jsonreturner.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MyPhishMarket\Profile\jsonreturner.aspx.designer.cs">
-      <DependentUpon>jsonreturner.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master\Shadowed.Master.cs">
       <DependentUpon>Shadowed.Master</DependentUpon>
@@ -621,7 +617,6 @@
     <Content Include="MyPhishMarket\EditTicketStub.aspx" />
     <Content Include="MyPhishMarket\FindForShow.aspx" />
     <Content Include="MyPhishMarket\FullShowReview.aspx" />
-    <Content Include="MyPhishMarket\Profile\jsonreturner.aspx" />
     <Content Include="MyPhishMarket\MyAnalysis.aspx" />
     <Content Include="MyPhishMarket\MyPictures.aspx" />
     <Content Include="MyPhishMarket\MyPosters.aspx" />
@@ -668,6 +663,7 @@
     <Content Include="Master\Shadowed.Master" />
     <Content Include="Handlers\ImageHandler2.ashx" />
     <Content Include="Handlers\ShowHandler.ashx" />
+    <Content Include="Handlers\MyPicturesHandler.ashx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

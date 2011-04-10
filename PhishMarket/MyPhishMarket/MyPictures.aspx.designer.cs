@@ -110,7 +110,7 @@ namespace PhishMarket.MyPhishMarket {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText btnShowBrih;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnShowBrih;
         
         /// <summary>
         /// btnShowFromShow control.

@@ -6,30 +6,23 @@
     <script type="text/javascript" src="/../javascript/galleria/galleria-1.2.2.min.js"></script>
 
     <script type="text/javascript">
-        Galleria.loadTheme('/../javascript/galleria/classic/galleria.classic.min.js');
+        Galleria.loadTheme('/../../javascript/galleria/classic/galleria.classic.min.js');
     </script>
-
-    <script type="text/javascript">
-        $(document).ready(
-            $('#btnShowBrih').click(function() {
-                
-            })
-        )
     
-        function showPictures(showId) {
+    <script type="text/javascript">
 
-            $.getJSON("jsonreturner.aspx", { s: showId }, function(data) {
+        function showPictures() {
 
-                $.each(data.records, function() {
+            var showId = $('ddlShows').val();
 
-                    $("<img>").attr("value", this['ID'])
-                                                        .text(this['Show'])
-                                                        .appendTo("#ddlFavoriteLiveShow");
+            $.getJSON("/../../Handlers/MyPicturesHandler.ashx", { s: showId }, function(data) {
+
+                $('#gallery').galleria({
+                    data_source: data
                 });
             });
         }
     </script>
-
 </asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
@@ -95,7 +88,8 @@
                         OnClick="btnShowFromTour_Click" />--%>
                 </td>
                 <td>
-                    <input id="btnShowBrih" runat="server" value="Click Me Biatch" onclick="" />
+                    <button id="btnShowBrih" runat="server" value="Click Me Biatch" onclick="showPictures();">
+                    </button>
                     <asp:Button ID="btnShowFromShow" runat="server" Text="Show My Pictures from Show"
                         OnClick="btnShowFromShow_Click" />
                 </td>

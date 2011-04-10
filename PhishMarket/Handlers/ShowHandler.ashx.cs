@@ -62,6 +62,6 @@ namespace PhishMarket.Handlers
             //Response.End();
         }
 
-        public bool IsReusable { get { return true; } }
+        public override bool IsReusable { get { return true; } }
     }
 }
