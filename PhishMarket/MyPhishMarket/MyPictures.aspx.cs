@@ -19,6 +19,7 @@ namespace PhishMarket.MyPhishMarket
             SetPageTitle("Add Pictures for Phish Shows Here!");
 
             userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
+            hdnUserId.Value = userId.ToString();
 
             if (!IsPostBack)
             {

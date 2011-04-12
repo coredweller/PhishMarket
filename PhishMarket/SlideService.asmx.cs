@@ -78,7 +78,7 @@ namespace PhishMarket
             AjaxControlToolkit.Slide[] slides = new AjaxControlToolkit.Slide[1];
 
             // get image from web.config and verify it exists on file system
-            var _noImagesFoundWebLocation = System.Configuration.ConfigurationSettings.AppSettings.Get("SlideServiceNoImagesFoundLocation");
+            var _noImagesFoundWebLocation = System.Configuration.ConfigurationManager.AppSettings.Get("SlideServiceNoImagesFoundLocation");
             if (!File.Exists(Server.MapPath(_noImagesFoundWebLocation)))
                 throw new Exception("SlideService.asmx::GetNoImagesFoundDirectory - NoImagesFoundLocation found in web.config does not exist after server.mappath - " + Server.MapPath(_noImagesFoundWebLocation));
 

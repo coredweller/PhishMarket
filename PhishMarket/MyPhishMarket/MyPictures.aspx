@@ -14,9 +14,9 @@
         function showPictures() {
 
             var showId = $('ddlShows').val();
+            var userId = $('hdnUserId').val();
 
-            $.getJSON("/../../Handlers/MyPicturesHandler.ashx", { s: showId }, function(data) {
-
+            $.getJSON("/../../Handlers/MyPicturesHandler.ashx", { s: showId, u: userId }, function(data) {
                 $('#gallery').galleria({
                     data_source: data
                 });
@@ -144,5 +144,5 @@
             height: 500
         });
     </script>
-
+<asp:HiddenField ID="hdnUserId" runat="server" Visible="false" />
 </asp:Content>

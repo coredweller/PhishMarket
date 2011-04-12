@@ -11,14 +11,7 @@ namespace PhishMarket.Handlers
 {
     public abstract class BaseHandler : IHttpHandler
     {
-        public virtual bool IsReusable
-        {
-            
-            get
-            {
-                return false;
-            }
-        }
+        public virtual bool IsReusable { get { return false; } }
 
         public void ProcessRequest(HttpContext context)
         {
@@ -37,12 +30,17 @@ namespace PhishMarket.Handlers
 
                 if (!string.IsNullOrEmpty(ifNoneMatch) && (string.CompareOrdinal(ifNoneMatch, etag) == 0))
                 {
-                    context.Response.StatusCode = (int) HttpStatusCode.NotModified;
+                    context.Response.StatusCode = (int)HttpStatusCode.NotModified;
                     notModified = true;
                 }
             }
 
             return notModified;
+        }
+
+        public string NoImagesLocation
+        {
+            get { return System.Configuration.ConfigurationManager.AppSettings.Get("SlideServiceNoImagesFoundLocation") ?? string.Empty; }
         }
 
         //protected static UrlHelper CreateUrlHelper(HttpContextBase context)

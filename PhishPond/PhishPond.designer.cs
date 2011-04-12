@@ -2299,6 +2299,8 @@ namespace PhishPond.Concrete
 		
 		private bool _Thumbnail;
 		
+		private EntitySet<Art> _Arts;
+		
 		private EntityRef<Show> _Show;
 		
     #region Extensibility Method Definitions
@@ -2347,6 +2349,7 @@ namespace PhishPond.Concrete
 		
 		public Photo()
 		{
+			this._Arts = new EntitySet<Art>(new Action<Art>(this.attach_Arts), new Action<Art>(this.detach_Arts));
 			this._Show = default(EntityRef<Show>);
 			OnCreated();
 		}
@@ -2735,6 +2738,19 @@ namespace PhishPond.Concrete
 			}
 		}
 		
+		[Association(Name="Photo_Art", Storage="_Arts", ThisKey="PhotoId", OtherKey="PhotoId")]
+		public EntitySet<Art> Arts
+		{
+			get
+			{
+				return this._Arts;
+			}
+			set
+			{
+				this._Arts.Assign(value);
+			}
+		}
+		
 		[Association(Name="Show_Photo", Storage="_Show", ThisKey="ShowId", OtherKey="ShowId", IsForeignKey=true)]
 		public Show Show
 		{
@@ -2787,6 +2803,18 @@ namespace PhishPond.Concrete
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Arts(Art entity)
+		{
+			this.SendPropertyChanging();
+			entity.Photo = this;
+		}
+		
+		private void detach_Arts(Art entity)
+		{
+			this.SendPropertyChanging();
+			entity.Photo = null;
 		}
 	}
 	
@@ -7344,7 +7372,7 @@ namespace PhishPond.Concrete
 		
 		private System.Nullable<System.Guid> _UserId;
 		
-		private System.Nullable<System.Guid> _PhotoId;
+		private System.Guid _PhotoId;
 		
 		private System.DateTime _CreatedDate;
 		
@@ -7357,6 +7385,8 @@ namespace PhishPond.Concrete
 		private EntitySet<MyShowArt> _MyShowArts;
 		
 		private EntityRef<Show> _Show;
+		
+		private EntityRef<Photo> _Photo;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -7372,7 +7402,7 @@ namespace PhishPond.Concrete
     partial void OnShowIdChanged();
     partial void OnUserIdChanging(System.Nullable<System.Guid> value);
     partial void OnUserIdChanged();
-    partial void OnPhotoIdChanging(System.Nullable<System.Guid> value);
+    partial void OnPhotoIdChanging(System.Guid value);
     partial void OnPhotoIdChanged();
     partial void OnCreatedDateChanging(System.DateTime value);
     partial void OnCreatedDateChanged();
@@ -7388,6 +7418,7 @@ namespace PhishPond.Concrete
 		{
 			this._MyShowArts = new EntitySet<MyShowArt>(new Action<MyShowArt>(this.attach_MyShowArts), new Action<MyShowArt>(this.detach_MyShowArts));
 			this._Show = default(EntityRef<Show>);
+			this._Photo = default(EntityRef<Photo>);
 			OnCreated();
 		}
 		
@@ -7496,7 +7527,7 @@ namespace PhishPond.Concrete
 		}
 		
 		[Column(Storage="_PhotoId", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> PhotoId
+		public System.Guid PhotoId
 		{
 			get
 			{
@@ -7506,6 +7537,10 @@ namespace PhishPond.Concrete
 			{
 				if ((this._PhotoId != value))
 				{
+					if (this._Photo.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnPhotoIdChanging(value);
 					this.SendPropertyChanging();
 					this._PhotoId = value;
@@ -7638,6 +7673,40 @@ namespace PhishPond.Concrete
 						this._ShowId = default(Nullable<System.Guid>);
 					}
 					this.SendPropertyChanged("Show");
+				}
+			}
+		}
+		
+		[Association(Name="Photo_Art", Storage="_Photo", ThisKey="PhotoId", OtherKey="PhotoId", IsForeignKey=true)]
+		public Photo Photo
+		{
+			get
+			{
+				return this._Photo.Entity;
+			}
+			set
+			{
+				Photo previousValue = this._Photo.Entity;
+				if (((previousValue != value) 
+							|| (this._Photo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Photo.Entity = null;
+						previousValue.Arts.Remove(this);
+					}
+					this._Photo.Entity = value;
+					if ((value != null))
+					{
+						value.Arts.Add(this);
+						this._PhotoId = value.PhotoId;
+					}
+					else
+					{
+						this._PhotoId = default(System.Guid);
+					}
+					this.SendPropertyChanged("Photo");
 				}
 			}
 		}

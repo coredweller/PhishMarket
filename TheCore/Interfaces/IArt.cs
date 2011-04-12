@@ -9,6 +9,6 @@ namespace TheCore.Interfaces
         string Notes { get; set; }
         Guid? ShowId { get; set; }
         Guid? UserId { get; set; }
-        Guid? PhotoId { get; set; }
+        Guid PhotoId { get; set; }
     }
 }

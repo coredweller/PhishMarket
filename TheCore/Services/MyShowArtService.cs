@@ -75,7 +75,7 @@ namespace TheCore.Services
             foreach (var myShowArt in myShowArts)
             {
                 var art = artService.GetArt(myShowArt.ArtId);
-                var photo = photoService.GetPhotoThumbnail(art.PhotoId.Value);
+                var photo = photoService.GetPhotoThumbnail(art.PhotoId);
                 if (photo.Thumbnail)
                     return new MyShowThumbnail<IMyShowArt>(myShowArt, photo);
             }

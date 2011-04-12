@@ -32,7 +32,7 @@ namespace TheCore.Services
         {
             return _repo.FindByShowId(showId);
         }
-
+            
         public IQueryable<IArt> GetArtByUserAndShow(Guid userId, Guid showId)
         {
             return _repo.FindByUserIdAndShowId(userId, showId);

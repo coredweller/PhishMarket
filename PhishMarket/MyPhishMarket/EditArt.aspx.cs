@@ -38,11 +38,11 @@ namespace PhishMarket.MyPhishMarket
 
             var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
 
-            var photo = photoService.GetPhoto(art.PhotoId.Value);
+            var photo = photoService.GetPhoto(art.PhotoId);
 
             txtNotes.Text = art.Notes;
             ddlShow.SelectedValue = photo.ShowId.ToString();
-            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLink(art.PhotoId.Value);
+            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLink(art.PhotoId);
             txtCreator.Text = art.Creator;
         }
 
