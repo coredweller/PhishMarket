@@ -25,9 +25,14 @@ namespace PhishMarket.Handlers
 
             var final = string.Empty;
 
-            if (string.IsNullOrEmpty(showIdStr) || string.IsNullOrEmpty(userIdStr))
+            if ( EmptyNullUndefined(showIdStr) || EmptyNullUndefined(userIdStr) )
             {
                 final = GetNoImagesFound();
+
+                response.ContentType = "application/json";
+                response.ContentEncoding = Encoding.UTF8;
+                response.Write(final);
+                response.End();
             }
 
             var showId = new Guid(showIdStr);
@@ -75,10 +80,18 @@ namespace PhishMarket.Handlers
 
         }
 
+        private bool EmptyNullUndefined(string brih)
+        {
+            if (string.IsNullOrEmpty(brih) || brih == "undefined")
+                return true;
+
+            return false;
+        }
+
         private string GetNoImagesFound()
         {
             var json = new ImageJSONifier("records");
-            json.Add(new ImageItem { Image = NoImagesLocation, Thumb = NoImagesLocation, Title = "No Images Found", Description = "No Images Found" });
+            json.Add(new ImageItem { Image = "/../.." + NoImagesLocation, Thumb = NoImagesLocation, Title = "No Images Found", Description = "No Images Found" });
             return json.GetFinalizedJSON();
         }
 

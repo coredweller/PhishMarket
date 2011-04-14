@@ -3,26 +3,16 @@
 
 <asp:Content ContentPlaceHolderID="Head" runat="server">
 
-    <script type="text/javascript" src="/../javascript/galleria/galleria-1.2.2.min.js"></script>
+    <script type="text/javascript" src="/../../javascript/galleria/galleria-1.2.2.min.js"></script>
+
 
     <script type="text/javascript">
         Galleria.loadTheme('/../../javascript/galleria/classic/galleria.classic.min.js');
     </script>
+
+
     
-    <script type="text/javascript">
 
-        function showPictures() {
-
-            var showId = $('ddlShows').val();
-            var userId = $('hdnUserId').val();
-
-            $.getJSON("/../../Handlers/MyPicturesHandler.ashx", { s: showId, u: userId }, function(data) {
-                $('#gallery').galleria({
-                    data_source: data
-                });
-            });
-        }
-    </script>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
@@ -108,7 +98,7 @@
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <asp:Image ID="imgArt" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink((((PhishPond.Concrete.Art)Container.DataItem).PhotoId.Value)) %>' />
+                            <asp:Image ID="imgArt" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink((((PhishPond.Concrete.Art)Container.DataItem).PhotoId)) %>' />
                         </td>
                         <td>
                             <asp:LinkButton ID="lnkRemove" CommandArgument='<%# (((PhishPond.Concrete.Art)Container.DataItem).ArtId) %>'
@@ -137,12 +127,59 @@
             </asp:PlaceHolder>
         </div>
     </asp:PlaceHolder>
+    <asp:HiddenField ID="hdnUserId" runat="server" Visible="false" />
 
-    <script type="text/javascript">
+   <%-- <script type="text/javascript">
         $('#gallery').galleria({
             width: 500,
             height: 500
         });
     </script>
-<asp:HiddenField ID="hdnUserId" runat="server" Visible="false" />
+--%>
+<script type="text/javascript">
+
+    function showPictures() {
+
+        //var showId = $('#ddlShows').val();
+        //var userId = $('#hdnUserId').val();
+
+        //var data = "{ \"records\": [ { \"image\": \"/../../images/NoImages.jpg\",\"thumb\": \"/images/NoImages.jpg\",\"title\": \"No Images Found\",\"description\": \"No Images Found\", \"link\": \"\" } ]}";
+
+        //         $.getJSON('/../../Handlers/MyPicturesHandler.ashx').then(function() {
+        //             alert("WOOHOO SUCCESS");
+        //         }, function() {
+        //             alert("FAIL");
+        //         });
+
+        $.ajax({
+            url: "/../../Handlers/MyPicturesHandler.ashx",
+            dataType: 'json',
+            //data: data,
+            success: function(data) {
+                alert(data);
+
+                $('#gallery').galleria({
+                    data_source: data,
+                    width: 500,
+                    height: 500,
+                    debug: true
+                });
+            }
+        });
+
+//        $.getJSON("/../../Handlers/MyPicturesHandler.ashx",
+//                { s: "", u: "" },
+
+//                function(data) {
+//                    alert(data);
+
+//                    $('#gallery').galleria({
+//                        data_source: data,
+//                        width: 500,
+//                        height: 500,
+//                        debug: true
+//                    });
+//                });
+    }
+    </script>
 </asp:Content>

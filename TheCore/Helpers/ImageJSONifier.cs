@@ -26,11 +26,20 @@ namespace TheCore.Helpers
         {
             var sb = new StringBuilder();
 
+
+            //sb.Append("{");
+            //sb.Append("\"image\":'{0}',");
+            //sb.Append("\"thumb\":'{1}',");
+            //sb.Append("\"title\":'{2}',");
+            //sb.Append("\"description\":'{3}',");
+            //sb.Append("\"link\":'{4}'");
+            //sb.Append("},");
+
             sb.Append("{");
             sb.Append("\"image\":\"{0}\",");
-            sb.Append("\"thumb\":\"{1}\"");
-            sb.Append("\"title\":\"{2}\"");
-            sb.Append("\"description\":\"{3}\"");
+            sb.Append("\"thumb\":\"{1}\",");
+            sb.Append("\"title\":\"{2}\",");
+            sb.Append("\"description\":\"{3}\",");
             sb.Append("\"link\":\"{4}\"");
             sb.Append("},");
 
@@ -41,9 +50,13 @@ namespace TheCore.Helpers
 
         public void Add(ImageItem image)
         {
-            var s = string.Format(Template, image.Image, image.Thumb, image.Title, image.Description, image.Link);
+            var temp = Template.Replace("{0}", image.Image);
+            var temp2 = temp.Replace("{1}", image.Thumb);
+            var temp3 = temp2.Replace("{2}", image.Title);
+            var temp4 = temp3.Replace("{3}", image.Description);
+            var temp5 = temp4.Replace("{4}", image.Link);
 
-            Builder.Append(s);
+            Builder.Append(temp5);
         }
     }
 }
