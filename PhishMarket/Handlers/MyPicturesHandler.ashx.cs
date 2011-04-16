@@ -18,6 +18,7 @@ namespace PhishMarket.Handlers
 
         public override void ProcessRequest(HttpContextBase context)
         {
+            //System.Threading.Thread.Sleep(4000);
             HttpRequestBase request = context.Request;
             var showIdStr = request.QueryString["s"];
             var userIdStr = request.QueryString["u"];
@@ -72,6 +73,8 @@ namespace PhishMarket.Handlers
                         Title = a.Photo.NickName
                     });
                 }
+
+                final = json.GetFinalizedJSON();
             }
 
             response.ContentType = "application/json";
@@ -95,6 +98,6 @@ namespace PhishMarket.Handlers
             return json.GetFinalizedJSON();
         }
 
-        public override bool IsReusable { get { return true; } }
+        public override bool IsReusable { get { return false; } }
     }
 }

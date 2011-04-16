@@ -5,13 +5,36 @@
 
     <script type="text/javascript" src="/../../javascript/galleria/galleria-1.2.2.min.js"></script>
 
-
     <script type="text/javascript">
         Galleria.loadTheme('/../../javascript/galleria/classic/galleria.classic.min.js');
     </script>
 
+    <script type="text/javascript">
 
-    
+        function showPictures() {
+
+            var showClientId = ('#<%= ddlShows.ClientID %>');
+            var showId = $(showClientId).val();
+
+            var userClientId = $('#<%= hdnUserId.ClientID %>');
+            var userId = $(userClientId).val();
+
+            $.getJSON("/../../Handlers/MyPicturesHandler.ashx",
+                { s: showId, u: userId },
+
+                function(data) {
+                    //alert(data.records[0]['image']);
+                    $('#gallery').galleria({
+                        data_source: data.records,
+                        width: 500,
+                        height: 500
+                    });
+
+                });
+
+            return false;
+        }
+    </script>
 
 </asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
@@ -78,7 +101,7 @@
                         OnClick="btnShowFromTour_Click" />--%>
                 </td>
                 <td>
-                    <button id="btnShowBrih" runat="server" value="Click Me Biatch" onclick="showPictures();">
+                    <button id="btnShowBrih2" value="rest" onclick="return showPictures();">
                     </button>
                     <asp:Button ID="btnShowFromShow" runat="server" Text="Show My Pictures from Show"
                         OnClick="btnShowFromShow_Click" />
@@ -127,59 +150,13 @@
             </asp:PlaceHolder>
         </div>
     </asp:PlaceHolder>
-    <asp:HiddenField ID="hdnUserId" runat="server" Visible="false" />
-
-   <%-- <script type="text/javascript">
+    <div id="hdnDiv">
+        <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
+    </div>
+    <%--<script type="text/javascript">
         $('#gallery').galleria({
             width: 500,
             height: 500
         });
-    </script>
---%>
-<script type="text/javascript">
-
-    function showPictures() {
-
-        //var showId = $('#ddlShows').val();
-        //var userId = $('#hdnUserId').val();
-
-        //var data = "{ \"records\": [ { \"image\": \"/../../images/NoImages.jpg\",\"thumb\": \"/images/NoImages.jpg\",\"title\": \"No Images Found\",\"description\": \"No Images Found\", \"link\": \"\" } ]}";
-
-        //         $.getJSON('/../../Handlers/MyPicturesHandler.ashx').then(function() {
-        //             alert("WOOHOO SUCCESS");
-        //         }, function() {
-        //             alert("FAIL");
-        //         });
-
-        $.ajax({
-            url: "/../../Handlers/MyPicturesHandler.ashx",
-            dataType: 'json',
-            //data: data,
-            success: function(data) {
-                alert(data);
-
-                $('#gallery').galleria({
-                    data_source: data,
-                    width: 500,
-                    height: 500,
-                    debug: true
-                });
-            }
-        });
-
-//        $.getJSON("/../../Handlers/MyPicturesHandler.ashx",
-//                { s: "", u: "" },
-
-//                function(data) {
-//                    alert(data);
-
-//                    $('#gallery').galleria({
-//                        data_source: data,
-//                        width: 500,
-//                        height: 500,
-//                        debug: true
-//                    });
-//                });
-    }
-    </script>
+    </script>--%>
 </asp:Content>

@@ -208,6 +208,13 @@
     <Compile Include="MyPhishMarket\AddPhoto.aspx.designer.cs">
       <DependentUpon>AddPhoto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyPhishMarket\corespirc.aspx.cs">
+      <DependentUpon>corespirc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\corespirc.aspx.designer.cs">
+      <DependentUpon>corespirc.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyPhishMarket\EditArt.aspx.cs">
       <DependentUpon>EditArt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -256,6 +263,10 @@
     </Compile>
     <Compile Include="MyPhishMarket\MyPictures.aspx.designer.cs">
       <DependentUpon>MyPictures.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyPhishMarket\MyPicturesImageService.asmx.cs">
+      <DependentUpon>MyPicturesImageService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="MyPhishMarket\MyPosters.aspx.cs">
       <DependentUpon>MyPosters.aspx</DependentUpon>
@@ -612,6 +623,7 @@
     <Content Include="images\Shows\coretest2634103905143710561.jpg" />
     <Content Include="MyPhishMarket\AddMyShow.aspx" />
     <Content Include="MyPhishMarket\AddPhoto.aspx" />
+    <Content Include="MyPhishMarket\corespirc.aspx" />
     <Content Include="MyPhishMarket\EditArt.aspx" />
     <Content Include="MyPhishMarket\EditPoster.aspx" />
     <Content Include="MyPhishMarket\EditTicketStub.aspx" />
@@ -619,6 +631,7 @@
     <Content Include="MyPhishMarket\FullShowReview.aspx" />
     <Content Include="MyPhishMarket\MyAnalysis.aspx" />
     <Content Include="MyPhishMarket\MyPictures.aspx" />
+    <Content Include="MyPhishMarket\MyPicturesImageService.asmx" />
     <Content Include="MyPhishMarket\MyPosters.aspx" />
     <Content Include="MyPhishMarket\MyTicketStubs.aspx" />
     <Content Include="MyPhishMarket\Profile\ChangeProfile.aspx" />
