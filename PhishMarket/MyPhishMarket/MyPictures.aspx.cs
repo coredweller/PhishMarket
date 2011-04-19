@@ -151,33 +151,33 @@ namespace PhishMarket.MyPhishMarket
                                      select new ListItem(s.GetShowName(), s.ShowId.ToString())).ToArray());
         }
 
-        public void btnShowFromTour_Click(object sender, EventArgs e)
-        {
-            if (ddlTours.SelectedValue == "none")
-                return;
+        //public void btnShowFromTour_Click(object sender, EventArgs e)
+        //{
+        //    if (ddlTours.SelectedValue == "none")
+        //        return;
 
-            var tourId = new Guid(ddlTours.SelectedValue);
+        //    var tourId = new Guid(ddlTours.SelectedValue);
 
-            ArtService posterService = new ArtService(Ioc.GetInstance<IArtRepository>());
-            MyShowArtService mySPService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
+        //    ArtService posterService = new ArtService(Ioc.GetInstance<IArtRepository>());
+        //    MyShowArtService mySPService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
 
-            var myShowArts = mySPService.GetMyShowArtByTourAndUser(tourId, userId);
+        //    var myShowArts = mySPService.GetMyShowArtByTourAndUser(tourId, userId);
 
-            IList<IArt> posters = new List<IArt>();
+        //    IList<IArt> posters = new List<IArt>();
 
-            myShowArts.ToList().ForEach(x =>
-            {
-                posters.Add(posterService.GetArt(x.ArtId));
-            });
+        //    myShowArts.ToList().ForEach(x =>
+        //    {
+        //        posters.Add(posterService.GetArt(x.ArtId));
+        //    });
 
-            rptArt.DataSource = posters;
-            rptArt.DataBind();
-        }
+        //    rptArt.DataSource = posters;
+        //    rptArt.DataBind();
+        //}
 
-        public void btnShowFromShow_Click(object sender, EventArgs e)
-        {
-            ShowFromShow(null);
-        }
+        //public void btnShowFromShow_Click(object sender, EventArgs e)
+        //{
+        //    ShowFromShow(null);
+        //}
 
         private void ShowFromShow(Guid? artId)
         {

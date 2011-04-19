@@ -11,6 +11,17 @@
 
     <script type="text/javascript">
 
+        $(function() {
+            var userClientId = $('#<%= hdnUserId.ClientID %>');
+            var userId = $(userClientId).val();
+
+            var showId = $.getUrlVar('showId');
+
+            makeCall(showId, userId);
+
+            return false;
+        });
+
         function showPictures() {
 
             var showClientId = ('#<%= ddlShows.ClientID %>');
@@ -18,6 +29,13 @@
 
             var userClientId = $('#<%= hdnUserId.ClientID %>');
             var userId = $(userClientId).val();
+
+            makeCall(showId, userId);
+
+            return false;
+        }
+
+        function makeCall(showId, userId) {
 
             $.getJSON("/../../Handlers/MyPicturesHandler.ashx",
                 { s: showId, u: userId },
@@ -31,8 +49,6 @@
                     });
 
                 });
-
-            return false;
         }
     </script>
 
@@ -69,21 +85,7 @@
     <br />
     <div>
         <table>
-            <%--<tr>
-                <td>
-                    
-                </td>
-                <td>
-                    <asp:Button ID="btnAddOther" runat="server" Text="Add Pictures from others for this show" OnClick="btnAddOther_Click" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                    <asp:Button ID="btnAddPicture" runat="server" Text="Add New Pictures for this show" OnClick="btnAddPicture_Click" />
-                </td>
-            </tr>--%>
+            
             <tr>
                 <td>
                     <asp:DropDownList ID="ddlTours" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTours_SelectedIndexChanged">
@@ -101,16 +103,12 @@
                         OnClick="btnShowFromTour_Click" />--%>
                 </td>
                 <td>
-                    <button id="btnShowBrih2" value="rest" onclick="return showPictures();">
-                    </button>
-                    <asp:Button ID="btnShowFromShow" runat="server" Text="Show My Pictures from Show"
-                        OnClick="btnShowFromShow_Click" />
+                    <button id="btnShowBrih2" onclick="return showPictures();">Show Pictures</button>
                 </td>
             </tr>
         </table>
     </div>
     <div id="gallery">
-        <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
     </div>
     <asp:PlaceHolder ID="phMain" runat="server" Visible="true">
         <div>
@@ -153,10 +151,4 @@
     <div id="hdnDiv">
         <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
     </div>
-    <%--<script type="text/javascript">
-        $('#gallery').galleria({
-            width: 500,
-            height: 500
-        });
-    </script>--%>
 </asp:Content>

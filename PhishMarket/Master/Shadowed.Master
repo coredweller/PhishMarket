@@ -26,7 +26,7 @@ Released   : 20100613
     <script type="text/javascript" src="/javascript/jquery.betterTooltip.js"></script>
     <script type="text/javascript" src="/javascript/jquery.jalert.packed.js"></script>
     <script type="text/javascript" src="/javascript/jquery-ui-1.8.11.custom.min.js"></script>
-    
+    <script type="text/javascript" src="/javascript/phishmarket.js"></script>
     
     <script type="text/javascript">
         $(document).ready(function() {

@@ -313,7 +313,8 @@ namespace PhishMarket.MyPhishMarket
                     Total = string.IsNullOrEmpty(txtTotal.Text) ? 0 : int.Parse(txtTotal.Text),
                     Number = string.IsNullOrEmpty(txtNumber.Text) ? 0 : int.Parse(txtNumber.Text),
                     Technique = txtTechnique.Text,
-                    Title = txtTitle.Text
+                    Title = txtTitle.Text,
+                    ShowId = showId
                 };
 
                 bool success = false;
@@ -363,7 +364,8 @@ namespace PhishMarket.MyPhishMarket
                     PhotoId = photo.PhotoId,
                     TicketStubId = ticketStubId,
                     Notes = photo.Notes,
-                    UserId = photo.UserId
+                    UserId = photo.UserId,
+                    ShowId = showId
                     //Creator = txtCreator.Text,
                     //Length = string.IsNullOrEmpty(txtLength.Text) ? 0 : double.Parse(txtLength.Text),
                     //Width = string.IsNullOrEmpty(txtWidth.Text) ? 0 : double.Parse(txtWidth.Text),
@@ -420,7 +422,8 @@ namespace PhishMarket.MyPhishMarket
                     PhotoId = photo.PhotoId,
                     ArtId = artId,
                     Notes = photo.Notes,
-                    UserId = photo.UserId
+                    UserId = photo.UserId,
+                    ShowId = showId
                     //Creator = txtCreator.Text,
                     //Length = string.IsNullOrEmpty(txtLength.Text) ? 0 : double.Parse(txtLength.Text),
                     //Width = string.IsNullOrEmpty(txtWidth.Text) ? 0 : double.Parse(txtWidth.Text),

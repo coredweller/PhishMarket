@@ -94,7 +94,8 @@ namespace PhishMarket.Handlers
         private string GetNoImagesFound()
         {
             var json = new ImageJSONifier("records");
-            json.Add(new ImageItem { Image = "/../.." + NoImagesLocation, Thumb = NoImagesLocation, Title = "No Images Found", Description = "No Images Found" });
+            var loc = "/../.." + NoImagesLocation;
+            json.Add(new ImageItem { Image = loc, Thumb = loc, Title = "No Images Found", Description = "Upload images from others or upload your own above" });
             return json.GetFinalizedJSON();
         }
 
