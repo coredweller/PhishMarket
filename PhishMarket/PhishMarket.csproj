@@ -208,6 +208,13 @@
     <Compile Include="MyPhishMarket\AddPhoto.aspx.designer.cs">
       <DependentUpon>AddPhoto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyPhishMarket\DeletePicture.aspx.cs">
+      <DependentUpon>DeletePicture.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyPhishMarket\DeletePicture.aspx.designer.cs">
+      <DependentUpon>DeletePicture.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MyPhishMarket\EditArt.aspx.cs">
       <DependentUpon>EditArt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -612,6 +619,7 @@
     <Content Include="images\Shows\coretest2634103905143710561.jpg" />
     <Content Include="MyPhishMarket\AddMyShow.aspx" />
     <Content Include="MyPhishMarket\AddPhoto.aspx" />
+    <Content Include="MyPhishMarket\DeletePicture.aspx" />
     <Content Include="MyPhishMarket\EditArt.aspx" />
     <Content Include="MyPhishMarket\EditPoster.aspx" />
     <Content Include="MyPhishMarket\EditTicketStub.aspx" />

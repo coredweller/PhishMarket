@@ -6,10 +6,41 @@
     <script type="text/javascript" src="/../../javascript/galleria/galleria-1.2.2.min.js"></script>
 
     <script type="text/javascript">
-        Galleria.loadTheme('/../../javascript/galleria/classic/galleria.classic.min.js');
-    </script>
 
-    <script type="text/javascript">
+        Galleria.loadTheme('/../../javascript/galleria/classic/galleria.classic.min.js');
+
+
+//        $('#gallery').galleria({
+
+//            extend: function(options) {
+
+//                Galleria.log(this) // the gallery instance
+//                Galleria.log(options) // the gallery options
+
+//                // listen to when an image is shown
+//                this.bind('image', function(e) {
+
+//                    Galleria.log(e) // the event object may contain custom objects, in this case the main image
+//                    Galleria.log(e.imageTarget) // the current image
+
+//                    // lets make galleria open a lightbox when clicking the main image:
+//                    $(e.imageTarget).click(this.proxy(function() {
+//                        this.openLightbox();
+//                    }));
+//                });
+//            }
+//        });
+
+//        $('#gallery').galleria({
+
+//            extend: function(options) {
+
+//                $('#lnkRemove').click(function() {
+//                    alert(this);
+//                });
+
+//            }
+//        });
 
         $(function() {
             var userClientId = $('#<%= hdnUserId.ClientID %>');
@@ -17,7 +48,7 @@
 
             var showId = $.getUrlVar('showId');
 
-            makeCall(showId, userId);
+            callMyPictureHandler(showId, userId);
 
             return false;
         });
@@ -30,26 +61,12 @@
             var userClientId = $('#<%= hdnUserId.ClientID %>');
             var userId = $(userClientId).val();
 
-            makeCall(showId, userId);
+            callMyPictureHandler(showId, userId);
 
             return false;
         }
 
-        function makeCall(showId, userId) {
-
-            $.getJSON("/../../Handlers/MyPicturesHandler.ashx",
-                { s: showId, u: userId },
-
-                function(data) {
-                    //alert(data.records[0]['image']);
-                    $('#gallery').galleria({
-                        data_source: data.records,
-                        width: 500,
-                        height: 500
-                    });
-
-                });
-        }
+       
     </script>
 
 </asp:Content>
@@ -85,7 +102,6 @@
     <br />
     <div>
         <table>
-            
             <tr>
                 <td>
                     <asp:DropDownList ID="ddlTours" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTours_SelectedIndexChanged">
@@ -103,13 +119,15 @@
                         OnClick="btnShowFromTour_Click" />--%>
                 </td>
                 <td>
-                    <button id="btnShowBrih2" onclick="return showPictures();">Show Pictures</button>
+                    <button id="btnShowBrih2" onclick="return showPictures();">
+                        Show Pictures</button>
                 </td>
             </tr>
         </table>
     </div>
     <div id="gallery">
     </div>
+    
     <asp:PlaceHolder ID="phMain" runat="server" Visible="true">
         <div>
             <asp:Repeater ID="rptArt" runat="server" OnItemCommand="rptArt_ItemCommand">

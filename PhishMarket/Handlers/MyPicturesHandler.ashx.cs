@@ -47,11 +47,11 @@ namespace PhishMarket.Handlers
 
             var myShowArts = myShowArtService.GetMyShowArtByMyShow(myShow.MyShowId);
 
-            IList<Art> art = new List<Art>();
+            IList<KeyValuePair<Art, IMyShowArt>> art = new List<KeyValuePair<Art, IMyShowArt>>();
 
             myShowArts.ToList().ForEach(x =>
             {
-                art.Add((Art)artService.GetArt(x.ArtId));
+                art.Add(new KeyValuePair<Art, IMyShowArt>((Art)artService.GetArt(x.ArtId), x));
             });
 
             if (art == null || art.Count <= 0)
@@ -68,9 +68,10 @@ namespace PhishMarket.Handlers
                 {
                     json.Add(new ImageItem 
                     { 
-                        Image = "/../../images/Shows/" + a.Photo.FileName,
-                        Description = a.Notes,
-                        Title = a.Photo.NickName
+                        Image = "/../../images/Shows/" + a.Key.Photo.FileName,
+                        Description = a.Key.Notes,
+                        Title = a.Key.Photo.NickName,
+                        Link = string.Format("DeletePicture.aspx?picid={0}", a.Value.MyShowArtId.ToString())
                     });
                 }
 
