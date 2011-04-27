@@ -79,47 +79,47 @@ namespace PhishMarket.MyPhishMarket
             
         }
 
-        public void rptArt_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            var artId = new Guid(e.CommandArgument.ToString());
+        //public void rptArt_ItemCommand(object source, RepeaterCommandEventArgs e)
+        //{
+        //    var artId = new Guid(e.CommandArgument.ToString());
 
-            switch (e.CommandName.ToLower())
-            {
-                case "remove":
-                    Remove(artId); ;
-                    break;
-            }
-        }
+        //    switch (e.CommandName.ToLower())
+        //    {
+        //        case "remove":
+        //            Remove(artId); ;
+        //            break;
+        //    }
+        //}
 
-        private void Remove(Guid artId)
-        {
-            if (string.IsNullOrEmpty(ddlShows.SelectedValue))
-                return;
+        //private void Remove(Guid artId)
+        //{
+        //    if (string.IsNullOrEmpty(ddlShows.SelectedValue))
+        //        return;
 
-            Guid showId = new Guid(ddlShows.SelectedValue);
+        //    Guid showId = new Guid(ddlShows.SelectedValue);
 
-            MyShowService myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-            MyShowArtService myShowArtService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
+        //    MyShowService myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
+        //    MyShowArtService myShowArtService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
 
-            var myShow = myShowService.GetMyShow(showId, userId);
-            var myShowArt = myShowArtService.GetMyShowArtByMyShowAndArtId(myShow.MyShowId, artId);
+        //    var myShow = myShowService.GetMyShow(showId, userId);
+        //    var myShowArt = myShowArtService.GetMyShowArtByMyShowAndArtId(myShow.MyShowId, artId);
 
-            bool success = false;
+        //    bool success = false;
 
-            if (myShowArt != null)
-            {
-                myShowArtService.DeleteCommit(myShowArt);
-                success = true;
-            }
+        //    if (myShowArt != null)
+        //    {
+        //        myShowArtService.DeleteCommit(myShowArt);
+        //        success = true;
+        //    }
 
-            if (success)
-            {
-                phRemoveSuccess.Visible = true;
-                ShowFromShow(artId);
-            }
-            else
-                phRemoveError.Visible = true;
-        }
+        //    if (success)
+        //    {
+        //        phRemoveSuccess.Visible = true;
+        //        ShowFromShow(artId);
+        //    }
+        //    else
+        //        phRemoveError.Visible = true;
+        //}
 
         public void btnAddPicture_Click(object sender, EventArgs e)
         {
@@ -179,43 +179,43 @@ namespace PhishMarket.MyPhishMarket
         //    ShowFromShow(null);
         //}
 
-        private void ShowFromShow(Guid? artId)
-        {
-            if (string.IsNullOrEmpty(ddlShows.SelectedValue))
-                return;
+        //private void ShowFromShow(Guid? artId)
+        //{
+        //    if (string.IsNullOrEmpty(ddlShows.SelectedValue))
+        //        return;
 
-            phNoImages.Visible = false;
+        //    phNoImages.Visible = false;
 
-            Guid showId = new Guid(ddlShows.SelectedValue);
+        //    Guid showId = new Guid(ddlShows.SelectedValue);
 
-            MyShowService myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-            MyShowArtService myShowArtService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
-            ArtService artService = new ArtService(Ioc.GetInstance<IArtRepository>());
+        //    MyShowService myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
+        //    MyShowArtService myShowArtService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
+        //    ArtService artService = new ArtService(Ioc.GetInstance<IArtRepository>());
 
-            var myShow = myShowService.GetMyShow(showId, userId);
+        //    var myShow = myShowService.GetMyShow(showId, userId);
 
-            var myShowArts = myShowArtService.GetMyShowArtByMyShow(myShow.MyShowId);
+        //    var myShowArts = myShowArtService.GetMyShowArtByMyShow(myShow.MyShowId);
 
-            IList<IArt> art = new List<IArt>();
+        //    IList<IArt> art = new List<IArt>();
 
-            myShowArts.ToList().ForEach(x =>
-            {
-                art.Add(artService.GetArt(x.ArtId));
-            });
+        //    myShowArts.ToList().ForEach(x =>
+        //    {
+        //        art.Add(artService.GetArt(x.ArtId));
+        //    });
 
-            if (artId != null)
-            {
-                art = art.Where(x => x.ArtId != artId).ToList();
-            }
+        //    if (artId != null)
+        //    {
+        //        art = art.Where(x => x.ArtId != artId).ToList();
+        //    }
 
-            if (art == null || art.Count <= 0)
-            {
-                phNoImages.Visible = true;
-            }
+        //    if (art == null || art.Count <= 0)
+        //    {
+        //        phNoImages.Visible = true;
+        //    }
 
-            rptArt.DataSource = art;
-            rptArt.DataBind();
-        }
+        //    rptArt.DataSource = art;
+        //    rptArt.DataBind();
+        //}
 
         private void ShowError(PlaceHolder ph, string message)
         {
@@ -228,7 +228,7 @@ namespace PhishMarket.MyPhishMarket
             phError.Visible = false;
             phSuccess.Visible = false;
             phNoTicketStubsError.Visible = false;
-            phMain.Visible = true;
+            //phMain.Visible = true;
         }
     }
 }

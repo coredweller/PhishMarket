@@ -30,6 +30,7 @@ function callMyPictureHandler(showId, userId) {
                     $('#gallery').galleria({
                         data_source: data.records,
 						transition: 'fade',
+						maxScaleRatio: 1,
                         width: 600,
                         height: 600
                     });

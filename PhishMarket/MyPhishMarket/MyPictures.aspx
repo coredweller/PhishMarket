@@ -7,41 +7,11 @@
 
     <script type="text/javascript">
 
+        //Absolutely needed for Galleria to work on this page
         Galleria.loadTheme('/../../javascript/galleria/classic/galleria.classic.min.js');
 
-
-//        $('#gallery').galleria({
-
-//            extend: function(options) {
-
-//                Galleria.log(this) // the gallery instance
-//                Galleria.log(options) // the gallery options
-
-//                // listen to when an image is shown
-//                this.bind('image', function(e) {
-
-//                    Galleria.log(e) // the event object may contain custom objects, in this case the main image
-//                    Galleria.log(e.imageTarget) // the current image
-
-//                    // lets make galleria open a lightbox when clicking the main image:
-//                    $(e.imageTarget).click(this.proxy(function() {
-//                        this.openLightbox();
-//                    }));
-//                });
-//            }
-//        });
-
-//        $('#gallery').galleria({
-
-//            extend: function(options) {
-
-//                $('#lnkRemove').click(function() {
-//                    alert(this);
-//                });
-
-//            }
-//        });
-
+        //When the page loads, if there is a showId in the URL
+        //  this function will load the pictures for this user if available
         $(function() {
             var userClientId = $('#<%= hdnUserId.ClientID %>');
             var userId = $(userClientId).val();
@@ -53,6 +23,8 @@
             return false;
         });
 
+        //When the Show Pictures button is pressed this fires to show
+        //  the pictures for this user if available
         function showPictures() {
 
             var showClientId = ('#<%= ddlShows.ClientID %>');
@@ -65,8 +37,6 @@
 
             return false;
         }
-
-       
     </script>
 
 </asp:Content>
@@ -125,12 +95,23 @@
             </tr>
         </table>
     </div>
+    <h4>
+        Tip 1: Click the thumbnails or arrows to change pictures.
+        <br />
+        Tip 2: Click the large image to go to a page to delete it.</h4>
     <div id="gallery">
     </div>
-    
-    <asp:PlaceHolder ID="phMain" runat="server" Visible="true">
+    <br />
+    <br />
+    <br />
+    <p>
+        NOTE: If using IE you may need to clear the cache if you add or delete a picture
+        to see the most accurate set of pictures. Or you could use Firefox ;)
+    </p>
+    <%--</div>--%>
+    <%--<asp:PlaceHolder ID="phMain" runat="server" Visible="true">
         <div>
-            <asp:Repeater ID="rptArt" runat="server" OnItemCommand="rptArt_ItemCommand">
+            <asp:Repeater ID="rptArt" runat="server">
                 <HeaderTemplate>
                     <table>
                 </HeaderTemplate>
@@ -165,7 +146,7 @@
                     Use the buttons above!</h4>
             </asp:PlaceHolder>
         </div>
-    </asp:PlaceHolder>
+    </asp:PlaceHolder>--%>
     <div id="hdnDiv">
         <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
     </div>

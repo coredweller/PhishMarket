@@ -51,6 +51,12 @@ namespace PhishMarket.MyPhishMarket
             var item = new ListItem("All", "All");
             item.Selected = true;
             ddlTours.Items.Add(item);
+
+            var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
+
+            var shows = myShowService.GetShowsFromMyShowsForUser(userId);
+            rptShows.DataSource = shows;
+            rptShows.DataBind();
         }
 
         private void BindMyShowItems()

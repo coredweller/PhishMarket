@@ -15,14 +15,6 @@ namespace PhishMarket.MyPhishMarket
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (ViewState["PreviousPageUrl"] == null || string.IsNullOrEmpty(ViewState["PreviousPageUrl"].ToString()))
-            {
-                if(!string.IsNullOrEmpty(Request.UrlReferrer.ToString()))
-                {
-                    ViewState["PreviousPageUrl"] = Request.UrlReferrer.ToString();
-                }
-            }
-
             if (!IsPostBack)
             {
                 Bind();
@@ -33,6 +25,8 @@ namespace PhishMarket.MyPhishMarket
         {
             var pictureIdStr = Request.QueryString["picid"];
             var posterIdStr = Request.QueryString["posid"];
+
+            hdnShowId.Value = Request.QueryString["showId"];
 
             if (!string.IsNullOrEmpty(pictureIdStr))
             {
@@ -50,20 +44,9 @@ namespace PhishMarket.MyPhishMarket
             Response.Redirect(LinkBuilder.DashboardLink());
         }
 
-        private void BindPicture(Guid pictureId)
-        {
-            var myShowArtService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
-
-            var myShowArt = (MyShowArt)myShowArtService.GetMyShowArt(pictureId);
-
-            imgImage.ImageUrl = LinkBuilder.GetImageLink(myShowArt.Art.PhotoId);
-
-            hdnId.Value = myShowArt.MyShowArtId.ToString();
-        }
-
         public void btnNo_Click(object sender, EventArgs e)
         {
-            Response.Redirect(ViewState["PreviousPageUrl"].ToString());
+            Response.Redirect(LinkBuilder.MyPicturesLink(new Guid(hdnShowId.Value)));
         }
 
         public void btnYes_Click(object sender, EventArgs e)
@@ -84,8 +67,19 @@ namespace PhishMarket.MyPhishMarket
 
                 log.Write("Deleted myShowArt Id: " + myShowArt.MyShowArtId.ToString());
 
-                Response.Redirect(ViewState["PreviousPageUrl"].ToString());
+                Response.Redirect(LinkBuilder.MyPicturesLink(new Guid(hdnShowId.Value)));
             }
+        }
+
+        private void BindPicture(Guid pictureId)
+        {
+            var myShowArtService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
+
+            var myShowArt = (MyShowArt)myShowArtService.GetMyShowArt(pictureId);
+
+            imgImage.ImageUrl = LinkBuilder.GetImageLink(myShowArt.Art.PhotoId);
+
+            hdnId.Value = myShowArt.MyShowArtId.ToString();
         }
 
         private void BindPoster(Guid posterId)

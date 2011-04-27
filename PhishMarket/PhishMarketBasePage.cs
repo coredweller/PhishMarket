@@ -8,6 +8,7 @@ using TheCore.Repository;
 using TheCore.Interfaces;
 using System.Text;
 using PhishPond.Repository.LinqToSql;
+using System.Web;
 
 namespace PhishMarket
 {
@@ -114,7 +115,7 @@ namespace PhishMarket
         {
             if (string.IsNullOrEmpty(notes)) return string.Empty;
 
-            int lastIndex = notes.Length <= desiredLength? notes.Length : desiredLength;
+            int lastIndex = notes.Length <= desiredLength ? notes.Length : desiredLength;
             return notes.Substring(0, lastIndex);
         }
 
@@ -130,6 +131,17 @@ namespace PhishMarket
         protected virtual void SetPageTitle(string title)
         {
             Page.Title = title;
+        }
+
+        /// <summary>
+        /// This function prevent the page being retrieved from browser cache
+        /// </summary>
+        protected void ExpirePageCache()
+        {
+            Response.Cache.SetCacheability(HttpCacheability.ServerAndNoCache);
+            Response.Cache.SetExpires(DateTime.Now - new TimeSpan(1, 0, 0));
+            Response.Cache.SetLastModified(DateTime.Now);
+            Response.Cache.SetAllowResponseInBrowserHistory(false);
         }
     }
 }

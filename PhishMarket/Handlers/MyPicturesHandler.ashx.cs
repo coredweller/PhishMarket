@@ -71,7 +71,7 @@ namespace PhishMarket.Handlers
                         Image = "/../../images/Shows/" + a.Key.Photo.FileName,
                         Description = a.Key.Notes,
                         Title = a.Key.Photo.NickName,
-                        Link = string.Format("DeletePicture.aspx?picid={0}", a.Value.MyShowArtId.ToString())
+                        Link = string.Format("DeletePicture.aspx?picid={0}&showId={1}", a.Value.MyShowArtId.ToString(), showId.ToString())
                     });
                 }
 

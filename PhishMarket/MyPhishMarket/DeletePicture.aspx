@@ -17,4 +17,5 @@
         </center>
     </div>
     <asp:HiddenField ID="hdnId" runat="server" />
+    <asp:HiddenField ID="hdnShowId" runat="server" />
 </asp:Content>
