@@ -22,11 +22,10 @@ $.extend({
 //Calls a handler to get images back for galleria
 function callMyPictureHandler(showId, userId) {
 
-            $.getJSON("/../../Handlers/MyPicturesHandler.ashx",
+            $.getJSON("/Handlers/MyPicturesHandler.ashx",
                 { s: showId, u: userId },
 
                 function(data) {
-                    //alert(data.records[0]['image']);
                     $('#gallery').galleria({
                         data_source: data.records,
 						transition: 'fade',

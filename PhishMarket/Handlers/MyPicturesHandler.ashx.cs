@@ -68,7 +68,7 @@ namespace PhishMarket.Handlers
                 {
                     json.Add(new ImageItem 
                     { 
-                        Image = "/../../images/Shows/" + a.Key.Photo.FileName,
+                        Image = "/images/Shows/" + a.Key.Photo.FileName,
                         Description = a.Key.Notes,
                         Title = a.Key.Photo.NickName,
                         Link = string.Format("DeletePicture.aspx?picid={0}&showId={1}", a.Value.MyShowArtId.ToString(), showId.ToString())
@@ -95,7 +95,7 @@ namespace PhishMarket.Handlers
         private string GetNoImagesFound()
         {
             var json = new ImageJSONifier("records");
-            var loc = "/../.." + NoImagesLocation;
+            var loc = NoImagesLocation;
             json.Add(new ImageItem { Image = loc, Thumb = loc, Title = "No Images Found", Description = "Upload images from others or upload your own above" });
             return json.GetFinalizedJSON();
         }

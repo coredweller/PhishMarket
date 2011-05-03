@@ -7,9 +7,12 @@ namespace TheCore.Helpers
 {
     public class ImageJSONifier : IJSONifier
     {
+        private bool FirstAdd { get; set; }
+
         public ImageJSONifier(string collectionName)
         {
             CollectionName = collectionName;
+            FirstAdd = true;
 
             BuildTemplate();
         }
@@ -17,6 +20,7 @@ namespace TheCore.Helpers
         public ImageJSONifier(string collectionName, ImageItem image)
         {
             CollectionName = collectionName;
+            FirstAdd = true;
 
             BuildTemplate();
             Add(image);
@@ -41,7 +45,7 @@ namespace TheCore.Helpers
             sb.Append("\"title\":\"{2}\",");
             sb.Append("\"description\":\"{3}\",");
             sb.Append("\"link\":\"{4}\"");
-            sb.Append("},");
+            sb.Append("}");
 
             Template = sb.ToString();
 
@@ -56,7 +60,15 @@ namespace TheCore.Helpers
             var temp4 = temp3.Replace("{3}", image.Description);
             var temp5 = temp4.Replace("{4}", image.Link);
 
-            Builder.Append(temp5);
+            if (FirstAdd)
+            {
+                Builder.Append(temp5);
+                FirstAdd = false;
+            }
+            else
+            {
+                Builder.Append("," + temp5);
+            }
         }
     }
 }

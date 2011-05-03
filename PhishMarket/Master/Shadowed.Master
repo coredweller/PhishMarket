@@ -4,7 +4,8 @@
 <%@ Register TagPrefix="uc" TagName="RecentTopicsControl" Src="~/Controls/RecentTopics.ascx" %>
 <%@ Register TagPrefix="uc" TagName="AdminMenu" Src="~/Controls/AdminMenu.ascx" %>
 <%@ Register TagPrefix="uc" TagName="RecentShowReviewsControl" Src="~/Controls/RecentShowReviews.ascx" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">--%>
 <!--
 Design by Free CSS Templates
 http://www.freecsstemplates.org
@@ -46,8 +47,8 @@ Released   : 20100613
     <link href="/css/Shadowed/extra.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="/css/ExtraAjax.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
-<body>
-    <form id="form" method="post" runat="server">
+<body id="gradient">
+    <form id="form" name="phishmarketForm" method="post" runat="server">
     <ajaxToolkit:ToolkitScriptManager ID="tksm1" EnablePartialRendering="true" runat="server"
         CombineScripts="false">
     </ajaxToolkit:ToolkitScriptManager>
@@ -81,8 +82,8 @@ Released   : 20100613
                     </div>
                     <!-- end #content -->
                     <div id="sidebar">
-                        <ul>
-                            <%--<li>
+                        <%--<ul>
+                            <li>
                                 <div id="search">
                                     <form method="get" action="#">
                                     <div>
@@ -108,8 +109,8 @@ Released   : 20100613
                                     <li><a href="#">Consectetuer adipiscing elit</a></li>
                                     <li><a href="#">Proin gravida orci porttitor</a></li>
                                 </ul>
-                            </li>--%>
-                        </ul>
+                            </li>
+                        </ul>--%>
                     </div>
                     <!-- end #sidebar -->
                     <div style="clear: both;">

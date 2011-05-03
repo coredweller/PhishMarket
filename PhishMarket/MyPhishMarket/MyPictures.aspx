@@ -3,12 +3,12 @@
 
 <asp:Content ContentPlaceHolderID="Head" runat="server">
 
-    <script type="text/javascript" src="/../../javascript/galleria/galleria-1.2.2.min.js"></script>
+    <script type="text/javascript" src="/javascript/galleria/galleria-1.2.2.min.js"></script>
 
     <script type="text/javascript">
 
         //Absolutely needed for Galleria to work on this page
-        Galleria.loadTheme('/../../javascript/galleria/classic/galleria.classic.min.js');
+        Galleria.loadTheme('/javascript/galleria/classic/galleria.classic.min.js');
 
         //When the page loads, if there is a showId in the URL
         //  this function will load the pictures for this user if available
@@ -27,7 +27,7 @@
         //  the pictures for this user if available
         function showPictures() {
 
-            var showClientId = ('#<%= ddlShows.ClientID %>');
+            var showClientId = $('#<%= ddlShows.ClientID %>');
             var showId = $(showClientId).val();
 
             var userClientId = $('#<%= hdnUserId.ClientID %>');
@@ -77,7 +77,6 @@
                     <asp:DropDownList ID="ddlTours" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTours_SelectedIndexChanged">
                     </asp:DropDownList>
                 </td>
-                <%--<td><asp:Button ID="btnGetShows" runat="server" Text="Get Shows" OnClick="btnGetShows_Click" /></td>--%>
                 <td>
                     <asp:DropDownList ID="ddlShows" runat="server">
                     </asp:DropDownList>
@@ -100,6 +99,8 @@
         <br />
         Tip 2: Click the large image to go to a page to delete it.</h4>
     <div id="gallery">
+    <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
+        <%--<img src="/images/Shows/coretest2-634195715440294949.jpg" alt="blah" />--%>
     </div>
     <br />
     <br />
@@ -150,4 +151,7 @@
     <div id="hdnDiv">
         <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
     </div>
+    
+    
+    
 </asp:Content>

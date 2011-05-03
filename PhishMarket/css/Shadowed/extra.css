@@ -1,3 +1,14 @@
+
+/*-----------------------------------------------------------------------------------------------*/
+/*                                   BACKGROUND GRADIENT                                         */
+/*-----------------------------------------------------------------------------------------------*/
+#gradient {
+    background: #878787; /* old browsers */
+    background: -moz-linear-gradient(top, #878787 0%, #FFFFFF 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#878787), color-stop(100%,#FFFFFF)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#878787', endColorstr='#FFFFFF',GradientType=0 ); /* ie */
+}
+
 /*-----------------------------------------------------------------------------------------------*/
 /*                                         Report STYLES                                        */
 /*-----------------------------------------------------------------------------------------------*/
