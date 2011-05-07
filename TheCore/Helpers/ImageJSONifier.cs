@@ -47,6 +47,9 @@ namespace TheCore.Helpers
             sb.Append("\"link\":\"{4}\"");
             sb.Append("}");
 
+
+
+
             Template = sb.ToString();
 
             base.BuildTemplate();
