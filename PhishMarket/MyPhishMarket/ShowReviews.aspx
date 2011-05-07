@@ -18,6 +18,8 @@
         <%--Height="300" /> Style="width: auto; border: solid 1px #000000;" />--%>
         <br />
         <br />
+    </div>
+    <div>
         <center>
             <asp:Label ID="lblTitle" runat="server"></asp:Label><br />
             <asp:Label ID="lblDescription" runat="server"></asp:Label><br />

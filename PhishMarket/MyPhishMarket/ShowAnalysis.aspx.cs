@@ -93,10 +93,10 @@ namespace PhishMarket.MyPhishMarket
             SetPageTitle("Analyze " + show.GetShowName());
 
             lblShow.Text = show.GetShowName();
-            var sets = setService.GetSetsForShow(showId);
+            var sets = setService.GetSetsForShow(showId).ToList();  //sets NEEDS to be a list here! DO NOT CHANGE DAN!
 
             var ss = (from set in sets
-                      from song in setSongService.GetSetSongsBySet(set.SetId).OrderBy(z => z.Order).DefaultIfEmpty()
+                      from song in setSongService.GetSetSongsBySet(set.SetId).OrderBy(z => z.Order.Value).DefaultIfEmpty()
                       from analysis in analysisService.GetAnalysisBySetSongAndUser(song.SetSongId, userId).DefaultIfEmpty()
                       select new { Set = set, Song = song, Analysis = analysis }).ToList();
 
