@@ -187,6 +187,9 @@
     <Compile Include="Handlers\ShowHandler.ashx.cs">
       <DependentUpon>ShowHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\ShowReviewsHandler.ashx.cs">
+      <DependentUpon>ShowReviewsHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Master\Shadowed.Master.cs">
       <DependentUpon>Shadowed.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -672,6 +675,7 @@
     <Content Include="Handlers\ImageHandler2.ashx" />
     <Content Include="Handlers\ShowHandler.ashx" />
     <Content Include="Handlers\MyPicturesHandler.ashx" />
+    <Content Include="Handlers\ShowReviewsHandler.ashx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

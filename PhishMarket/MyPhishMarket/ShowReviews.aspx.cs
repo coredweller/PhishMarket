@@ -55,7 +55,7 @@ namespace PhishMarket.MyPhishMarket
                       from analysis in analysisService.GetAnalysisBySetSongAndUser(song.SetSongId, userId).DefaultIfEmpty()
                       select new { Set = set, Song = song, Analysis = analysis }).ToList();
 
-            SlideShowExtender1.ContextKey = showId.ToString();
+            //SlideShowExtender1.ContextKey = showId.ToString();
 
             rptSongs.DataSource = ss;
             rptSongs.DataBind();

@@ -36,3 +36,22 @@ function callMyPictureHandler(showId, userId) {
 
                 });
         }
+		
+		//MyPictures.aspx
+//Calls a handler to get images back for galleria
+function callShowReviewsHandler(showId) {
+
+            $.getJSON("/Handlers/ShowReviewsHandler.ashx",
+                { s: showId },
+
+                function(data) {
+                    $('#gallery').galleria({
+                        data_source: data.records,
+						transition: 'fade',
+						maxScaleRatio: 1,
+                        width: 600,
+                        height: 600
+                    });
+
+                });
+        }

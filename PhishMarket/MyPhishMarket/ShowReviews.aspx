@@ -1,12 +1,34 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShowReviews.aspx.cs" Inherits="PhishMarket.MyPhishMarket.ShowReviews"
     MasterPageFile="~/Master/Shadowed.Master" %>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
+
+    <script type="text/javascript" src="/javascript/galleria/galleria-1.2.2.min.js"></script>
+
+    <script type="text/javascript">
+
+        //Absolutely needed for Galleria to work on this page
+        Galleria.loadTheme('/javascript/galleria/classic/galleria.classic.min.js');
+
+        //When the page loads, if there is a showId in the URL
+        //  this function will load the pictures for this user if available
+        $(function() {
+
+            var showId = $.getUrlVar('showId');
+
+            callShowReviewsHandler(showId);
+
+            return false;
+        });
+       
+    </script>
+
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        <%= ShowName %></h2>
-    <%--<br />
-    <br />--%>
-    <div>
+        <%= ShowName %></h2>    
+    <%--<div>
         <ajaxToolkit:SlideShowExtender ID="SlideShowExtender1" runat="server" TargetControlID="imgPhotos"
             SlideShowServiceMethod="GetShowPictures" SlideShowServicePath="/SlideService.asmx"
             UseContextKey="true" AutoPlay="false" NextButtonID="btnNext" PlayButtonText="Play"
@@ -15,11 +37,11 @@
         <br />
         <br />
         <asp:Image ID="imgPhotos" runat="server" />
-        <%--Height="300" /> Style="width: auto; border: solid 1px #000000;" />--%>
         <br />
         <br />
-    </div>
-    <div>
+    </div>--%>
+    
+    <%--<div>
         <center>
             <asp:Label ID="lblTitle" runat="server"></asp:Label><br />
             <asp:Label ID="lblDescription" runat="server"></asp:Label><br />
@@ -29,7 +51,7 @@
             <asp:Button ID="btnPlay" Text="Play" runat="server" />
             <asp:Button ID="btnNext" Text="Next" runat="server" />
         </center>
-    </div>
+    </div>--%>
     <br />
     <br />
     <asp:Repeater ID="rptSongs" runat="server" OnItemCommand="rptSongs_ItemCommand">
@@ -68,6 +90,10 @@
     </asp:Repeater>
     <br />
     <br />
+    
+    
+    <div id="gallery">
+    </div>
     <hr />
     <br />
     <h3>
