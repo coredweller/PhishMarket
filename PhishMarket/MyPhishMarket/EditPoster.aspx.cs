@@ -40,9 +40,9 @@ namespace PhishMarket.MyPhishMarket
 
             var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
 
-            var photo = photoService.GetPhoto(poster.PhotoId.Value);
+            var photo = photoService.GetPhoto(poster.PhotoId);
 
-            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLink(poster.PhotoId.Value);
+            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLink(poster.PhotoId);
 
             ddlShow.SelectedValue = photo.ShowId.ToString();
 

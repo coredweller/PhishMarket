@@ -14,8 +14,6 @@ namespace PhishMarket.Handlers
 {
     public class MyPicturesHandler : BaseHandler
     {
-        public MyPicturesHandler() { Ioc.BuildUp(this); }
-
         public override void ProcessRequest(HttpContextBase context)
         {
             //System.Threading.Thread.Sleep(4000);

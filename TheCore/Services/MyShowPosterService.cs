@@ -75,7 +75,7 @@ namespace TheCore.Services
             foreach (var myShowPoster in myShowPosters)
             {
                 var poster = posterService.GetPoster(myShowPoster.PosterId);
-                var photo = photoService.GetPhotoThumbnail(poster.PhotoId.Value);
+                var photo = photoService.GetPhotoThumbnail(poster.PhotoId);
                 if (photo.Thumbnail)
                     return new MyShowThumbnail<IMyShowPoster>(myShowPoster, photo);
             }

@@ -1,6 +1,46 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MyPosters.aspx.cs" Inherits="PhishMarket.MyPhishMarket.MyPosters"
     MasterPageFile="~/Master/Shadowed.Master" %>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
+
+    <script type="text/javascript" src="/javascript/galleria/galleria-1.2.2.min.js"></script>
+
+    <script type="text/javascript">
+
+        //Absolutely needed for Galleria to work on this page
+        Galleria.loadTheme('/javascript/galleria/classic/galleria.classic.min.js');
+
+        //When the page loads, if there is a showId in the URL
+        //  this function will load the pictures for this user if available
+        $(function() {
+            var userClientId = $('#<%= hdnUserId.ClientID %>');
+            var userId = $(userClientId).val();
+
+            var showId = $.getUrlVar('showId');
+
+            callMyPostersHandler(showId, userId);
+
+            return false;
+        });
+
+        //When the Show Pictures button is pressed this fires to show
+        //  the pictures for this user if available
+        function showPosters() {
+
+            var showClientId = $('#<%= ddlShows.ClientID %>');
+            var showId = $(showClientId).val();
+
+            var userClientId = $('#<%= hdnUserId.ClientID %>');
+            var userId = $(userClientId).val();
+
+            callMyPostersHandler(showId, userId);
+
+            return false;
+        }
+    </script>
+
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <h2>
@@ -67,13 +107,29 @@
                         OnClick="btnShowFromTour_Click" />--%>
                 </td>
                 <td>
-                    <asp:Button ID="btnShowFromShow" runat="server" Text="Show My Posters from Show"
-                        OnClick="btnShowFromShow_Click" />
+                    <button id="btnShowBrih2" onclick="return showPosters();">
+                        Show Posters</button>
                 </td>
             </tr>
         </table>
     </div>
-    <asp:PlaceHolder ID="phMain" runat="server" Visible="true">
+     <h4>
+        Tip 1: Click the thumbnails or arrows to change pictures.
+        <br />
+        Tip 2: Click the large image to go to a page to delete it.</h4>
+    <div id="gallery">
+    <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
+        <%--<img src="/images/Shows/coretest2-634195715440294949.jpg" alt="blah" />--%>
+    </div>
+    <br />
+    <br />
+    <br />
+    <p>
+        NOTE: If using IE you may need to clear the cache if you add or delete a picture
+        to see the most accurate set of pictures. Or you could use Firefox ;)
+    </p>
+    
+    <%--<asp:PlaceHolder ID="phMain" runat="server" Visible="true">
         <div>
             <asp:Repeater ID="rptPoster" runat="server" OnItemCommand="rptPoster_ItemCommand">
                 <HeaderTemplate>
@@ -115,5 +171,8 @@
                     Use the buttons above!</h4>
             </asp:PlaceHolder>
         </div>
-    </asp:PlaceHolder>
+    </asp:PlaceHolder>--%>
+    <div id="hdnDiv">
+        <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
+    </div>
 </asp:Content>

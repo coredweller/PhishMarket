@@ -108,6 +108,7 @@
       <Column Name="UserId" Type="System.Guid" CanBeNull="false" />
       <Column Name="Thumbnail" Type="System.Boolean" CanBeNull="false" />
       <Association Name="Photo_Art" Member="Arts" ThisKey="PhotoId" OtherKey="PhotoId" Type="Art" />
+      <Association Name="Photo_Poster" Member="Posters" ThisKey="PhotoId" OtherKey="PhotoId" Type="Poster" />
       <Association Name="Show_Photo" Member="Show" ThisKey="ShowId" OtherKey="ShowId" Type="Show" IsForeignKey="true" />
     </Type>
   </Table>
@@ -282,7 +283,7 @@
       <Column Name="PosterId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Creator" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="PhotoId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PhotoId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="false" />
       <Column Name="Total" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Number" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Width" Type="System.Double" DbType="Float" CanBeNull="true" />
@@ -299,6 +300,7 @@
       <Column Name="ShowId" Type="System.Guid" CanBeNull="true" />
       <Association Name="Poster_MyShowPoster" Member="MyShowPosters" ThisKey="PosterId" OtherKey="PosterId" Type="MyShowPoster" />
       <Association Name="Show_Poster" Member="Show" ThisKey="PhotoId" OtherKey="ShowId" Type="Show" IsForeignKey="true" />
+      <Association Name="Photo_Poster" Member="Photo" ThisKey="PhotoId" OtherKey="PhotoId" Type="Photo" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TicketStub" Member="TicketStubs">

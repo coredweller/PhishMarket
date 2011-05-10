@@ -184,6 +184,9 @@
     <Compile Include="Handlers\MyPicturesHandler.ashx.cs">
       <DependentUpon>MyPicturesHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\MyPostersHandler.ashx.cs">
+      <DependentUpon>MyPostersHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\ShowHandler.ashx.cs">
       <DependentUpon>ShowHandler.ashx</DependentUpon>
     </Compile>
@@ -676,6 +679,7 @@
     <Content Include="Handlers\ShowHandler.ashx" />
     <Content Include="Handlers\MyPicturesHandler.ashx" />
     <Content Include="Handlers\ShowReviewsHandler.ashx" />
+    <Content Include="Handlers\MyPostersHandler.ashx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

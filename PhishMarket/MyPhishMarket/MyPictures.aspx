@@ -109,49 +109,9 @@
         NOTE: If using IE you may need to clear the cache if you add or delete a picture
         to see the most accurate set of pictures. Or you could use Firefox ;)
     </p>
-    <%--</div>--%>
-    <%--<asp:PlaceHolder ID="phMain" runat="server" Visible="true">
-        <div>
-            <asp:Repeater ID="rptArt" runat="server">
-                <HeaderTemplate>
-                    <table>
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <tr>
-                        <td>
-                            <asp:Image ID="imgArt" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink((((PhishPond.Concrete.Art)Container.DataItem).PhotoId)) %>' />
-                        </td>
-                        <td>
-                            <asp:LinkButton ID="lnkRemove" CommandArgument='<%# (((PhishPond.Concrete.Art)Container.DataItem).ArtId) %>'
-                                CommandName="REMOVE" runat="server" Text="Remove"></asp:LinkButton>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <%# (((PhishPond.Concrete.Art)Container.DataItem).Notes) %>
-                        </td>
-                    </tr>
-                </ItemTemplate>
-                <FooterTemplate>
-                    </table></FooterTemplate>
-            </asp:Repeater>
-            <br />
-            <asp:PlaceHolder ID="phNoImages" runat="server" Visible="false">
-                <h3>
-                    You have no images for this show!
-                </h3>
-                <br />
-                <h4>
-                    Add a new picture of your own or pick one someone else has added.
-                    <br />
-                    Use the buttons above!</h4>
-            </asp:PlaceHolder>
-        </div>
-    </asp:PlaceHolder>--%>
+    
     <div id="hdnDiv">
         <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
     </div>
-    
-    
     
 </asp:Content>
