@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Step3.aspx.cs" Inherits="PhishMarket.MyPhishMarket.ProfilePages.Step3"
-    MasterPageFile="~/Master/Shadowed.Master" %>
+    MasterPageFile="~/Master/Shadowed.Master" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <br />
