@@ -39,13 +39,14 @@ namespace PhishMarket.MyPhishMarket
             var userService = new PhishMarketUserService(Ioc.GetInstance<IPhishMarketUserRepository>());
 
             var user = userService.GetUserById(userId);
+            var userName = user.UserName;
 
             if (user != null)
             {
                 SetPageTitle(user.UserName + "'s Profile");
             }
 
-            BindProfile(userId);
+            BindProfile(userId, userName);
             BindPosters(userId);
             BindTicketStubs(userId);
             BindArt(userId);
@@ -107,7 +108,7 @@ namespace PhishMarket.MyPhishMarket
             rptPoster.DataBind();
         }
 
-        private Guid? BindProfile(Guid userId)
+        private Guid? BindProfile(Guid userId, string userName)
         {
             TourService service = new TourService(Ioc.GetInstance<ITourRepository>());
             ProfileService profileService = new ProfileService(Ioc.GetInstance<IProfileRepository>());
@@ -146,6 +147,7 @@ namespace PhishMarket.MyPhishMarket
             lblName.Text = profile.Name;
             lblEmail.Text = profile.Email;
             lblFavoriteAlbum.Text = profile.FavoriteAlbum;
+            lblUserName.Text = userName;
 
             return userId;
         }
