@@ -116,7 +116,7 @@
                                         <tr>
                                             <td>
                                             
-                                                <asp:Image ID="imgArt1" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink( (((PhishPond.Concrete.Poster)Container.DataItem).PhotoId.Value) ) %>' />
+                                                <asp:Image ID="imgArt1" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink( (((PhishPond.Concrete.Poster)Container.DataItem).PhotoId) ) %>' />
                                             </td>
                                         </tr>
                                         <tr>
@@ -188,7 +188,7 @@
                                         <tr>
                                             <td>
                                             
-                                                <asp:Image ID="imgArt3" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink( (((PhishPond.Concrete.Art)Container.DataItem).PhotoId.Value) ) %>' />
+                                                <asp:Image ID="imgArt3" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink( (((PhishPond.Concrete.Art)Container.DataItem).PhotoId) ) %>' />
                                             </td>
                                         </tr>
                              

@@ -3,7 +3,7 @@
 <asp:Repeater ID="rptRecentShowReviews" runat="server">
     <HeaderTemplate>
         <ul>
-            <li>
+            <li title="The most recently reviewed shows below.  Click to see the reviews!" class="tTip" id="cloud3">
                 <h2>
                     Recent Show Reviews</h2>
                 <ul>

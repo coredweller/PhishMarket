@@ -4,7 +4,7 @@
     <asp:Repeater ID="rptRecentTopics" runat="server">
         <HeaderTemplate>
             <ul>
-                <li>
+                <li title="The most recently posted topics below.  Click to post your own reply!" class="tTip" id="cloud3">
                     <h2>
                         Recent Topics</h2>
                     <ul>

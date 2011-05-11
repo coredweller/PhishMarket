@@ -81,6 +81,7 @@ Released   : 20100613
                             &nbsp;</div>
                     </div>
                     <!-- end #content -->
+                    <br />
                     <div id="sidebar">
                         <%--<ul>
                             <li>
@@ -95,6 +96,7 @@ Released   : 20100613
                                 <div style="clear: both;">
                                     &nbsp;</div>
                             </li>--%>
+                            
                             <asp:ContentPlaceHolder ID="LeftSideBar" runat="server">
                                 <uc:RecentTopicsControl ID="RecentTopicsControl1" runat="server" />
                                 <uc:RecentShowReviewsControl ID="RecentShowReviewsControl1" runat="server" />
