@@ -107,8 +107,9 @@
       <Column Name="ContentLength" Type="System.Int32" CanBeNull="false" />
       <Column Name="UserId" Type="System.Guid" CanBeNull="false" />
       <Column Name="Thumbnail" Type="System.Boolean" CanBeNull="false" />
-      <Association Name="Photo_Art" Member="Arts" ThisKey="PhotoId" OtherKey="PhotoId" Type="Art" />
       <Association Name="Photo_Poster" Member="Posters" ThisKey="PhotoId" OtherKey="PhotoId" Type="Poster" />
+      <Association Name="Photo_Art" Member="Arts" ThisKey="PhotoId" OtherKey="PhotoId" Type="Art" />
+      <Association Name="Photo_TicketStub" Member="TicketStubs" ThisKey="PhotoId" OtherKey="PhotoId" Type="TicketStub" />
       <Association Name="Show_Photo" Member="Show" ThisKey="ShowId" OtherKey="ShowId" Type="Show" IsForeignKey="true" />
     </Type>
   </Table>
@@ -317,6 +318,7 @@
       <Column Name="UserId" Type="System.Guid" CanBeNull="true" />
       <Association Name="TicketStub_MyShowTicketStub" Member="MyShowTicketStubs" ThisKey="TicketStubId" OtherKey="TicketStubId" Type="MyShowTicketStub" />
       <Association Name="Show_TicketStub" Member="Show" ThisKey="PhotoId" OtherKey="ShowId" Type="Show" IsForeignKey="true" />
+      <Association Name="Photo_TicketStub" Member="Photo" ThisKey="PhotoId" OtherKey="PhotoId" Type="Photo" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Art" Member="Arts">

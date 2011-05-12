@@ -17,6 +17,7 @@ namespace PhishMarket
         protected readonly string PhishMarketRoleType = "Registered";
         protected readonly string YAFDefaultPassword = "coredweller";
         protected readonly string DefaultShowImageLocation = "~/images/Shows/";
+        protected readonly string DefaultTicketStubImageLocation = "~/images/TicketStubs/";
         protected readonly string DefaultTitle = "The Phish Market";
 
         protected readonly Guid EmptyGuid = new Guid("00000000-0000-0000-0000-000000000000");
@@ -131,6 +132,14 @@ namespace PhishMarket
         protected virtual void SetPageTitle(string title)
         {
             Page.Title = title;
+        }
+
+        protected bool EmptyNullUndefined(string brih)
+        {
+            if (string.IsNullOrEmpty(brih) || brih == "undefined")
+                return true;
+
+            return false;
         }
 
         /// <summary>

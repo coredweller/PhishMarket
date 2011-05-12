@@ -124,6 +124,13 @@
     <Compile Include="Admin\CreateGuessWholeShow.aspx.designer.cs">
       <DependentUpon>CreateGuessWholeShow.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\CreateTicketStub.aspx.cs">
+      <DependentUpon>CreateTicketStub.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CreateTicketStub.aspx.designer.cs">
+      <DependentUpon>CreateTicketStub.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\EditSongNames.aspx.cs">
       <DependentUpon>EditSongNames.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -603,6 +610,7 @@
     <Content Include="AddSetsSpecial.aspx" />
     <Content Include="Admin\AddSetsToShow.aspx" />
     <Content Include="Admin\CreateGuessWholeShow.aspx" />
+    <Content Include="Admin\CreateTicketStub.aspx" />
     <Content Include="Admin\EditSongNames.aspx" />
     <Content Include="Admin\Shows.aspx" />
     <Content Include="AboutUs.aspx" />

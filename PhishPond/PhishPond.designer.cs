@@ -2299,9 +2299,11 @@ namespace PhishPond.Concrete
 		
 		private bool _Thumbnail;
 		
+		private EntitySet<Poster> _Posters;
+		
 		private EntitySet<Art> _Arts;
 		
-		private EntitySet<Poster> _Posters;
+		private EntitySet<TicketStub> _TicketStubs;
 		
 		private EntityRef<Show> _Show;
 		
@@ -2351,8 +2353,9 @@ namespace PhishPond.Concrete
 		
 		public Photo()
 		{
-			this._Arts = new EntitySet<Art>(new Action<Art>(this.attach_Arts), new Action<Art>(this.detach_Arts));
 			this._Posters = new EntitySet<Poster>(new Action<Poster>(this.attach_Posters), new Action<Poster>(this.detach_Posters));
+			this._Arts = new EntitySet<Art>(new Action<Art>(this.attach_Arts), new Action<Art>(this.detach_Arts));
+			this._TicketStubs = new EntitySet<TicketStub>(new Action<TicketStub>(this.attach_TicketStubs), new Action<TicketStub>(this.detach_TicketStubs));
 			this._Show = default(EntityRef<Show>);
 			OnCreated();
 		}
@@ -2741,6 +2744,19 @@ namespace PhishPond.Concrete
 			}
 		}
 		
+		[Association(Name="Photo_Poster", Storage="_Posters", ThisKey="PhotoId", OtherKey="PhotoId")]
+		public EntitySet<Poster> Posters
+		{
+			get
+			{
+				return this._Posters;
+			}
+			set
+			{
+				this._Posters.Assign(value);
+			}
+		}
+		
 		[Association(Name="Photo_Art", Storage="_Arts", ThisKey="PhotoId", OtherKey="PhotoId")]
 		public EntitySet<Art> Arts
 		{
@@ -2754,16 +2770,16 @@ namespace PhishPond.Concrete
 			}
 		}
 		
-		[Association(Name="Photo_Poster", Storage="_Posters", ThisKey="PhotoId", OtherKey="PhotoId")]
-		public EntitySet<Poster> Posters
+		[Association(Name="Photo_TicketStub", Storage="_TicketStubs", ThisKey="PhotoId", OtherKey="PhotoId")]
+		public EntitySet<TicketStub> TicketStubs
 		{
 			get
 			{
-				return this._Posters;
+				return this._TicketStubs;
 			}
 			set
 			{
-				this._Posters.Assign(value);
+				this._TicketStubs.Assign(value);
 			}
 		}
 		
@@ -2821,6 +2837,18 @@ namespace PhishPond.Concrete
 			}
 		}
 		
+		private void attach_Posters(Poster entity)
+		{
+			this.SendPropertyChanging();
+			entity.Photo = this;
+		}
+		
+		private void detach_Posters(Poster entity)
+		{
+			this.SendPropertyChanging();
+			entity.Photo = null;
+		}
+		
 		private void attach_Arts(Art entity)
 		{
 			this.SendPropertyChanging();
@@ -2833,13 +2861,13 @@ namespace PhishPond.Concrete
 			entity.Photo = null;
 		}
 		
-		private void attach_Posters(Poster entity)
+		private void attach_TicketStubs(TicketStub entity)
 		{
 			this.SendPropertyChanging();
 			entity.Photo = this;
 		}
 		
-		private void detach_Posters(Poster entity)
+		private void detach_TicketStubs(TicketStub entity)
 		{
 			this.SendPropertyChanging();
 			entity.Photo = null;
@@ -7104,6 +7132,8 @@ namespace PhishPond.Concrete
 		
 		private EntityRef<Show> _Show;
 		
+		private EntityRef<Photo> _Photo;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -7134,6 +7164,7 @@ namespace PhishPond.Concrete
 		{
 			this._MyShowTicketStubs = new EntitySet<MyShowTicketStub>(new Action<MyShowTicketStub>(this.attach_MyShowTicketStubs), new Action<MyShowTicketStub>(this.detach_MyShowTicketStubs));
 			this._Show = default(EntityRef<Show>);
+			this._Photo = default(EntityRef<Photo>);
 			OnCreated();
 		}
 		
@@ -7384,6 +7415,40 @@ namespace PhishPond.Concrete
 						this._PhotoId = default(Nullable<System.Guid>);
 					}
 					this.SendPropertyChanged("Show");
+				}
+			}
+		}
+		
+		[Association(Name="Photo_TicketStub", Storage="_Photo", ThisKey="PhotoId", OtherKey="PhotoId", IsForeignKey=true)]
+		public Photo Photo
+		{
+			get
+			{
+				return this._Photo.Entity;
+			}
+			set
+			{
+				Photo previousValue = this._Photo.Entity;
+				if (((previousValue != value) 
+							|| (this._Photo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Photo.Entity = null;
+						previousValue.TicketStubs.Remove(this);
+					}
+					this._Photo.Entity = value;
+					if ((value != null))
+					{
+						value.TicketStubs.Add(this);
+						this._PhotoId = value.PhotoId;
+					}
+					else
+					{
+						this._PhotoId = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("Photo");
 				}
 			}
 		}
