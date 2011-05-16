@@ -75,7 +75,7 @@ namespace TheCore.Services
             foreach (var myShowTicketStub in myShowTicketStubs)
             {
                 var ticketStub = ticketStubService.GetTicketStub(myShowTicketStub.TicketStubId);
-                var photo = photoService.GetPhotoThumbnail(ticketStub.PhotoId.Value);
+                var photo = photoService.GetPhotoThumbnail(ticketStub.PhotoId);
                 if (photo.Thumbnail)
                     return new MyShowThumbnail<IMyShowTicketStub>(myShowTicketStub, photo);
             }

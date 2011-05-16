@@ -33,6 +33,11 @@ namespace TheCore.Services
             return _repo.FindByUserId(userId);
         }
 
+        public IQueryable<ITicketStub> GetByShow(Guid showId)
+        {
+            return _repo.FindAll().Where(x => x.ShowId == showId).OrderBy(y => y.Original == true);
+        }
+
         public IQueryable<ITicketStub> GetByUserAndTour(Guid userId, Guid tourId)
         {
             return _repo.FindByUserIdAndTourId(userId, tourId);

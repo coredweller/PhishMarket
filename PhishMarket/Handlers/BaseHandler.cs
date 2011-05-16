@@ -13,6 +13,9 @@ namespace PhishMarket.Handlers
     {
         public virtual bool IsReusable { get { return false; } }
 
+        protected const string ShowImagesFolder = "/images/Shows/";
+        protected const string TicketStubImagesFolder = "/images/TicketStubs/";
+
         public void ProcessRequest(HttpContext context)
         {
             ProcessRequest(new HttpContextWrapper(context));

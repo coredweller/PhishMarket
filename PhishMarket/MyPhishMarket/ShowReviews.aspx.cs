@@ -41,6 +41,10 @@ namespace PhishMarket.MyPhishMarket
             var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
             var setSongService = new SetSongService(Ioc.GetInstance<ISetSongRepository>());
             var analysisService = new AnalysisService(Ioc.GetInstance<IAnalysisRepository>());
+            var ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
+
+            var ticketStub = (TicketStub)ticketStubService.GetByShow(showId).FirstOrDefault();
+            imgTicketStub.ImageUrl = LinkBuilder.GetTicketStubLink(ticketStub.Photo.FileName);
 
             BindReviews(showId, ref myShowService);
 

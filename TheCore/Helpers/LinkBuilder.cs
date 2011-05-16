@@ -5,6 +5,8 @@ namespace TheCore.Helpers
 {
     public class LinkBuilder
     {
+        private string DefaultTicketStubImageLocation = "~/images/TicketStubs/";
+
         public string YafTopicLink(int topicId)
         {
             return string.Format("/Default.aspx?g=posts&t={0}", topicId.ToString());
@@ -28,6 +30,11 @@ namespace TheCore.Helpers
         {
             //return string.Format("~/Handlers/tmpImage.axd?id={0}", id);
             return string.Format("~/Handlers/ImageHandler2.ashx?id={0}", id);
+        }
+
+        public string GetTicketStubLink(string fileName)
+        {
+            return string.Format("{0}{1}", DefaultTicketStubImageLocation, fileName);
         }
 
         public string ContactUsLink()

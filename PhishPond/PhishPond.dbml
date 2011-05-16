@@ -108,8 +108,8 @@
       <Column Name="UserId" Type="System.Guid" CanBeNull="false" />
       <Column Name="Thumbnail" Type="System.Boolean" CanBeNull="false" />
       <Association Name="Photo_Poster" Member="Posters" ThisKey="PhotoId" OtherKey="PhotoId" Type="Poster" />
-      <Association Name="Photo_Art" Member="Arts" ThisKey="PhotoId" OtherKey="PhotoId" Type="Art" />
       <Association Name="Photo_TicketStub" Member="TicketStubs" ThisKey="PhotoId" OtherKey="PhotoId" Type="TicketStub" />
+      <Association Name="Photo_Art" Member="Arts" ThisKey="PhotoId" OtherKey="PhotoId" Type="Art" />
       <Association Name="Show_Photo" Member="Show" ThisKey="ShowId" OtherKey="ShowId" Type="Show" IsForeignKey="true" />
     </Type>
   </Table>
@@ -308,7 +308,7 @@
     <Type Name="TicketStub">
       <Column Name="TicketStubId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="PhotoId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PhotoId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="false" />
       <Column Name="ShowId" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Original" Type="System.Boolean" DbType="Bit" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />

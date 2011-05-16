@@ -8,6 +8,7 @@ using TheCore.Configuration;
 using TheCore.Services;
 using TheCore.Helpers;
 using System.Text;
+using TheCore.Interfaces;
 
 namespace PhishMarket.Handlers
 {
@@ -15,7 +16,6 @@ namespace PhishMarket.Handlers
     public class ShowReviewsHandler : BaseHandler
     {
         private const string connKey = "PhishPond";
-        private const string showImagesFolder = "/images/Shows/";
 
         public override void ProcessRequest(HttpContextBase context)
         {
@@ -54,11 +54,14 @@ namespace PhishMarket.Handlers
 
                 foreach (var photo in photos)
                 {
+                    var path = (PhotoType)photo.Type != PhotoType.TicketStub ? ShowImagesFolder : TicketStubImagesFolder;
+
                     json.Add(new ImageItem
                     {
-                        Image = "/images/Shows/" + photo.FileName,
+                        Image = path + photo.FileName,
                         Description = photo.Notes,
                         Title = photo.NickName,
+                        //Thumb =  ///LEFT OFF HERE
                     });
                 }
 

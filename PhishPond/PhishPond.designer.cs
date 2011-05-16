@@ -2301,9 +2301,9 @@ namespace PhishPond.Concrete
 		
 		private EntitySet<Poster> _Posters;
 		
-		private EntitySet<Art> _Arts;
-		
 		private EntitySet<TicketStub> _TicketStubs;
+		
+		private EntitySet<Art> _Arts;
 		
 		private EntityRef<Show> _Show;
 		
@@ -2354,8 +2354,8 @@ namespace PhishPond.Concrete
 		public Photo()
 		{
 			this._Posters = new EntitySet<Poster>(new Action<Poster>(this.attach_Posters), new Action<Poster>(this.detach_Posters));
-			this._Arts = new EntitySet<Art>(new Action<Art>(this.attach_Arts), new Action<Art>(this.detach_Arts));
 			this._TicketStubs = new EntitySet<TicketStub>(new Action<TicketStub>(this.attach_TicketStubs), new Action<TicketStub>(this.detach_TicketStubs));
+			this._Arts = new EntitySet<Art>(new Action<Art>(this.attach_Arts), new Action<Art>(this.detach_Arts));
 			this._Show = default(EntityRef<Show>);
 			OnCreated();
 		}
@@ -2757,19 +2757,6 @@ namespace PhishPond.Concrete
 			}
 		}
 		
-		[Association(Name="Photo_Art", Storage="_Arts", ThisKey="PhotoId", OtherKey="PhotoId")]
-		public EntitySet<Art> Arts
-		{
-			get
-			{
-				return this._Arts;
-			}
-			set
-			{
-				this._Arts.Assign(value);
-			}
-		}
-		
 		[Association(Name="Photo_TicketStub", Storage="_TicketStubs", ThisKey="PhotoId", OtherKey="PhotoId")]
 		public EntitySet<TicketStub> TicketStubs
 		{
@@ -2780,6 +2767,19 @@ namespace PhishPond.Concrete
 			set
 			{
 				this._TicketStubs.Assign(value);
+			}
+		}
+		
+		[Association(Name="Photo_Art", Storage="_Arts", ThisKey="PhotoId", OtherKey="PhotoId")]
+		public EntitySet<Art> Arts
+		{
+			get
+			{
+				return this._Arts;
+			}
+			set
+			{
+				this._Arts.Assign(value);
 			}
 		}
 		
@@ -2849,18 +2849,6 @@ namespace PhishPond.Concrete
 			entity.Photo = null;
 		}
 		
-		private void attach_Arts(Art entity)
-		{
-			this.SendPropertyChanging();
-			entity.Photo = this;
-		}
-		
-		private void detach_Arts(Art entity)
-		{
-			this.SendPropertyChanging();
-			entity.Photo = null;
-		}
-		
 		private void attach_TicketStubs(TicketStub entity)
 		{
 			this.SendPropertyChanging();
@@ -2868,6 +2856,18 @@ namespace PhishPond.Concrete
 		}
 		
 		private void detach_TicketStubs(TicketStub entity)
+		{
+			this.SendPropertyChanging();
+			entity.Photo = null;
+		}
+		
+		private void attach_Arts(Art entity)
+		{
+			this.SendPropertyChanging();
+			entity.Photo = this;
+		}
+		
+		private void detach_Arts(Art entity)
 		{
 			this.SendPropertyChanging();
 			entity.Photo = null;
@@ -7112,7 +7112,7 @@ namespace PhishPond.Concrete
 		
 		private string _Notes;
 		
-		private System.Nullable<System.Guid> _PhotoId;
+		private System.Guid _PhotoId;
 		
 		private System.Nullable<System.Guid> _ShowId;
 		
@@ -7142,7 +7142,7 @@ namespace PhishPond.Concrete
     partial void OnTicketStubIdChanged();
     partial void OnNotesChanging(string value);
     partial void OnNotesChanged();
-    partial void OnPhotoIdChanging(System.Nullable<System.Guid> value);
+    partial void OnPhotoIdChanging(System.Guid value);
     partial void OnPhotoIdChanged();
     partial void OnShowIdChanging(System.Nullable<System.Guid> value);
     partial void OnShowIdChanged();
@@ -7209,7 +7209,7 @@ namespace PhishPond.Concrete
 		}
 		
 		[Column(Storage="_PhotoId", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> PhotoId
+		public System.Guid PhotoId
 		{
 			get
 			{
@@ -7412,7 +7412,7 @@ namespace PhishPond.Concrete
 					}
 					else
 					{
-						this._PhotoId = default(Nullable<System.Guid>);
+						this._PhotoId = default(System.Guid);
 					}
 					this.SendPropertyChanged("Show");
 				}
@@ -7446,7 +7446,7 @@ namespace PhishPond.Concrete
 					}
 					else
 					{
-						this._PhotoId = default(Nullable<System.Guid>);
+						this._PhotoId = default(System.Guid);
 					}
 					this.SendPropertyChanged("Photo");
 				}

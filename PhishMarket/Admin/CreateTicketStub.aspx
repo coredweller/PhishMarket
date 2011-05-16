@@ -15,8 +15,9 @@
     <br />
     <br />
     <div>
-        File Name:
-        <asp:TextBox ID="txtFileName" runat="server"></asp:TextBox>
+    File: <asp:FileUpload ID="fuPicture" runat="server" />
+        <%--File Name:
+        <asp:TextBox ID="txtFileName" runat="server"></asp:TextBox>--%>
         <br />
         PTBM:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:CheckBox ID="chkPTBM" runat="server" />

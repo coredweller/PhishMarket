@@ -138,7 +138,7 @@
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <asp:Image ID="imgArt" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink((((PhishPond.Concrete.Poster)Container.DataItem).PhotoId.Value)) %>' />
+                            <asp:Image ID="imgArt" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink((((PhishPond.Concrete.Poster)Container.DataItem).PhotoId)) %>' />
                         </td>
                         <td>
                             <asp:LinkButton ID="lnkRemove" CommandArgument='<%# (((PhishPond.Concrete.Poster)Container.DataItem).PosterId) %>' CommandName="REMOVE" runat="server" Text="Remove"></asp:LinkButton>

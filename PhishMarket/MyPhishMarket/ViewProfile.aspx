@@ -160,7 +160,7 @@
                                         <tr>
                                             <td>
                                             
-                                                <asp:Image ID="imgArt2" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink( (((PhishPond.Concrete.TicketStub)Container.DataItem).PhotoId.Value) ) %>' />
+                                                <asp:Image ID="imgArt2" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink( (((PhishPond.Concrete.TicketStub)Container.DataItem).PhotoId) ) %>' />
                                             </td>
                                         </tr>
                                         <%--<tr>

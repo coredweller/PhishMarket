@@ -315,7 +315,7 @@
         <classShapeMoniker Id="dd036f80-a875-4d17-85b6-683bc6cc4020" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(17.875 : 4.125); (17.875 : 0.53125); (9.625 : 0.53125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(17.875 : 4.125); (17.875 : 0.53125); (9.625 : 0.53125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Photo/Photo_TicketStub" />
       <nodes>
         <classShapeMoniker Id="6715e7d9-b028-4358-867c-b65466fafa81" />

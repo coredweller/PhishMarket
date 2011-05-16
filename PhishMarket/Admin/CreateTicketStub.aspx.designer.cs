@@ -32,13 +32,13 @@ namespace PhishMarket.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlShows;
         
         /// <summary>
-        /// txtFileName control.
+        /// fuPicture control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFileName;
+        protected global::System.Web.UI.WebControls.FileUpload fuPicture;
         
         /// <summary>
         /// chkPTBM control.

@@ -52,6 +52,8 @@
             <asp:Button ID="btnNext" Text="Next" runat="server" />
         </center>
     </div>--%>
+    <br /><br />
+    <asp:Image ID="imgTicketStub" runat="server" />
     <br />
     <br />
     <asp:Repeater ID="rptSongs" runat="server" OnItemCommand="rptSongs_ItemCommand">
