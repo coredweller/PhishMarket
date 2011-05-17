@@ -31,20 +31,37 @@ namespace PhishMarket.MyPhishMarket
 
         private void Bind()
         {
-            if (string.IsNullOrEmpty(Request.QueryString["showId"]))
+            if (string.IsNullOrEmpty(Request.QueryString["showId"]) && string.IsNullOrEmpty(Request.QueryString["showDate"]))  ///LEFT OFF HERE TAKING SHOWDATE IN
                 Response.Redirect(LinkBuilder.DashboardLink());
 
             var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
-            var showId = new Guid(Request.QueryString["showId"]);
+
+            var showIdStr = Request.QueryString["showId"];
+
+            var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+            if (string.IsNullOrEmpty(showIdStr))
+            {
+                DateTime date;
+                var success = DateTime.TryParse(Request.QueryString["showDate"], out date);
+
+                if (!success)
+                    return;
+
+                var s = showService.GetShow(date);
+
+                if (s == null)
+                    return;
+
+                showIdStr = s.ShowId.ToString();
+            }
+
+            var showId = new Guid(showIdStr);
 
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-            var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+            
             var setSongService = new SetSongService(Ioc.GetInstance<ISetSongRepository>());
             var analysisService = new AnalysisService(Ioc.GetInstance<IAnalysisRepository>());
             var ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
-
-            var ticketStub = (TicketStub)ticketStubService.GetByShow(showId).FirstOrDefault();
-            imgTicketStub.ImageUrl = LinkBuilder.GetTicketStubLink(ticketStub.Photo.FileName);
 
             BindReviews(showId, ref myShowService);
 
@@ -63,6 +80,14 @@ namespace PhishMarket.MyPhishMarket
 
             rptSongs.DataSource = ss;
             rptSongs.DataBind();
+
+            var ticketStub = (TicketStub)ticketStubService.GetByShow(showId).FirstOrDefault();
+
+            if (ticketStub == null)
+                return;
+
+            phTicketStub.Visible = true;
+            imgTicketStub.ImageUrl = LinkBuilder.GetTicketStubLink(ticketStub.Photo.FileName);
         }
 
         private void BindReviews(Guid showId, ref MyShowService myShowService)

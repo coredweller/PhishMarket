@@ -39,10 +39,10 @@ function callMyPictureHandler(showId, userId) {
 		
 		//ShowReviewws.aspx
 //Calls a handler to get images back for galleria
-function callShowReviewsHandler(showId) {
+function callShowReviewsHandler(showId, showDate) {
 
             $.getJSON("/Handlers/ShowReviewsHandler.ashx",
-                { s: showId },
+                { s: showId, d: showDate },
 
                 function(data) {
                     $('#gallery').galleria({

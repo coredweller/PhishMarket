@@ -10,13 +10,14 @@
         //Absolutely needed for Galleria to work on this page
         Galleria.loadTheme('/javascript/galleria/classic/galleria.classic.min.js');
 
-        //When the page loads, if there is a showId in the URL
-        //  this function will load the pictures for this user if available
+        //When the page loads, if there is a showId or showDate in the URL
+        //  this function will load the photos for this show if available
         $(function() {
 
             var showId = $.getUrlVar('showId');
+            var showDate = $.getUrlVar('showDate');
 
-            callShowReviewsHandler(showId);
+            callShowReviewsHandler(showId, showDate);
 
             return false;
         });
@@ -24,10 +25,9 @@
     </script>
 
 </asp:Content>
-
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        <%= ShowName %></h2>    
+        <%= ShowName %></h2>
     <%--<div>
         <ajaxToolkit:SlideShowExtender ID="SlideShowExtender1" runat="server" TargetControlID="imgPhotos"
             SlideShowServiceMethod="GetShowPictures" SlideShowServicePath="/SlideService.asmx"
@@ -40,7 +40,6 @@
         <br />
         <br />
     </div>--%>
-    
     <%--<div>
         <center>
             <asp:Label ID="lblTitle" runat="server"></asp:Label><br />
@@ -52,8 +51,11 @@
             <asp:Button ID="btnNext" Text="Next" runat="server" />
         </center>
     </div>--%>
-    <br /><br />
-    <asp:Image ID="imgTicketStub" runat="server" />
+    <asp:PlaceHolder ID="phTicketStub" runat="server" Visible="false">
+        <br />
+        <br />
+        <asp:Image ID="imgTicketStub" runat="server" />
+    </asp:PlaceHolder>
     <br />
     <br />
     <asp:Repeater ID="rptSongs" runat="server" OnItemCommand="rptSongs_ItemCommand">
@@ -92,8 +94,6 @@
     </asp:Repeater>
     <br />
     <br />
-    
-    
     <div id="gallery">
     </div>
     <hr />

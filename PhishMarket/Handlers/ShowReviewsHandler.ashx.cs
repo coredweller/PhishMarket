@@ -9,6 +9,7 @@ using TheCore.Services;
 using TheCore.Helpers;
 using System.Text;
 using TheCore.Interfaces;
+using TheCore.Infrastructure;
 
 namespace PhishMarket.Handlers
 {
@@ -21,11 +22,12 @@ namespace PhishMarket.Handlers
         {
             HttpRequestBase request = context.Request;
             var showIdStr = request.QueryString["s"];
+            var showDateStr = request.QueryString["d"];
             HttpResponseBase response = context.Response;
 
             var final = string.Empty;
 
-            if (EmptyNullUndefined(showIdStr))
+            if (EmptyNullUndefined(showIdStr) && EmptyNullUndefined(showDateStr))
             {
                 final = GetNoImagesFound();
 
@@ -33,6 +35,23 @@ namespace PhishMarket.Handlers
                 response.ContentEncoding = Encoding.UTF8;
                 response.Write(final);
                 response.End();
+            }
+
+            var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+            if (string.IsNullOrEmpty(showIdStr))
+            {
+                DateTime date;
+                var success = DateTime.TryParse(showDateStr, out date);
+
+                if (!success)
+                    return;
+
+                var s = showService.GetShow(date);
+
+                if (s == null)
+                    return;
+
+                showIdStr = s.ShowId.ToString();
             }
 
             var showId = new Guid(showIdStr);
