@@ -70,6 +70,13 @@
     </div>
     <br />
     <br />
+    <asp:PlaceHolder ID="phAddShow" runat="server" Visible="false">
+        <div>
+            <h4>
+                <a href='<%= LinkBuilder.AddMyShowLink(ShowId) %>'>Click Here to add this show to My
+                    Shows so you can add posters here.</a></h4>
+        </div>
+    </asp:PlaceHolder>
     <div>
         <table>
             <tr>
@@ -99,7 +106,7 @@
         <br />
         Tip 2: Click the large image to go to a page to delete it.</h4>
     <div id="gallery">
-    <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
+        <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
         <%--<img src="/images/Shows/coretest2-634195715440294949.jpg" alt="blah" />--%>
     </div>
     <br />
@@ -109,9 +116,7 @@
         NOTE: If using IE you may need to clear the cache if you add or delete a picture
         to see the most accurate set of pictures. Or you could use Firefox ;)
     </p>
-    
     <div id="hdnDiv">
         <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
     </div>
-    
 </asp:Content>

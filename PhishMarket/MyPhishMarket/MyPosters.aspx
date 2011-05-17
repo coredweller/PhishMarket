@@ -40,7 +40,6 @@
     </script>
 
 </asp:Content>
-
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <h2>
@@ -56,23 +55,26 @@
         <asp:PlaceHolder ID="phNoTicketStubsError" runat="server" Visible="false">You have no
             posters. Please go to <a href='<%= LinkBuilder.AddPhotoLink() %>'></a>to add some.
         </asp:PlaceHolder>
-        <asp:PlaceHolder ID="phRemoveError" runat="server" Visible="false">
-            There was an error removing the poster.
+        <asp:PlaceHolder ID="phRemoveError" runat="server" Visible="false">There was an error
+            removing the poster. </asp:PlaceHolder>
+        <asp:PlaceHolder ID="phRemoveSuccess" runat="server" Visible="false">You have successfully
+            removed the poster from you collecton. </asp:PlaceHolder>
+        <br />
+        <br />
+        <div>
+            <asp:ImageButton ID="btnAddOther" runat="server" ImageUrl="/images/buttons/AddPicturesFromOthers.gif"
+                OnClick="btnAddOther_Click" />
+            <asp:ImageButton ID="btnAddPicture" runat="server" ImageUrl="/images/buttons/AddNewPicture.gif"
+                OnClick="btnAddPicture_Click" />
+        </div>
+        <br />
+        <br />
+        <asp:PlaceHolder ID="phAddShow" runat="server" Visible="false">
+            <div>
+            <h4>
+                <a href='<%= LinkBuilder.AddMyShowLink(ShowId) %>' >Click Here to add this show to My Shows so you can add posters here.</a></h4>
+            </div>
         </asp:PlaceHolder>
-        <asp:PlaceHolder ID="phRemoveSuccess" runat="server" Visible="false">
-            You have successfully removed the poster from you collecton.
-        </asp:PlaceHolder>
-        
-    <br />
-    <br />
-    <div>
-        <asp:ImageButton ID="btnAddOther" runat="server" ImageUrl="/images/buttons/AddPicturesFromOthers.gif"
-            OnClick="btnAddOther_Click" />
-        <asp:ImageButton ID="btnAddPicture" runat="server" ImageUrl="/images/buttons/AddNewPicture.gif"
-            OnClick="btnAddPicture_Click" />
-    </div>
-    <br />
-    <br />
         <table>
             <%--<tr>
                 <td>
@@ -113,12 +115,12 @@
             </tr>
         </table>
     </div>
-     <h4>
+    <h4>
         Tip 1: Click the thumbnails or arrows to change pictures.
         <br />
         Tip 2: Click the large image to go to a page to delete it.</h4>
     <div id="gallery">
-    <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
+        <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
         <%--<img src="/images/Shows/coretest2-634195715440294949.jpg" alt="blah" />--%>
     </div>
     <br />
@@ -128,7 +130,6 @@
         NOTE: If using IE you may need to clear the cache if you add or delete a picture
         to see the most accurate set of pictures. Or you could use Firefox ;)
     </p>
-    
     <%--<asp:PlaceHolder ID="phMain" runat="server" Visible="true">
         <div>
             <asp:Repeater ID="rptPoster" runat="server" OnItemCommand="rptPoster_ItemCommand">

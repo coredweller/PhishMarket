@@ -172,6 +172,11 @@ namespace TheCore.Helpers
             return "/MyPhishMarket/AddMyShow.aspx";
         }
 
+        public string AddMyShowLink(Guid showId)
+        {
+            return string.Format("/MyPhishMarket/AddMyShow.aspx?showId={0}", showId);
+        }
+
         public string AnalysisLink(Guid showId)
         {
             return string.Format("/MyPhishMarket/ShowAnalysis.aspx?showId={0}", showId);

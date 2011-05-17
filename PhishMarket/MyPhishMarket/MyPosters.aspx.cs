@@ -6,13 +6,14 @@ using TheCore.Infrastructure;
 using TheCore.Repository;
 using System.Web.Security;
 using TheCore.Interfaces;
-using System.Collections.Generic;
 
 namespace PhishMarket.MyPhishMarket
 {
     public partial class MyPosters : PhishMarketBasePage
     {
         Guid userId;
+
+        public Guid ShowId { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -48,6 +49,8 @@ namespace PhishMarket.MyPhishMarket
             {
                 var showId = new Guid(Request.QueryString["showId"]);
 
+                ShowId = showId;
+
                 var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
 
                 var show = showService.GetShow(showId);
@@ -56,6 +59,12 @@ namespace PhishMarket.MyPhishMarket
                 {
                     ddlTours.SelectedValue = show.TourId.ToString();
                     SetShows(show.TourId.Value);
+
+                    if (!ddlShows.Items.Contains(new ListItem(show.GetShowName(), show.ShowId.ToString())))
+                    {
+                        phAddShow.Visible = true;
+                    }
+
                     ddlShows.SelectedValue = show.ShowId.ToString();
                 }
             }

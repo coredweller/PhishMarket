@@ -38,6 +38,21 @@ namespace PhishMarket.MyPhishMarket
             var tours = tourService.GetAllToursDescending();
 
             ddlTours.Items.AddRange((from tour in tours select new ListItem(tour.TourName, tour.TourId.ToString())).ToArray());
+
+            if (EmptyNullUndefined(Request.QueryString["showId"]))
+                return;
+
+            //If a showId is sent then bind the tour and show
+            var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+
+            var show = showService.GetShow(new Guid(Request.QueryString["showId"]));
+
+            if (show == null)
+                return;
+
+            ddlTours.SelectedValue = show.TourId.ToString();
+
+            BindFromTour();
         }
 
         public void btnGetShows_Click(object sender, EventArgs e)

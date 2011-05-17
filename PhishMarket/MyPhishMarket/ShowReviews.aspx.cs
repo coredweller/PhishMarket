@@ -15,6 +15,7 @@ namespace PhishMarket.MyPhishMarket
     public partial class ShowReviews : PhishMarketBasePage
     {
         public string ShowName { get; set; }
+        public Guid ShowId { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -56,6 +57,7 @@ namespace PhishMarket.MyPhishMarket
             }
 
             var showId = new Guid(showIdStr);
+            ShowId = showId;
 
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
             

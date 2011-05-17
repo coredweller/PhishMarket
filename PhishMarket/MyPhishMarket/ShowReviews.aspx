@@ -58,6 +58,8 @@
     </asp:PlaceHolder>
     <br />
     <br />
+    <div title="Click a song name to write a review about it." class="tTip" id="cloud1">
+    <h3>Setlist</h3></div>
     <asp:Repeater ID="rptSongs" runat="server" OnItemCommand="rptSongs_ItemCommand">
         <HeaderTemplate>
             <table>
@@ -94,6 +96,9 @@
     </asp:Repeater>
     <br />
     <br />
+    <%--<asp:HyperLink ID="lnkAddPictures" runat="server" Text="Add Pictures to this show here!"></asp:HyperLink>--%>
+    
+    Add your own <a href='<%= LinkBuilder.MyPicturesLink(ShowId) %>'>Pictures</a> or <a href='<%= LinkBuilder.MyPostersLink(ShowId) %>'>Posters</a> to this show!
     <div id="gallery">
     </div>
     <hr />
