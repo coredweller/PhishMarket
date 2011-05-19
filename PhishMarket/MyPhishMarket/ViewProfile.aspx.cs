@@ -48,7 +48,7 @@ namespace PhishMarket.MyPhishMarket
 
             BindProfile(userId, userName);
             BindPosters(userId);
-            BindTicketStubs(userId);
+            //BindTicketStubs(userId);
             BindArt(userId);
             BindMyShows(userId);
             BindShowsReviewed(userId);
@@ -88,15 +88,15 @@ namespace PhishMarket.MyPhishMarket
             rptArt.DataBind();
         }
 
-        private void BindTicketStubs(Guid userId)
-        {
-            TicketStubService ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
+        //private void BindTicketStubs(Guid userId)
+        //{
+        //    TicketStubService ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
 
-            var ticketStubs = ticketStubService.GetTicketStubsByUserId(userId).ToList();
+        //    var ticketStubs = ticketStubService.GetTicketStubsByUserId(userId).ToList();
 
-            rptTicketStubs.DataSource = ticketStubs;
-            rptTicketStubs.DataBind();
-        }
+        //    rptTicketStubs.DataSource = ticketStubs;
+        //    rptTicketStubs.DataBind();
+        //}
 
         private void BindPosters(Guid userId)
         {

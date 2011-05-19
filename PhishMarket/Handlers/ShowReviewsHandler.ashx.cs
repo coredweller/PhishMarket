@@ -80,7 +80,7 @@ namespace PhishMarket.Handlers
                         Image = path + photo.FileName,
                         Description = photo.Notes,
                         Title = photo.NickName,
-                        //Thumb =  ///LEFT OFF HERE
+                        //Thumb =  //This is a consideration.  If we want to go through the trouble of using the thumb or not
                     });
                 }
 

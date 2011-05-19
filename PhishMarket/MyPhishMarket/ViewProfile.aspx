@@ -146,7 +146,7 @@
                         </asp:PlaceHolder>
                     </Content>
                 </ajaxToolkit:AccordionPane>
-                <ajaxToolkit:AccordionPane ID="AccordionPane2" runat="server">
+               <%-- <ajaxToolkit:AccordionPane ID="AccordionPane2" runat="server">
                     <Header>
                         <h2>TICKET STUBS</h2></Header>
                     <Content>
@@ -163,12 +163,6 @@
                                                 <asp:Image ID="imgArt2" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink( (((PhishPond.Concrete.TicketStub)Container.DataItem).PhotoId) ) %>' />
                                             </td>
                                         </tr>
-                                        <%--<tr>
-                        <td>
-                            by
-                            <%# (((PhishPond.Concrete.TicketStub)Container.DataItem).Creator) %>&nbsp;&nbsp;<%# (((PhishPond.Concrete.TicketStub)Container.DataItem).Number) %>\<%# (((PhishPond.Concrete.TicketStub)Container.DataItem).Total) %>&nbsp;&nbsp;<%# (((PhishPond.Concrete.TicketStub)Container.DataItem).Length) %>&nbsp;x&nbsp;<%# (((PhishPond.Concrete.TicketStub)Container.DataItem).Width) %>
-                        </td>
-                    </tr>--%>
                                         <tr>
                                             <td>
                                                 <%# (((PhishPond.Concrete.TicketStub)Container.DataItem).Notes)%>
@@ -181,7 +175,7 @@
                             </div>
                         </asp:PlaceHolder>
                     </Content>
-                </ajaxToolkit:AccordionPane>
+                </ajaxToolkit:AccordionPane>--%>
                 <ajaxToolkit:AccordionPane ID="AccordionPane3" runat="server">
                     <Header>
                         <h2>PICTURES</h2></Header>

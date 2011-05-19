@@ -7,7 +7,6 @@ using System.Web.Security;
 using PhishPond.Concrete;
 using TheCore.Interfaces;
 using System.Collections.Generic;
-using System.Text;
 using PhishPond.Repository.LinqToSql;
 
 namespace PhishMarket.MyPhishMarket
@@ -62,11 +61,11 @@ namespace PhishMarket.MyPhishMarket
         private void BindMyShowItems()
         {
             var myShowPosterService = new MyShowPosterService(Ioc.GetInstance<IMyShowPosterRepository>());
-            var myShowTicketStubService = new MyShowTicketStubService(Ioc.GetInstance<IMyShowTicketStubRepository>());
+            //var myShowTicketStubService = new MyShowTicketStubService(Ioc.GetInstance<IMyShowTicketStubRepository>());
             var myShowArtService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
 
             var myShowPosterThumbnail = myShowPosterService.GetAnyMyShowPosterForUser(userId);
-            var myShowTicketStubThumbnail = myShowTicketStubService.GetAnyMyShowTicketStubForUser(userId);
+            //var myShowTicketStubThumbnail = myShowTicketStubService.GetAnyMyShowTicketStubForUser(userId);
             var myShowArtThumbnail = myShowArtService.GetAnyMyShowArtForUser(userId);
 
             if (myShowPosterThumbnail != null)
@@ -75,11 +74,11 @@ namespace PhishMarket.MyPhishMarket
                 imgPoster.ImageUrl = LinkBuilder.GetImageLink(myShowPosterThumbnail.Thumbnail.PhotoId);
             }
 
-            if (myShowTicketStubThumbnail != null)
-            {
-                phTicketStub.Visible = true;
-                imgTicketStub.ImageUrl = LinkBuilder.GetImageLink(myShowTicketStubThumbnail.Thumbnail.PhotoId);
-            }
+            //if (myShowTicketStubThumbnail != null)
+            //{
+            //    phTicketStub.Visible = true;
+            //    imgTicketStub.ImageUrl = LinkBuilder.GetImageLink(myShowTicketStubThumbnail.Thumbnail.PhotoId);
+            //}
 
             if (myShowArtThumbnail != null)
             {
@@ -198,22 +197,7 @@ namespace PhishMarket.MyPhishMarket
 
         public string GetShowName(string venue, string date)
         {
-            return venue + "-" + date;
-        }
-
-        public string OutputBottomLine(string showName)
-        {
-            var s = new StringBuilder();
-
-            int length = showName.Length < 34 ? 34 : showName.Length;
-
-            for (int i = 0; i < length; i++)
-            {
-                //that is an underscore not a blank space
-                s.Append("_");
-            }
-
-            return s.ToString();
+            return date + "-" + venue;
         }
     }
 }

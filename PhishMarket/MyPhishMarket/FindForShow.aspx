@@ -15,7 +15,7 @@
     </asp:PlaceHolder>
 </div>
     <ajaxToolkit:Accordion ID="ajaxAccordian" runat="server" FadeTransitions="true" TransitionDuration="250"
-        FramesPerSecond="40" RequireOpenedPane="false" SelectedIndex="0" HeaderCssClass="accordionHeader"
+        FramesPerSecond="40" RequireOpenedPane="false" SelectedIndex="0" Width="700" HeaderCssClass="accordionHeader"
         ContentCssClass="accordionContent">
         <Panes>
             <ajaxToolkit:AccordionPane runat="server">
@@ -60,7 +60,7 @@
                     </asp:Repeater>
                 </Content>
             </ajaxToolkit:AccordionPane>
-            <ajaxToolkit:AccordionPane ID="AccordionPane1" runat="server">
+            <%--<ajaxToolkit:AccordionPane ID="AccordionPane1" runat="server">
                 <Header>
                     TICKET STUBS</Header>
                 <Content>
@@ -96,7 +96,7 @@
                             </table></FooterTemplate>
                     </asp:Repeater>
                 </Content>
-            </ajaxToolkit:AccordionPane>
+            </ajaxToolkit:AccordionPane>--%>
             <ajaxToolkit:AccordionPane ID="AccordionPane2" runat="server">
                 <Header>
                     PICTURES</Header>

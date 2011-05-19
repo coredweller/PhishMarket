@@ -219,7 +219,7 @@ namespace PhishMarket.MyPhishMarket
 
             BindPosters(myShows, userId, showId);
 
-            BindTicketStubs(myShows, userId, showId);
+            //BindTicketStubs(myShows, userId, showId);
 
             BindArt(myShows, userId, showId);
         }
@@ -271,52 +271,52 @@ namespace PhishMarket.MyPhishMarket
             rptArt.DataBind();
         }
 
-        private void BindTicketStubs(IQueryable<IMyShow> myShows, Guid userId, Guid showId)
-        {
-            var myShowTicketStubService = new MyShowTicketStubService(Ioc.GetInstance<IMyShowTicketStubRepository>());
-            var ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
+        //private void BindTicketStubs(IQueryable<IMyShow> myShows, Guid userId, Guid showId)
+        //{
+        //    var myShowTicketStubService = new MyShowTicketStubService(Ioc.GetInstance<IMyShowTicketStubRepository>());
+        //    var ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
 
-            var ticketStubs = (from m in myShows
-                               from p in myShowTicketStubService.GetAllMyShowTicketStubs().Where(x => x.MyShowId == m.MyShowId).DefaultIfEmpty()
-                               from ts in ticketStubService.GetAllTicketStubs().Where(z => z.TicketStubId == p.TicketStubId).DefaultIfEmpty()
-                               select new { MyShow = m, MyShowTicketStub = p, TicketStub = ts }).ToList();
+        //    var ticketStubs = (from m in myShows
+        //                       from p in myShowTicketStubService.GetAllMyShowTicketStubs().Where(x => x.MyShowId == m.MyShowId).DefaultIfEmpty()
+        //                       from ts in ticketStubService.GetAllTicketStubs().Where(z => z.TicketStubId == p.TicketStubId).DefaultIfEmpty()
+        //                       select new { MyShow = m, MyShowTicketStub = p, TicketStub = ts }).ToList();
 
-            var fullTickets = ticketStubs.Where(x => x.TicketStub != null).ToList();
+        //    var fullTickets = ticketStubs.Where(x => x.TicketStub != null).ToList();
 
-            IList<Guid> ids = new List<Guid>();
+        //    IList<Guid> ids = new List<Guid>();
 
-            foreach (var p in fullTickets)
-            {
-                var matches = fullTickets.Where(r => r.TicketStub.TicketStubId == p.TicketStub.TicketStubId).ToArray();
+        //    foreach (var p in fullTickets)
+        //    {
+        //        var matches = fullTickets.Where(r => r.TicketStub.TicketStubId == p.TicketStub.TicketStubId).ToArray();
 
-                if (matches.Count() > 1)
-                {
-                    //Start at one because you just want to delete the extras
-                    for (int i = 1; i < matches.Count(); i++)
-                    {
-                        if (!ids.Contains(matches[i].MyShowTicketStub.MyShowTicketStubId))
-                        {
-                            ids.Add(matches[i].MyShowTicketStub.MyShowTicketStubId);
-                        }
-                    }
-                }
-            }
+        //        if (matches.Count() > 1)
+        //        {
+        //            //Start at one because you just want to delete the extras
+        //            for (int i = 1; i < matches.Count(); i++)
+        //            {
+        //                if (!ids.Contains(matches[i].MyShowTicketStub.MyShowTicketStubId))
+        //                {
+        //                    ids.Add(matches[i].MyShowTicketStub.MyShowTicketStubId);
+        //                }
+        //            }
+        //        }
+        //    }
 
-            foreach (var i in ids)
-            {
-                fullTickets = fullTickets.Where(x => x.MyShowTicketStub.MyShowTicketStubId != i).ToList();
-            }
+        //    foreach (var i in ids)
+        //    {
+        //        fullTickets = fullTickets.Where(x => x.MyShowTicketStub.MyShowTicketStubId != i).ToList();
+        //    }
 
-            if (fullTickets == null || fullTickets.Count() <= 0)
-            {
-                phNoTicketStubs.Visible = true;
-                lnkNoTicketStubs.NavigateUrl = LinkBuilder.AddPhotoLink(showId, PhotoType.TicketStub, LinkBuilder.FindForShowLink(showId));
-                return;
-            }
+        //    if (fullTickets == null || fullTickets.Count() <= 0)
+        //    {
+        //        phNoTicketStubs.Visible = true;
+        //        lnkNoTicketStubs.NavigateUrl = LinkBuilder.AddPhotoLink(showId, PhotoType.TicketStub, LinkBuilder.FindForShowLink(showId));
+        //        return;
+        //    }
 
-            rptTicketStubs.DataSource = fullTickets;
-            rptTicketStubs.DataBind();
-        }
+        //    rptTicketStubs.DataSource = fullTickets;
+        //    rptTicketStubs.DataBind();
+        //}
 
         private void BindPosters(IQueryable<IMyShow> myShows, Guid userId, Guid showId)
         {
