@@ -5,6 +5,7 @@ using System.Net.Mail;
 
 namespace PhishMarket
 {
+    [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Assert, Unrestricted = true)]
     public partial class CreateUser : PhishMarketBasePage
     {
         protected void Page_Load(object sender, EventArgs e)
