@@ -20,6 +20,9 @@ namespace PhishMarket
         protected readonly string DefaultTicketStubImageLocation = "~/images/TicketStubs/";
         protected readonly string DefaultTitle = "The Phish Market";
 
+        protected readonly string CarbonCopyEmailAddress = "carboncopy@phishmarket.net";
+        protected readonly string FromEmailAddress = "phishlover@phishmarket.net";
+
         protected readonly Guid EmptyGuid = new Guid("00000000-0000-0000-0000-000000000000");
 
         protected LinkBuilder LinkBuilder = new LinkBuilder();
