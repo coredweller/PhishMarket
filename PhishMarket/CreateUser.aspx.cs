@@ -29,7 +29,7 @@ namespace PhishMarket
             }
             catch (Exception ex)
             {
-                //Show error message
+                log.WriteLine(string.Format("EXCEPTION THROWN WHEN SENDING TEST EMAIL, exception: {0} --------- inner exception: {1}", ex.Message, ex.InnerException));
             }
         }
 
