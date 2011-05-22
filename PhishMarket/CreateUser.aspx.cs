@@ -2,6 +2,7 @@
 using System.Web.UI.WebControls;
 using System.Web.Security;
 using System.Net.Mail;
+using System.Net;
 
 namespace PhishMarket
 {
@@ -49,6 +50,10 @@ namespace PhishMarket
             message.Body = SetBody("testUserName", "testPassword");
 
             var client = new SmtpClient();
+            client.Credentials = CredentialCache.DefaultNetworkCredentials;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.Port = 25;
+            client.UseDefaultCredentials = true;
 
             client.Send(message);
         }
