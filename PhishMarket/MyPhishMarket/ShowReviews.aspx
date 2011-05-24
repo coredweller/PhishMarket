@@ -59,7 +59,9 @@
     <br />
     <br />
     <div title="Click a song name to write a review about it." class="tTip" id="cloud1">
-    <h3>Setlist</h3></div>
+        <h3>
+            Setlist</h3>
+    </div>
     <asp:Repeater ID="rptSongs" runat="server" OnItemCommand="rptSongs_ItemCommand">
         <HeaderTemplate>
             <table>
@@ -97,17 +99,26 @@
     <br />
     <br />
     <%--<asp:HyperLink ID="lnkAddPictures" runat="server" Text="Add Pictures to this show here!"></asp:HyperLink>--%>
-    
-    Add your own <a href='<%= LinkBuilder.MyPicturesLink(ShowId) %>'>Pictures</a> or <a href='<%= LinkBuilder.MyPostersLink(ShowId) %>'>Posters</a> to this show!
+    Add your own <a href='<%= LinkBuilder.MyPicturesLink(ShowId) %>'>Pictures</a> or
+    <a href='<%= LinkBuilder.MyPostersLink(ShowId) %>'>Posters</a> to this show!
     <div id="gallery">
     </div>
     <hr />
     <br />
-    <h3>
-        Reviews</h3>
+    <table>
+        <tr>
+            <td style="font-size: 1.6em;">
+                Reviews
+            </td>
+            <td>
+                - <a href='<%= LinkBuilder.AnalysisLink(ShowId) %>'>Review this show HERE </a>
+            </td>
+        </tr>
+    </table>
     <br />
     <asp:PlaceHolder ID="phNoReviews" runat="server" Visible="false">There are currently
-        no reviews for this show. Be the first to review this show <a href='<%= LinkBuilder.AnalysisLink(ShowId) %>'> HERE </a> </asp:PlaceHolder>
+        no reviews for this show. Be the first to review this show <a href='<%= LinkBuilder.AnalysisLink(ShowId) %>'>
+            HERE </a></asp:PlaceHolder>
     <asp:Repeater ID="rptReviews" runat="server">
         <HeaderTemplate>
             <table>

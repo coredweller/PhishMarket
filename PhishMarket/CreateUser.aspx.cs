@@ -3,10 +3,12 @@ using System.Web.UI.WebControls;
 using System.Web.Security;
 using System.Net.Mail;
 using System.Net;
+using System.Security.Permissions;
 
 namespace PhishMarket
 {
-    [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Assert, Unrestricted = true)]
+    [WebPermission(SecurityAction.Assert, Unrestricted = true)]
+    [EnvironmentPermission(SecurityAction.Assert, Unrestricted = true)]
     public partial class CreateUser : PhishMarketBasePage
     {
         public bool IsAdmin = Roles.IsUserInRole("Administrators");
