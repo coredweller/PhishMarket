@@ -10,6 +10,7 @@ using TheCore.Repository;
 using System.Web.Security;
 using PhishPond.Concrete;
 using TheCore.Interfaces;
+using TheCore.Helpers;
 
 namespace PhishMarket.MyPhishMarket
 {
@@ -29,7 +30,8 @@ namespace PhishMarket.MyPhishMarket
 
             if (string.IsNullOrEmpty(hdnMyShowId.Value))
             {
-                phMyShowFailure.Visible = true;
+                var scriptHelper3 = new ScriptHelper("ErrorAlert", "alertDiv", "There was an error saving your review.");
+                Page.RegisterStartupScript(scriptHelper3.ScriptName, scriptHelper3.GetFatalScript());
                 return;
             }
 
@@ -42,9 +44,7 @@ namespace PhishMarket.MyPhishMarket
             using (IUnitOfWork uow = UnitOfWork.Begin())
             {
                 myShow.Rating = int.Parse(e.Value);
-
                 uow.Commit();
-                phMyShowSuccess.Visible = true;
             }
         }
 
@@ -165,12 +165,8 @@ namespace PhishMarket.MyPhishMarket
                 using (IUnitOfWork uow = UnitOfWork.Begin())
                 {
                     analysis.Rating = rating;
-
                     uow.Commit();
                 }
-
-                phRatingSuccess.Visible = true;
-                
             }
             else
             {
@@ -194,19 +190,8 @@ namespace PhishMarket.MyPhishMarket
                 bool success = false;
 
                 analysisService.SaveCommit(newAnalysis, out success);
-
-                if (success)
-                {
-                    phRatingSuccess.Visible = true;
-                }
-                else
-                {
-                    phRatingError.Visible = true;
-                }
             }
-        }
-
-        
+        }       
 
         public string GetSetNumber(short setNumber, bool encore)
         {
@@ -222,7 +207,8 @@ namespace PhishMarket.MyPhishMarket
 
             if (string.IsNullOrEmpty(hdnMyShowId.Value))
             {
-                phMyShowFailure.Visible = true;
+                var scriptHelper3 = new ScriptHelper("ErrorAlert", "alertDiv", "There was an error saving your review.");
+                Page.RegisterStartupScript(scriptHelper3.ScriptName, scriptHelper3.GetFatalScript());
                 return;
             }
 
@@ -236,7 +222,8 @@ namespace PhishMarket.MyPhishMarket
             {
                 if (txtNotes.Text.Length > 3000)
                 {
-                    phMyShowReviewTooLong.Visible = true;
+                    var scriptHelper2 = new ScriptHelper("ErrorAlert", "alertDiv", "Your review was too long. Please keep it under 3000 characters.");
+                    Page.RegisterStartupScript(scriptHelper2.ScriptName, scriptHelper2.GetFatalScript());
                     return;
                 }
 
@@ -244,9 +231,10 @@ namespace PhishMarket.MyPhishMarket
                 myShow.NotesUpdatedDate = DateTime.Now;
 
                 uow.Commit();
-                phMyShowSuccess.Visible = true;
-            }
 
+                var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", "Congratulations you have successfully saved a review for this show.");
+                Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetSuccessScript());
+            }
         }
 
         public void btnSubmitNotes_Click(object sender, EventArgs e)
@@ -257,7 +245,9 @@ namespace PhishMarket.MyPhishMarket
 
             if (string.IsNullOrEmpty(hdnSetSongId.Value))
             {
-                phGeneralError.Visible = true;
+                var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "Sorry there was an error. Please click another song and try again.");
+                Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
+                
                 return;
             }
 
@@ -277,7 +267,9 @@ namespace PhishMarket.MyPhishMarket
                     analysis.UpdatedDate = DateTime.Now;
                     
                     uow.Commit();
-                    phUpdatingSuccess.Visible = true;
+
+                    var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", "Congratulations you have successfully updated your analysis.");
+                    Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetSuccessScript());
                 }
             }
             else
@@ -304,7 +296,8 @@ namespace PhishMarket.MyPhishMarket
 
                 if (success)
                 {
-                    phNewSuccess.Visible = true;
+                    var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", "Congratulations you have successfully added a new analysis.");
+                    Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetSuccessScript());
                 }
             }
 
@@ -374,11 +367,6 @@ namespace PhishMarket.MyPhishMarket
             phNewSuccess.Visible = false;
             phUpdatingSuccess.Visible = false;
             phGeneralError.Visible = false;
-            phMyShowFailure.Visible = false;
-            phMyShowSuccess.Visible = false;
-            phRatingError.Visible = false;
-            phRatingSuccess.Visible = false;
-            phMyShowReviewTooLong.Visible = false;
         }
     }
 }

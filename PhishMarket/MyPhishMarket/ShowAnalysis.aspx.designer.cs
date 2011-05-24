@@ -50,33 +50,6 @@ namespace PhishMarket.MyPhishMarket {
         protected global::System.Web.UI.WebControls.PlaceHolder phMyShow;
         
         /// <summary>
-        /// phMyShowSuccess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phMyShowSuccess;
-        
-        /// <summary>
-        /// phMyShowFailure control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phMyShowFailure;
-        
-        /// <summary>
-        /// phMyShowReviewTooLong control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phMyShowReviewTooLong;
-        
-        /// <summary>
         /// txtNotes control.
         /// </summary>
         /// <remarks>
@@ -120,24 +93,6 @@ namespace PhishMarket.MyPhishMarket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton AddMyShow;
-        
-        /// <summary>
-        /// phRatingSuccess control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phRatingSuccess;
-        
-        /// <summary>
-        /// phRatingError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phRatingError;
         
         /// <summary>
         /// rptSongs control.
