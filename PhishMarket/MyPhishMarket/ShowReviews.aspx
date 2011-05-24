@@ -107,7 +107,7 @@
         Reviews</h3>
     <br />
     <asp:PlaceHolder ID="phNoReviews" runat="server" Visible="false">There are currently
-        no reviews for this show. </asp:PlaceHolder>
+        no reviews for this show. Be the first to review this show <a href='<%= LinkBuilder.AnalysisLink(ShowId) %>'> HERE </a> </asp:PlaceHolder>
     <asp:Repeater ID="rptReviews" runat="server">
         <HeaderTemplate>
             <table>
@@ -128,7 +128,7 @@
             </tr>
             <tr>
                 <td>
-                    ------------------
+                    <hr class="horizontalRule1" />
                 </td>
             </tr>
         </ItemTemplate>
