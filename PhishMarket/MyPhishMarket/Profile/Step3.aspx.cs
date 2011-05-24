@@ -60,6 +60,8 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
 
             var result = profileService.GetFavoriteVersions(userId, ddlAlbum.SelectedValue);
 
+            ddlFavoriteChoice.Items.Clear();
+
             rptSongs.DataSource = result;
 
             rptSongs.DataBind();
@@ -70,6 +72,10 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
             FavoriteVersionService faveService = new FavoriteVersionService(Ioc.GetInstance<IFavoriteVersionRepository>());
 
             Guid userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
+
+            if (string.IsNullOrEmpty(ddlFavoriteChoice.SelectedValue))
+                return;
+
             Guid setSongId = new Guid(ddlFavoriteChoice.SelectedValue.Split('^')[0]);
             Guid songId = new Guid(ddlFavoriteChoice.SelectedValue.Split('^')[1]);
 

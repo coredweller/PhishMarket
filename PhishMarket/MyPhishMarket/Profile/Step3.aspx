@@ -31,6 +31,28 @@
             </tr>
         </table>
     </div>
+    <br />
+    <asp:PlaceHolder ID="phFavoriteChoice" runat="server" Visible="false">
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        Choose your favorite version of the song:
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:DropDownList ID="ddlFavoriteChoice" runat="server">
+                        </asp:DropDownList>
+                    </td>
+                    <td>
+                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </asp:PlaceHolder>
+    <br /><br />
     <div>
         <asp:Repeater ID="rptSongs" runat="server" OnItemCommand="rptSongs_ItemCommand">
             <HeaderTemplate>
@@ -54,20 +76,5 @@
                 </table></FooterTemplate>
         </asp:Repeater>
     </div>
-    <br />
-    <asp:PlaceHolder ID="phFavoriteChoice" runat="server" Visible="false">
-        <div>
-            <table>
-                <tr>
-                    <td>
-                        <asp:DropDownList ID="ddlFavoriteChoice" runat="server">
-                        </asp:DropDownList>
-                    </td>
-                    <td>
-                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </asp:PlaceHolder>
+    
 </asp:Content>

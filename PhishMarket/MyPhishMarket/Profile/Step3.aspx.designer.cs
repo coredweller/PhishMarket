@@ -32,15 +32,6 @@ namespace PhishMarket.MyPhishMarket.ProfilePages {
         protected global::System.Web.UI.WebControls.Button btnChooseAlbum;
         
         /// <summary>
-        /// rptSongs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptSongs;
-        
-        /// <summary>
         /// phFavoriteChoice control.
         /// </summary>
         /// <remarks>
@@ -66,5 +57,14 @@ namespace PhishMarket.MyPhishMarket.ProfilePages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
+        
+        /// <summary>
+        /// rptSongs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptSongs;
     }
 }
