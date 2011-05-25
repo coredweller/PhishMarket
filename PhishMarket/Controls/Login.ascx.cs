@@ -12,7 +12,10 @@ namespace PhishMarket.Controls
 
         public void Login_LoggedIn(object sender, EventArgs e)
         {
-            //Response.Redirect(new LinkBuilder().DashboardLink());
+            if (Request.QueryString["ReturnUrl"] == "/Logout.aspx")
+            {
+                Response.Redirect(new LinkBuilder().DashboardLink());
+            }
 
             //System.Web.UI.WebControls.Login loginControl = (System.Web.UI.WebControls.Login)sender;
             //String password = FormsAuthentication.HashPasswordForStoringInConfigFile(loginControl.Password, "md5");
