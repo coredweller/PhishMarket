@@ -22,9 +22,13 @@ Released   : 20100613
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
     <script type="text/javascript" src="/javascript/jquery-1.4.2.min.js"></script>
+
     <script type="text/javascript" src="/javascript/jquery.betterTooltip.js"></script>
+
     <script type="text/javascript" src="/javascript/jquery.jalert.packed.js"></script>
+
     <script type="text/javascript" src="/javascript/jquery-ui-1.8.11.custom.min.js"></script>
+
     <script type="text/javascript" src="/javascript/phishmarket.js"></script>
 
     <script type="text/javascript">
@@ -52,6 +56,9 @@ Released   : 20100613
                 </h1>
                 <p>
                     a CoreDweller Production</p>
+            </div>
+            <div>
+                <b><a href="/Logout.aspx">LOG OUT</a></b>
             </div>
         </div>
         <!-- end #header -->
@@ -87,13 +94,13 @@ Released   : 20100613
                                 </div>
                                 <div style="clear: both;">
                                     &nbsp;</div>
-                            </li>--%>
-                            
-                            <asp:ContentPlaceHolder ID="LeftSideBar" runat="server">
-                                <uc:RecentTopicsControl ID="RecentTopicsControl1" runat="server" />
-                                <uc:RecentShowReviewsControl ID="RecentShowReviewsControl1" runat="server" />
-                            </asp:ContentPlaceHolder>
-                            <%--
+                            </li>--%><b>
+                        <asp:ContentPlaceHolder ID="LeftSideBar" runat="server">
+                            <uc:RecentTopicsControl ID="RecentTopicsControl1" runat="server" />
+                            <uc:RecentShowReviewsControl ID="RecentShowReviewsControl1" runat="server" />
+                        </asp:ContentPlaceHolder>
+                        </b>
+                        <%--
                             KEEPING THIS AS AN EXAMPLE OF THE STYLE NEEDED FOR THIS SECTION
                             <li>
                                 <h2>
@@ -120,7 +127,7 @@ Released   : 20100613
             PhishMarket.net (2011). All rights reserved. Design by <a href="http://www.freecsstemplates.org/">
                 Free CSS Templates</a>.</p>
         <p>
-        Recommended Browser for PhishMarket.net is Firefox
+            Recommended Browser for PhishMarket.net is Firefox
         </p>
     </div>
     <!-- end #footer -->

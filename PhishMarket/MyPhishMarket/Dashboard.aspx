@@ -75,16 +75,16 @@
         <hr />
         <br />
         <br />
-        <div class="tTip" id="Div1" title="Look and choose your posters, ticket stubs, pictures, analysis of shows, and favorite versions">
+        <div class="tTip" id="Div1" title="View and Add your posters or pictures HERE">
             <h2>
                 My Stuff</h2>
         </div>
-        <h4>
+        <%--<h4>
             <a href='<%= LinkBuilder.MyAnalysisLink() %>'>Analyze All Shows HERE</a></h4>
         <h4>
             <a href='<%= LinkBuilder.ProfileStep3Link() %>'>Choose Your Favorite Version of every
                 song HERE</a>
-        </h4>
+        </h4>--%>
         <table>
             <tr>
                 <td>
@@ -133,7 +133,7 @@
     <br />
     <br />
     <div>
-        <div class="tTip" id="Div2" title="Add the shows you have attended. Then add the posters, ticket stubs, pictures, and analysis from each one">
+        <div class="tTip" id="Div2" title="These shows you have been to or written reviews for. You can add posters, pictures, and analysis for each one.">
             <h2 class="DashLeft">
                 My Shows
                 <asp:Image ID="Image2" runat="server" ImageUrl="/images/SmallLeftArrowLight.jpg" />
@@ -141,7 +141,7 @@
             </h2>
         </div>
         <h3 class="DashLeft">
-            <a href='<%= LinkBuilder.AddMyShowLink() %>'>Add the shows you have been to</a>
+            <a href='<%= LinkBuilder.AddMyShowLink() %>'>Add shows HERE!</a>
         </h3>
     </div>
     <br />

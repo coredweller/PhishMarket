@@ -20,13 +20,17 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                    
                         <%# (((PhishPond.Concrete.Show)Container.DataItem).VenueName) %>
                         -
                         <%# FormatDate((((PhishPond.Concrete.Show)Container.DataItem).ShowDate))%>
                     </td>
                     <td>
-                        <a href='<%# LinkBuilder.AnalysisLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>Analysis</a>
+                        <a href='<%# LinkBuilder.AnalysisLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
+                            Write a Review</a>&nbsp;OR&nbsp;
+                    </td>
+                    <td>
+                        <a href='<%# LinkBuilder.ShowReviewsLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
+                            See All Reviews</a>
                     </td>
                 </tr>
             </ItemTemplate>
