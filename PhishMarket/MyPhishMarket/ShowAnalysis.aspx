@@ -3,13 +3,15 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <h2 title="Rate the show in stars and write a review about it below." class="tTip" id="cloud1">
+        <h2 title="Rate the show in stars and write a review about it below. Click the show to see all reviews for this show!" class="tTip"
+            id="cloud1">
             Show Analysis</h2>
     </div>
     <div id="alertDiv" style="padding: 10px; float: left;">
     </div>
     <h3>
-        <asp:Label runat="server" ID="lblShow"></asp:Label></h3>
+        <a href='<%= LinkBuilder.ShowReviewsLink(ShowId) %>'>
+            <asp:Label runat="server" ID="lblShow"></asp:Label></a></h3>
     <br />
     <asp:PlaceHolder ID="phMyShowRating" runat="server" Visible="false">
         <table>
@@ -44,7 +46,7 @@
     </asp:PlaceHolder>
     <br />
     <br />
-    <h2 title="Click a song to edit your notes for that version." class="tTip" id="cloud1">
+    <h2 title="Click a song to edit your notes for that version and rate this version in stars." class="tTip" id="cloud1">
         Setlist Analysis</h2>
     <asp:Repeater ID="rptSongs" runat="server" OnItemCommand="rptSongs_ItemCommand">
         <HeaderTemplate>
@@ -93,16 +95,18 @@
         You have successfully added a new analysis
         <br />
     </asp:PlaceHolder>
-    <br /><br />
-    <div style="font-size:larger;">
+    <br />
+    <br />
+    <div style="font-size: larger;">
         Edit notes for&nbsp;<b><asp:Label ID="lblSetSongName" runat="server"></asp:Label></b>
     </div>
     <div>
-        <asp:TextBox ID="txtSetSongNotes" runat="server" TextMode="MultiLine" Columns="30"
-            Rows="5"></asp:TextBox>
+        <asp:TextBox ID="txtSetSongNotes" runat="server" TextMode="MultiLine" Columns="50"
+            Rows="7"></asp:TextBox>
         <br />
         <asp:Button ID="btnSubmitNotes" runat="server" Text="Submit Song Notes" OnClick="btnSubmitNotes_Click" />
         <asp:HiddenField ID="hdnSetSongId" runat="server" Visible="false" />
         <asp:HiddenField ID="hdnMyShowId" runat="server" Visible="false" />
+        <asp:HiddenField ID="hdnShowId" runat="server" Value="false" />
     </div>
 </asp:Content>

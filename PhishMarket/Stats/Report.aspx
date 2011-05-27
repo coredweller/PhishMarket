@@ -9,8 +9,9 @@
     <br />
     <div>
         <h4>
-            Choose how you want to view the songs. Either by the album (or Live ONLY) or by
-            the first letter of the song's name</h4>
+            Choose how you want to view the songs.
+            <br />
+            Either by the album (or Live ONLY) or by the first letter of the song's name</h4>
     </div>
     <br />
     <div>
@@ -84,8 +85,17 @@
     <asp:PlaceHolder ID="phFavorite" runat="server" Visible="false">
         <div>
             <div class="tTip" id="Div2" title="This report shows how many people chose that version as their favorite of all that song's versions.">
-                <h4>
-                    Most Favorite Versions</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <h4>
+                                Most Favorite Versions</h4>
+                        </td>
+                        <td>
+                            &nbsp;-&nbsp;<a href='<%= LinkBuilder.ProfileStep3Link() %>'>Go pick your own favorites now!</a>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <asp:Repeater ID="rptFavorites" runat="server">
                 <HeaderTemplate>
@@ -124,8 +134,17 @@
     <asp:PlaceHolder ID="phHighest" runat="server" Visible="false">
         <div>
             <div class="tTip" id="Div1" title="This report shows the version of the song that was rated the highest of all the song's versions.">
-                <h4>
-                    Highest Rated</h4>
+                <table>
+                    <tr>
+                        <td>
+                            <h4>
+                                Highest Rated</h4>
+                        </td>
+                        <td>
+                            &nbsp;-&nbsp;<a href='<%= LinkBuilder.MyAnalysisLink() %>'>Go rate the songs yourself!</a>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <asp:Repeater ID="rptHighestRanked" runat="server">
                 <HeaderTemplate>

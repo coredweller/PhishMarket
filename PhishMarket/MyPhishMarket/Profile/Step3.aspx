@@ -4,13 +4,13 @@
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <br />
-    <br />
     <div>
         <h3>
-            Step 3: Favorite Versions</h3>
+            Favorite Versions</h3>
     </div>
     <div id="alertDiv" style="padding: 10px; float: left;">
     </div>
+    <br />
     <div>
         <table>
             <tr>
@@ -37,7 +37,8 @@
             <table>
                 <tr>
                     <td>
-                        Choose your favorite version of the song:
+                        <h4>
+                            Choose your favorite version of the song:</h4>
                     </td>
                 </tr>
                 <tr>
@@ -52,7 +53,8 @@
             </table>
         </div>
     </asp:PlaceHolder>
-    <br /><br />
+    <br />
+    <br />
     <div>
         <asp:Repeater ID="rptSongs" runat="server" OnItemCommand="rptSongs_ItemCommand">
             <HeaderTemplate>
@@ -76,5 +78,4 @@
                 </table></FooterTemplate>
         </asp:Repeater>
     </div>
-    
 </asp:Content>

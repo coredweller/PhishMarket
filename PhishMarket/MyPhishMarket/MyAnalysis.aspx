@@ -2,6 +2,12 @@
     MasterPageFile="~/Master/Shadowed.Master" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
+    <br />
+    <br />
+    <h3 title="Choose a tour. Then decide which show you want to see others' reviews or want to review yourself." class="tTip" id="cloud9">
+        Show Reviews and Analysis</h3>
+    <br />
+    <br />
     <div>
         Tours:
         <asp:DropDownList ID="ddlTours" runat="server">

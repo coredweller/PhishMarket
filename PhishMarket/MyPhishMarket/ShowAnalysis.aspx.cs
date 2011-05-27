@@ -16,6 +16,8 @@ namespace PhishMarket.MyPhishMarket
 {
     public partial class ShowAnalysis : PhishMarketBasePage
     {
+        public Guid ShowId { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -60,6 +62,8 @@ namespace PhishMarket.MyPhishMarket
             }
 
             showId = new Guid(Request.QueryString["showId"]);
+            ShowId = showId;
+            hdnShowId.Value = showId.ToString();
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
 
             if (!string.IsNullOrEmpty(Request.QueryString["myShowId"]))
@@ -120,6 +124,8 @@ namespace PhishMarket.MyPhishMarket
                 phNotMyShow.Visible = false;
                 return;
             }
+
+            ShowId = showId;
 
             var myShowId = Guid.NewGuid();
 
@@ -235,6 +241,8 @@ namespace PhishMarket.MyPhishMarket
                 var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", "Congratulations you have successfully saved a review for this show.");
                 Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetSuccessScript());
             }
+
+            ShowId = new Guid(hdnShowId.Value);
         }
 
         public void btnSubmitNotes_Click(object sender, EventArgs e)
@@ -352,6 +360,8 @@ namespace PhishMarket.MyPhishMarket
             {
                 txtSetSongNotes.Text = !string.IsNullOrEmpty(analysis.Notes) ? analysis.Notes : string.Empty;
             }
+
+            ShowId = new Guid(hdnShowId.Value);
         }
 
         public string OutputRating(double? rating)

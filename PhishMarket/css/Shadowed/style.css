@@ -294,7 +294,8 @@ a:hover {
 	width: 280px;
 	padding: 0px;
 	color: #464032;
-	
+	border-style:solid;
+border-width:1px;
 	/* background: #141414;   */
 }
 
@@ -335,7 +336,9 @@ a:hover {
 	letter-spacing: -.5px;
 	font-size: 16px;
 	font-weight: bold;
-	color: #7D0B25;  /* Recent Topics / Recent Show Reviews */
+	color: #000055;
+	/*  color: #330088;*/
+	/*color: #7D0B25;   Recent Topics / Recent Show Reviews */
 }
 
 #sidebar p {
