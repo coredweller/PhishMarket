@@ -70,14 +70,14 @@ namespace PhishMarket.Admin
             ddlRank.Items.AddRange(items);
 
             //Order of the shows
-            for (int i = 1; i < 100; i++)
-            {
-                ddlOrder.Items.Add(new ListItem(i.ToString(), i.ToString()));
-            }
+            //for (int i = 1; i < 100; i++)
+            //{
+            //    ddlOrder.Items.Add(new ListItem(i.ToString(), i.ToString()));
+            //}
 
             ListItem item = new ListItem("None", "0");
 
-            ddlOrder.Items.Insert(0, item);
+            //ddlOrder.Items.Insert(0, item);
 
             item.Selected = true;
 
@@ -98,31 +98,30 @@ namespace PhishMarket.Admin
             ShowService service = new ShowService(Ioc.GetInstance<IShowRepository>());
 
             bool success = false;
-            short? order, rank;
-            decimal ticketPrice;
+            short? rank;
             DateTime? showDate;
             Guid? showId = null;
             Guid? tourId = null;
 
-            if (Validated(out order, out ticketPrice, out rank, out showDate, out tourId))
+            if (Validated(out rank, out showDate, out tourId))
             {
-                order = ddlOrder.SelectedValue != "0" ? (short?)short.Parse(ddlOrder.SelectedValue) : null;
+                //order = ddlOrder.SelectedValue != "0" ? (short?)short.Parse(ddlOrder.SelectedValue) : null;
 
                 showId = Guid.NewGuid();
 
                 Show show = new Show()
                 {
                     ShowId = showId.Value,
-                    ShowName = txtShowName.Text.Trim(),
+                    //ShowName = txtShowName.Text.Trim(),
                     VenueName = txtVenueName.Text.Trim(),
                     City = txtCity.Text.Trim(),
                     State = ddlStates.SelectedValue.Trim(),
                     Country = ddlCountry.Text.Trim(),
-                    Order = order,
-                    TicketPrice = ticketPrice,
+                    //Order = order,
+                    //TicketPrice = ticketPrice,
                     Notes = txtNotes.Text.Trim(),
                     ShowDate = showDate,
-                    Official = chkOfficial.Checked,
+                    //Official = chkOfficial.Checked,
                     UserId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString()),
                     TourId = tourId
                 };
@@ -144,27 +143,27 @@ namespace PhishMarket.Admin
             }
         }
 
-        private bool Validated(out short? order, out decimal ticketPrice, out short? rank, out DateTime? showDate, out Guid? tourId)
+        private bool Validated(out short? rank, out DateTime? showDate, out Guid? tourId)
         {
             bool valid = false;
-            order = null;
-            ticketPrice = 0;
+            //order = null;
+            //ticketPrice = 0;
             rank = null;
             showDate = null;
             tourId = null;
 
             try
             {
-                if (string.IsNullOrEmpty(txtShowName.Text.Trim()))
-                    valid = false;
+                //if (string.IsNullOrEmpty(txtShowName.Text.Trim()))
+                //    valid = false;
 
-                if (!string.IsNullOrEmpty(txtTicketPrice.Text.Trim()))
-                {
-                    bool validDouble = decimal.TryParse(txtTicketPrice.Text.Trim(), out ticketPrice);
+                //if (!string.IsNullOrEmpty(txtTicketPrice.Text.Trim()))
+                //{
+                //    bool validDouble = decimal.TryParse(txtTicketPrice.Text.Trim(), out ticketPrice);
 
-                    if (!validDouble)
-                        ticketPrice = 0;
-                }
+                //    if (!validDouble)
+                //        ticketPrice = 0;
+                //}
 
                 if (ddlRank.SelectedValue == "0")
                 {

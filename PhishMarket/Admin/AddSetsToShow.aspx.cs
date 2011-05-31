@@ -54,9 +54,12 @@ namespace PhishMarket.Admin
 
                 Set set = new Set()
                 {
+                    CreatedDate = DateTime.UtcNow,
+                    Encore = chkEncore.Checked,
                     SetId = setId,
                     SetNumber = setNumber,
-                    ShowId = showId
+                    ShowId = showId,
+                    Official = true
                 };
 
                 setService.SaveCommit(set, out success);

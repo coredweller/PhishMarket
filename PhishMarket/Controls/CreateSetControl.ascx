@@ -12,7 +12,8 @@
         Choose songs from this list:</h2>
     <br />
     <br />
-    <asp:ListBox ID="lstSongs" Rows="15" runat="server" SelectionMode="Multiple"></asp:ListBox>
+    <asp:ListBox ID="lstSongs" Rows="15" runat="server" SelectionMode="Single"></asp:ListBox>
+    SEGUE?&nbsp;<asp:CheckBox ID="chkSegue" runat="server" />
     <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
 </div>
 <br />

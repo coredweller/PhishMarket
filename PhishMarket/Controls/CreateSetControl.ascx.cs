@@ -149,74 +149,76 @@ namespace PhishMarket.Controls
             bool success = false;
             bool compiledSuccess = true;
 
-            if (!string.IsNullOrEmpty(hdnId.Value))
+            if (string.IsNullOrEmpty(hdnId.Value))
             {
-                Guid g = new Guid(hdnId.Value);
+                Bind();
+                return;
+            }
 
-                var set = (Set)setService.GetSet(g);
+            var set = (Set)setService.GetSet(new Guid(hdnId.Value));
 
-                if (set != null)
+            if (set == null)
+            {
+                Bind();
+                return;
+            }
+
+            if (lstSongs.Items.Count <= 0)
+            {
+                Bind();
+                return;
+            }
+
+            using (IUnitOfWork uow = TheCore.Infrastructure.UnitOfWork.Begin())
+            {
+
+                foreach (ListItem item in lstSongs.Items)
                 {
-                    if (lstSongs.Items.Count > 0)
+                    if (!item.Selected) { continue; }
+
+                    var song = songService.GetSong(new Guid(item.Value));
+
+                    if (song == null) { continue; }
+
+                    short? order = 1;
+
+                    if (set.SetSongs.Count > 0)
                     {
-                        using (IUnitOfWork uow = TheCore.Infrastructure.UnitOfWork.Begin())
-                        {
-
-                            foreach (ListItem item in lstSongs.Items)
-                            {
-                                if (item.Selected)
-                                {
-                                    Guid s = new Guid(item.Value);
-                                    var song = songService.GetSong(s);
-
-                                    if (song != null)
-                                    {
-                                        short? order = 1;
-
-                                        if (set.SetSongs.Count > 0)
-                                        {
-                                            order = set.SetSongs.OrderBy(x => x.Order).Last().Order;
-                                            order++;
-                                        }
-
-                                        SetSong setSong = new SetSong()
-                                            {
-                                                SetSongId = Guid.NewGuid(),
-                                                Song = (Song)song,
-                                                Order = order,
-                                                Set = set,
-                                                SetId = set.SetId
-                                            };
-
-                                        setSongService.Save(setSong, out success);
-
-                                        compiledSuccess = compiledSuccess && success;
-                                    }
-                                }
-                            }
-
-                            if (compiledSuccess)
-                            {
-                                uow.Commit();
-                                phSuccess.Visible = true;
-                                phError.Visible = false;
-                            }
-                            else
-                            {
-                                phError.Visible = true;
-                                phSuccess.Visible = false;
-                            }
-                        }
-
-
+                        order = set.SetSongs.OrderBy(x => x.Order).Last().Order;
+                        order++;
                     }
+
+                    SetSong setSong = new SetSong()
+                        {
+                            Album = song.Album,
+                            CreatedDate = DateTime.UtcNow,
+                            SetSongId = Guid.NewGuid(),
+                            SongId = song.SongId,
+                            SongName = song.SongName,
+                            Order = order,
+                            Set = set,
+                            SetId = set.SetId,
+                            Segue = chkSegue.Checked
+                        };
+
+                    setSongService.Save(setSong, out success);
+
+                    compiledSuccess = compiledSuccess && success;
+                }
+
+                if (compiledSuccess)
+                {
+                    uow.Commit();
+                    phSuccess.Visible = true;
+                    phError.Visible = false;
+                }
+                else
+                {
+                    phError.Visible = true;
+                    phSuccess.Visible = false;
                 }
             }
-            else
-            {
-                //Might have to handle this situation.. Not sure yet.
-            }
-
+            
             Bind();
         }
 

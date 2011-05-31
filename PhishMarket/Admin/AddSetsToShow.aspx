@@ -56,6 +56,7 @@
                 <br />
                 <div>
                     <asp:LinkButton ID="lnkAddSetToShow" runat="server" Text="Add a Set to the Show" OnClick="lnkAddSetToShow_Click"></asp:LinkButton>
+                    ENCORE?&nbsp;<asp:CheckBox ID="chkEncore" runat="server" />
                 </div>
             </div>
         </ContentTemplate>
