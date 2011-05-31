@@ -42,15 +42,17 @@ namespace PhishMarket.Handlers
             ArtService artService = new ArtService(Ioc.GetInstance<IArtRepository>());
 
             var myShow = myShowService.GetMyShow(showId, userId);
-
-            var myShowArts = myShowArtService.GetMyShowArtByMyShow(myShow.MyShowId);
-
             IList<KeyValuePair<Art, IMyShowArt>> art = new List<KeyValuePair<Art, IMyShowArt>>();
 
-            myShowArts.ToList().ForEach(x =>
+            if (myShow != null)
             {
-                art.Add(new KeyValuePair<Art, IMyShowArt>((Art)artService.GetArt(x.ArtId), x));
-            });
+                var myShowArts = myShowArtService.GetMyShowArtByMyShow(myShow.MyShowId);
+
+                myShowArts.ToList().ForEach(x =>
+                {
+                    art.Add(new KeyValuePair<Art, IMyShowArt>((Art)artService.GetArt(x.ArtId), x));
+                });
+            }
 
             if (art == null || art.Count <= 0)
             {

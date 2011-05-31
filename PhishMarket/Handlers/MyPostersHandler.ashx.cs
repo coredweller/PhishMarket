@@ -43,15 +43,17 @@ namespace PhishMarket.Handlers
             var posterService = new PosterService(Ioc.GetInstance<IPosterRepository>());
 
             var myShow = myShowService.GetMyShow(showId, userId);
-
-            var myShowPosters = myShowPosterService.GetMyShowPosterByMyShow(myShow.MyShowId);
-
             IList<KeyValuePair<Poster, IMyShowPoster>> posters = new List<KeyValuePair<Poster, IMyShowPoster>>();
 
-            myShowPosters.ToList().ForEach(x =>
+            if (myShow != null)
             {
-                posters.Add(new KeyValuePair<Poster, IMyShowPoster>((Poster)posterService.GetPoster(x.PosterId), x));
-            });
+                var myShowPosters = myShowPosterService.GetMyShowPosterByMyShow(myShow.MyShowId);
+
+                myShowPosters.ToList().ForEach(x =>
+                {
+                    posters.Add(new KeyValuePair<Poster, IMyShowPoster>((Poster)posterService.GetPoster(x.PosterId), x));
+                });
+            }
 
             if (posters == null || posters.Count <= 0)
             {
