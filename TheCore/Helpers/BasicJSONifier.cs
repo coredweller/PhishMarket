@@ -10,11 +10,15 @@ namespace TheCore.Helpers
         public string Id { get; set; }
         public string Text { get; set; }
 
+        private bool FirstAdd { get; set; }
+
         public BasicJSONifier(string collectionName, string id, string text)
         {
             CollectionName = collectionName;
             Id = id;
             Text = text;
+
+            FirstAdd = true;
 
             BuildTemplate();
         }
@@ -33,6 +37,8 @@ namespace TheCore.Helpers
             Id = id;
             Text = text;
 
+            FirstAdd = true;
+
             BuildTemplate();
             Add(firstId, firstText);
         }
@@ -44,7 +50,7 @@ namespace TheCore.Helpers
             sb.Append("{");
             sb.AppendFormat("\"{1}\":\"{0}\",","{0}", Text);
             sb.AppendFormat("\"{0}\":\"{1}\"", Id, "{1}");
-            sb.Append("},");
+            sb.Append("}");
 
             Template = sb.ToString();
 
@@ -72,8 +78,15 @@ namespace TheCore.Helpers
             var temp = Template.Replace("{0}", value);
             var temp2 = temp.Replace("{1}", key);
 
-            Builder.Append(temp2);
-            //Builder.AppendFormat(Template, value, key);
+            if (FirstAdd)
+            {
+                Builder.Append(temp2);
+                FirstAdd = false;
+            }
+            else
+            {
+                Builder.Append("," + temp2);
+            }
         }
     }
 }
