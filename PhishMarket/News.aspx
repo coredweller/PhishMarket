@@ -18,7 +18,7 @@ MasterPageFile="~/Master/Shadowed.Master" %>--%>
                 </h2>
                 <p class="byline">
                     <small>Posted on
-                        <%# (((PhishPond.Concrete.Post)Container.DataItem).PostedDate) %>
+                        <%# (((PhishPond.Concrete.Post)Container.DataItem).PostedDate).ToShortDateString() %>
                         by
                         <%# (((PhishPond.Concrete.Post)Container.DataItem).PostedBy) %></small>
                 </p>
