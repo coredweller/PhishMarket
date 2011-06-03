@@ -46,6 +46,8 @@
             My Posters
         </h2>
     </div>
+    <div id="alertDiv" style="padding: 10px; float: left;">
+    </div>
     <div>
         <asp:PlaceHolder ID="phSuccess" runat="server" Visible="false">You have successfully
             edited your poster. </asp:PlaceHolder>

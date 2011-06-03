@@ -6,6 +6,7 @@ using TheCore.Infrastructure;
 using TheCore.Repository;
 using System.Web.Security;
 using TheCore.Interfaces;
+using TheCore.Helpers;
 
 namespace PhishMarket.MyPhishMarket
 {
@@ -90,7 +91,10 @@ namespace PhishMarket.MyPhishMarket
         public void btnAddPicture_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
             if (string.IsNullOrEmpty(ddlShows.SelectedValue))
+            {
+                ShowNotSelectedMessage();
                 return;
+            }
 
             Response.Redirect(LinkBuilder.AddPhotoLink(new Guid(ddlShows.SelectedValue), PhotoType.Poster, Request.Url.ToString()));
         }
@@ -98,9 +102,18 @@ namespace PhishMarket.MyPhishMarket
         public void btnAddOther_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
             if (string.IsNullOrEmpty(ddlShows.SelectedValue))
+            {
+                ShowNotSelectedMessage();
                 return;
+            }
 
             Response.Redirect(LinkBuilder.FindForShowLink(new Guid(ddlShows.SelectedValue)));
+        }
+
+        private void ShowNotSelectedMessage()
+        {
+            var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "To add posters please choose a show below.");
+            Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
         }
         
         private void SetShows(Guid tourId)
@@ -119,114 +132,6 @@ namespace PhishMarket.MyPhishMarket
                                          select new ListItem(s.GetShowName(), s.ShowId.ToString())).ToArray());
             }
         }
-
-        //public void btnShowFromTour_Click(object sender, EventArgs e)
-        //{
-        //    if (ddlTours.SelectedValue == "none")
-        //        return;
-
-        //    var tourId = new Guid(ddlTours.SelectedValue);
-
-        //    PosterService posterService = new PosterService(Ioc.GetInstance<IPosterRepository>());
-        //    MyShowPosterService mySPService = new MyShowPosterService(Ioc.GetInstance<IMyShowPosterRepository>());
-
-        //    var myShowPosters = mySPService.GetMyShowPosterByTourAndUser(tourId, userId);
-
-        //    IList<IPoster> posters = new List<IPoster>();
-
-        //    myShowPosters.ToList().ForEach(x =>
-        //    {
-        //        posters.Add(posterService.GetPoster(x.PosterId));
-        //    });
-
-        //    rptPoster.DataSource = posters;
-        //    rptPoster.DataBind();
-        //}
-
-        //public void btnShowFromShow_Click(object sender, EventArgs e)
-        //{
-        //    ShowFromShow(null);
-        //}
-
-        //private void ShowFromShow(Guid? posterId)
-        //{
-        //    if (string.IsNullOrEmpty(ddlShows.SelectedValue))
-        //        return;
-
-        //    Guid showId = new Guid(ddlShows.SelectedValue);
-
-        //    MyShowService myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-        //    MyShowPosterService myShowPosterService = new MyShowPosterService(Ioc.GetInstance<IMyShowPosterRepository>());
-        //    PosterService posterService = new PosterService(Ioc.GetInstance<IPosterRepository>());
-
-        //    var myShow = myShowService.GetMyShow(showId, userId);
-
-        //    var myShowPosters = myShowPosterService.GetMyShowPosterByMyShow(myShow.MyShowId);
-
-        //    IList<IPoster> posters = new List<IPoster>();
-
-        //    myShowPosters.ToList().ForEach(x =>
-        //    {
-        //        posters.Add(posterService.GetPoster(x.PosterId));
-        //    });
-
-        //    if (posterId != null)
-        //    {
-        //        posters = posters.Where(x => x.PosterId != posterId).ToList();
-        //    }
-
-        //    if (posters == null || posters.Count <= 0)
-        //    {
-        //        phNoImages.Visible = true;
-        //    }
-            
-        //    rptPoster.DataSource = posters;
-        //    rptPoster.DataBind();
-        //}
-
-        //public void rptPoster_ItemCommand(object source, RepeaterCommandEventArgs e)
-        //{
-        //    var posterId = new Guid(e.CommandArgument.ToString());
-
-        //    switch (e.CommandName.ToLower())
-        //    {
-        //        case "remove":
-        //            Remove(posterId); ;
-        //            break;
-        //    }
-        //}
-
-        //private void Remove(Guid posterId)
-        //{
-        //    if (string.IsNullOrEmpty(ddlShows.SelectedValue))
-        //        return;
-
-        //    ResetPanels();
-
-        //    Guid showId = new Guid(ddlShows.SelectedValue);
-
-        //    MyShowService myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-        //    MyShowPosterService myShowPosterService = new MyShowPosterService(Ioc.GetInstance<IMyShowPosterRepository>());
-
-        //    var myShow = myShowService.GetMyShow(showId, userId);
-        //    var myShowPoster = myShowPosterService.GetMyShowPosterByMyShowAndPosterId(myShow.MyShowId, posterId);
-
-        //    bool success = false;
-
-        //    if (myShowPoster != null)
-        //    {
-        //        myShowPosterService.DeleteCommit(myShowPoster);
-        //        success = true;
-        //    }
-
-        //    if (success)
-        //    {
-        //        phRemoveSuccess.Visible = true;
-        //        ShowFromShow(posterId);
-        //    }
-        //    else
-        //        phRemoveError.Visible = true;
-        //}
 
         private void ShowError(PlaceHolder ph, string message)
         {

@@ -4,12 +4,12 @@
 
 <div>
         <h3>
-            Edit This Art
+            Edit This Picture
         </h3>
     </div>
     <div>
         <asp:PlaceHolder ID="phSuccess" runat="server" Visible="false">You have successfully
-            edited the art. </asp:PlaceHolder>
+            edited the picture. </asp:PlaceHolder>
         <asp:PlaceHolder ID="phError" runat="server" Visible="false">
             <asp:Label ID="lblError" runat="server"></asp:Label>
         </asp:PlaceHolder>

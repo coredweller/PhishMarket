@@ -78,7 +78,7 @@ namespace PhishMarket.MyPhishMarket
             if (success)
                 phSuccess.Visible = true;
             else
-                ShowError("There was an error editing the art.");
+                ShowError("There was an error editing the picture.");
 
         }
 

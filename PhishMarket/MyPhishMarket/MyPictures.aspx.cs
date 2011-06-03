@@ -6,6 +6,7 @@ using TheCore.Services;
 using TheCore.Infrastructure;
 using TheCore.Repository;
 using TheCore.Interfaces;
+using TheCore.Helpers;
 
 namespace PhishMarket.MyPhishMarket
 {
@@ -90,7 +91,10 @@ namespace PhishMarket.MyPhishMarket
         public void btnAddPicture_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(ddlShows.SelectedValue))
+            {
+                ShowNotSelectedMessage();
                 return;
+            }
 
             Response.Redirect(LinkBuilder.AddPhotoLink(new Guid(ddlShows.SelectedValue), PhotoType.Art, Request.Url.ToString()));
         }
@@ -98,9 +102,18 @@ namespace PhishMarket.MyPhishMarket
         public void btnAddOther_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(ddlShows.SelectedValue))
+            {
+                ShowNotSelectedMessage();
                 return;
+            }
 
             Response.Redirect(LinkBuilder.FindForShowLink(new Guid(ddlShows.SelectedValue)));
+        }
+
+        private void ShowNotSelectedMessage()
+        {
+            var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "To add pictures please choose a show below.");
+            Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
         }
 
         private void SetShows(Guid tourId)
