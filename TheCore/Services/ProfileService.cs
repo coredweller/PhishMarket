@@ -37,6 +37,11 @@ namespace TheCore.Services
 
         public IList<IGetFavoriteVersionResult> GetFavoriteVersions(Guid userId, string album)
         {
+            if (album == "Live ONLY")
+            {
+                return _repo.GetFavoriteVersions(userId, album).OrderBy(x => x.SongName).ToList();
+            }
+            
             return _repo.GetFavoriteVersions(userId, album).ToList();
         }
 
