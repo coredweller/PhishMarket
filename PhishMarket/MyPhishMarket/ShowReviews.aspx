@@ -14,8 +14,24 @@
         //  this function will load the photos for this show if available
         $(function() {
 
-            var showId = $.getUrlVar('showId');
-            var showDate = $.getUrlVar('showDate');
+            var urlVars = $.getUrlVars();
+            var showDate, showId;
+
+            //This loop makes it not matter if letters 
+            //  in the query string are uppercase or lower case.  This is so
+            //  users can type in showDate or showdate or ShOwDaTe or any variation
+            for (var i = 0; i < urlVars.length; i++) {
+
+                var piece = urlVars[i];
+
+                if (piece.toLowerCase() == "showdate") {
+                    showDate = $.getUrlVar(piece);
+                }
+
+                if (piece.toLowerCase() == "showid") {
+                    showId = $.getUrlVar(piece);
+                }
+            }
 
             callShowReviewsHandler(showId, showDate);
 
@@ -28,29 +44,6 @@
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <h2>
         <%= ShowName %></h2>
-    <%--<div>
-        <ajaxToolkit:SlideShowExtender ID="SlideShowExtender1" runat="server" TargetControlID="imgPhotos"
-            SlideShowServiceMethod="GetShowPictures" SlideShowServicePath="/SlideService.asmx"
-            UseContextKey="true" AutoPlay="false" NextButtonID="btnNext" PlayButtonText="Play"
-            StopButtonText="Stop" PreviousButtonID="btnPrev" PlayButtonID="btnPlay" Loop="true"
-            ImageTitleLabelID="lblTitle" ImageDescriptionLabelID="lblDescription" />
-        <br />
-        <br />
-        <asp:Image ID="imgPhotos" runat="server" />
-        <br />
-        <br />
-    </div>--%>
-    <%--<div>
-        <center>
-            <asp:Label ID="lblTitle" runat="server"></asp:Label><br />
-            <asp:Label ID="lblDescription" runat="server"></asp:Label><br />
-        </center>
-        <center>
-            <asp:Button ID="btnPrev" Text="Prev" runat="server" />
-            <asp:Button ID="btnPlay" Text="Play" runat="server" />
-            <asp:Button ID="btnNext" Text="Next" runat="server" />
-        </center>
-    </div>--%>
     <asp:PlaceHolder ID="phTicketStub" runat="server" Visible="false">
         <br />
         <br />
