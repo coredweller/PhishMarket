@@ -81,7 +81,7 @@ namespace PhishMarket.MyPhishMarket
             {
                 hdnMyShowId.Value = myShow.MyShowId.ToString();
                 ajaxShowRating.CurrentRating = myShow.Rating == null ? 0 : int.Parse(myShow.Rating.Value.ToString());
-                txtNotes.Text = myShow.Notes;
+                txtFree.Text = myShow.Notes;
                 phMyShow.Visible = true;
                 phMyShowRating.Visible = true;
                 phNotMyShow.Visible = false;
@@ -226,14 +226,14 @@ namespace PhishMarket.MyPhishMarket
 
             using (IUnitOfWork uow = UnitOfWork.Begin())
             {
-                if (txtNotes.Text.Length > 3000)
+                if (txtFree.Text.Length > 3000)
                 {
                     var scriptHelper2 = new ScriptHelper("ErrorAlert", "alertDiv", "Your review was too long. Please keep it under 3000 characters.");
                     Page.RegisterStartupScript(scriptHelper2.ScriptName, scriptHelper2.GetFatalScript());
                     return;
-                }
+                    }
 
-                myShow.Notes = txtNotes.Text;
+                myShow.Notes = txtFree.Text;
                 myShow.NotesUpdatedDate = DateTime.Now;
 
                 uow.Commit();

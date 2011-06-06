@@ -50,13 +50,13 @@ namespace PhishMarket.MyPhishMarket {
         protected global::System.Web.UI.WebControls.PlaceHolder phMyShow;
         
         /// <summary>
-        /// txtNotes control.
+        /// txtFree control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNotes;
+        protected global::FreeTextBoxControls.FreeTextBox txtFree;
         
         /// <summary>
         /// btnSubmitShowNotes control.

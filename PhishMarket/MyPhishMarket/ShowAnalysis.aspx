@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShowAnalysis.aspx.cs" Inherits="PhishMarket.MyPhishMarket.ShowAnalysis"
-    MasterPageFile="~/Master/Shadowed.Master" MaintainScrollPositionOnPostback="true" %>
+    MasterPageFile="~/Master/Shadowed.Master" MaintainScrollPositionOnPostback="true" ValidateRequest="false" %>
 
+<%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <h2 title="Rate the show in stars and write a review about it below. Click the show to see all reviews for this show!" class="tTip"
@@ -30,7 +31,9 @@
     <asp:PlaceHolder ID="phMyShow" runat="server" Visible="false">
         <div>
             &nbsp;Review Show:<br />
-            <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Columns="50" Rows="7"></asp:TextBox><br />
+            <FTB:FreeTextbox ID="txtFree" runat="server" ToolbarLayout="bold,italic,underline,cut,copy,paste,undo,redo" Width="425px" />
+            <%--<asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Columns="50" Rows="7"></asp:TextBox>--%>
+            <br />
             <asp:Button ID="btnSubmitShowNotes" runat="server" Text="Submit Show Notes" OnClick="btnSubmitShowNotes_Click" />
         </div>
     </asp:PlaceHolder>
