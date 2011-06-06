@@ -31,7 +31,7 @@
     <asp:PlaceHolder ID="phMyShow" runat="server" Visible="false">
         <div>
             &nbsp;Review Show:<br />
-            <FTB:FreeTextbox ID="txtFree" runat="server" ToolbarLayout="bold,italic,underline,cut,copy,paste,undo,redo" Width="425px" />
+            <FTB:FreeTextbox ID="txtFree" runat="server" ToolbarLayout="bold,italic,underline,undo,redo" Width="425px" />
             <%--<asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Columns="50" Rows="7"></asp:TextBox>--%>
             <br />
             <asp:Button ID="btnSubmitShowNotes" runat="server" Text="Submit Show Notes" OnClick="btnSubmitShowNotes_Click" />
