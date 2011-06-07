@@ -95,15 +95,6 @@ namespace PhishMarket.MyPhishMarket {
         protected global::System.Web.UI.WebControls.LinkButton AddMyShow;
         
         /// <summary>
-        /// rptSongs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptSongs;
-        
-        /// <summary>
         /// phGeneralError control.
         /// </summary>
         /// <remarks>

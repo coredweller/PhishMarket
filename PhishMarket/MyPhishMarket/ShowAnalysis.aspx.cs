@@ -87,9 +87,9 @@ namespace PhishMarket.MyPhishMarket
                 phNotMyShow.Visible = false;
             }
 
-            var setSongService = new SetSongService(Ioc.GetInstance<ISetSongRepository>());
+            //var setSongService = new SetSongService(Ioc.GetInstance<ISetSongRepository>());
             var setService = new SetService(Ioc.GetInstance<ISetRepository>());
-            var analysisService = new AnalysisService(Ioc.GetInstance<IAnalysisRepository>());
+            //var analysisService = new AnalysisService(Ioc.GetInstance<IAnalysisRepository>());
             var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
 
             var show = showService.GetShow(showId);
@@ -97,15 +97,15 @@ namespace PhishMarket.MyPhishMarket
             SetPageTitle("Analyze " + show.GetShowName());
 
             lblShow.Text = show.GetShowName();
-            var sets = setService.GetSetsForShow(showId).ToList();  //sets NEEDS to be a list here! DO NOT CHANGE DAN!
+            //var sets = setService.GetSetsForShow(showId).ToList();  //sets NEEDS to be a list here! DO NOT CHANGE DAN!
 
-            var ss = (from set in sets
-                      from song in setSongService.GetSetSongsBySet(set.SetId).OrderBy(z => z.Order.Value).DefaultIfEmpty()
-                      from analysis in analysisService.GetAnalysisBySetSongAndUser(song.SetSongId, userId).DefaultIfEmpty()
-                      select new { Set = set, Song = song, Analysis = analysis }).ToList();
+            //var ss = (from set in sets
+            //          from song in setSongService.GetSetSongsBySet(set.SetId).OrderBy(z => z.Order.Value).DefaultIfEmpty()
+            //          from analysis in analysisService.GetAnalysisBySetSongAndUser(song.SetSongId, userId).DefaultIfEmpty()
+            //          select new { Set = set, Song = song, Analysis = analysis }).ToList();
 
-            rptSongs.DataSource = ss;
-            rptSongs.DataBind();
+            //rptSongs.DataSource = ss;
+            //rptSongs.DataBind();
         }
 
         public void btnAddMyShow_Click(object sender, EventArgs e)

@@ -36,11 +36,9 @@
         <br />
         <br />
         What I want is to create a directed conversation about Phish to find out stats that
-        improve and help the community. I want to find out the favorite verions of every
-        song through each user voting on their profile. You can rate the show and leave
-        your review for each show and even each song in that show individually. But in the
-        Phorum the discussion can let you go into real detail why it is the best version
-        with others.
+        improve and help the community. You can rate the show and leave your review for
+        each show. But in the Phorum the discussion can let you go into real detail why
+        it is the best version, set, show, or year with others.
         <br />
         <br />
         Another goal is to give people who weren't there a chance to feel what it was like.
@@ -71,8 +69,8 @@
         shows and put them in my own data store easily.
         <br />
         <br />
-        <b>Eric Reeves aka I_am_me</b>&nbsp;for compiling such a complete collection of Ticket Stubs to go
-        along with so many of the shows.
+        <b>Eric Reeves aka I_am_me</b>&nbsp;for compiling such a complete collection of
+        Ticket Stubs to go along with so many of the shows.
         <%--Contact Eric to send him the stubs he does not have at reeveseric@gmail.com--%>
     </div>
 </asp:Content>
