@@ -65,10 +65,7 @@
     <div>
         <h3>
             Thank you!</h3>
-        <b>zzyzx!</b> for providing the API for Phish.net. It allowed me to grab all the
-        shows and put them in my own data store easily.
-        <br />
-        <br />
+            <br />
         <b>Eric Reeves aka I_am_me</b>&nbsp;for compiling such a complete collection of
         Ticket Stubs to go along with so many of the shows.
         <%--Contact Eric to send him the stubs he does not have at reeveseric@gmail.com--%>
