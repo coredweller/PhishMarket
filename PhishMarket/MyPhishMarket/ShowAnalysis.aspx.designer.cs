@@ -122,33 +122,6 @@ namespace PhishMarket.MyPhishMarket {
         protected global::System.Web.UI.WebControls.PlaceHolder phNewSuccess;
         
         /// <summary>
-        /// lblSetSongName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSetSongName;
-        
-        /// <summary>
-        /// txtSetSongNotes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSetSongNotes;
-        
-        /// <summary>
-        /// btnSubmitNotes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitNotes;
-        
-        /// <summary>
         /// hdnSetSongId control.
         /// </summary>
         /// <remarks>

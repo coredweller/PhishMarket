@@ -98,7 +98,7 @@
         You have successfully added a new analysis
         <br />
     </asp:PlaceHolder>
-    <br />
+    <%--<br />
     <br />
     <div style="font-size: larger;">
         Edit notes for&nbsp;<b><asp:Label ID="lblSetSongName" runat="server"></asp:Label></b>
@@ -108,8 +108,9 @@
             Rows="7"></asp:TextBox>
         <br />
         <asp:Button ID="btnSubmitNotes" runat="server" Text="Submit Song Notes" OnClick="btnSubmitNotes_Click" />
-        <asp:HiddenField ID="hdnSetSongId" runat="server" Visible="false" />
+        
+    </div>--%>
+    <asp:HiddenField ID="hdnSetSongId" runat="server" Visible="false" />
         <asp:HiddenField ID="hdnMyShowId" runat="server" Visible="false" />
         <asp:HiddenField ID="hdnShowId" runat="server" Value="false" />
-    </div>
 </asp:Content>

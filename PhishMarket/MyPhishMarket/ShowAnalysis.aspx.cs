@@ -245,72 +245,72 @@ namespace PhishMarket.MyPhishMarket
             ShowId = new Guid(hdnShowId.Value);
         }
 
-        public void btnSubmitNotes_Click(object sender, EventArgs e)
-        {
-            ResetPanels();
+        //public void btnSubmitNotes_Click(object sender, EventArgs e)
+        //{
+        //    ResetPanels();
 
-            var analysisService = new AnalysisService(Ioc.GetInstance<IAnalysisRepository>());
+        //    var analysisService = new AnalysisService(Ioc.GetInstance<IAnalysisRepository>());
 
-            if (string.IsNullOrEmpty(hdnSetSongId.Value))
-            {
-                var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "Sorry there was an error. Please click another song and try again.");
-                Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
+        //    if (string.IsNullOrEmpty(hdnSetSongId.Value))
+        //    {
+        //        var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "Sorry there was an error. Please click another song and try again.");
+        //        Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
                 
-                return;
-            }
+        //        return;
+        //    }
 
-            Guid setSongId = new Guid(hdnSetSongId.Value);
-            var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
+        //    Guid setSongId = new Guid(hdnSetSongId.Value);
+        //    var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 
-            var analysis = analysisService.GetAnalysisBySetSongAndUser(setSongId, userId).SingleOrDefault();
+        //    var analysis = analysisService.GetAnalysisBySetSongAndUser(setSongId, userId).SingleOrDefault();
 
-            bool success = false;
+        //    bool success = false;
 
-            if (analysis != null)
-            {
-                using (IUnitOfWork uow = UnitOfWork.Begin())
-                {
-                    //analysis.Rating = ddlRating.SelectedValue == "0" ? null : (double?)double.Parse(ddlRating.SelectedValue);
-                    analysis.Notes = txtSetSongNotes.Text;
-                    analysis.UpdatedDate = DateTime.Now;
+        //    if (analysis != null)
+        //    {
+        //        using (IUnitOfWork uow = UnitOfWork.Begin())
+        //        {
+        //            //analysis.Rating = ddlRating.SelectedValue == "0" ? null : (double?)double.Parse(ddlRating.SelectedValue);
+        //            analysis.Notes = txtSetSongNotes.Text;
+        //            analysis.UpdatedDate = DateTime.Now;
                     
-                    uow.Commit();
+        //            uow.Commit();
 
-                    var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", "Congratulations you have successfully updated your analysis.");
-                    Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetSuccessScript());
-                }
-            }
-            else
-            {
-                Guid? myShowId = null;
+        //            var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", "Congratulations you have successfully updated your analysis.");
+        //            Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetSuccessScript());
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Guid? myShowId = null;
 
-                if (!string.IsNullOrEmpty(hdnMyShowId.Value))
-                {
-                    myShowId = new Guid(hdnMyShowId.Value);
-                }
+        //        if (!string.IsNullOrEmpty(hdnMyShowId.Value))
+        //        {
+        //            myShowId = new Guid(hdnMyShowId.Value);
+        //        }
 
-                Analysis newAnalysis = new Analysis
-                {
-                    AnalysisId = Guid.NewGuid(),
-                    CreatedDate = DateTime.Now,
-                    MyShowId = myShowId,
-                    Notes = txtSetSongNotes.Text,
-                    SetSongId = setSongId,
-                    UserId = userId,
-                    UpdatedDate = DateTime.Now
-                };
+        //        Analysis newAnalysis = new Analysis
+        //        {
+        //            AnalysisId = Guid.NewGuid(),
+        //            CreatedDate = DateTime.Now,
+        //            MyShowId = myShowId,
+        //            Notes = txtSetSongNotes.Text,
+        //            SetSongId = setSongId,
+        //            UserId = userId,
+        //            UpdatedDate = DateTime.Now
+        //        };
 
-                analysisService.SaveCommit(newAnalysis, out success);
+        //        analysisService.SaveCommit(newAnalysis, out success);
 
-                if (success)
-                {
-                    var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", "Congratulations you have successfully added a new analysis.");
-                    Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetSuccessScript());
-                }
-            }
+        //        if (success)
+        //        {
+        //            var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", "Congratulations you have successfully added a new analysis.");
+        //            Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetSuccessScript());
+        //        }
+        //    }
 
-            Bind();
-        }
+        //    Bind();
+        //}
 
         public string GetShortenedNote(string note)
         {
@@ -323,46 +323,46 @@ namespace PhishMarket.MyPhishMarket
             return note.Substring(0, 30);
         }
 
-        public void rptSongs_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            ResetPanels();
+        //public void rptSongs_ItemCommand(object source, RepeaterCommandEventArgs e)
+        //{
+        //    ResetPanels();
             
-            var id = new Guid(e.CommandArgument.ToString());
+        //    var id = new Guid(e.CommandArgument.ToString());
 
-            switch (e.CommandName.ToLower())
-            {
-                case "editnotes":
-                    FillNotes(id);
-                    break;
-            }
-        }
+        //    switch (e.CommandName.ToLower())
+        //    {
+        //        case "editnotes":
+        //            FillNotes(id);
+        //            break;
+        //    }
+        //}
 
-        private void FillNotes(Guid setSongId)
-        {
-            var setSongService = new SetSongService(Ioc.GetInstance<ISetSongRepository>());
-            var analysisService = new AnalysisService(Ioc.GetInstance<IAnalysisRepository>());
+        //private void FillNotes(Guid setSongId)
+        //{
+        //    var setSongService = new SetSongService(Ioc.GetInstance<ISetSongRepository>());
+        //    var analysisService = new AnalysisService(Ioc.GetInstance<IAnalysisRepository>());
 
-            var setSong = setSongService.GetSetSong(setSongId);
-            var analysis = analysisService.GetAnalysisBySetSong(setSongId).SingleOrDefault();
+        //    var setSong = setSongService.GetSetSong(setSongId);
+        //    var analysis = analysisService.GetAnalysisBySetSong(setSongId).SingleOrDefault();
 
-            hdnSetSongId.Value = setSongId.ToString();
+        //    hdnSetSongId.Value = setSongId.ToString();
 
-            lblSetSongName.Text = string.Empty;
+        //    lblSetSongName.Text = string.Empty;
 
-            if (setSong != null)
-            {
-                lblSetSongName.Text = setSong.SongName;
-            }
+        //    if (setSong != null)
+        //    {
+        //        lblSetSongName.Text = setSong.SongName;
+        //    }
 
-            txtSetSongNotes.Text = string.Empty;
+        //    txtSetSongNotes.Text = string.Empty;
 
-            if (analysis != null)
-            {
-                txtSetSongNotes.Text = !string.IsNullOrEmpty(analysis.Notes) ? analysis.Notes : string.Empty;
-            }
+        //    if (analysis != null)
+        //    {
+        //        txtSetSongNotes.Text = !string.IsNullOrEmpty(analysis.Notes) ? analysis.Notes : string.Empty;
+        //    }
 
-            ShowId = new Guid(hdnShowId.Value);
-        }
+        //    ShowId = new Guid(hdnShowId.Value);
+        //}
 
         public string OutputRating(double? rating)
         {
