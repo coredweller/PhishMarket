@@ -63,6 +63,7 @@
     <Compile Include="Concrete\Analysis.cs" />
     <Compile Include="Concrete\Art.cs" />
     <Compile Include="Concrete\EventArgs\SelectAlbumCommandEventArgs.cs" />
+    <Compile Include="Concrete\EventArgs\SelectYearCommandEventArgs.cs" />
     <Compile Include="Concrete\FavoriteLiveSongList.cs" />
     <Compile Include="Concrete\FavoriteSetSong.cs" />
     <Compile Include="Concrete\FavoriteVersion.cs" />

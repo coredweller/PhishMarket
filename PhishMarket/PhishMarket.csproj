@@ -177,6 +177,13 @@
     <Compile Include="Controls\SelectAlbumControl.ascx.designer.cs">
       <DependentUpon>SelectAlbumControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\YearSelector.ascx.cs">
+      <DependentUpon>YearSelector.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\YearSelector.ascx.designer.cs">
+      <DependentUpon>YearSelector.ascx</DependentUpon>
+    </Compile>
     <Compile Include="ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -407,6 +414,13 @@
     <Compile Include="PhishNetImporterTestPage.aspx.designer.cs">
       <DependentUpon>PhishNetImporterTestPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TestPage.aspx.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestPage.aspx.designer.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Tour\AddSongsToSet.aspx.cs">
       <DependentUpon>AddSongsToSet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -618,6 +632,7 @@
     <Content Include="Controls\AdminMenu.ascx" />
     <Content Include="Controls\RecentShowReviews.ascx" />
     <Content Include="Controls\SelectAlbumControl.ascx" />
+    <Content Include="Controls\YearSelector.ascx" />
     <Content Include="css\ExtraAjax.css" />
     <Content Include="css\Shadowed\license.txt" />
     <Content Include="css\Shadowed\style.css" />
@@ -660,6 +675,7 @@
     <Content Include="Stats\Report.aspx" />
     <Content Include="Stats\TourPlayed.aspx" />
     <Content Include="PhishNetImporterTestPage.aspx" />
+    <Content Include="TestPage.aspx" />
     <Content Include="Tour\AddSongsToSet.aspx" />
     <Content Include="Admin\CreatePost.aspx" />
     <Content Include="Admin\CreateSet.aspx" />
