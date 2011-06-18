@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TheCore.Helpers;
+using TheCore.Services;
+using TheCore.Infrastructure;
+using TheCore.Repository;
 
 namespace PhishMarket
 {
@@ -19,7 +22,10 @@ namespace PhishMarket
         {
             var year = e.Year;
 
-            var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", year.ToString());
+            var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+            var show = showService.GetShowsByYear(year);
+
+            var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", show.First().GetShowName());
             Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetSuccessScript());
         }
 

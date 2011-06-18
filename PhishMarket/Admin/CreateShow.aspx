@@ -9,14 +9,14 @@
     <asp:PlaceHolder ID="phError" runat="server" Visible="false">There has been an error.
         Please try again later. </asp:PlaceHolder>
     <table>
-       <%-- <tr>
+        <tr>
             <td>
-                Show Name:
+                Guid:
             </td>
             <td>
-                <asp:TextBox ID="txtShowName" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtGuid" runat="server"></asp:TextBox>
             </td>
-        </tr>--%>
+        </tr>
         <tr>
             <td>
                 Venue Name:
@@ -249,14 +249,14 @@
                 <asp:CheckBox ID="chkOfficial" runat="server" />
             </td>
         </tr>--%>
-        <tr>
+        <%--<tr>
             <td>
                 Tour:
             </td>
             <td>
                 <asp:DropDownList ID="ddlTours" runat="server"></asp:DropDownList>
             </td>
-        </tr>
+        </tr>--%>
         <tr>
             <td>
                 <asp:Button ID="btnSubmit" Text="Submit" runat="server" OnClick="btnSubmit_Click" />

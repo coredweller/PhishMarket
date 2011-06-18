@@ -40,6 +40,11 @@ namespace TheCore.Services
                          select GetShow(date)).ToList();
         }
 
+        public IQueryable<IShow> GetShowsByYear(int year)
+        {
+            return GetAllShows().Where(x => x.ShowDate.Value.Year == year);
+        }
+
         public IQueryable<IShow> GetOfficialShows(Guid tourId)
         {
             return _repo.FindAll().Where(x => x.TourId == tourId && x.Official == true);

@@ -32,6 +32,15 @@ namespace PhishMarket.Admin {
         protected global::System.Web.UI.WebControls.PlaceHolder phError;
         
         /// <summary>
+        /// txtGuid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGuid;
+        
+        /// <summary>
         /// txtVenueName control.
         /// </summary>
         /// <remarks>
@@ -93,15 +102,6 @@ namespace PhishMarket.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNotes;
-        
-        /// <summary>
-        /// ddlTours control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTours;
         
         /// <summary>
         /// btnSubmit control.

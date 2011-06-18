@@ -75,22 +75,22 @@ namespace PhishMarket.Admin
             //    ddlOrder.Items.Add(new ListItem(i.ToString(), i.ToString()));
             //}
 
-            ListItem item = new ListItem("None", "0");
+            //ListItem item = new ListItem("None", "0");
 
             //ddlOrder.Items.Insert(0, item);
 
-            item.Selected = true;
+            //item.Selected = true;
 
             //Tours
-            TourService tourService = new TourService(Ioc.GetInstance<ITourRepository>());
+            //TourService tourService = new TourService(Ioc.GetInstance<ITourRepository>());
 
-            var tours = tourService.GetAllToursDescending().ToList();
+            //var tours = tourService.GetAllToursDescending().ToList();
 
-            tours.ForEach(x => ddlTours.Items.Add(new ListItem(x.TourName, x.TourId.ToString())));
+            //tours.ForEach(x => ddlTours.Items.Add(new ListItem(x.TourName, x.TourId.ToString())));
 
-            ddlTours.Items.Insert(0, item);
+            //ddlTours.Items.Insert(0, item);
 
-            item.Selected = true;
+            //item.Selected = true;
         }
 
         public void btnSubmit_Click(object sender, EventArgs e)
@@ -103,11 +103,18 @@ namespace PhishMarket.Admin
             Guid? showId = null;
             Guid? tourId = null;
 
-            if (Validated(out rank, out showDate, out tourId))
+            if (Validated(out rank, out showDate))
             {
                 //order = ddlOrder.SelectedValue != "0" ? (short?)short.Parse(ddlOrder.SelectedValue) : null;
 
-                showId = Guid.NewGuid();
+                if (string.IsNullOrEmpty(txtGuid.Text))
+                {
+                    showId = Guid.NewGuid();
+                }
+                else
+                {
+                    showId = new Guid(txtGuid.Text);
+                }
 
                 Show show = new Show()
                 {
@@ -143,14 +150,13 @@ namespace PhishMarket.Admin
             }
         }
 
-        private bool Validated(out short? rank, out DateTime? showDate, out Guid? tourId)
+        private bool Validated(out short? rank, out DateTime? showDate)
         {
             bool valid = false;
             //order = null;
             //ticketPrice = 0;
             rank = null;
             showDate = null;
-            tourId = null;
 
             try
             {
@@ -186,10 +192,10 @@ namespace PhishMarket.Admin
                         showDate = tempDate;
                 }
 
-                if (ddlTours.SelectedValue != "0")
-                {
-                    tourId = new Guid(ddlTours.SelectedValue);
-                }
+                //if (ddlTours.SelectedValue != "0")
+                //{
+                //    tourId = new Guid(ddlTours.SelectedValue);
+                //}
 
                 valid = true;
             }

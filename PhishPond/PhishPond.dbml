@@ -22,8 +22,6 @@
       <Column Name="Order" Type="System.Int32" CanBeNull="true" />
       <Column Name="UserId" Type="System.Guid" CanBeNull="true" />
       <Column Name="VenueNotes" Type="System.String" CanBeNull="true" />
-      <Column Name="PhishNetUrl" Type="System.String" CanBeNull="true" />
-      <Column Name="PhishNetShowId" Type="System.Int32" CanBeNull="true" />
       <Association Name="Show_Set" Member="Sets" ThisKey="ShowId" OtherKey="ShowId" Type="Set" />
       <Association Name="Show_Photo" Member="Photos" ThisKey="ShowId" OtherKey="ShowId" Type="Photo" />
       <Association Name="Show_Video" Member="Videos" ThisKey="ShowId" OtherKey="ShowId" Type="Video" />

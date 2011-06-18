@@ -401,10 +401,6 @@ namespace PhishPond.Concrete
 		
 		private string _VenueNotes;
 		
-		private string _PhishNetUrl;
-		
-		private System.Nullable<int> _PhishNetShowId;
-		
 		private EntitySet<Set> _Sets;
 		
 		private EntitySet<Photo> _Photos;
@@ -465,10 +461,6 @@ namespace PhishPond.Concrete
     partial void OnUserIdChanged();
     partial void OnVenueNotesChanging(string value);
     partial void OnVenueNotesChanged();
-    partial void OnPhishNetUrlChanging(string value);
-    partial void OnPhishNetUrlChanged();
-    partial void OnPhishNetShowIdChanging(System.Nullable<int> value);
-    partial void OnPhishNetShowIdChanged();
     #endregion
 		
 		public Show()
@@ -865,46 +857,6 @@ namespace PhishPond.Concrete
 					this._VenueNotes = value;
 					this.SendPropertyChanged("VenueNotes");
 					this.OnVenueNotesChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PhishNetUrl")]
-		public string PhishNetUrl
-		{
-			get
-			{
-				return this._PhishNetUrl;
-			}
-			set
-			{
-				if ((this._PhishNetUrl != value))
-				{
-					this.OnPhishNetUrlChanging(value);
-					this.SendPropertyChanging();
-					this._PhishNetUrl = value;
-					this.SendPropertyChanged("PhishNetUrl");
-					this.OnPhishNetUrlChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_PhishNetShowId")]
-		public System.Nullable<int> PhishNetShowId
-		{
-			get
-			{
-				return this._PhishNetShowId;
-			}
-			set
-			{
-				if ((this._PhishNetShowId != value))
-				{
-					this.OnPhishNetShowIdChanging(value);
-					this.SendPropertyChanging();
-					this._PhishNetShowId = value;
-					this.SendPropertyChanged("PhishNetShowId");
-					this.OnPhishNetShowIdChanged();
 				}
 			}
 		}
