@@ -49,7 +49,7 @@
     </asp:PlaceHolder>
     <br />
     <br />
-    <h2 title="Click a song to edit your notes for that version and rate this version in stars." class="tTip" id="cloud1">
+    <%--<h2 title="Click a song to edit your notes for that version and rate this version in stars." class="tTip" id="cloud1">
         Setlist Analysis</h2>
     <asp:Repeater ID="rptSongs" runat="server" OnItemCommand="rptSongs_ItemCommand">
         <HeaderTemplate>
@@ -70,7 +70,7 @@
                         MaxRating="5" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
                         FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" OnChanged="ajaxSongRating_Changed"
                         Tag='<%# Eval("Song.SetSongId") %>' />
-                    <%--<%# OutputRating((double?)Eval("Analysis.Rating")) %>--%>
+                    
                 </td>
                 &nbsp;&nbsp;&nbsp;
                 <td>
@@ -81,7 +81,7 @@
         <FooterTemplate>
             </table>
         </FooterTemplate>
-    </asp:Repeater>
+    </asp:Repeater>--%>
     <%--</div>
     <br />
     <br />--%>
@@ -98,7 +98,7 @@
         You have successfully added a new analysis
         <br />
     </asp:PlaceHolder>
-    <br />
+    <%--<br />
     <br />
     <div style="font-size: larger;">
         Edit notes for&nbsp;<b><asp:Label ID="lblSetSongName" runat="server"></asp:Label></b>
@@ -108,8 +108,9 @@
             Rows="7"></asp:TextBox>
         <br />
         <asp:Button ID="btnSubmitNotes" runat="server" Text="Submit Song Notes" OnClick="btnSubmitNotes_Click" />
-        <asp:HiddenField ID="hdnSetSongId" runat="server" Visible="false" />
+        
+    </div>--%>
+    <asp:HiddenField ID="hdnSetSongId" runat="server" Visible="false" />
         <asp:HiddenField ID="hdnMyShowId" runat="server" Visible="false" />
         <asp:HiddenField ID="hdnShowId" runat="server" Value="false" />
-    </div>
 </asp:Content>

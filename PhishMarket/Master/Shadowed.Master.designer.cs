@@ -84,14 +84,5 @@ namespace PhishMarket.Master {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::PhishMarket.Controls.RecentTopics RecentTopicsControl1;
-        
-        /// <summary>
-        /// RecentShowReviewsControl1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::PhishMarket.Controls.RecentShowReviews RecentShowReviewsControl1;
     }
 }

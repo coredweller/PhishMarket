@@ -51,7 +51,7 @@
     </asp:PlaceHolder>
     <br />
     <br />
-    <div title="Click a song name to write a review about it." class="tTip" id="cloud1">
+    <%--<div title="Click a song name to write a review about it." class="tTip" id="cloud1">
         <h3>
             Setlist</h3>
     </div>
@@ -68,27 +68,13 @@
                     <a href='<%# LinkBuilder.SongReviewsLink((Guid)Eval("Song.SetSongId")) %>'>
                         <%# Eval("Song.SongName") %></a>
                 </td>
-                <%--<td>
-                        <asp:LinkButton ID="lnkEditNotes" runat="server" CommandArgument='<%# Eval("Song.SetSongId") %>'
-                            CommandName="EDITNOTES" Text='<%# Eval("Song.SongName") %>'></asp:LinkButton>
-                    </td>
-                    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                    <td>
-                        <ajaxToolkit:Rating ID="ajaxSongRating" runat="server" CurrentRating='<%# DetermineRating((int?)Eval("Analysis.Rating")) %>'
-                            MaxRating="5" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
-                            FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" OnChanged="ajaxSongRating_Changed"
-                            Tag='<%# Eval("Song.SetSongId") %>' />
-                    </td>
-                    &nbsp;&nbsp;&nbsp;
-                    <td>
-                        <%# GetShortenedNote((string)Eval("Analysis.Notes")) %>
-                    </td>--%>
+                
             </tr>
         </ItemTemplate>
         <FooterTemplate>
             </table>
         </FooterTemplate>
-    </asp:Repeater>
+    </asp:Repeater>--%>
     <br />
     <br />
     <%--<asp:HyperLink ID="lnkAddPictures" runat="server" Text="Add Pictures to this show here!"></asp:HyperLink>--%>

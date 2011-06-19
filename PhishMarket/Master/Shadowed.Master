@@ -97,7 +97,7 @@ Released   : 20100613
                             </li>--%><b>
                         <asp:ContentPlaceHolder ID="LeftSideBar" runat="server">
                             <uc:RecentTopicsControl ID="RecentTopicsControl1" runat="server" />
-                            <uc:RecentShowReviewsControl ID="RecentShowReviewsControl1" runat="server" />
+                            <%--<uc:RecentShowReviewsControl ID="RecentShowReviewsControl1" runat="server" />--%>
                         </asp:ContentPlaceHolder>
                         </b>
                         <%--

@@ -39,7 +39,7 @@
             </table>
         </div>
     </div>
-    <div>
+    <%--<div>
         <div class="tTip" id="Div2" title="Step 3: Choose your favorite live version of each song.">
             <table>
                 <tr>
@@ -54,5 +54,5 @@
                 </tr>
             </table>
         </div>
-    </div>
+    </div>--%>
 </asp:Content>

@@ -61,8 +61,8 @@ namespace PhishMarket.MyPhishMarket
 
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
             
-            var setSongService = new SetSongService(Ioc.GetInstance<ISetSongRepository>());
-            var analysisService = new AnalysisService(Ioc.GetInstance<IAnalysisRepository>());
+            //var setSongService = new SetSongService(Ioc.GetInstance<ISetSongRepository>());
+            //var analysisService = new AnalysisService(Ioc.GetInstance<IAnalysisRepository>());
             var ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
 
             BindReviews(showId, ref myShowService);
@@ -73,15 +73,15 @@ namespace PhishMarket.MyPhishMarket
 
             ShowName = show.GetShowName();
 
-            var ss = (from set in show.Sets.OrderBy(x => x.SetNumber)
-                      from song in setSongService.GetSetSongsBySet(set.SetId).OrderBy(z => z.Order).DefaultIfEmpty()
-                      from analysis in analysisService.GetAnalysisBySetSongAndUser(song.SetSongId, userId).DefaultIfEmpty()
-                      select new { Set = set, Song = song, Analysis = analysis }).ToList();
+            //var ss = (from set in show.Sets.OrderBy(x => x.SetNumber)
+            //          from song in setSongService.GetSetSongsBySet(set.SetId).OrderBy(z => z.Order).DefaultIfEmpty()
+            //          from analysis in analysisService.GetAnalysisBySetSongAndUser(song.SetSongId, userId).DefaultIfEmpty()
+            //          select new { Set = set, Song = song, Analysis = analysis }).ToList();
 
-            //SlideShowExtender1.ContextKey = showId.ToString();
+            ////SlideShowExtender1.ContextKey = showId.ToString();
 
-            rptSongs.DataSource = ss;
-            rptSongs.DataBind();
+            //rptSongs.DataSource = ss;
+            //rptSongs.DataBind();
 
             var ticketStub = (TicketStub)ticketStubService.GetByShow(showId).FirstOrDefault();
 
