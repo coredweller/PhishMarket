@@ -23,16 +23,20 @@ namespace PhishMarket
 
         public void yearSelector_YearSelected(object sender, PhishPond.Concrete.EventArgs.SelectYearCommandEventArgs e)
         {
-            throw new NotImplementedException();
+            GetTicketStubs(e.Year);
         }
 
         private void Bind()
         {
             if (string.IsNullOrEmpty(Request.QueryString["y"])) return;
 
-            var ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
+            GetTicketStubs(int.Parse(Request.QueryString["y"]));
+        }
 
-            var ticketStubs = ticketStubService.GetTicketStubsByYear(int.Parse(Request.QueryString["y"]));
+        private void GetTicketStubs(int year)
+        {
+            var ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
+            var ticketStubs = ticketStubService.GetTicketStubsByYear(year);
 
             rptTicketStubs.DataSource = ticketStubs.ToList();
             rptTicketStubs.DataBind();
