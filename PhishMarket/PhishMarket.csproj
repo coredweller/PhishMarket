@@ -421,6 +421,13 @@
     <Compile Include="TestPage.aspx.designer.cs">
       <DependentUpon>TestPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TicketStubs.aspx.cs">
+      <DependentUpon>TicketStubs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TicketStubs.aspx.designer.cs">
+      <DependentUpon>TicketStubs.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Tour\AddSongsToSet.aspx.cs">
       <DependentUpon>AddSongsToSet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -676,6 +683,7 @@
     <Content Include="Stats\TourPlayed.aspx" />
     <Content Include="PhishNetImporterTestPage.aspx" />
     <Content Include="TestPage.aspx" />
+    <Content Include="TicketStubs.aspx" />
     <Content Include="Tour\AddSongsToSet.aspx" />
     <Content Include="Admin\CreatePost.aspx" />
     <Content Include="Admin\CreateSet.aspx" />

@@ -33,6 +33,15 @@ namespace TheCore.Services
             return _repo.FindByUserId(userId);
         }
 
+        public IQueryable<ITicketStub> GetTicketStubsByYear(int year)
+        {
+            var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+            var shows = showService.GetShowsByYear(year);
+            var showIds = shows.Select(x => x.ShowId).ToList();
+
+            return GetAllTicketStubs().Where(x => showIds.Contains(x.ShowId.Value));
+        }
+
         public IQueryable<ITicketStub> GetByShow(Guid showId)
         {
             return _repo.FindAll().Where(x => x.ShowId == showId).OrderBy(y => y.Original == true);
