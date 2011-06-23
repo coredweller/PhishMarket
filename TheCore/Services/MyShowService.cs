@@ -51,19 +51,28 @@ namespace TheCore.Services
                          select show).OrderBy(x => x.ShowDate).ToList();
         }
 
+        public IList<IShow> GetShowsFromMyShowsForUser(Guid userId, int year)
+        {
+            var showIds = GetShowIdsFromMyShows(userId);
+
+            if (showIds == null || showIds.Count() <= 0) return null;
+
+            var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+            var shows = showService.GetShowsByYear(year).ToList();
+
+            return (from show in shows
+                    where showIds.Contains(show.ShowId)
+                    select show).OrderBy(x => x.ShowDate.Value).ToList();
+        }
+
         public IList<IShow> GetShowsFromMyShowsForUser(Guid userId, Guid tourId)
         {
+            var showIds = GetShowIdsFromMyShows(userId);
+
+            if (showIds == null || showIds.Count() <= 0) return null;
+
             TourService service = new TourService(Ioc.GetInstance<ITourRepository>());
-
-            var myShows = GetMyShowsForUser(userId);
-
             var tour = service.GetTour(tourId);
-
-            if (myShows == null || myShows.Count() <= 0)
-                return null;
-
-            var showIds = (from show in myShows
-                           select show.ShowId).ToList();
 
             return (from show in tour.Shows
                          where showIds.Contains(show.ShowId)
@@ -72,19 +81,26 @@ namespace TheCore.Services
 
         public IList<IShow> GetShowsFromMyShowsForUser(Guid userId)
         {
+            var showIds = GetShowIdsFromMyShows(userId);
+
+            if (showIds == null || showIds.Count() <= 0) return null;
+
             var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
 
+            return (from show in showService.GetAllShows().ToList()
+                         where showIds.Contains(show.ShowId)
+                         select show).OrderBy(x => x.ShowDate).ToList();
+        }
+
+
+        private IList<Guid> GetShowIdsFromMyShows(Guid userId)
+        {
             var myShows = GetMyShowsForUser(userId);
 
             if (myShows == null || myShows.Count() <= 0)
                 return null;
 
-            var showIds = (from show in myShows
-                           select show.ShowId).ToList();
-
-            return (from show in showService.GetAllShows()
-                         where showIds.Contains(show.ShowId)
-                         select show).OrderBy(x => x.ShowDate).ToList();
+            return myShows.Select(x => x.ShowId).ToList();
         }
 
         public IList<IShow> GetShowsNotInUsersMyShows(Guid userId, Guid tourId)

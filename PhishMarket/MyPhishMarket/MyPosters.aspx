@@ -73,43 +73,27 @@
         <br />
         <asp:PlaceHolder ID="phAddShow" runat="server" Visible="false">
             <div>
-            <h4>
-                <a href='<%= LinkBuilder.AddMyShowLink(ShowId) %>' >Click Here to add this show to My Shows so you can add posters here.</a></h4>
+                <h4>
+                    <a href='<%= LinkBuilder.AddMyShowLink(ShowId) %>'>Click Here to add this show to My
+                        Shows so you can add posters here.</a></h4>
             </div>
         </asp:PlaceHolder>
         <table>
-            <%--<tr>
+          
+            <tr>
                 <td>
-                    
-                </td>
-                <td>
-                    <asp:ImageButton ID="btnAddOther" runat="server" ImageUrl="/images/buttons/AddPostersFromOthers.gif" OnClick="btnAddOther_Click" />
+                    <uc:YearSelector id="yearSelector" OnYearSelected="yearSelector_YearSelected" runat="server">
+                    </uc:YearSelector>
                 </td>
             </tr>
             <tr>
-                <td>
-                </td>
-                <td>
-                    <asp:ImageButton ID="btnAddPicture" runat="server" ImageUrl="/images/buttons/AddNewPoster.gif" OnClick="btnAddPicture_Click" />
-                    
-                </td>
-            </tr>--%>
-            <tr>
-                <td>
-                    <asp:DropDownList ID="ddlTours" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTours_SelectedIndexChanged">
-                    </asp:DropDownList>
-                </td>
-                <%--<td><asp:Button ID="btnGetShows" runat="server" Text="Get Shows" OnClick="btnGetShows_Click" /></td>--%>
                 <td>
                     <asp:DropDownList ID="ddlShows" runat="server">
                     </asp:DropDownList>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <%--<asp:Button ID="btnShowFromTour" runat="server" Text="Show My Posters from Tour"
-                        OnClick="btnShowFromTour_Click" />--%>
-                </td>
+                
                 <td>
                     <button id="btnShowBrih2" onclick="return showPosters();">
                         Show Posters</button>

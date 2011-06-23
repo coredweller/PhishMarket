@@ -83,19 +83,18 @@
         <table>
             <tr>
                 <td>
-                    <asp:DropDownList ID="ddlTours" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTours_SelectedIndexChanged">
-                    </asp:DropDownList>
+                    <uc:YearSelector id="yearSelector" OnYearSelected="yearSelector_YearSelected" runat="server">
+                    </uc:YearSelector>
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <asp:DropDownList ID="ddlShows" runat="server">
                     </asp:DropDownList>
                 </td>
             </tr>
             <tr>
-                <td>
-                    <%--<asp:Button ID="btnShowFromTour" runat="server" Text="Show My Art from Tour"
-                        OnClick="btnShowFromTour_Click" />--%>
-                </td>
+                
                 <td>
                     <button id="btnShowBrih2" onclick="return showPictures();">
                         Show Pictures</button>

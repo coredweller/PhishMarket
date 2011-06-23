@@ -29,22 +29,31 @@ namespace PhishMarket.MyPhishMarket
             }
         }
 
+        public void yearSelector_YearSelected(object sender, PhishPond.Concrete.EventArgs.SelectYearCommandEventArgs e)
+        {
+            SetShows(e.Year);
+        }
+
+        private void SetShows(int year)
+        {
+            var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
+
+            var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
+
+            var shows = myShowService.GetShowsFromMyShowsForUser(userId, year);
+
+            ddlShows.Items.Clear();
+
+            if (shows != null && shows.Count > 0)
+            {
+                ddlShows.Items.AddRange((from s in shows
+                                         select new ListItem(s.GetShowName(), s.ShowId.ToString())).ToArray());
+            }
+        }
+
         private void Bind()
         {
             ResetPanels();
-
-            var tourService = new TourService(Ioc.GetInstance<ITourRepository>());
-
-            var tours = tourService.GetAllToursDescending().ToList();
-
-            ddlTours.Items.AddRange((from t in tours
-                                     select new ListItem(t.TourName, t.TourId.ToString())).ToArray());
-
-            var noneItem = new ListItem("None", "none");
-
-            ddlTours.Items.Insert(0, noneItem);
-
-            noneItem.Selected = true;
 
             if (!string.IsNullOrEmpty(Request.QueryString["showId"]))
             {
@@ -58,8 +67,7 @@ namespace PhishMarket.MyPhishMarket
 
                 if (show != null)
                 {
-                    ddlTours.SelectedValue = show.TourId.ToString();
-                    SetShows(show.TourId.Value);
+                    SetShows(show.ShowDate.Value.Year);
 
                     if (!ddlShows.Items.Contains(new ListItem(show.GetShowName(), show.ShowId.ToString())))
                     {
@@ -68,23 +76,6 @@ namespace PhishMarket.MyPhishMarket
 
                     ddlShows.SelectedValue = show.ShowId.ToString();
                 }
-            }
-        }
-
-        public void ddlTours_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ResetPanels();
-
-            var selectedValue = ((DropDownList)sender).SelectedValue;
-
-            switch (selectedValue)
-            {
-                case "":
-                case "none":
-                    return;
-                default:
-                    SetShows(new Guid(selectedValue));
-                    break;
             }
         }
 
@@ -116,22 +107,7 @@ namespace PhishMarket.MyPhishMarket
             Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
         }
         
-        private void SetShows(Guid tourId)
-        {
-            var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-
-            var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
-
-            var shows = myShowService.GetShowsFromMyShowsForUser(userId, tourId);
-
-            ddlShows.Items.Clear();
-
-            if (shows != null && shows.Count > 0)
-            {
-                ddlShows.Items.AddRange((from s in shows
-                                         select new ListItem(s.GetShowName(), s.ShowId.ToString())).ToArray());
-            }
-        }
+        
 
         private void ShowError(PlaceHolder ph, string message)
         {
