@@ -35,10 +35,6 @@ namespace PhishMarket.MyPhishMarket
 
         private void Bind()
         {
-            var tours = tourService.GetAllToursDescending();
-
-            ddlTours.Items.AddRange((from tour in tours select new ListItem(tour.TourName, tour.TourId.ToString())).ToArray());
-
             if (EmptyNullUndefined(Request.QueryString["showId"]))
                 return;
 
@@ -50,9 +46,7 @@ namespace PhishMarket.MyPhishMarket
             if (show == null)
                 return;
 
-            ddlTours.SelectedValue = show.TourId.ToString();
-
-            BindFromTour();
+            //bind year from show
         }
 
         public void btnGetShows_Click(object sender, EventArgs e)
@@ -110,9 +104,12 @@ namespace PhishMarket.MyPhishMarket
 
             if (e.CommandName.ToLower() == "add")
             {
+                var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+
                 Guid userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
                 var showId = new Guid(e.CommandArgument.ToString());
 
+                var show = showService.GetShow(showId);
                 var myShow = myShowService.GetMyShow(showId, userId);
 
                 if (myShow != null)
@@ -133,43 +130,29 @@ namespace PhishMarket.MyPhishMarket
 
                 myShowService.SaveCommit(newMyShow, out success);
 
-                if (success)
-                {
-                    //phSuccess.Visible = true;
-                    //phError.Visible = false;
-                }
-                else
-                {
-                    //phSuccess.Visible = false;
-                    //phError.Visible = true;
-                }
-
                 if (hdnBindFrom.Value == "phishnet")
                     BindFromPhishNet();
                 else
-                    BindFromTour();
+                    BindFromYear(show.ShowDate.Value.Year);
             }
         }
 
-        public void btnSelectTour_Click(object sender, EventArgs e)
+        public void yearSelector_YearSelected(object sender, PhishPond.Concrete.EventArgs.SelectYearCommandEventArgs e)
         {
-            BindFromTour();
+            BindFromYear(e.Year);
         }
 
-        private void BindFromTour()
+        private void BindFromYear(int year)
         {
-            var g = new Guid(ddlTours.SelectedItem.Value);
             var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 
-            hdnBindFrom.Value = "tour";
-
-            var tour = tourService.GetTour(g);
+            hdnBindFrom.Value = "year";
 
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
 
-            var notMyShows = myShowService.GetShowsNotInUsersMyShows(userId, tour.TourId);
+            var notMyShows = myShowService.GetShowsNotInUsersMyShows(userId, year);
 
-            BindShows(tour.TourName, true, notMyShows);
+            BindShows(year.ToString(), false, notMyShows);
         }
 
         private void BindShows(string labelName, bool tour, IList<IShow> shows)

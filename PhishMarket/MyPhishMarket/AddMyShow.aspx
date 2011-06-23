@@ -28,21 +28,23 @@
         <br />
         </asp:PlaceHolder>
         <br />
-        <div class="tTip" id="cloud1" title="Choose a tour and pick shows from that tour"
+        <div class="tTip" id="cloud1" title="Choose a year and pick shows from that year"
             style="font-size: large;">
             <h3>
-                Choose a tour!</h3>
-            Tours:
+                Choose a year!</h3>
+            <%--Tours:
             <asp:DropDownList ID="ddlTours" runat="server">
             </asp:DropDownList>
-            <asp:Button ID="btnSelectTour" runat="server" Text="Select Tour" OnClick="btnSelectTour_Click" />
+            <asp:Button ID="btnSelectTour" runat="server" Text="Select Tour" OnClick="btnSelectTour_Click" />--%>
+            <uc:YearSelector id="yearSelector" OnYearSelected="yearSelector_YearSelected" runat="server">
+                    </uc:YearSelector>
         </div>
         <br />
         <br />
         <br />
-        <div style="font-size: xx-large;">
+        <%--<div style="font-size: xx-large;">
             <%= TourName %>
-        </div>
+        </div>--%>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <div style="font-size: larger;">

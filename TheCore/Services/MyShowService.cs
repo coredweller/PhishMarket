@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TheCore.Repository;
 using TheCore.Helpers;
 using TheCore.Interfaces;
@@ -113,12 +112,29 @@ namespace TheCore.Services
             var tour = service.GetTour(tourId);
 
             if (myShows == null || myShows.Count() <= 0) //then just return all of them
+            {
                 return showService.GetAllShows().Where(x => x.TourId == tourId).OrderBy(y => y.ShowDate).ToList();
+            }
 
-            var showIds = (from show in myShows
-                           select show.ShowId).ToList();
+            var showIds = myShows.Select(x => x.ShowId).ToList();
 
             return showService.GetAllShows().Where(x => x.TourId == tourId && !showIds.Contains(x.ShowId)).OrderBy(y => y.ShowDate).ToList();
+        }
+
+        public IList<IShow> GetShowsNotInUsersMyShows(Guid userId, int year)
+        {
+            var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+
+            var myShows = GetMyShowsForUser(userId);
+
+            if (myShows == null || myShows.Count() <= 0)
+            {
+                return showService.GetShowsByYear(year).OrderBy(y => y.ShowDate).ToList();
+            }
+
+            var showIds = myShows.Select(x => x.ShowId).ToList();
+
+            return showService.GetShowsByYear(year).Where(x => !showIds.Contains(x.ShowId)).OrderBy(y => y.ShowDate).ToList();
         }
 
         public IList<KeyValuePair<IShow, IMyShow>> GetMyShowsFromMyShowsForUser(Guid userId)

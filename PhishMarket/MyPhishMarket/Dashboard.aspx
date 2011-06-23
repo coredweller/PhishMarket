@@ -104,7 +104,7 @@
                     <a href='<%= LinkBuilder.MyTicketStubsLink() %>'>All My Ticket Stubs
                 </td>
             </tr>--%>
-           <%-- <tr>
+            <%-- <tr>
                 <td>
                     <asp:PlaceHolder ID="phTicketStub" runat="server" Visible="false">
                         <asp:Image ID="imgTicketStub" runat="server" />
@@ -148,14 +148,12 @@
     <br />
     <br />
     <div class="ClearBoth">
-        Tours:
+        <uc:YearSelector id="yearSelector" OnYearSelected="yearSelector_YearSelected" runat="server">
+        </uc:YearSelector>
+        <%--Tours:
         <asp:DropDownList ID="ddlTours" runat="server">
         </asp:DropDownList>
-        <asp:Button ID="btnSelectTour" runat="server" Text="Select" OnClick="btnSelectTour_Click" />
-    </div>
-    <div>
-        Tour:
-        <%= TourName %>
+        <asp:Button ID="btnSelectTour" runat="server" Text="Select" OnClick="btnSelectTour_Click" />--%>
     </div>
     <br />
     <div>
@@ -166,18 +164,18 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                    <div class="tTip" id="Div3" title="Delete this show from your list?">
-                        <asp:ImageButton ID="lnkDelete" runat="server" Text="Delete Show" ImageUrl="/images/buttons/xbutton2.png"
-                            CommandName="DELETE" CommandArgument='<%# (((PhishPond.Concrete.Show)Container.DataItem).ShowId) %>'>
-                        </asp:ImageButton>
+                        <div class="tTip" id="Div3" title="Delete this show from your list?">
+                            <asp:ImageButton ID="lnkDelete" runat="server" Text="Delete Show" ImageUrl="/images/buttons/xbutton2.png"
+                                CommandName="DELETE" CommandArgument='<%# (((PhishPond.Concrete.Show)Container.DataItem).ShowId) %>'>
+                            </asp:ImageButton>
                         </div>
                     </td>
                     <td>
-                    <div class="tTip" id="Div1" title="Click to see reviews of this show!">
-                        <a href='<%# LinkBuilder.ShowReviewsLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
-                          <b>  <%# GetShowName((((PhishPond.Concrete.Show)Container.DataItem).VenueName), FormatDate((((PhishPond.Concrete.Show)Container.DataItem).ShowDate)))%></b></a>
-                            
-                            </div>
+                        <div class="tTip" id="Div1" title="Click to see reviews of this show!">
+                            <a href='<%# LinkBuilder.ShowReviewsLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
+                                <b>
+                                    <%# GetShowName((((PhishPond.Concrete.Show)Container.DataItem).VenueName), FormatDate((((PhishPond.Concrete.Show)Container.DataItem).ShowDate)))%></b></a>
+                        </div>
                     </td>
                     <%--<td>
                             <a href='<%# LinkBuilder.MyPicturesByShowLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>Pictures</a>
@@ -189,10 +187,10 @@
                     <td>
                         <%--<a href='<%# LinkBuilder.MyTicketStubsLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
                             Ticket Stubs</a>-        --%>
-                            <a href='<%# LinkBuilder.MyPostersLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
-                                Posters</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%# LinkBuilder.MyPicturesLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
-                                    Show Pictures</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%# LinkBuilder.AnalysisLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
-                                        Analysis</a>
+                        <a href='<%# LinkBuilder.MyPostersLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
+                            Posters</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%# LinkBuilder.MyPicturesLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
+                                Show Pictures</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%# LinkBuilder.AnalysisLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
+                                    Analysis</a>
                     </td>
                 </tr>
                 <tr>

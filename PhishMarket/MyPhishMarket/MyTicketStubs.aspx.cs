@@ -29,20 +29,7 @@ namespace PhishMarket.MyPhishMarket
         private void Bind()
         {
             ResetPanels();
-
-            var tourService = new TourService(Ioc.GetInstance<ITourRepository>());
-
-            var tours = tourService.GetAllToursDescending();
-
-            ddlTours.Items.AddRange((from t in tours
-                                     select new ListItem(t.TourName, t.TourId.ToString())).ToArray());
-
-            var noneItem = new ListItem("None", "none");
-
-            ddlTours.Items.Insert(0, noneItem);
-
-            noneItem.Selected = true;
-
+            
             if (!string.IsNullOrEmpty(Request.QueryString["showId"]))
             {
                 var showId = new Guid(Request.QueryString["showId"]);
@@ -53,8 +40,8 @@ namespace PhishMarket.MyPhishMarket
 
                 if (show != null)
                 {
-                    ddlTours.SelectedValue = show.TourId.ToString();
-                    SetShows(show.TourId.Value);
+                    //ddlTours.SelectedValue = show.TourId.ToString();
+                    //SetShows(show.TourId.Value);
                     ddlShows.SelectedValue = show.ShowId.ToString();
                 }
             }
@@ -190,29 +177,6 @@ namespace PhishMarket.MyPhishMarket
 
             ddlShows.Items.AddRange((from s in shows
                                      select new ListItem(s.GetShowName(), s.ShowId.ToString())).ToArray());
-        }
-
-        public void btnShowFromTour_Click(object sender, EventArgs e)
-        {
-            if (ddlTours.SelectedValue == "none")
-                return;
-
-            var tourId = new Guid(ddlTours.SelectedValue);
-
-            TicketStubService posterService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
-            MyShowTicketStubService mySPService = new MyShowTicketStubService(Ioc.GetInstance<IMyShowTicketStubRepository>());
-
-            var myShowTicketStubs = mySPService.GetMyShowTicketStubByTourAndUser(tourId, userId);
-
-            IList<ITicketStub> posters = new List<ITicketStub>();
-
-            myShowTicketStubs.ToList().ForEach(x =>
-            {
-                posters.Add(posterService.GetTicketStub(x.TicketStubId));
-            });
-
-            rptTicketStubs.DataSource = posters;
-            rptTicketStubs.DataBind();
         }
 
         private void ShowError(PlaceHolder ph, string message)

@@ -37,23 +37,22 @@ namespace PhishMarket.MyPhishMarket
         {
             BindProfile();
             BindMyShowItems();
-
-            var tours = service.GetAllToursDescending();
-
-            foreach (var tour in tours)
-            {
-                string tourName = tour.TourName;
-
-                ddlTours.Items.Add(new ListItem(tourName, tour.TourId.ToString()));
-            }
-
-            var item = new ListItem("All", "All");
-            item.Selected = true;
-            ddlTours.Items.Add(item);
-
+            
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
 
             var shows = myShowService.GetShowsFromMyShowsForUser(userId);
+            rptShows.DataSource = shows;
+            rptShows.DataBind();
+        }
+
+        public void yearSelector_YearSelected(object sender, PhishPond.Concrete.EventArgs.SelectYearCommandEventArgs e)
+        {
+            var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
+
+            var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
+
+            var shows = myShowService.GetShowsFromMyShowsForUser(userId, e.Year);
+
             rptShows.DataSource = shows;
             rptShows.DataBind();
         }
@@ -107,7 +106,10 @@ namespace PhishMarket.MyPhishMarket
                 if (profile.FavoriteLiveShow != null)
                 {
                     var favoriteLiveShow = showService.GetShow(profile.FavoriteLiveShow.Value);
-                    lblFavoriteLiveShow.Text = string.Format("{0} - {1}, {2}", favoriteLiveShow.ShowDate.Value.ToString("MM/dd/yyyy"), favoriteLiveShow.VenueName, favoriteLiveShow.State);
+                    if (favoriteLiveShow != null)
+                    {
+                        lblFavoriteLiveShow.Text = string.Format("{0} - {1}, {2}", favoriteLiveShow.ShowDate.Value.ToString("MM/dd/yyyy"), favoriteLiveShow.VenueName, favoriteLiveShow.State);
+                    }
                 }
 
                 if (profile.FavoriteTour != null)
@@ -137,34 +139,6 @@ namespace PhishMarket.MyPhishMarket
             }
         }
 
-        public void btnSelectTour_Click(object sender, EventArgs e)
-        {
-            var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-
-            var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
-
-            IList<IShow> shows = new List<IShow>();
-
-            if (ddlTours.SelectedItem.Value == "All")
-            {
-                TourName = "All";
-                shows = myShowService.GetShowsFromMyShowsForUser(userId);
-            }
-            else
-            {
-                var g = new Guid(ddlTours.SelectedItem.Value);
-
-                var tour = service.GetTour(g);
-
-                if (tour.TourName != null) { TourName = tour.TourName; }
-
-                shows = myShowService.GetShowsFromMyShowsForUser(userId, tour.TourId);
-            }
-
-            rptShows.DataSource = shows;
-            rptShows.DataBind();
-        }
-
         public void rptShows_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             switch (e.CommandName.ToLower())
@@ -191,7 +165,9 @@ namespace PhishMarket.MyPhishMarket
 
             if (show != null)
             {
-                btnSelectTour_Click(null, null);
+                var shows = myShowService.GetShowsFromMyShowsForUser(userId);
+                rptShows.DataSource = shows;
+                rptShows.DataBind();
             }
         }
 

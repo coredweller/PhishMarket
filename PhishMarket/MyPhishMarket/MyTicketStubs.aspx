@@ -33,28 +33,11 @@
     <br />
     <div>
         <table>
-            <%--<tr>
-                <td>
-                </td>
-                <td>
-                    <asp:Button ID="btnAddOther" runat="server" Text="Add Ticket Stubs from others for this show"
-                        OnClick="btnAddOther_Click" />
-                </td>
-            </tr>
+            
             <tr>
                 <td>
+                    
                 </td>
-                <td>
-                    <asp:Button ID="btnAddPicture" runat="server" Text="Add New Ticket Stub for this show"
-                        OnClick="btnAddPicture_Click" />
-                </td>
-            </tr>--%>
-            <tr>
-                <td>
-                    <asp:DropDownList ID="ddlTours" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTours_SelectedIndexChanged">
-                    </asp:DropDownList>
-                </td>
-                <%--<td><asp:Button ID="btnGetShows" runat="server" Text="Get Shows" OnClick="btnGetShows_Click" /></td>--%>
                 <td>
                     <asp:DropDownList ID="ddlShows" runat="server">
                     </asp:DropDownList>
@@ -62,8 +45,6 @@
             </tr>
             <tr>
                 <td>
-                    <%--<asp:Button ID="btnShowFromTour" runat="server" Text="Show My Ticket Stubs from Tour"
-                        OnClick="btnShowFromTour_Click" />--%>
                 </td>
                 <td>
                     <asp:Button ID="btnShowFromShow" runat="server" Text="Show My Ticket Stubs from Show"

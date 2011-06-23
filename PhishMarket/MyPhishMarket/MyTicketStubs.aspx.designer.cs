@@ -86,15 +86,6 @@ namespace PhishMarket.MyPhishMarket {
         protected global::System.Web.UI.WebControls.ImageButton btnAddPicture;
         
         /// <summary>
-        /// ddlTours control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTours;
-        
-        /// <summary>
         /// ddlShows control.
         /// </summary>
         /// <remarks>
