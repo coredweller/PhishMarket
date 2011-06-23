@@ -198,7 +198,7 @@
                 </asp:DropDownList>
             </td>
         </tr>
-      <%--  <tr>
+        <%--  <tr>
             <td>
                 Order
             </td>
@@ -241,22 +241,6 @@
                 <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Rows="6" Columns="40"></asp:TextBox>
             </td>
         </tr>
-        <%--<tr>
-            <td>
-                Official:
-            </td>
-            <td>
-                <asp:CheckBox ID="chkOfficial" runat="server" />
-            </td>
-        </tr>--%>
-        <%--<tr>
-            <td>
-                Tour:
-            </td>
-            <td>
-                <asp:DropDownList ID="ddlTours" runat="server"></asp:DropDownList>
-            </td>
-        </tr>--%>
         <tr>
             <td>
                 <asp:Button ID="btnSubmit" Text="Submit" runat="server" OnClick="btnSubmit_Click" />
@@ -264,7 +248,6 @@
         </tr>
     </table>
     <div>
-        
         <asp:PlaceHolder ID="phAddSetsToShow" runat="server" Visible="false">
             <asp:HyperLink ID="lnkAddSetsToShow" runat="server" Text="Add Set to Show"></asp:HyperLink>
         </asp:PlaceHolder>

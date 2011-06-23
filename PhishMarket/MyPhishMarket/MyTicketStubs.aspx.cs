@@ -40,8 +40,6 @@ namespace PhishMarket.MyPhishMarket
 
                 if (show != null)
                 {
-                    //ddlTours.SelectedValue = show.TourId.ToString();
-                    //SetShows(show.TourId.Value);
                     ddlShows.SelectedValue = show.ShowId.ToString();
                 }
             }
@@ -89,23 +87,6 @@ namespace PhishMarket.MyPhishMarket
             }
             else
                 phRemoveError.Visible = true;
-        }
-
-        public void ddlTours_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ResetPanels();
-
-            var selectedValue = ((DropDownList)sender).SelectedValue;
-
-            switch (selectedValue)
-            {
-                case "":
-                case "none":
-                    return;
-                default:
-                    SetShows(new Guid(selectedValue));
-                    break;
-            }
         }
 
         public void btnAddPicture_Click(object sender, EventArgs e)

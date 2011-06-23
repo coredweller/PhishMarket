@@ -150,10 +150,6 @@
     <div class="ClearBoth">
         <uc:YearSelector id="yearSelector" OnYearSelected="yearSelector_YearSelected" runat="server">
         </uc:YearSelector>
-        <%--Tours:
-        <asp:DropDownList ID="ddlTours" runat="server">
-        </asp:DropDownList>
-        <asp:Button ID="btnSelectTour" runat="server" Text="Select" OnClick="btnSelectTour_Click" />--%>
     </div>
     <br />
     <div>
@@ -177,16 +173,11 @@
                                     <%# GetShowName((((PhishPond.Concrete.Show)Container.DataItem).VenueName), FormatDate((((PhishPond.Concrete.Show)Container.DataItem).ShowDate)))%></b></a>
                         </div>
                     </td>
-                    <%--<td>
-                            <a href='<%# LinkBuilder.MyPicturesByShowLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>Pictures</a>
-                        </td>--%>
                 </tr>
                 <tr>
                     <td>
                     </td>
                     <td>
-                        <%--<a href='<%# LinkBuilder.MyTicketStubsLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
-                            Ticket Stubs</a>-        --%>
                         <a href='<%# LinkBuilder.MyPostersLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
                             Posters</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%# LinkBuilder.MyPicturesLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
                                 Show Pictures</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='<%# LinkBuilder.AnalysisLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>

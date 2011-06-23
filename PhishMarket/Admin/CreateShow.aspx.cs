@@ -68,29 +68,6 @@ namespace PhishMarket.Admin
             var items = GetDropDownFromEnum(typeof(ShowRank), 1, "Please select a Show Rank");
 
             ddlRank.Items.AddRange(items);
-
-            //Order of the shows
-            //for (int i = 1; i < 100; i++)
-            //{
-            //    ddlOrder.Items.Add(new ListItem(i.ToString(), i.ToString()));
-            //}
-
-            //ListItem item = new ListItem("None", "0");
-
-            //ddlOrder.Items.Insert(0, item);
-
-            //item.Selected = true;
-
-            //Tours
-            //TourService tourService = new TourService(Ioc.GetInstance<ITourRepository>());
-
-            //var tours = tourService.GetAllToursDescending().ToList();
-
-            //tours.ForEach(x => ddlTours.Items.Add(new ListItem(x.TourName, x.TourId.ToString())));
-
-            //ddlTours.Items.Insert(0, item);
-
-            //item.Selected = true;
         }
 
         public void btnSubmit_Click(object sender, EventArgs e)
@@ -191,11 +168,6 @@ namespace PhishMarket.Admin
                     else
                         showDate = tempDate;
                 }
-
-                //if (ddlTours.SelectedValue != "0")
-                //{
-                //    tourId = new Guid(ddlTours.SelectedValue);
-                //}
 
                 valid = true;
             }
