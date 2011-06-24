@@ -4,44 +4,38 @@
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <br />
-    <h3 title="Choose a tour. Then decide which show you want to see others' reviews or want to review yourself." class="tTip" id="cloud9">
-        Show Reviews and Analysis</h3>
+    <h2 title="Choose a tour. Then decide which show you want to see others' reviews or want to review yourself."
+        class="tTip" id="cloud9">
+        Show Reviews and Analysis</h2>
     <br />
     <br />
-    <div>
-        Tours:
-        <asp:DropDownList ID="ddlTours" runat="server">
-        </asp:DropDownList>
-        <asp:Button ID="btnSelectTour" runat="server" Text="Select Tour" OnClick="btnSelectTour_Click" />
-    </div>
-    <%--<div>
-            Tour:
-            <%= TourName %>
-        </div>--%>
+    <h3>
+        <uc:YearSelector id="yearSelector" OnYearSelected="yearSelector_YearSelected" runat="server">
+        </uc:YearSelector>
+    </h3>
+    <br />
+    <br />
     <div>
         <asp:Repeater ID="rptShows" runat="server">
             <HeaderTemplate>
-                <table>
             </HeaderTemplate>
             <ItemTemplate>
-                <tr>
-                    <td>
-                        <%# (((PhishPond.Concrete.Show)Container.DataItem).VenueName) %>
-                        -
-                        <%# FormatDate((((PhishPond.Concrete.Show)Container.DataItem).ShowDate))%>
-                    </td>
-                    <td>
-                        <a href='<%# LinkBuilder.AnalysisLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
-                            Write a Review</a>&nbsp;OR&nbsp;
-                    </td>
-                    <td>
-                        <a href='<%# LinkBuilder.ShowReviewsLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
+                <div style="font-weight:bold; font-size:large;">
+                    <%# (((PhishPond.Concrete.Show)Container.DataItem).VenueName) %>
+                    -
+                    <%# FormatDate((((PhishPond.Concrete.Show)Container.DataItem).ShowDate))%>
+                </div>
+                <div style="font-weight:bold;">
+                    <a href='<%# LinkBuilder.AnalysisLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
+                        Write a Review</a>&nbsp;OR&nbsp;<a href='<%# LinkBuilder.ShowReviewsLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
                             See All Reviews</a>
-                    </td>
-                </tr>
+                </div>
+                <hr class="horizontalRule1" style="width: 400px; float: left;" />
+                <br />
+                <br />
             </ItemTemplate>
             <FooterTemplate>
-                </table></FooterTemplate>
+            </FooterTemplate>
         </asp:Repeater>
     </div>
 </asp:Content>
