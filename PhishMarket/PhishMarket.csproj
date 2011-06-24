@@ -362,11 +362,11 @@
     <Compile Include="MyPhishMarket\ViewProfile.aspx.designer.cs">
       <DependentUpon>ViewProfile.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MyPhishMarket\ShowReviews.aspx.cs">
+    <Compile Include="ShowReviews.aspx.cs">
       <DependentUpon>ShowReviews.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MyPhishMarket\ShowReviews.aspx.designer.cs">
+    <Compile Include="ShowReviews.aspx.designer.cs">
       <DependentUpon>ShowReviews.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyPhishMarket\WantedList.aspx.cs">
@@ -388,6 +388,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reviews.aspx.cs">
+      <DependentUpon>Reviews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reviews.aspx.designer.cs">
+      <DependentUpon>Reviews.aspx</DependentUpon>
     </Compile>
     <Compile Include="SlideService.asmx.cs">
       <DependentUpon>SlideService.asmx</DependentUpon>
@@ -675,9 +682,10 @@
     <Content Include="MyPhishMarket\ShowAnalysis.aspx" />
     <Content Include="MyPhishMarket\SongReviews.aspx" />
     <Content Include="MyPhishMarket\ViewProfile.aspx" />
-    <Content Include="MyPhishMarket\ShowReviews.aspx" />
+    <Content Include="ShowReviews.aspx" />
     <Content Include="MyPhishMarket\WantedList.aspx" />
     <Content Include="News.aspx" />
+    <Content Include="Reviews.aspx" />
     <Content Include="SlideService.asmx" />
     <Content Include="Stats\Report.aspx" />
     <Content Include="Stats\TourPlayed.aspx" />

@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhishMarket.MyPhishMarket {
+namespace PhishMarket {
     
     
-    public partial class MyAnalysis {
+    public partial class Reviews {
         
         /// <summary>
         /// yearSelector control.

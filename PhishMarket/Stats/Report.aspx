@@ -140,9 +140,9 @@
                             <h4>
                                 Highest Rated</h4>
                         </td>
-                        <td>
+                        <%--<td>
                             &nbsp;-&nbsp;<a href='<%= LinkBuilder.MyAnalysisLink() %>'>Go rate the songs yourself!</a>
-                        </td>
+                        </td>--%>
                     </tr>
                 </table>
             </div>

@@ -1,7 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MyAnalysis.aspx.cs" Inherits="PhishMarket.MyPhishMarket.MyAnalysis"
-    MasterPageFile="~/Master/Shadowed.Master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Reviews.aspx.cs" Inherits="PhishMarket.Reviews" MasterPageFile="~/Master/Shadowed.Master" %>
 
-<asp:Content ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <br />
     <h2 title="Choose a tour. Then decide which show you want to see others' reviews or want to review yourself."

@@ -79,12 +79,6 @@
             <h2>
                 My Stuff</h2>
         </div>
-        <%--<h4>
-            <a href='<%= LinkBuilder.MyAnalysisLink() %>'>Analyze All Shows HERE</a></h4>
-        <h4>
-            <a href='<%= LinkBuilder.ProfileStep3Link() %>'>Choose Your Favorite Version of every
-                song HERE</a>
-        </h4>--%>
         <table>
             <tr>
                 <td>

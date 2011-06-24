@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShowReviews.aspx.cs" Inherits="PhishMarket.MyPhishMarket.ShowReviews"
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShowReviews.aspx.cs" Inherits="PhishMarket.ShowReviews"
     MasterPageFile="~/Master/Shadowed.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">

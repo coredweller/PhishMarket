@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PhishMarket.MyPhishMarket {
+namespace PhishMarket {
     
     
     public partial class ShowReviews {

@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using TheCore.Services;
 using TheCore.Infrastructure;
 using TheCore.Repository;
 
-namespace PhishMarket.MyPhishMarket
+namespace PhishMarket
 {
-    public partial class MyAnalysis : PhishMarketBasePage
+    public partial class Reviews : PhishMarketBasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -13,7 +18,7 @@ namespace PhishMarket.MyPhishMarket
 
             if (!IsPostBack)
             {
-                
+
             }
         }
 

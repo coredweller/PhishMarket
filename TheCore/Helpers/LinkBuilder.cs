@@ -187,11 +187,6 @@ namespace TheCore.Helpers
             return string.Format("/MyPhishMarket/ShowAnalysis.aspx?showId={0}&myShowId={1}", showId, myShowId);
         }
 
-        public string MyAnalysisLink()
-        {
-            return "/MyPhishMarket/MyAnalysis.aspx";
-        }
-
         public string ViewProfileLink(Guid userId)
         {
             return string.Format("/MyPhishMarket/ViewProfile.aspx?userId={0}", userId);
@@ -202,9 +197,14 @@ namespace TheCore.Helpers
             return string.Format("/MyPhishMarket/FullShowReview.aspx?myShowId={0}", myShowId);
         }
 
+        public string ReviewsLink()
+        {
+            return "/Reviews.aspx";
+        }
+
         public string ShowReviewsLink(Guid showId)
         {
-            return string.Format("/MyPhishMarket/ShowReviews.aspx?showId={0}", showId);
+            return string.Format("/ShowReviews.aspx?showId={0}", showId);
         }
 
         public string SongReviewsLink(Guid setSongId)

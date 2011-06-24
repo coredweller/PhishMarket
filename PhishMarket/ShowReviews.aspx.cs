@@ -10,7 +10,7 @@ using TheCore.Repository;
 using PhishPond.Concrete;
 using System.Web.Security;
 
-namespace PhishMarket.MyPhishMarket
+namespace PhishMarket
 {
     public partial class ShowReviews : PhishMarketBasePage
     {
@@ -25,17 +25,10 @@ namespace PhishMarket.MyPhishMarket
             }
         }
 
-        public void rptSongs_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void Bind()
         {
             if (string.IsNullOrEmpty(Request.QueryString["showId"]) && string.IsNullOrEmpty(Request.QueryString["showDate"]))
                 Response.Redirect(LinkBuilder.DashboardLink());
-
-            var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 
             var showIdStr = Request.QueryString["showId"];
 
