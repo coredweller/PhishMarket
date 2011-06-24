@@ -5,8 +5,6 @@ using TheCore.Infrastructure;
 using TheCore.Repository;
 using System.Web.Security;
 using PhishPond.Concrete;
-using TheCore.Interfaces;
-using System.Collections.Generic;
 using PhishPond.Repository.LinqToSql;
 
 namespace PhishMarket.MyPhishMarket

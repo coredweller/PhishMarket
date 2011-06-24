@@ -263,18 +263,19 @@ namespace PhishMarket.Admin
 
         private void Bind()
         {
-            var tourService = new TourService(Ioc.GetInstance<ITourRepository>());
+            
+        }
 
-            var tours = tourService.GetAllToursDescending();
+        public void yearSelector_YearSelected(object sender, PhishPond.Concrete.EventArgs.SelectYearCommandEventArgs e)
+        {
+            var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
 
-            ddlTours.Items.AddRange((from t in tours
-                                     select new ListItem(t.TourName, t.TourId.ToString())).ToArray());
+            var shows = showService.GetShowsByYear(e.Year);
 
-            var noneItem = new ListItem("None", "none");
+            ddlShows.Items.Clear();
 
-            ddlTours.Items.Insert(0, noneItem);
-
-            noneItem.Selected = true;
+            ddlShows.Items.AddRange((from s in shows
+                                     select new ListItem(s.GetShowName(), s.ShowId.ToString())).ToArray());
         }
 
         private void SetShows(Guid tourId)

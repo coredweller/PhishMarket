@@ -3,9 +3,8 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        Choose a tour:
-        <asp:DropDownList ID="ddlTours" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlTours_SelectedIndexChanged">
-        </asp:DropDownList>
+        <uc:YearSelector id="yearSelector" OnYearSelected="yearSelector_YearSelected" runat="server">
+                    </uc:YearSelector>
     </div>
     <br />
     <div>
