@@ -271,13 +271,6 @@
     <Compile Include="MyPhishMarket\FullShowReview.aspx.designer.cs">
       <DependentUpon>FullShowReview.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MyPhishMarket\MyAnalysis.aspx.cs">
-      <DependentUpon>MyAnalysis.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MyPhishMarket\MyAnalysis.aspx.designer.cs">
-      <DependentUpon>MyAnalysis.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MyPhishMarket\MyPictures.aspx.cs">
       <DependentUpon>MyPictures.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -669,7 +662,6 @@
     <Content Include="MyPhishMarket\EditTicketStub.aspx" />
     <Content Include="MyPhishMarket\FindForShow.aspx" />
     <Content Include="MyPhishMarket\FullShowReview.aspx" />
-    <Content Include="MyPhishMarket\MyAnalysis.aspx" />
     <Content Include="MyPhishMarket\MyPictures.aspx" />
     <Content Include="MyPhishMarket\MyPosters.aspx" />
     <Content Include="MyPhishMarket\MyTicketStubs.aspx" />
