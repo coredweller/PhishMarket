@@ -86,7 +86,7 @@
                         -
                         <%# FormatDate((DateTime?)Eval("Key.ShowDate"))%></strong>
                     <ajaxToolkit:Rating ID="ajaxSongRating" runat="server" CurrentRating='<%# DetermineRating((int?)Eval("Value.Rating")) %>'
-                        MaxRating="5" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
+                        MaxRating="10" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
                         ReadOnly="true" FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" />
                 </td>
             </tr>

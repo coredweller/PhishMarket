@@ -35,7 +35,7 @@
                 <td>
                 
                     Review Date:<%# ((((PhishPond.Concrete.Analysis)Container.DataItem).UpdatedDate)).Value.ToShortDateString()%><ajaxToolkit:Rating ID="ajaxSongRating" runat="server" CurrentRating='<%# DetermineRating((int?)Eval("Rating")) %>'
-                        MaxRating="5" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
+                        MaxRating="10" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
                         FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" ReadOnly="true" />
                 </td>
             </tr>

@@ -41,6 +41,60 @@ namespace PhishMarket.MyPhishMarket {
         protected global::AjaxControlToolkit.Rating ajaxShowRating;
         
         /// <summary>
+        /// ajaxEnergyRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.Rating ajaxEnergyRating;
+        
+        /// <summary>
+        /// ajaxFlowRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.Rating ajaxFlowRating;
+        
+        /// <summary>
+        /// ajaxSegueRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.Rating ajaxSegueRating;
+        
+        /// <summary>
+        /// ajaxType1JamRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.Rating ajaxType1JamRating;
+        
+        /// <summary>
+        /// ajaxType2JamRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.Rating ajaxType2JamRating;
+        
+        /// <summary>
+        /// ajaxBustoutRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.Rating ajaxBustoutRating;
+        
+        /// <summary>
         /// phMyShow control.
         /// </summary>
         /// <remarks>

@@ -21,9 +21,69 @@
                     Rate Show:
                 </td>
                 <td>
-                    <ajaxToolkit:Rating ID="ajaxShowRating" runat="server" MaxRating="5" StarCssClass="ratingStar"
+                    <ajaxToolkit:Rating ID="ajaxShowRating" runat="server" MaxRating="10" StarCssClass="ratingStar"
                         WaitingStarCssClass="savedRatingStar" FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar"
                         OnChanged="ajaxShowRating_Changed" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Energy Rating:
+                </td>
+                <td>
+                    <ajaxToolkit:Rating ID="ajaxEnergyRating" runat="server" MaxRating="10" StarCssClass="ratingStar"
+                        WaitingStarCssClass="savedRatingStar" FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar"
+                        OnChanged="ajaxEnergyRating_Changed" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Flow Rating:
+                </td>
+                <td>
+                    <ajaxToolkit:Rating ID="ajaxFlowRating" runat="server" MaxRating="10" StarCssClass="ratingStar"
+                        WaitingStarCssClass="savedRatingStar" FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar"
+                        OnChanged="ajaxFlowRating_Changed" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Segue Rating:
+                </td>
+                <td>
+                    <ajaxToolkit:Rating ID="ajaxSegueRating" runat="server" MaxRating="10" StarCssClass="ratingStar"
+                        WaitingStarCssClass="savedRatingStar" FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar"
+                        OnChanged="ajaxSegueRating_Changed" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Type 1 Jam Rating:
+                </td>
+                <td>
+                    <ajaxToolkit:Rating ID="ajaxType1JamRating" runat="server" MaxRating="10" StarCssClass="ratingStar"
+                        WaitingStarCssClass="savedRatingStar" FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar"
+                        OnChanged="ajaxType1JamRating_Changed" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Type 2 Jam Rating:
+                </td>
+                <td>
+                    <ajaxToolkit:Rating ID="ajaxType2JamRating" runat="server" MaxRating="10" StarCssClass="ratingStar"
+                        WaitingStarCssClass="savedRatingStar" FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar"
+                        OnChanged="ajaxType2JamRating_Changed" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Bustout Rating:
+                </td>
+                <td>
+                    <ajaxToolkit:Rating ID="ajaxBustoutRating" runat="server" MaxRating="10" StarCssClass="ratingStar"
+                        WaitingStarCssClass="savedRatingStar" FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar"
+                        OnChanged="ajaxBustoutRating_Changed" />
                 </td>
             </tr>
         </table>

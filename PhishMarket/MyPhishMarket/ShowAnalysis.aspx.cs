@@ -50,6 +50,36 @@ namespace PhishMarket.MyPhishMarket
             }
         }
 
+        public void ajaxBustoutRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ajaxType2JamRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ajaxType1JamRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ajaxSegueRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ajaxFlowRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ajaxEnergyRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private void Bind()
         {
             Guid showId;

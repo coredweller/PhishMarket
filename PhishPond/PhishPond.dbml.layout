@@ -38,28 +38,28 @@
         <elementListCompartment Id="8e54f251-2f8f-427a-92ef-878991d617ba" absoluteBounds="5.7650000000000006, 12.335, 1.9700000000000002, 2.67266845703125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.375 : 6.44502888997396); (4.875 : 6.44502888997396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.375 : 6.44502888997396); (4.875 : 6.44502888997396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Show/Show_Set" />
       <nodes>
         <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
         <classShapeMoniker Id="330fa0a8-1e9f-4fb7-ac24-f3df9dd1ddc0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.375 : 6.77789768949604); (9.41666666666667 : 6.77789768949604 : JumpStart); (9.58333333333333 : 6.77789768949604 : JumpEnd); (14.6666666666667 : 6.77789768949604 : JumpStart); (14.8333333333333 : 6.77789768949604 : JumpEnd); (16.875 : 6.77789768949604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.375 : 6.77789768949604); (7.94791666666667 : 6.77789768949604 : JumpStart); (8.11458333333333 : 6.77789768949604 : JumpEnd); (9.41666666666667 : 6.77789768949604 : JumpStart); (9.58333333333333 : 6.77789768949604 : JumpEnd); (16.5416666666667 : 6.77789768949604 : JumpStart); (16.7083333333333 : 6.77789768949604 : JumpEnd); (16.875 : 6.77789768949604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Show/Show_Photo" />
       <nodes>
         <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
         <classShapeMoniker Id="6715e7d9-b028-4358-867c-b65466fafa81" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.5625 : 7.51505777994792); (6.5625 : 11.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.5625 : 7.51505777994792); (6.5625 : 11.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Show/Show_Video" />
       <nodes>
         <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
         <classShapeMoniker Id="b4799960-93c7-4aea-9074-d3574f409294" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.09375 : 2.74658447265625); (5.09375 : 4.46875); (5.375 : 4.46875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.09375 : 2.74658447265625); (5.09375 : 4.46875); (5.375 : 4.46875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Tour/Tour_Show" />
       <nodes>
         <classShapeMoniker Id="45b5eb25-c0e2-4f85-918b-ee17cfe5dc41" />
@@ -85,7 +85,7 @@
         <classShapeMoniker Id="dbee288f-8ac1-4d5f-81fe-3d00aa405f14" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.14062625 : 3.625); (6.14062625 : 3.02435546875); (5.17708333333333 : 3.02435546875 : JumpStart); (5.01041666666667 : 3.02435546875 : JumpEnd); (2.5 : 3.02435546875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.375 : 3.625); (6.375 : 3.02435546875); (5.17708333333333 : 3.02435546875 : JumpStart); (5.01041666666667 : 3.02435546875 : JumpEnd); (2.5 : 3.02435546875)]" fixedFrom="Algorithm" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Show/Show_Topic" />
       <nodes>
         <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
@@ -189,14 +189,14 @@
         <elementListCompartment Id="64efe084-ad1d-44b3-8ef6-fb5551e9eb37" absoluteBounds="7.6400000000000006, 0.96, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.375 : 7.17773023472198); (9.41666666666667 : 7.17773023472198 : JumpStart); (9.58333333333333 : 7.17773023472198 : JumpEnd); (10.75 : 7.17773023472198); (10.75 : 8.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.375 : 6.87985589181038); (7.94791666666667 : 6.87985589181038 : JumpStart); (8.11458333333333 : 6.87985589181038 : JumpEnd); (9.41666666666667 : 6.87985589181038 : JumpStart); (9.58333333333333 : 6.87985589181038 : JumpEnd); (10.75 : 6.87985589181038); (10.75 : 8.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Show/Show_Poster" />
       <nodes>
         <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
         <classShapeMoniker Id="dd036f80-a875-4d17-85b6-683bc6cc4020" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.69031242638132 : 3.625); (6.69031242638132 : 1.70546590169271); (7.625 : 1.70546590169271)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.906252 : 3.625); (6.906252 : 1.70546590169271); (7.625 : 1.70546590169271)]" fixedFrom="Algorithm" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Show/Show_TicketStub" />
       <nodes>
         <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
@@ -209,40 +209,40 @@
         <elementListCompartment Id="c458820b-581d-442d-a25e-ccfeda89ace0" absoluteBounds="8.515, 4.3350000000000009, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.375 : 5.08046590169271); (8.5 : 5.08046590169271)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.375 : 5.08046590169271); (7.94791666666667 : 5.08046590169271 : JumpStart); (8.11458333333333 : 5.08046590169271 : JumpEnd); (8.5 : 5.08046590169271)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Show/Show_Art" />
       <nodes>
         <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
         <classShapeMoniker Id="3d70842f-bbc2-438c-8d5d-a2fb5eedfb57" />
       </nodes>
     </associationConnector>
-    <classShape Id="43ea92a9-4332-48be-8616-c3e7fcdd78b1" absoluteBounds="13.5, 0.625, 2, 2.4109318033854166">
+    <classShape Id="43ea92a9-4332-48be-8616-c3e7fcdd78b1" absoluteBounds="13.375, 1.125, 2, 3.3970157877604166">
       <DataClassMoniker Name="/PhishDatabase/MyShow" />
       <nestedChildShapes>
-        <elementListCompartment Id="bbb13082-11db-4391-90ca-436017aba5fa" absoluteBounds="13.515, 1.085, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="bbb13082-11db-4391-90ca-436017aba5fa" absoluteBounds="13.39, 1.585, 1.9700000000000002, 2.8370157877604165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.23999860276264 : 3.625); (13.53125 : 3.625); (13.53125 : 3.03593180338542)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.375 : 3.625); (6.375 : 3.375); (6.82291866666667 : 3.375 : JumpStart); (6.98958533333333 : 3.375 : JumpEnd); (7.94791666666667 : 3.375 : JumpStart); (8.11458333333333 : 3.375 : JumpEnd); (13 : 3.375); (13 : 3.94301068200299); (13.375 : 3.94301068200299)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Caller">
       <AssociationMoniker Name="/PhishDatabase/Show/Show_MyShow" />
       <nodes>
         <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
         <classShapeMoniker Id="43ea92a9-4332-48be-8616-c3e7fcdd78b1" />
       </nodes>
     </associationConnector>
-    <classShape Id="d6c19b55-4f38-46ba-8114-091f7ed1c8b9" absoluteBounds="13.75, 4.125, 2, 1.9178898111979166">
+    <classShape Id="d6c19b55-4f38-46ba-8114-091f7ed1c8b9" absoluteBounds="16, 1.125, 2, 1.9178898111979166">
       <DataClassMoniker Name="/PhishDatabase/MyShowPoster" />
       <nestedChildShapes>
-        <elementListCompartment Id="caf35e72-2634-407a-9f4c-a2252f35a1ed" absoluteBounds="13.765, 4.5850000000000009, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="caf35e72-2634-407a-9f4c-a2252f35a1ed" absoluteBounds="16.015, 1.5850000000000009, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(11 : 10.6128552246094); (14.75 : 10.6128552246094); (14.75 : 6.04288981119792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(11 : 10.8472324746094); (15.625 : 10.8472324746094); (15.625 : 8.26505777994792); (16.625 : 8.26505777994792); (16.625 : 3.41788981119792); (17 : 3.41788981119792); (17 : 3.04288981119792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/PhishDatabase/Poster/Poster_MyShowPoster" />
       <nodes>
         <classShapeMoniker Id="dd036f80-a875-4d17-85b6-683bc6cc4020" />
         <classShapeMoniker Id="d6c19b55-4f38-46ba-8114-091f7ed1c8b9" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(14.625 : 3.03593180338542); (14.625 : 4.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(15.375 : 2.08394490559896); (16 : 2.08394490559896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/PhishDatabase/MyShow/MyShow_MyShowPoster" />
       <nodes>
         <classShapeMoniker Id="43ea92a9-4332-48be-8616-c3e7fcdd78b1" />
@@ -262,7 +262,7 @@
         <classShapeMoniker Id="2f66e8b8-d109-43ac-a91b-f8339e9f4df3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(13.5 : 1.70894490559896); (12.25 : 1.70894490559896)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(13.375 : 1.89644490559896); (12.25 : 1.89644490559896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/PhishDatabase/MyShow/MyShow_MyShowTicketStub" />
       <nodes>
         <classShapeMoniker Id="43ea92a9-4332-48be-8616-c3e7fcdd78b1" />
@@ -282,7 +282,7 @@
         <classShapeMoniker Id="d6f58942-6ff7-4279-91e1-c8f3b275e45e" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(13.6406275 : 3.03593180338542); (13.6406275 : 6.13663981119792); (13 : 6.13663981119792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(14.375 : 4.52201578776042); (14.375 : 5.34495329947917); (13 : 5.34495329947917)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/PhishDatabase/MyShow/MyShow_MyShowArt" />
       <nodes>
         <classShapeMoniker Id="43ea92a9-4332-48be-8616-c3e7fcdd78b1" />
@@ -301,21 +301,21 @@
         <elementListCompartment Id="1c0520db-9304-4739-838b-483149142825" absoluteBounds="19.765, 10.085, 1.9700000000000002, 2.015279134114583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(16.875 : 7.7073347257487); (14.8333333333333 : 7.7073347257487 : JumpStart); (14.6666666666667 : 7.7073347257487 : JumpEnd); (10.8333333333333 : 7.7073347257487 : JumpStart); (10.6666666666667 : 7.7073347257487 : JumpEnd); (9.5 : 7.7073347257487); (9.5 : 6.28593180338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(16.875 : 7.7073347257487); (16.7083333333333 : 7.7073347257487 : JumpStart); (16.5416666666667 : 7.7073347257487 : JumpEnd); (10.8333333333333 : 7.7073347257487 : JumpStart); (10.6666666666667 : 7.7073347257487 : JumpEnd); (9.5 : 7.7073347257487); (9.5 : 6.28593180338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Photo/Photo_Art" />
       <nodes>
         <classShapeMoniker Id="6715e7d9-b028-4358-867c-b65466fafa81" />
         <classShapeMoniker Id="3d70842f-bbc2-438c-8d5d-a2fb5eedfb57" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(18.40625 : 8.01505777994792); (18.40625 : 9.15625); (14.8333333333333 : 9.15625 : JumpStart); (14.6666666666667 : 9.15625 : JumpEnd); (11 : 9.15625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(18.40625 : 8.01505777994792); (18.40625 : 9.1562505); (15.7083333333333 : 9.1562505 : JumpStart); (15.5416666666667 : 9.1562505 : JumpEnd); (11 : 9.1562505)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Photo/Photo_Poster" />
       <nodes>
         <classShapeMoniker Id="6715e7d9-b028-4358-867c-b65466fafa81" />
         <classShapeMoniker Id="dd036f80-a875-4d17-85b6-683bc6cc4020" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(17.875 : 4.125); (17.875 : 0.53125); (9.625 : 0.53125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(16.875 : 7.41127998023534); (16.7083333333333 : 7.41127998023534 : JumpStart); (16.5416666666667 : 7.41127998023534 : JumpEnd); (10.8333333333333 : 7.41127998023534 : JumpStart); (10.6666666666667 : 7.41127998023534 : JumpEnd); (9.58333333333333 : 7.41127998023534 : JumpStart); (9.41666666666667 : 7.41127998023534 : JumpEnd); (8.03125 : 7.41127998023534); (8.03125 : 2.91093180338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/PhishDatabase/Photo/Photo_TicketStub" />
       <nodes>
         <classShapeMoniker Id="6715e7d9-b028-4358-867c-b65466fafa81" />

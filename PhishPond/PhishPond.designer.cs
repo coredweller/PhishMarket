@@ -7852,6 +7852,18 @@ namespace PhishPond.Concrete
 		
 		private System.Nullable<System.DateTime> _NotesUpdatedDate;
 		
+		private System.Nullable<int> _EnergyRating;
+		
+		private System.Nullable<int> _FlowRating;
+		
+		private System.Nullable<int> _SegueRating;
+		
+		private System.Nullable<int> _Type1JamRating;
+		
+		private System.Nullable<int> _Type2JamRating;
+		
+		private System.Nullable<int> _BustoutRating;
+		
 		private EntitySet<MyShowPoster> _MyShowPosters;
 		
 		private EntitySet<MyShowTicketStub> _MyShowTicketStubs;
@@ -7884,6 +7896,18 @@ namespace PhishPond.Concrete
     partial void OnNotesChanged();
     partial void OnNotesUpdatedDateChanging(System.Nullable<System.DateTime> value);
     partial void OnNotesUpdatedDateChanged();
+    partial void OnEnergyRatingChanging(System.Nullable<int> value);
+    partial void OnEnergyRatingChanged();
+    partial void OnFlowRatingChanging(System.Nullable<int> value);
+    partial void OnFlowRatingChanged();
+    partial void OnSegueRatingChanging(System.Nullable<int> value);
+    partial void OnSegueRatingChanged();
+    partial void OnType1JamRatingChanging(System.Nullable<int> value);
+    partial void OnType1JamRatingChanged();
+    partial void OnType2JamRatingChanging(System.Nullable<int> value);
+    partial void OnType2JamRatingChanged();
+    partial void OnBustoutRatingChanging(System.Nullable<int> value);
+    partial void OnBustoutRatingChanged();
     #endregion
 		
 		public MyShow()
@@ -8095,6 +8119,126 @@ namespace PhishPond.Concrete
 					this._NotesUpdatedDate = value;
 					this.SendPropertyChanged("NotesUpdatedDate");
 					this.OnNotesUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EnergyRating")]
+		public System.Nullable<int> EnergyRating
+		{
+			get
+			{
+				return this._EnergyRating;
+			}
+			set
+			{
+				if ((this._EnergyRating != value))
+				{
+					this.OnEnergyRatingChanging(value);
+					this.SendPropertyChanging();
+					this._EnergyRating = value;
+					this.SendPropertyChanged("EnergyRating");
+					this.OnEnergyRatingChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FlowRating")]
+		public System.Nullable<int> FlowRating
+		{
+			get
+			{
+				return this._FlowRating;
+			}
+			set
+			{
+				if ((this._FlowRating != value))
+				{
+					this.OnFlowRatingChanging(value);
+					this.SendPropertyChanging();
+					this._FlowRating = value;
+					this.SendPropertyChanged("FlowRating");
+					this.OnFlowRatingChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SegueRating")]
+		public System.Nullable<int> SegueRating
+		{
+			get
+			{
+				return this._SegueRating;
+			}
+			set
+			{
+				if ((this._SegueRating != value))
+				{
+					this.OnSegueRatingChanging(value);
+					this.SendPropertyChanging();
+					this._SegueRating = value;
+					this.SendPropertyChanged("SegueRating");
+					this.OnSegueRatingChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Type1JamRating")]
+		public System.Nullable<int> Type1JamRating
+		{
+			get
+			{
+				return this._Type1JamRating;
+			}
+			set
+			{
+				if ((this._Type1JamRating != value))
+				{
+					this.OnType1JamRatingChanging(value);
+					this.SendPropertyChanging();
+					this._Type1JamRating = value;
+					this.SendPropertyChanged("Type1JamRating");
+					this.OnType1JamRatingChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Type2JamRating")]
+		public System.Nullable<int> Type2JamRating
+		{
+			get
+			{
+				return this._Type2JamRating;
+			}
+			set
+			{
+				if ((this._Type2JamRating != value))
+				{
+					this.OnType2JamRatingChanging(value);
+					this.SendPropertyChanging();
+					this._Type2JamRating = value;
+					this.SendPropertyChanged("Type2JamRating");
+					this.OnType2JamRatingChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_BustoutRating")]
+		public System.Nullable<int> BustoutRating
+		{
+			get
+			{
+				return this._BustoutRating;
+			}
+			set
+			{
+				if ((this._BustoutRating != value))
+				{
+					this.OnBustoutRatingChanging(value);
+					this.SendPropertyChanging();
+					this._BustoutRating = value;
+					this.SendPropertyChanged("BustoutRating");
+					this.OnBustoutRatingChanged();
 				}
 			}
 		}

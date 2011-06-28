@@ -348,6 +348,12 @@
       <Column Name="Rating" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Notes" Type="System.String" CanBeNull="true" />
       <Column Name="NotesUpdatedDate" Type="System.DateTime" CanBeNull="true" />
+      <Column Member="EnergyRating" Type="System.Int32" CanBeNull="true" />
+      <Column Member="FlowRating" Type="System.Int32" CanBeNull="true" />
+      <Column Member="SegueRating" Type="System.Int32" CanBeNull="true" />
+      <Column Member="Type1JamRating" Type="System.Int32" CanBeNull="true" />
+      <Column Member="Type2JamRating" Type="System.Int32" CanBeNull="true" />
+      <Column Member="BustoutRating" Type="System.Int32" CanBeNull="true" />
       <Association Name="MyShow_MyShowPoster" Member="MyShowPosters" ThisKey="MyShowId" OtherKey="MyShowId" Type="MyShowPoster" />
       <Association Name="MyShow_MyShowTicketStub" Member="MyShowTicketStubs" ThisKey="MyShowId" OtherKey="MyShowId" Type="MyShowTicketStub" />
       <Association Name="MyShow_MyShowArt" Member="MyShowArts" ThisKey="MyShowId" OtherKey="MyShowId" Type="MyShowArt" />

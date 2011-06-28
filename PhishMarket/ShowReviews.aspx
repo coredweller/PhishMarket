@@ -107,7 +107,7 @@
                 <td>
                     Review Date:<%# ((((PhishPond.Concrete.MyShow)Container.DataItem).NotesUpdatedDate)).Value.ToShortDateString()%><ajaxToolkit:Rating
                         ID="ajaxSongRating" runat="server" CurrentRating='<%# DetermineRating((((PhishPond.Concrete.MyShow)Container.DataItem).Rating)) %>'
-                        MaxRating="5" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
+                        MaxRating="10" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
                         FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" ReadOnly="true" />
                 </td>
             </tr>
