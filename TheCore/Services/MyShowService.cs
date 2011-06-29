@@ -129,7 +129,7 @@ namespace TheCore.Services
 
             if (myShows == null || myShows.Count() <= 0)
             {
-                return showService.GetShowsByYear(year).OrderBy(y => y.ShowDate).ToList();
+                return showService.GetShowsByYear(year).ToList();
             }
 
             var showIds = myShows.Select(x => x.ShowId).ToList();

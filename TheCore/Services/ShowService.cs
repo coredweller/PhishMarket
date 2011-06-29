@@ -42,7 +42,7 @@ namespace TheCore.Services
 
         public IQueryable<IShow> GetShowsByYear(int year)
         {
-            return GetAllShows().Where(x => x.ShowDate.Value.Year == year);
+            return GetAllShows().Where(x => x.ShowDate.Value.Year == year).OrderBy(y => y.ShowDate);
         }
 
         public IQueryable<IShow> GetOfficialShows(Guid tourId)
