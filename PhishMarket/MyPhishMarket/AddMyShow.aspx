@@ -53,9 +53,7 @@
                                     </asp:ImageButton>
                                 </td>
                                 <td>
-                                    <%# (((PhishPond.Concrete.Show)Container.DataItem).VenueName) %>
-                                    -
-                                    <%# FormatDate( (((PhishPond.Concrete.Show)Container.DataItem).ShowDate) )%>
+                                    <%# (((PhishPond.Concrete.Show)Container.DataItem).GetShowName()) %>
                                 </td>
                             </tr>
                         </ItemTemplate>

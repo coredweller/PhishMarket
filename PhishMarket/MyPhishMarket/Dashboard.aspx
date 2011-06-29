@@ -164,7 +164,7 @@
                         <div class="tTip" id="Div1" title="Click to see reviews of this show!">
                             <a href='<%# LinkBuilder.ShowReviewsLink((((PhishPond.Concrete.Show)Container.DataItem).ShowId)) %>'>
                                 <b>
-                                    <%# GetShowName((((PhishPond.Concrete.Show)Container.DataItem).VenueName), FormatDate((((PhishPond.Concrete.Show)Container.DataItem).ShowDate)))%></b></a>
+                                    <%# (((PhishPond.Concrete.Show)Container.DataItem).GetShowName()) %></b></a>
                         </div>
                     </td>
                 </tr>
