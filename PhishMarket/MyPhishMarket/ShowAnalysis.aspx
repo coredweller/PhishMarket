@@ -1,11 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ShowAnalysis.aspx.cs" Inherits="PhishMarket.MyPhishMarket.ShowAnalysis"
-    MasterPageFile="~/Master/Shadowed.Master" MaintainScrollPositionOnPostback="true" ValidateRequest="false" %>
+    MasterPageFile="~/Master/Shadowed.Master" MaintainScrollPositionOnPostback="true"
+    ValidateRequest="false" %>
 
 <%@ Register TagPrefix="FTB" Namespace="FreeTextBoxControls" Assembly="FreeTextBox" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <h2 title="Rate the show in stars and write a review about it below. Click the show to see all reviews for this show!" class="tTip"
-            id="cloud1">
+        <h2 title="Rate the show in stars and write a review about it below. Click the show to see all reviews for this show!"
+            class="tTip" id="cloud1">
             Show Analysis</h2>
     </div>
     <div id="alertDiv" style="padding: 10px; float: left;">
@@ -15,10 +16,10 @@
             <asp:Label runat="server" ID="lblShow"></asp:Label></a></h3>
     <br />
     <asp:PlaceHolder ID="phMyShowRating" runat="server" Visible="false">
-        <table>
+        <table style="font-size: larger;">
             <tr>
                 <td>
-                    Rate Show:
+                    Overall Rating:
                 </td>
                 <td>
                     <ajaxToolkit:Rating ID="ajaxShowRating" runat="server" MaxRating="10" StarCssClass="ratingStar"
@@ -88,10 +89,14 @@
             </tr>
         </table>
     </asp:PlaceHolder>
+    <br />
+    <br />
     <asp:PlaceHolder ID="phMyShow" runat="server" Visible="false">
         <div>
-            &nbsp;Review Show:<br />
-            <FTB:FreeTextbox ID="txtFree" runat="server" ToolbarLayout="bold,italic,underline,undo,redo" Width="425px" />
+            <h3>
+                &nbsp;Review Show:</h3>
+            <FTB:FreeTextBox ID="txtFree" runat="server" ToolbarLayout="bold,italic,underline,undo,redo"
+                Width="425px" />
             <%--<asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Columns="50" Rows="7"></asp:TextBox>--%>
             <br />
             <asp:Button ID="btnSubmitShowNotes" runat="server" Text="Submit Show Notes" OnClick="btnSubmitShowNotes_Click" />
@@ -171,6 +176,6 @@
         
     </div>--%>
     <asp:HiddenField ID="hdnSetSongId" runat="server" Visible="false" />
-        <asp:HiddenField ID="hdnMyShowId" runat="server" Visible="false" />
-        <asp:HiddenField ID="hdnShowId" runat="server" Value="false" />
+    <asp:HiddenField ID="hdnMyShowId" runat="server" Visible="false" />
+    <asp:HiddenField ID="hdnShowId" runat="server" Value="false" />
 </asp:Content>

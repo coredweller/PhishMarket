@@ -26,7 +26,7 @@ namespace PhishMarket.MyPhishMarket
             }
         }
 
-        public void ajaxShowRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+        private IMyShow GetMyShow(string myShowIdStr)
         {
             ResetPanels();
 
@@ -34,14 +34,21 @@ namespace PhishMarket.MyPhishMarket
             {
                 var scriptHelper3 = new ScriptHelper("ErrorAlert", "alertDiv", "There was an error saving your review.");
                 Page.RegisterStartupScript(scriptHelper3.ScriptName, scriptHelper3.GetFatalScript());
-                return;
+                return null;
             }
 
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
 
-            var myShowId = new Guid(hdnMyShowId.Value);
+            var myShowId = new Guid(myShowIdStr);
 
-            var myShow = myShowService.GetMyShow(myShowId);
+            return myShowService.GetMyShow(myShowId);
+        }
+
+        public void ajaxShowRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+        {
+            var myShow = GetMyShow(hdnMyShowId.Value);
+
+            if (myShow == null) return;
 
             using (IUnitOfWork uow = UnitOfWork.Begin())
             {
@@ -52,32 +59,80 @@ namespace PhishMarket.MyPhishMarket
 
         public void ajaxBustoutRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
         {
-            throw new NotImplementedException();
+            var myShow = GetMyShow(hdnMyShowId.Value);
+
+            if (myShow == null) return;
+
+            using (IUnitOfWork uow = UnitOfWork.Begin())
+            {
+                myShow.BustoutRating = int.Parse(e.Value);
+                uow.Commit();
+            }
         }
 
         public void ajaxType2JamRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
         {
-            throw new NotImplementedException();
+            var myShow = GetMyShow(hdnMyShowId.Value);
+
+            if (myShow == null) return;
+
+            using (IUnitOfWork uow = UnitOfWork.Begin())
+            {
+                myShow.Type2JamRating = int.Parse(e.Value);
+                uow.Commit();
+            }
         }
 
         public void ajaxType1JamRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
         {
-            throw new NotImplementedException();
+            var myShow = GetMyShow(hdnMyShowId.Value);
+
+            if (myShow == null) return;
+
+            using (IUnitOfWork uow = UnitOfWork.Begin())
+            {
+                myShow.Type1JamRating = int.Parse(e.Value);
+                uow.Commit();
+            }
         }
 
         public void ajaxSegueRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
         {
-            throw new NotImplementedException();
+            var myShow = GetMyShow(hdnMyShowId.Value);
+
+            if (myShow == null) return;
+
+            using (IUnitOfWork uow = UnitOfWork.Begin())
+            {
+                myShow.SegueRating = int.Parse(e.Value);
+                uow.Commit();
+            }
         }
 
         public void ajaxFlowRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
         {
-            throw new NotImplementedException();
+            var myShow = GetMyShow(hdnMyShowId.Value);
+
+            if (myShow == null) return;
+
+            using (IUnitOfWork uow = UnitOfWork.Begin())
+            {
+                myShow.FlowRating = int.Parse(e.Value);
+                uow.Commit();
+            }
         }
 
         public void ajaxEnergyRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
         {
-            throw new NotImplementedException();
+            var myShow = GetMyShow(hdnMyShowId.Value);
+
+            if (myShow == null) return;
+
+            using (IUnitOfWork uow = UnitOfWork.Begin())
+            {
+                myShow.EnergyRating = int.Parse(e.Value);
+                uow.Commit();
+            }
         }
 
         private void Bind()
@@ -110,7 +165,15 @@ namespace PhishMarket.MyPhishMarket
             if (myShow != null)
             {
                 hdnMyShowId.Value = myShow.MyShowId.ToString();
+
                 ajaxShowRating.CurrentRating = myShow.Rating == null ? 0 : int.Parse(myShow.Rating.Value.ToString());
+                ajaxBustoutRating.CurrentRating = myShow.BustoutRating == null ? 0 : int.Parse(myShow.BustoutRating.Value.ToString());
+                ajaxEnergyRating.CurrentRating = myShow.EnergyRating == null ? 0 : int.Parse(myShow.EnergyRating.Value.ToString());
+                ajaxFlowRating.CurrentRating = myShow.FlowRating == null ? 0 : int.Parse(myShow.FlowRating.Value.ToString());
+                ajaxSegueRating.CurrentRating = myShow.SegueRating == null ? 0 : int.Parse(myShow.SegueRating.Value.ToString());
+                ajaxType1JamRating.CurrentRating = myShow.Type1JamRating == null ? 0 : int.Parse(myShow.Type1JamRating.Value.ToString());
+                ajaxType2JamRating.CurrentRating = myShow.Type2JamRating == null ? 0 : int.Parse(myShow.Type2JamRating.Value.ToString());
+
                 txtFree.Text = myShow.Notes;
                 phMyShow.Visible = true;
                 phMyShowRating.Visible = true;
