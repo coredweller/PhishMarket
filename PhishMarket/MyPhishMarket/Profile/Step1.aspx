@@ -27,7 +27,7 @@
                     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                 </td>
             </tr>
-            <tr>
+         <%--   <tr>
                 <td>
                     Favorite Year
                 </td>
@@ -45,7 +45,7 @@
                     </asp:DropDownList>
                 </td>
             </tr>
-            <%-- <tr>
+             <tr>
                 <td>
                     Favorite Album:
                 </td>

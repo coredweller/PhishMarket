@@ -35,7 +35,7 @@
                     <asp:Label ID="lblEmail" runat="server"></asp:Label>
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td>
                     Favorite Album:
                 </td>
@@ -66,7 +66,7 @@
                 <td>
                     <asp:Label ID="lblFavoriteStudioSong" runat="server"></asp:Label>
                 </td>
-            </tr>
+            </tr>--%>
         </table>
     </div>
     <br />
@@ -93,10 +93,11 @@
             <asp:PlaceHolder ID="phNotes" runat="server" Visible='<%# !string.IsNullOrEmpty((string)Eval("Value.Notes")) %>'>
                 <tr>
                     <td colspan="2">
-                        &nbsp;&nbsp;Review: <a href='<%# LinkBuilder.ViewFullShowReviewLink((Guid)Eval("Value.MyShowId")) %>'>
-                            <%# ShortDescription((string)Eval("Value.Notes"), 300) %></a>
+                        <a href='<%# LinkBuilder.ViewFullShowReviewLink((Guid)Eval("Value.MyShowId")) %>'>
+                            Click Here to Read the Review</a>
                     </td>
                 </tr>
+
             </asp:PlaceHolder>
         </ItemTemplate>
         <FooterTemplate>

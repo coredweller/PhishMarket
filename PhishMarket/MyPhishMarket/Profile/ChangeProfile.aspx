@@ -23,7 +23,7 @@
             </table>
         </div>
     </div>
-    <div style="padding-bottom: 10px;">
+    <%--<div style="padding-bottom: 10px;">
         <div class="tTip" id="Div1" title="Step 2: Favorite live elements.">
             <table>
                 <tr>
@@ -38,7 +38,7 @@
                 </tr>
             </table>
         </div>
-    </div>
+    </div>--%>
     <%--<div>
         <div class="tTip" id="Div2" title="Step 3: Choose your favorite live version of each song.">
             <table>

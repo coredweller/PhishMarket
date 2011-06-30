@@ -37,7 +37,7 @@
                     <asp:Label ID="lblEmail" runat="server"></asp:Label>
                 </td>
             </tr>
-            <tr>
+           <%-- <tr>
                 <td>
                     Favorite Album:
                 </td>
@@ -68,7 +68,7 @@
                 <td>
                     <asp:Label ID="lblFavoriteStudioSong" runat="server"></asp:Label>
                 </td>
-            </tr>
+            </tr>--%>
         </table>
         <br />
         <br />

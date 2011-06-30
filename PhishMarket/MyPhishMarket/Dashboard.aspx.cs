@@ -23,7 +23,7 @@ namespace PhishMarket.MyPhishMarket
 
             userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 
-            lnkChangeProfile.NavigateUrl = LinkBuilder.ChangeProfileLink();
+            lnkChangeProfile.NavigateUrl = LinkBuilder.ProfileStep1Link();
 
             if (!IsPostBack)
             {
@@ -92,33 +92,33 @@ namespace PhishMarket.MyPhishMarket
             {
                 //Show Profile
 
-                SongService songService = new SongService(Ioc.GetInstance<ISongRepository>());
-                ShowService showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+                //SongService songService = new SongService(Ioc.GetInstance<ISongRepository>());
+                //ShowService showService = new ShowService(Ioc.GetInstance<IShowRepository>());
 
-                if (profile.FavoriteStudioSong != null)
-                {
-                    var favoriteStudioSong = songService.GetSong(profile.FavoriteStudioSong.Value);
-                    lblFavoriteStudioSong.Text = string.Format("{0} - {1}", favoriteStudioSong.SongName, favoriteStudioSong.Album);
-                }
+                //if (profile.FavoriteStudioSong != null)
+                //{
+                //    var favoriteStudioSong = songService.GetSong(profile.FavoriteStudioSong.Value);
+                //    lblFavoriteStudioSong.Text = string.Format("{0} - {1}", favoriteStudioSong.SongName, favoriteStudioSong.Album);
+                //}
 
-                if (profile.FavoriteLiveShow != null)
-                {
-                    var favoriteLiveShow = showService.GetShow(profile.FavoriteLiveShow.Value);
-                    if (favoriteLiveShow != null)
-                    {
-                        lblFavoriteLiveShow.Text = string.Format("{0} - {1}, {2}", favoriteLiveShow.ShowDate.Value.ToString("MM/dd/yyyy"), favoriteLiveShow.VenueName, favoriteLiveShow.State);
-                    }
-                }
+                //if (profile.FavoriteLiveShow != null)
+                //{
+                //    var favoriteLiveShow = showService.GetShow(profile.FavoriteLiveShow.Value);
+                //    if (favoriteLiveShow != null)
+                //    {
+                //        lblFavoriteLiveShow.Text = string.Format("{0} - {1}, {2}", favoriteLiveShow.ShowDate.Value.ToString("MM/dd/yyyy"), favoriteLiveShow.VenueName, favoriteLiveShow.State);
+                //    }
+                //}
 
-                if (profile.FavoriteTour != null)
-                {
-                    var favoriteTour = service.GetTour(profile.FavoriteTour.Value);
-                    lblFavoriteTour.Text = string.Format("{0} {1}-{2}", favoriteTour.TourName, favoriteTour.StartDate.Value.ToString("MM/dd/yyyy"), favoriteTour.EndDate.Value.ToString("MM/dd/yyyy"));
-                }
+                //if (profile.FavoriteTour != null)
+                //{
+                //    var favoriteTour = service.GetTour(profile.FavoriteTour.Value);
+                //    lblFavoriteTour.Text = string.Format("{0} {1}-{2}", favoriteTour.TourName, favoriteTour.StartDate.Value.ToString("MM/dd/yyyy"), favoriteTour.EndDate.Value.ToString("MM/dd/yyyy"));
+                //}
 
                 lblName.Text = profile.Name;
                 lblEmail.Text = profile.Email;
-                lblFavoriteAlbum.Text = profile.FavoriteAlbum;
+                //lblFavoriteAlbum.Text = profile.FavoriteAlbum;
 
             }
             else

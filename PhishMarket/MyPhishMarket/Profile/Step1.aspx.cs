@@ -96,7 +96,9 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
                 uow.Commit();
             }
 
-            var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", "You have successfully saved your profile. Proceed to Step 2 by clicking NEXT below!");
+            /// ADD THE PART BELOW TO THE SUCCESS MSG WHEN STEP 2 Comes back
+            //   Proceed to Step 2 by clicking NEXT below!
+            var scriptHelper = new ScriptHelper("SuccessAlert", "alertDiv", "You have successfully saved your profile.");
             Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetSuccessScript());
         }
     }
