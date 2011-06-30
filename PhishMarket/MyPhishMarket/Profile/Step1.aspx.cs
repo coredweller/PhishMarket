@@ -15,56 +15,55 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
         {
             SetPageTitle("PhishMarket Profile Step 1");
 
-            btnSubmit.Attributes.Add("onmouseover", "this.src = '/images/buttons/greySaveButtonRollover.jpg'");
-            btnSubmit.Attributes.Add("onmouseout", "this.src = '/images/buttons/greySaveButton.jpg'");
+            //btnSubmit.Attributes.Add("onmouseover", "this.src = '/images/buttons/greySaveButtonRollover.jpg'");
+            //btnSubmit.Attributes.Add("onmouseout", "this.src = '/images/buttons/greySaveButton.jpg'");
 
             if (!IsPostBack)
             {
-                BindLists();
+                //BindLists();
                 BindProfile();
             }
-            btnNext.Click += new System.Web.UI.ImageClickEventHandler(btnNext_Click);
         }
 
-        public void btnNext_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            Response.Redirect(LinkBuilder.ProfileStep2Link());
-        }
+        //public void btnNext_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        //{
+        //    Response.Redirect(LinkBuilder.ProfileStep2Link());
+        //}
 
-        public void btnPrevious_Click(object sender, System.Web.UI.ImageClickEventArgs e)
-        {
-            Response.Redirect(LinkBuilder.ChangeProfileLink());
-        }
+        //public void btnPrevious_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        //{
+        //    Response.Redirect(LinkBuilder.ChangeProfileLink());
+        //}
 
-        private void BindLists()
-        {
-            SetSongService setSongService = new SetSongService(Ioc.GetInstance<ISetSongRepository>());
-            SongService songService = new SongService(Ioc.GetInstance<ISongRepository>());
+        //private void BindLists()
+        //{
+        //    SetSongService setSongService = new SetSongService(Ioc.GetInstance<ISetSongRepository>());
+        //    SongService songService = new SongService(Ioc.GetInstance<ISongRepository>());
 
-            var albums = songService.GetAlbums();
+        //    var albums = songService.GetAlbums();
 
-            if (albums != null)
-            {
-                ddlFavoriteAlbums.Items.AddRange(albums);
-            }
+        //    if (albums != null)
+        //    {
+        //        ddlFavoriteAlbums.Items.AddRange(albums);
+        //    }
 
-            var item = new ListItem("Please select an album", "-1");
+        //    var item = new ListItem("Please select an album", "-1");
 
-            ddlFavoriteAlbums.Items.Insert(0, item);
+        //    ddlFavoriteAlbums.Items.Insert(0, item);
 
-            var studioSongs = songService.GetAllSongs().OrderBy(x => x.SongName).ToList();
+        //    var studioSongs = songService.GetAllSongs().Where(y => y.Album.ToLower() != "live only").OrderBy(x => x.SongName).ToList();
 
-            if (studioSongs != null)
-            {
-                studioSongs.ForEach(x => ddlFavoriteStudioSong.Items.Add(new ListItem(x.SongName, x.SongId.ToString())));
-            }
+        //    if (studioSongs != null)
+        //    {
+        //        studioSongs.ForEach(x => ddlFavoriteStudioSong.Items.Add(new ListItem(x.SongName, x.SongId.ToString())));
+        //    }
 
-            item = new ListItem("Please select a song", "-1");
+        //    item = new ListItem("Please select a song", "-1");
 
-            ddlFavoriteStudioSong.Items.Insert(0, item);
+        //    ddlFavoriteStudioSong.Items.Insert(0, item);
 
-            item.Selected = true;
-        }
+        //    item.Selected = true;
+        //}
 
         private void BindProfile()
         {
@@ -74,8 +73,8 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
             {
                 txtName.Text = profile.Name;
                 txtEmail.Text = profile.Email;
-                ddlFavoriteAlbums.SelectedValue = !string.IsNullOrEmpty(profile.FavoriteAlbum) ? profile.FavoriteAlbum : string.Empty;
-                ddlFavoriteStudioSong.SelectedValue = profile.FavoriteStudioSong != null ? profile.FavoriteStudioSong.ToString() : string.Empty;
+                //ddlFavoriteAlbums.SelectedValue = !string.IsNullOrEmpty(profile.FavoriteAlbum) ? profile.FavoriteAlbum : string.Empty;
+                //ddlFavoriteStudioSong.SelectedValue = profile.FavoriteStudioSong != null ? profile.FavoriteStudioSong.ToString() : string.Empty;
             }
         }
 
@@ -88,11 +87,11 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
                 profile.Name = txtName.Text;
                 profile.Email = txtEmail.Text;
 
-                if (ddlFavoriteAlbums.SelectedValue != "-1")
-                    profile.FavoriteAlbum = ddlFavoriteAlbums.SelectedValue;
+                //if (ddlFavoriteAlbums.SelectedValue != "-1")
+                //    profile.FavoriteAlbum = ddlFavoriteAlbums.SelectedValue;
 
-                if (ddlFavoriteStudioSong.SelectedValue != "-1")
-                    profile.FavoriteStudioSong = new Guid(ddlFavoriteStudioSong.SelectedValue);
+                //if (ddlFavoriteStudioSong.SelectedValue != "-1")
+                //    profile.FavoriteStudioSong = new Guid(ddlFavoriteStudioSong.SelectedValue);
 
                 uow.Commit();
             }

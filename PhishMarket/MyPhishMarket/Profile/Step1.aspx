@@ -29,6 +29,24 @@
             </tr>
             <tr>
                 <td>
+                    Favorite Year
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlFavoriteYear" runat="server">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Favorite 3.0 Year
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlFavorite3Year" runat="server">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <%-- <tr>
+                <td>
                     Favorite Album:
                 </td>
                 <td>
@@ -44,7 +62,7 @@
                     <asp:DropDownList ID="ddlFavoriteStudioSong" runat="server">
                     </asp:DropDownList>
                 </td>
-            </tr>
+            </tr>--%>
         </table>
         <br />
         <table>
@@ -52,24 +70,21 @@
                 <td colspan="2">
                     <asp:ImageButton ID="btnSubmit" runat="server" ImageUrl="/images/buttons/greySaveButton.jpg"
                         OnClick="btnSubmit_Click" />
-                    <%--<asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />--%>
                 </td>
             </tr>
         </table>
-        <br />
+        <%--<br />
         <table>
             <tr>
                 <td>
                     <asp:ImageButton ID="btnPrevious" runat="server" ImageUrl="/images/buttons/previousWhiteButton.gif"
                         OnClick="btnPrevious_Click" />
-                    <%--<asp:Button ID="btnPrevious" runat="server" Text="Previous" OnClick="btnPrevious_Click" />--%>
                 </td>
                 <td>
                     <asp:ImageButton ID="btnNext" runat="server" ImageUrl="/images/buttons/nextWhiteButton.gif"
                         OnClick="btnNext_Click" />
-                    <%--<asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" />--%>
                 </td>
             </tr>
-        </table>
+        </table>--%>
     </div>
 </asp:Content>
