@@ -9,7 +9,7 @@
                 <ul>
     </HeaderTemplate>
     <ItemTemplate>
-        <li><a href='<%# LinkBuilder.ViewProfileLink((Guid)Eval("MyShow.UserId")) %>'>
+        <li><a href='<%# LinkBuilder.ShowReviewsLink((DateTime)Eval("Show.ShowDate")) %>'>
             <%# ShortDescription((string)Eval("MyShow.Notes")) %></a> - <%# ((DateTime)Eval("Show.ShowDate")).ToShortDateString() %></li>
     </ItemTemplate>
     <FooterTemplate>

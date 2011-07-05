@@ -207,6 +207,11 @@ namespace TheCore.Helpers
             return string.Format("/ShowReviews.aspx?showId={0}", showId);
         }
 
+        public string ShowReviewsLink(DateTime showDate)
+        {
+            return string.Format("/ShowReviews.aspx?showDate={0}", showDate.ToShortDateString());
+        }
+
         public string SongReviewsLink(Guid setSongId)
         {
             return string.Format("/MyPhishMarket/SongReviews.aspx?setSongId={0}", setSongId);
