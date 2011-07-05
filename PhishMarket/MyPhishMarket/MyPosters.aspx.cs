@@ -79,7 +79,7 @@ namespace PhishMarket.MyPhishMarket
             }
         }
 
-        public void btnAddPicture_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        public void btnAddPicture_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(ddlShows.SelectedValue))
             {

@@ -62,6 +62,8 @@
         <asp:PlaceHolder ID="phRemoveSuccess" runat="server" Visible="false">You have successfully
             removed the poster from you collecton. </asp:PlaceHolder>
         <br />
+        
+        <%--
         <br />
         <div>
             <asp:ImageButton ID="btnAddOther" runat="server" ImageUrl="/images/buttons/AddPicturesFromOthers.gif"
@@ -70,7 +72,7 @@
                 OnClick="btnAddPicture_Click" />
         </div>
         <br />
-        <br />
+        <br />--%>
         <asp:PlaceHolder ID="phAddShow" runat="server" Visible="false">
             <div>
                 <h4>
@@ -105,6 +107,12 @@
         Tip 1: Click the thumbnails or arrows to change pictures.
         <br />
         Tip 2: Click the large image to go to a page to delete it.</h4>
+        <br />
+    
+    
+        
+    <asp:LinkButton ID="lnkBrihbrih" OnClick="btnAddPicture_Click" runat="server" Text="Add a new Poster here!"></asp:LinkButton>
+    
     <div id="gallery">
         <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
         <%--<img src="/images/Shows/coretest2-634195715440294949.jpg" alt="blah" />--%>
