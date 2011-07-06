@@ -32,6 +32,42 @@ namespace PhishMarket.MyPhishMarket.ProfilePages {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
+        /// ddlFavoriteYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFavoriteYear;
+        
+        /// <summary>
+        /// ddlFavorite3Year control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFavorite3Year;
+        
+        /// <summary>
+        /// ddlFavoriteSeason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFavoriteSeason;
+        
+        /// <summary>
+        /// ddlFavoriteRun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFavoriteRun;
+        
+        /// <summary>
         /// btnSubmit control.
         /// </summary>
         /// <remarks>

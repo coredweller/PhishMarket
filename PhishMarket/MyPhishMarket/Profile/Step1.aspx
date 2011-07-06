@@ -27,7 +27,7 @@
                     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                 </td>
             </tr>
-         <%--   <tr>
+            <tr>
                 <td>
                     Favorite Year
                 </td>
@@ -45,7 +45,25 @@
                     </asp:DropDownList>
                 </td>
             </tr>
-             <tr>
+            <tr>
+                <td>
+                    Favorite Season to see Phish:
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlFavoriteSeason" runat="server">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Favorite Type of Phish Run:
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlFavoriteRun" runat="server">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <%--     <tr>
                 <td>
                     Favorite Album:
                 </td>

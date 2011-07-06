@@ -184,6 +184,7 @@
     <Compile Include="Services\VideoService.cs" />
     <Compile Include="Services\WantedListService.cs" />
     <Compile Include="Services\YafService.cs" />
+    <Compile Include="Services\YearService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
