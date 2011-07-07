@@ -118,6 +118,13 @@
     <Compile Include="Admin\AddSetsToShow.aspx.designer.cs">
       <DependentUpon>AddSetsToShow.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\CreateAlbum.aspx.cs">
+      <DependentUpon>CreateAlbum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CreateAlbum.aspx.designer.cs">
+      <DependentUpon>CreateAlbum.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\CreateGuessWholeShow.aspx.cs">
       <DependentUpon>CreateGuessWholeShow.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -631,6 +638,7 @@
   <ItemGroup>
     <Content Include="AddSetsSpecial.aspx" />
     <Content Include="Admin\AddSetsToShow.aspx" />
+    <Content Include="Admin\CreateAlbum.aspx" />
     <Content Include="Admin\CreateGuessWholeShow.aspx" />
     <Content Include="Admin\CreateTicketStub.aspx" />
     <Content Include="Admin\EditSongNames.aspx" />

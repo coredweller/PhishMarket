@@ -140,6 +140,11 @@ namespace PhishPond.Repository.LinqToSql
             get { return GetQueryable<aspnet_User>().Cast<IUser>(); }
         }
 
+        public IQueryable<IAlbum> AlbumDataSource
+        {
+            get { return GetQueryable<Album>().Cast<IAlbum>(); }
+        }
+
 
 
 

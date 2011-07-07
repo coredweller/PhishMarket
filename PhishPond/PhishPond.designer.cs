@@ -97,6 +97,9 @@ namespace PhishPond.Repository.LinqToSql
     partial void InsertWantedList(PhishPond.Concrete.WantedList instance);
     partial void UpdateWantedList(PhishPond.Concrete.WantedList instance);
     partial void DeleteWantedList(PhishPond.Concrete.WantedList instance);
+    partial void InsertAlbum(PhishPond.Concrete.Album instance);
+    partial void UpdateAlbum(PhishPond.Concrete.Album instance);
+    partial void DeleteAlbum(PhishPond.Concrete.Album instance);
     #endregion
 		
 		public PhishDatabase() : 
@@ -310,6 +313,14 @@ namespace PhishPond.Repository.LinqToSql
 			get
 			{
 				return this.GetTable<PhishPond.Concrete.WantedList>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PhishPond.Concrete.Album> Albums
+		{
+			get
+			{
+				return this.GetTable<PhishPond.Concrete.Album>();
 			}
 		}
 		
@@ -5780,7 +5791,7 @@ namespace PhishPond.Concrete
 		
 		private string _Email;
 		
-		private string _FavoriteAlbum;
+		private System.Nullable<System.Guid> _FavoriteAlbum;
 		
 		private System.Nullable<System.Guid> _FavoriteLiveShow;
 		
@@ -5824,7 +5835,7 @@ namespace PhishPond.Concrete
     partial void OnNameChanged();
     partial void OnEmailChanging(string value);
     partial void OnEmailChanged();
-    partial void OnFavoriteAlbumChanging(string value);
+    partial void OnFavoriteAlbumChanging(System.Nullable<System.Guid> value);
     partial void OnFavoriteAlbumChanged();
     partial void OnFavoriteLiveShowChanging(System.Nullable<System.Guid> value);
     partial void OnFavoriteLiveShowChanged();
@@ -5924,8 +5935,8 @@ namespace PhishPond.Concrete
 			}
 		}
 		
-		[Column(Storage="_FavoriteAlbum", DbType="VarChar(50)")]
-		public string FavoriteAlbum
+		[Column(Storage="_FavoriteAlbum", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> FavoriteAlbum
 		{
 			get
 			{
@@ -9888,6 +9899,140 @@ namespace PhishPond.Concrete
 					this._SetSongId = value;
 					this.SendPropertyChanged("SetSongId");
 					this.OnSetSongIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Album")]
+	public partial class Album : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _AlbumId;
+		
+		private string _AlbumName;
+		
+		private int _YearReleased;
+		
+		private System.DateTime _CreatedDate;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAlbumIdChanging(System.Guid value);
+    partial void OnAlbumIdChanged();
+    partial void OnAlbumNameChanging(string value);
+    partial void OnAlbumNameChanged();
+    partial void OnYearReleasedChanging(int value);
+    partial void OnYearReleasedChanged();
+    partial void OnCreatedDateChanging(System.DateTime value);
+    partial void OnCreatedDateChanged();
+    #endregion
+		
+		public Album()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_AlbumId", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid AlbumId
+		{
+			get
+			{
+				return this._AlbumId;
+			}
+			set
+			{
+				if ((this._AlbumId != value))
+				{
+					this.OnAlbumIdChanging(value);
+					this.SendPropertyChanging();
+					this._AlbumId = value;
+					this.SendPropertyChanged("AlbumId");
+					this.OnAlbumIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_AlbumName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string AlbumName
+		{
+			get
+			{
+				return this._AlbumName;
+			}
+			set
+			{
+				if ((this._AlbumName != value))
+				{
+					this.OnAlbumNameChanging(value);
+					this.SendPropertyChanging();
+					this._AlbumName = value;
+					this.SendPropertyChanged("AlbumName");
+					this.OnAlbumNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_YearReleased", DbType="Int NOT NULL")]
+		public int YearReleased
+		{
+			get
+			{
+				return this._YearReleased;
+			}
+			set
+			{
+				if ((this._YearReleased != value))
+				{
+					this.OnYearReleasedChanging(value);
+					this.SendPropertyChanging();
+					this._YearReleased = value;
+					this.SendPropertyChanged("YearReleased");
+					this.OnYearReleasedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CreatedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
 				}
 			}
 		}

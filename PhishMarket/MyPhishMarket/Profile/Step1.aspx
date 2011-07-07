@@ -63,7 +63,7 @@
                     </asp:DropDownList>
                 </td>
             </tr>
-            <%--     <tr>
+                 <tr>
                 <td>
                     Favorite Album:
                 </td>
@@ -72,7 +72,7 @@
                     </asp:DropDownList>
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td>
                     Favorite Studio Song:
                 </td>

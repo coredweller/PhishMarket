@@ -52,19 +52,19 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
             BindSeasons();
             BindRuns();
 
-            //SetSongService setSongService = new SetSongService(Ioc.GetInstance<ISetSongRepository>());
-            //SongService songService = new SongService(Ioc.GetInstance<ISongRepository>());
+            var albumService = new AlbumService(Ioc.GetInstance<IAlbumRepository>());
+            var albums = albumService.GetAllAlbumsForDropDown();
 
-            //var albums = songService.GetAlbums();
+            if (albums != null)
+            {
+                ddlFavoriteAlbums.Items.AddRange(albums);
+            }
 
-            //if (albums != null)
-            //{
-            //    ddlFavoriteAlbums.Items.AddRange(albums);
-            //}
+            item = new ListItem("Please select an album", "-1");
 
-            //var item = new ListItem("Please select an album", "-1");
+            ddlFavoriteAlbums.Items.Insert(0, item);
 
-            //ddlFavoriteAlbums.Items.Insert(0, item);
+            item.Selected = true;
 
             //var studioSongs = songService.GetAllSongs().Where(y => y.Album.ToLower() != "live only").OrderBy(x => x.SongName).ToList();
 
@@ -114,6 +114,7 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
                 ddlFavoriteYear.SelectedValue = profile.FavoriteYear != null ? profile.FavoriteYear.Value.ToString() : string.Empty;
                 ddlFavoriteSeason.SelectedValue = !string.IsNullOrEmpty(profile.FavoriteSeason) ? profile.FavoriteSeason : string.Empty;
                 ddlFavoriteRun.SelectedValue = !string.IsNullOrEmpty(profile.FavoriteRun) ? profile.FavoriteRun : string.Empty;
+                ddlFavoriteAlbums.SelectedValue = profile.FavoriteAlbum != null ? profile.FavoriteAlbum.Value.ToString() : string.Empty;
 
                 //ddlFavoriteAlbums.SelectedValue = !string.IsNullOrEmpty(profile.FavoriteAlbum) ? profile.FavoriteAlbum : string.Empty;
                 //ddlFavoriteStudioSong.SelectedValue = profile.FavoriteStudioSong != null ? profile.FavoriteStudioSong.ToString() : string.Empty;
@@ -141,8 +142,8 @@ namespace PhishMarket.MyPhishMarket.ProfilePages
                 if (ddlFavoriteRun.SelectedValue != "-1")
                     profile.FavoriteRun = ddlFavoriteRun.SelectedValue;
 
-                //if (ddlFavoriteAlbums.SelectedValue != "-1")
-                //    profile.FavoriteAlbum = ddlFavoriteAlbums.SelectedValue;
+                if (ddlFavoriteAlbums.SelectedValue != "-1")
+                    profile.FavoriteAlbum = new Guid(ddlFavoriteAlbums.SelectedValue);
 
                 //if (ddlFavoriteStudioSong.SelectedValue != "-1")
                 //    profile.FavoriteStudioSong = new Guid(ddlFavoriteStudioSong.SelectedValue);

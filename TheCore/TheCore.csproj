@@ -98,6 +98,7 @@
     <Compile Include="Infrastructure\IoC\Ioc.cs" />
     <Compile Include="Infrastructure\UoW\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UoW\UnitOfWork.cs" />
+    <Compile Include="Interfaces\IAlbum.cs" />
     <Compile Include="Interfaces\IAnalysis.cs" />
     <Compile Include="Interfaces\IArt.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Membership\PhishMarketSqlMembershipProvider.cs" />
     <Compile Include="Membership\PhishMarketSqlRoleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IAlbumRepository.cs" />
     <Compile Include="Repository\IAnalysisRepository.cs" />
     <Compile Include="Repository\IArtRepository.cs" />
     <Compile Include="Repository\IFavoriteVersionRepository.cs" />
@@ -157,6 +159,7 @@
     <Compile Include="Repository\IYafGetRecentTopicsResult.cs" />
     <Compile Include="Repository\IYafGetUserResult.cs" />
     <Compile Include="Repository\IYafRepository.cs" />
+    <Compile Include="Services\AlbumService.cs" />
     <Compile Include="Services\AnalysisService.cs" />
     <Compile Include="Services\ArtService.cs" />
     <Compile Include="Services\FavoriteVersionService.cs" />

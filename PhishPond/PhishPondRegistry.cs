@@ -195,6 +195,13 @@ namespace PhishPond
                 .Ctor<IPhishDatabaseFactory>("factory").IsTheDefault();
 
             SelectConstructor<PhishMarketUserRepository>(() => new PhishMarketUserRepository((IPhishDatabaseFactory)null));
+
+            For<IAlbumRepository>()
+                .HybridHttpOrThreadLocalScoped()
+                .Use<AlbumRepository>()
+                .Ctor<IPhishDatabaseFactory>("factory").IsTheDefault();
+
+            SelectConstructor<AlbumRepository>(() => new AlbumRepository((IPhishDatabaseFactory)null));
         }
     }
 }

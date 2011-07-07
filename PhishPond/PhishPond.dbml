@@ -249,7 +249,7 @@
       <Column Name="ProfileId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="FavoriteAlbum" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FavoriteAlbum" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="FavoriteLiveShow" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="FavoriteStudioSong" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="FavoriteLiveSong" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
@@ -261,10 +261,10 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Deleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="FavoriteTour" Type="System.Guid" CanBeNull="true" />
-      <Column Member="FavoriteYear" Type="System.Int32" CanBeNull="true" />
-      <Column Member="Favorite3Year" Type="System.Int32" CanBeNull="true" />
-      <Column Member="FavoriteSeason" Type="System.String" CanBeNull="true" />
-      <Column Member="FavoriteRun" Type="System.String" CanBeNull="true" />
+      <Column Name="FavoriteYear" Type="System.Int32" CanBeNull="true" />
+      <Column Name="Favorite3Year" Type="System.Int32" CanBeNull="true" />
+      <Column Name="FavoriteSeason" Type="System.String" CanBeNull="true" />
+      <Column Name="FavoriteRun" Type="System.String" CanBeNull="true" />
       <Association Name="aspnet_User_Profile" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
     </Type>
   </Table>
@@ -430,6 +430,14 @@
       <Column Name="SongId" Type="System.Guid" CanBeNull="false" />
       <Column Name="Rank" Type="System.Int32" CanBeNull="false" />
       <Column Name="SetSongId" Type="System.Guid" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Album" Member="Albums">
+    <Type Name="Album">
+      <Column Name="AlbumId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="AlbumName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="YearReleased" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.yafGetRecentPosts" Method="yafGetRecentPosts">
