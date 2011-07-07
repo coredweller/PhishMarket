@@ -35,7 +35,39 @@
                     <asp:Label ID="lblEmail" runat="server"></asp:Label>
                 </td>
             </tr>
-            <%--<tr>
+            <tr>
+                <td>
+                    Favorite Year
+                </td>
+                <td>
+                    <asp:Label ID="lblFavoriteYear" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Favorite 3.0 Year
+                </td>
+                <td>
+                    <asp:Label ID="lblFavorite3Year" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Favorite Season to see Phish:
+                </td>
+                <td>
+                    <asp:Label ID="lblFavoriteSeason" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Favorite Type of Phish Run:
+                </td>
+                <td>
+                    <asp:Label ID="lblFavoriteRun" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
                 <td>
                     Favorite Album:
                 </td>
@@ -43,7 +75,7 @@
                     <asp:Label ID="lblFavoriteAlbum" runat="server"></asp:Label>
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td>
                     Favorite Tour:
                 </td>

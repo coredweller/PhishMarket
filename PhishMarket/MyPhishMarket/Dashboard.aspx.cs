@@ -116,10 +116,19 @@ namespace PhishMarket.MyPhishMarket
                 //    lblFavoriteTour.Text = string.Format("{0} {1}-{2}", favoriteTour.TourName, favoriteTour.StartDate.Value.ToString("MM/dd/yyyy"), favoriteTour.EndDate.Value.ToString("MM/dd/yyyy"));
                 //}
 
+                if (profile.FavoriteAlbum != null)
+                {
+                    var albumService = new AlbumService(Ioc.GetInstance<IAlbumRepository>());
+                    var album = albumService.GetAlbum(profile.FavoriteAlbum.Value);
+                    lblFavoriteAlbum.Text = album.AlbumName;
+                }
+
                 lblName.Text = profile.Name;
                 lblEmail.Text = profile.Email;
-                //lblFavoriteAlbum.Text = profile.FavoriteAlbum;
-
+                lblFavorite3Year.Text = profile.Favorite3Year != null ? profile.Favorite3Year.Value.ToString() : string.Empty;
+                lblFavoriteYear.Text = profile.FavoriteYear != null ? profile.FavoriteYear.Value.ToString() : string.Empty;
+                lblFavoriteRun.Text = !string.IsNullOrEmpty(profile.FavoriteRun) ? profile.FavoriteRun.ToString() : string.Empty;
+                lblFavoriteSeason.Text = !string.IsNullOrEmpty(profile.FavoriteSeason) ? profile.FavoriteSeason.ToString() : string.Empty;
             }
             else
             {

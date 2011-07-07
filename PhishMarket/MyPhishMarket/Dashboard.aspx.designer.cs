@@ -59,6 +59,51 @@ namespace PhishMarket.MyPhishMarket {
         protected global::System.Web.UI.WebControls.Label lblEmail;
         
         /// <summary>
+        /// lblFavoriteYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFavoriteYear;
+        
+        /// <summary>
+        /// lblFavorite3Year control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFavorite3Year;
+        
+        /// <summary>
+        /// lblFavoriteSeason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFavoriteSeason;
+        
+        /// <summary>
+        /// lblFavoriteRun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFavoriteRun;
+        
+        /// <summary>
+        /// lblFavoriteAlbum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFavoriteAlbum;
+        
+        /// <summary>
         /// phMyPoster control.
         /// </summary>
         /// <remarks>
