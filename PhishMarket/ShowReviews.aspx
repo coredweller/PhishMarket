@@ -99,30 +99,72 @@
         no reviews for this show. Be the first to review this show <a href='<%= LinkBuilder.AnalysisLink(ShowId) %>'>
             HERE </a></asp:PlaceHolder>
     <asp:Repeater ID="rptReviews" runat="server">
-        <HeaderTemplate>
-            <table>
-        </HeaderTemplate>
         <ItemTemplate>
-            <tr>
-                <td>
-                    Review Date:<%# ((((PhishPond.Concrete.MyShow)Container.DataItem).NotesUpdatedDate)).Value.ToShortDateString()%><ajaxToolkit:Rating
-                        ID="ajaxSongRating" runat="server" CurrentRating='<%# DetermineRating((((PhishPond.Concrete.MyShow)Container.DataItem).Rating)) %>'
-                        MaxRating="10" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
-                        FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" ReadOnly="true" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <%# (((PhishPond.Concrete.MyShow)Container.DataItem).Notes) %>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <hr class="horizontalRule1" />
-                </td>
-            </tr>
+            <div>
+                Review Date:<%# ((((PhishPond.Concrete.MyShow)Container.DataItem).NotesUpdatedDate)).Value.ToShortDateString()%>
+            </div>
+            <div class="LevelDivs">
+                Overall Rating:</div>
+            <div class="LevelDivs" style="padding-left:3px;">
+                <ajaxToolkit:Rating ID="ajaxSongRating" runat="server" CurrentRating='<%# DetermineRating((((PhishPond.Concrete.MyShow)Container.DataItem).Rating)) %>'
+                    MaxRating="10" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
+                    FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" ReadOnly="true" />
+            </div>
+            <br />
+            <div class="LevelDivs">
+                Energy Rating:
+            </div>
+            <div class="LevelDivs" style="padding-left:3px;">
+                <ajaxToolkit:Rating ID="Rating2" runat="server" CurrentRating='<%# DetermineRating((((PhishPond.Concrete.MyShow)Container.DataItem).EnergyRating)) %>'
+                    MaxRating="10" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
+                    FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" ReadOnly="true" />
+            </div>
+            <br />
+            <div class="LevelDivs">
+                Flow Rating:</div>
+            <div class="LevelDivs" style="padding-left:19px;">
+                <ajaxToolkit:Rating ID="Rating1" runat="server" CurrentRating='<%# DetermineRating((((PhishPond.Concrete.MyShow)Container.DataItem).FlowRating)) %>'
+                    MaxRating="10" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
+                    FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" ReadOnly="true" />
+            </div>
+            <br />
+            <div class="LevelDivs">
+                Segue Rating:</div>
+            <div class="LevelDivs" style="padding-left:7px;">
+                <ajaxToolkit:Rating ID="Rating3" runat="server" CurrentRating='<%# DetermineRating((((PhishPond.Concrete.MyShow)Container.DataItem).SegueRating)) %>'
+                    MaxRating="10" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
+                    FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" ReadOnly="true" />
+            </div>
+            <br />
+            <div class="LevelDivs">
+                Type 1 Rating:</div>
+            <div class="LevelDivs" style="padding-left:4px;">
+                <ajaxToolkit:Rating ID="Rating4" runat="server" CurrentRating='<%# DetermineRating((((PhishPond.Concrete.MyShow)Container.DataItem).Type1JamRating)) %>'
+                    MaxRating="10" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
+                    FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" ReadOnly="true" />
+            </div>
+            <br />
+            <div class="LevelDivs">
+                Type 2 Rating:</div>
+            <div class="LevelDivs" style="padding-left:4px;">
+                <ajaxToolkit:Rating ID="Rating5" runat="server" CurrentRating='<%# DetermineRating((((PhishPond.Concrete.MyShow)Container.DataItem).Type2JamRating)) %>'
+                    MaxRating="10" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
+                    FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" ReadOnly="true" />
+            </div>
+            <br />
+            <div class="LevelDivs">
+                Bustout Rating:</div>
+            <div class="LevelDivs">
+                <ajaxToolkit:Rating ID="Rating6" runat="server" CurrentRating='<%# DetermineRating((((PhishPond.Concrete.MyShow)Container.DataItem).BustoutRating)) %>'
+                    MaxRating="10" StarCssClass="ratingStar" WaitingStarCssClass="savedRatingStar"
+                    FilledStarCssClass="filledRatingStar" EmptyStarCssClass="emptyRatingStar" ReadOnly="true" />
+            </div>
+            <br />
+            <br />
+            <div>
+                <%# (((PhishPond.Concrete.MyShow)Container.DataItem).Notes) %>
+            </div>
+            <hr class="horizontalRule1" />
         </ItemTemplate>
-        <FooterTemplate>
-            </table></FooterTemplate>
     </asp:Repeater>
 </asp:Content>
