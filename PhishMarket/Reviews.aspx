@@ -1,12 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Reviews.aspx.cs" Inherits="PhishMarket.Reviews" MasterPageFile="~/Master/Shadowed.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <br />
-    <br />
-    <h2 title="Choose a tour. Then decide which show you want to see others' reviews or want to review yourself."
+    <h2 title="Choose a year. Then decide which show you want to see others' reviews or want to review yourself."
         class="tTip" id="cloud9">
         Show Reviews and Analysis</h2>
-    <br />
     <br />
     <h3>
         <uc:YearSelector id="yearSelector" OnYearSelected="yearSelector_YearSelected" runat="server">

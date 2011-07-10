@@ -8,6 +8,8 @@
     id="cloud8"><a href="/MyPhishMarket/Profile/Step3.aspx">Favorites</a></li>--%>
 <li title="Write a review or see all the reviews for any show!" class="tTip" id="cloud7">
     <a href='<%= LinkBuilder.ReviewsLink() %>'>Reviews</a></li>
+<li title="See ticket stubs from show of years past." class="tTip" id="Li1"><a href="/TicketStubs.aspx">
+    Ticket Stubs</a></li>
 <li title="The Phish Phorum to discuss the best in many categories!" class="tTip"
     id="cloud3"><a href="/Default.aspx">Phorum</a></li>
 <%--<li title="See Stats about many different Phish categories derived from user's choices!"
