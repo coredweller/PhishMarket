@@ -33,7 +33,7 @@ namespace TheCore.Services
             return _repo.FindByUserId(userId);
         }
 
-        public IQueryable<ITicketStub> GetTicketStubsByYear(int year)
+        public IEnumerable<ITicketStub> GetTicketStubsByYear(int year)
         {
             var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
             var shows = showService.GetShowsByYear(year);
@@ -44,7 +44,9 @@ namespace TheCore.Services
                     where showIds.Contains(t.ShowId.Value)
                        select new ShowTicketStub(s,t));
 
-            return showStubs.OrderBy(x => x.Show.ShowDate.Value).Select(y => y.TicketStub);
+            var showStubsList = showStubs.ToList();
+
+            return showStubsList.OrderBy(x => x.Show.ShowDate.Value).Select(y => y.TicketStub);
         }
 
         public IQueryable<ITicketStub> GetByShow(Guid showId)
