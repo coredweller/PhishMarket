@@ -39,7 +39,12 @@ namespace TheCore.Services
             var shows = showService.GetShowsByYear(year);
             var showIds = shows.Select(x => x.ShowId).ToList();
 
-            return GetAllTicketStubs().Where(x => showIds.Contains(x.ShowId.Value));
+            var showStubs = (from t in GetAllTicketStubs()
+                    join s in shows on t.ShowId equals s.ShowId
+                    where showIds.Contains(t.ShowId.Value)
+                       select new ShowTicketStub(s,t));
+
+            return showStubs.OrderBy(x => x.Show.ShowDate.Value).Select(y => y.TicketStub);
         }
 
         public IQueryable<ITicketStub> GetByShow(Guid showId)
@@ -95,5 +100,17 @@ namespace TheCore.Services
             }
         }
 
+    }
+
+    public class ShowTicketStub
+    {
+        public IShow Show { get; set; }
+        public ITicketStub TicketStub { get; set; }
+
+        public ShowTicketStub(IShow show, ITicketStub ticketStub)
+        {
+            Show = show;
+            TicketStub = ticketStub;
+        }
     }
 }
