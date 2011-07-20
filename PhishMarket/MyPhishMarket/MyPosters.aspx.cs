@@ -7,6 +7,7 @@ using TheCore.Repository;
 using System.Web.Security;
 using TheCore.Interfaces;
 using TheCore.Helpers;
+using PhishPond.Concrete;
 
 namespace PhishMarket.MyPhishMarket
 {
@@ -51,31 +52,82 @@ namespace PhishMarket.MyPhishMarket
             }
         }
 
+        public void lnkAddMyShow_Click(object sender, EventArgs e)
+        {
+            var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+            var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
+
+            Guid userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
+            var showId = new Guid(hdnShowId.Value);
+
+            var show = showService.GetShow(showId);
+            var myShow = myShowService.GetMyShow(showId, userId);
+
+            if (myShow != null)
+            {
+                //phAlreadyAdded.Visible = true;
+                return;
+            }
+
+            var newMyShow = new MyShow
+            {
+                CreatedDate = DateTime.Now,
+                MyShowId = Guid.NewGuid(),
+                ShowId = showId,
+                UserId = userId
+            };
+
+            bool success = false;
+
+            myShowService.SaveCommit(newMyShow, out success);
+
+            if (success)
+            {
+                BindWithShowId(showId);
+            }
+            else
+            {
+                var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "There was a problem adding this show. If this happens again, then please contact the administrator.");
+                Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
+            }
+        }
+
         private void Bind()
         {
             ResetPanels();
 
             if (!string.IsNullOrEmpty(Request.QueryString["showId"]))
             {
-                var showId = new Guid(Request.QueryString["showId"]);
+                BindWithShowId(new Guid(Request.QueryString["showId"]));
+            }
+        }
 
-                ShowId = showId;
+        private void BindWithShowId(Guid showId)
+        {
+            ShowId = showId;
 
-                var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
+            var showService = new ShowService(Ioc.GetInstance<IShowRepository>());
 
-                var show = showService.GetShow(showId);
+            var show = showService.GetShow(showId);
 
-                if (show != null)
+            if (show != null)
+            {
+                SetShows(show.ShowDate.Value.Year);
+
+                if (!ddlShows.Items.Contains(new ListItem(show.GetShowName(), show.ShowId.ToString())))
                 {
-                    SetShows(show.ShowDate.Value.Year);
-
-                    if (!ddlShows.Items.Contains(new ListItem(show.GetShowName(), show.ShowId.ToString())))
-                    {
-                        phAddShow.Visible = true;
-                    }
-
-                    ddlShows.SelectedValue = show.ShowId.ToString();
+                    phAddShow.Visible = true;
+                    lnkAddMyShow.Text = string.Format("Click Here to add {0} to My Shows.", show.GetShowName());
+                    phAddPicture.Visible = false;
                 }
+                else
+                {
+                    phAddShow.Visible = false;
+                    phAddPicture.Visible = true;
+                }
+
+                ddlShows.SelectedValue = show.ShowId.ToString();
+                hdnShowId.Value = show.ShowId.ToString();
             }
         }
 
@@ -106,8 +158,6 @@ namespace PhishMarket.MyPhishMarket
             var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "To add posters please choose a show below.");
             Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
         }
-        
-        
 
         private void ShowError(PlaceHolder ph, string message)
         {

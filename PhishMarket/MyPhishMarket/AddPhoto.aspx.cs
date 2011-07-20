@@ -85,6 +85,8 @@ namespace PhishMarket.MyPhishMarket
 
             var fileExt = Path.GetExtension(posted.FileName.ToLower());
 
+            log.WriteLine("Submitted a picture with name " + posted.FileName);
+
             if (string.IsNullOrEmpty(fileExt))
             {
                 //ERROR MESSAGE
@@ -94,6 +96,7 @@ namespace PhishMarket.MyPhishMarket
             { //check type
                 if (imageMediaFormats.HasExtension(fileExt))
                 {
+                    log.WriteLine("There is a file extension of " + fileExt);
                     var mediaFormat = imageMediaFormats.GetSpecByExtension(fileExt);
 
                     Guid userID = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
@@ -104,6 +107,7 @@ namespace PhishMarket.MyPhishMarket
 
                     //save file 
                     var newFileName = userName + "-" + ticks + fileExt;
+                    log.WriteLine("thumb image New file name: " + newFileName);
 
                     if (posted.ContentLength > 0)
                     {
@@ -121,7 +125,7 @@ namespace PhishMarket.MyPhishMarket
 
                         using (var unitOfWork = TheCore.Infrastructure.UnitOfWork.Begin())
                         {
-
+                            log.WriteLine("About to create thumb image");
                             Guid? showId = new Guid(hdnShowId.Value);
                             /*
                              * thumbnail
@@ -132,8 +136,6 @@ namespace PhishMarket.MyPhishMarket
                             //if not found, create a new entity for the thumbnail image
                             if (thumbImage == null)
                             {
-
-
                                 thumbImage = new Photo
                                 {
                                     PhotoId = thumbImageId,
@@ -142,7 +144,7 @@ namespace PhishMarket.MyPhishMarket
                                     FileName = newFileName,
                                     ContentType = mediaFormat.ContentType,
                                     ContentLength = thumbResizedBuffer.Length,
-                                    Image = new byte[thumbResizedBuffer.Length],
+                                    //Image = new byte[thumbResizedBuffer.Length],
                                     Type = short.Parse(hdnPhotoType.Value),
                                     NickName = txtNickName.Text.Trim(),
                                     Notes = txtNotes.Text.Trim(),
@@ -157,12 +159,10 @@ namespace PhishMarket.MyPhishMarket
                                 thumbImage.ContentLength = thumbResizedBuffer.Length;
                             }
 
-                            //assign new image buffer
-                            thumbImage.Image = thumbResizedBuffer;
-
+                            log.WriteLine("Thumb image created, about to save thumb image");
                             bool success = false;
                             photoService.Save(thumbImage, mediaFormat, out success);
-
+                            log.WriteLine("Saved thumb image, success = " + success.ToString());
 
                             compiledSuccess = compiledSuccess && success;
 
@@ -177,8 +177,8 @@ namespace PhishMarket.MyPhishMarket
                             {
 
                                 newFileName = userName + "-" + DateTime.Now.Ticks + fileExt;
-
-
+                                log.WriteLine("Full image new file name: " + newFileName);
+                                log.WriteLine("About to create full image");
                                 fullImage = new Photo
                                 {
                                     PhotoId = fullImageId,
@@ -187,7 +187,7 @@ namespace PhishMarket.MyPhishMarket
                                     FileName = newFileName,
                                     ContentType = mediaFormat.ContentType,
                                     ContentLength = fullResizedBuffer.Length,
-                                    Image = new byte[fullResizedBuffer.Length],
+                                    //Image = new byte[fullResizedBuffer.Length],
                                     Type = short.Parse(hdnPhotoType.Value),
                                     NickName = txtNickName.Text.Trim(),
                                     Notes = txtNotes.Text.Trim(),
@@ -202,13 +202,12 @@ namespace PhishMarket.MyPhishMarket
                                 fullImage.ContentLength = fullResizedBuffer.Length;
                             }
 
-                            //assign new image buffer
-                            fullImage.Image = fullResizedBuffer;
-
-
+                            log.WriteLine("full image created, about to save full image");
                             photoService.Save(fullImage, mediaFormat, out success);
+                            log.WriteLine("Saved full image, success = " + success.ToString());
 
                             compiledSuccess = compiledSuccess && success;
+                            log.WriteLine("Compiled success = " + compiledSuccess.ToString());
 
                             if (!compiledSuccess)
                             {
@@ -218,32 +217,41 @@ namespace PhishMarket.MyPhishMarket
                             }
                             else
                             {
+                                log.WriteLine("Compiled success was true, about to commit the unit of work");
                                 unitOfWork.Commit();
+                                log.WriteLine("Unit of work is committed");
 
                                 var thumbImageTemp = photoService.GetPhoto(thumbImageId);
+                                thumbImageTemp.Image = thumbResizedBuffer;
 
                                 string path = string.Format("{0}{1}", DefaultShowImageLocation, thumbImageTemp.FileName);
+                                log.WriteLine("Saving image to the path = " + path);
 
+                                log.WriteLine("Saving thumb image to the path");
                                 bool valid = photoService.SaveAs(thumbImageTemp, HttpContext.Current.Server.MapPath(path));
+                                log.WriteLine("Saving thumb image was valid = " + valid.ToString());
 
                                 if (valid)
                                 {
                                     var fullImageTemp = photoService.GetPhoto(fullImageId);
+                                    fullImageTemp.Image = fullResizedBuffer;
 
                                     path = string.Format("{0}{1}", DefaultShowImageLocation, fullImageTemp.FileName);
+                                    log.WriteLine("Saving image to the path = " + path);
 
+                                    log.WriteLine("Saving full image to the path");
                                     valid = photoService.SaveAs(fullImageTemp, HttpContext.Current.Server.MapPath(path));
+                                    log.WriteLine("Saving full image was valid = " + valid.ToString());
 
                                     if (valid)
                                     {
-                                        imgDisplayThumb.ImageUrl = LinkBuilder.GetImageLink(thumbImageId);
-                                        imgDisplayFull.ImageUrl = LinkBuilder.GetImageLink(fullImageId);
+                                        imgDisplayThumb.ImageUrl = LinkBuilder.GetImageLinkByFileName(thumbImageTemp.FileName);
+                                        imgDisplayFull.ImageUrl = LinkBuilder.GetImageLinkByFileName(fullImageTemp.FileName);
+
+                                        thumbImageTemp.Image = null;
+                                        fullImageTemp.Image = null;
 
                                         DetermineTypeOfPhoto(fullImage, showId);
-
-                                        //Here I should delete the image from the database
-                                        //  Keep the row but get rid of the image bytes to save space
-                                        //    But that is for another day
                                     }
                                     else
                                     {
@@ -291,31 +299,33 @@ namespace PhishMarket.MyPhishMarket
             bool final = false;
             var posterId = Guid.NewGuid();
 
+
+            var posterService = new PosterService(Ioc.GetInstance<IPosterRepository>());
+            var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
+            var spService = new MyShowPosterService(Ioc.GetInstance<IMyShowPosterRepository>());
+
+            var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
+            var myShowId = myShowService.GetMyShow(showId.Value, userId).MyShowId;
+
+            Poster p = new Poster
+            {
+                CreatedDate = DateTime.Now,
+                PhotoId = photo.PhotoId,
+                PosterId = posterId,
+                Notes = photo.Notes,
+                UserId = photo.UserId,
+                Creator = txtCreator.Text,
+                Length = string.IsNullOrEmpty(txtLength.Text) ? 0 : double.Parse(txtLength.Text),
+                Width = string.IsNullOrEmpty(txtWidth.Text) ? 0 : double.Parse(txtWidth.Text),
+                Total = string.IsNullOrEmpty(txtTotal.Text) ? 0 : int.Parse(txtTotal.Text),
+                Number = string.IsNullOrEmpty(txtNumber.Text) ? 0 : int.Parse(txtNumber.Text),
+                Technique = txtTechnique.Text,
+                Title = txtTitle.Text,
+                ShowId = showId
+            };
+
             using (IUnitOfWork uow = UnitOfWork.Begin())
             {
-                var posterService = new PosterService(Ioc.GetInstance<IPosterRepository>());
-                var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-                var spService = new MyShowPosterService(Ioc.GetInstance<IMyShowPosterRepository>());
-
-                var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
-                var myShowId = myShowService.GetMyShow(showId.Value, userId).MyShowId;
-
-                Poster p = new Poster
-                {
-                    CreatedDate = DateTime.Now,
-                    PhotoId = photo.PhotoId,
-                    PosterId = posterId,
-                    Notes = photo.Notes,
-                    UserId = photo.UserId,
-                    Creator = txtCreator.Text,
-                    Length = string.IsNullOrEmpty(txtLength.Text) ? 0 : double.Parse(txtLength.Text),
-                    Width = string.IsNullOrEmpty(txtWidth.Text) ? 0 : double.Parse(txtWidth.Text),
-                    Total = string.IsNullOrEmpty(txtTotal.Text) ? 0 : int.Parse(txtTotal.Text),
-                    Number = string.IsNullOrEmpty(txtNumber.Text) ? 0 : int.Parse(txtNumber.Text),
-                    Technique = txtTechnique.Text,
-                    Title = txtTitle.Text,
-                    ShowId = showId
-                };
 
                 bool success = false;
                 posterService.Save(p, out success);
@@ -349,31 +359,32 @@ namespace PhishMarket.MyPhishMarket
             bool final = false;
             var ticketStubId = Guid.NewGuid();
 
+            var ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
+            var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
+            var spService = new MyShowTicketStubService(Ioc.GetInstance<IMyShowTicketStubRepository>());
+
+            var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
+            var myShowId = myShowService.GetMyShow(showId.Value, userId).MyShowId;
+
+            TicketStub p = new TicketStub
+            {
+                CreatedDate = DateTime.Now,
+                PhotoId = photo.PhotoId,
+                TicketStubId = ticketStubId,
+                Notes = photo.Notes,
+                UserId = photo.UserId,
+                ShowId = showId
+                //Creator = txtCreator.Text,
+                //Length = string.IsNullOrEmpty(txtLength.Text) ? 0 : double.Parse(txtLength.Text),
+                //Width = string.IsNullOrEmpty(txtWidth.Text) ? 0 : double.Parse(txtWidth.Text),
+                //Total = string.IsNullOrEmpty(txtTotal.Text) ? 0 : int.Parse(txtTotal.Text),
+                //Number = string.IsNullOrEmpty(txtNumber.Text) ? 0 : int.Parse(txtNumber.Text),
+                //Technique = txtTechnique.Text,
+                //Title = txtTitle.Text
+            };
+
             using (IUnitOfWork uow = UnitOfWork.Begin())
             {
-                var ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
-                var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-                var spService = new MyShowTicketStubService(Ioc.GetInstance<IMyShowTicketStubRepository>());
-
-                var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
-                var myShowId = myShowService.GetMyShow(showId.Value, userId).MyShowId;
-
-                TicketStub p = new TicketStub
-                {
-                    CreatedDate = DateTime.Now,
-                    PhotoId = photo.PhotoId,
-                    TicketStubId = ticketStubId,
-                    Notes = photo.Notes,
-                    UserId = photo.UserId,
-                    ShowId = showId
-                    //Creator = txtCreator.Text,
-                    //Length = string.IsNullOrEmpty(txtLength.Text) ? 0 : double.Parse(txtLength.Text),
-                    //Width = string.IsNullOrEmpty(txtWidth.Text) ? 0 : double.Parse(txtWidth.Text),
-                    //Total = string.IsNullOrEmpty(txtTotal.Text) ? 0 : int.Parse(txtTotal.Text),
-                    //Number = string.IsNullOrEmpty(txtNumber.Text) ? 0 : int.Parse(txtNumber.Text),
-                    //Technique = txtTechnique.Text,
-                    //Title = txtTitle.Text
-                };
 
                 bool success = false;
                 ticketStubService.Save(p, out success);
@@ -407,31 +418,32 @@ namespace PhishMarket.MyPhishMarket
             bool final = false;
             var artId = Guid.NewGuid();
 
+            var artService = new ArtService(Ioc.GetInstance<IArtRepository>());
+            var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
+            var spService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
+
+            var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
+            var myShowId = myShowService.GetMyShow(showId.Value, userId).MyShowId;
+
+            Art p = new Art
+            {
+                CreatedDate = DateTime.Now,
+                PhotoId = photo.PhotoId,
+                ArtId = artId,
+                Notes = photo.Notes,
+                UserId = photo.UserId,
+                ShowId = showId
+                //Creator = txtCreator.Text,
+                //Length = string.IsNullOrEmpty(txtLength.Text) ? 0 : double.Parse(txtLength.Text),
+                //Width = string.IsNullOrEmpty(txtWidth.Text) ? 0 : double.Parse(txtWidth.Text),
+                //Total = string.IsNullOrEmpty(txtTotal.Text) ? 0 : int.Parse(txtTotal.Text),
+                //Number = string.IsNullOrEmpty(txtNumber.Text) ? 0 : int.Parse(txtNumber.Text),
+                //Technique = txtTechnique.Text,
+                //Title = txtTitle.Text
+            };
+
             using (IUnitOfWork uow = UnitOfWork.Begin())
             {
-                var artService = new ArtService(Ioc.GetInstance<IArtRepository>());
-                var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-                var spService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
-
-                var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
-                var myShowId = myShowService.GetMyShow(showId.Value, userId).MyShowId;
-
-                Art p = new Art
-                {
-                    CreatedDate = DateTime.Now,
-                    PhotoId = photo.PhotoId,
-                    ArtId = artId,
-                    Notes = photo.Notes,
-                    UserId = photo.UserId,
-                    ShowId = showId
-                    //Creator = txtCreator.Text,
-                    //Length = string.IsNullOrEmpty(txtLength.Text) ? 0 : double.Parse(txtLength.Text),
-                    //Width = string.IsNullOrEmpty(txtWidth.Text) ? 0 : double.Parse(txtWidth.Text),
-                    //Total = string.IsNullOrEmpty(txtTotal.Text) ? 0 : int.Parse(txtTotal.Text),
-                    //Number = string.IsNullOrEmpty(txtNumber.Text) ? 0 : int.Parse(txtNumber.Text),
-                    //Technique = txtTechnique.Text,
-                    //Title = txtTitle.Text
-                };
 
                 bool success = false;
                 artService.Save(p, out success);

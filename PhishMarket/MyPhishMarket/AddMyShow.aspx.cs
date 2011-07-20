@@ -21,7 +21,6 @@ namespace PhishMarket.MyPhishMarket
     {
         public string TourName;
         MyShowService myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-        TourService tourService = new TourService(Ioc.GetInstance<ITourRepository>());
 
         protected void Page_Load(object sender, EventArgs e)
         {

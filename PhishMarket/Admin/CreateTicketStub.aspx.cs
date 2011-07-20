@@ -111,7 +111,7 @@ namespace PhishMarket.Admin
                                     FileName = "thumb" + newFileName,
                                     ContentType = mediaFormat.ContentType,
                                     ContentLength = thumbResizedBuffer.Length,
-                                    Image = new byte[thumbResizedBuffer.Length],
+                                    //Image = new byte[thumbResizedBuffer.Length],
                                     Type = (short)PhotoType.TicketStub,
                                     Thumbnail = true,
                                     ShowId = showId
@@ -122,9 +122,6 @@ namespace PhishMarket.Admin
                                 thumbImage.ContentType = mediaFormat.ContentType;
                                 thumbImage.ContentLength = thumbResizedBuffer.Length;
                             }
-
-                            //assign new image buffer
-                            thumbImage.Image = thumbResizedBuffer;
 
                             bool success = false;
                             photoService.Save(thumbImage, mediaFormat, out success);
@@ -146,7 +143,7 @@ namespace PhishMarket.Admin
                                     FileName = newFileName,
                                     ContentType = mediaFormat.ContentType,
                                     ContentLength = fullResizedBuffer.Length,
-                                    Image = new byte[fullResizedBuffer.Length],
+                                    //Image = new byte[fullResizedBuffer.Length],
                                     Type = (short)PhotoType.TicketStub,
                                     Thumbnail = false,
                                     ShowId = showId
@@ -157,9 +154,6 @@ namespace PhishMarket.Admin
                                 fullImage.ContentType = mediaFormat.ContentType;
                                 fullImage.ContentLength = fullResizedBuffer.Length;
                             }
-
-                            //assign new image buffer
-                            fullImage.Image = fullResizedBuffer;
 
                             photoService.Save(fullImage, mediaFormat, out success);
 
@@ -176,6 +170,7 @@ namespace PhishMarket.Admin
                                 unitOfWork.Commit();
 
                                 var thumbImageTemp = photoService.GetPhoto(thumbImageId);
+                                thumbImageTemp.Image = thumbResizedBuffer;
 
                                 string path = string.Format("{0}{1}", DefaultTicketStubImageLocation, thumbImageTemp.FileName);
 
@@ -184,6 +179,7 @@ namespace PhishMarket.Admin
                                 if (valid)
                                 {
                                     var fullImageTemp = photoService.GetPhoto(fullImageId);
+                                    fullImageTemp.Image = fullResizedBuffer;
 
                                     path = string.Format("{0}{1}", DefaultTicketStubImageLocation, fullImageTemp.FileName);
 
@@ -192,13 +188,12 @@ namespace PhishMarket.Admin
                                     if (valid)
                                     {
                                         //imgDisplayThumb.ImageUrl = LinkBuilder.GetImageLink(thumbImageId);
-                                        imgTheImage.ImageUrl = LinkBuilder.GetImageLink(fullImageId);
+                                        imgTheImage.ImageUrl = LinkBuilder.GetTicketStubLink(fullImage.FileName);
+
+                                        thumbImageTemp.Image = null;
+                                        fullImageTemp.Image = null;
 
                                         CreateTicketStubNow(fullImage, showId);
-
-                                        //Here I should delete the image from the database
-                                        //  Keep the row but get rid of the image bytes to save space
-                                        //    But that is for another day
                                     }
                                     else
                                     {

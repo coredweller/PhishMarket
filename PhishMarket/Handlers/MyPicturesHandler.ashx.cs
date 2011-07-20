@@ -66,6 +66,8 @@ namespace PhishMarket.Handlers
 
                 foreach (var a in art)
                 {
+                    if (a.Key == null || a.Key.Photo == null) continue;
+
                     json.Add(new ImageItem 
                     { 
                         Image = "/images/Shows/" + a.Key.Photo.FileName,

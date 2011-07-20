@@ -62,26 +62,7 @@
         <asp:PlaceHolder ID="phRemoveSuccess" runat="server" Visible="false">You have successfully
             removed the poster from you collecton. </asp:PlaceHolder>
         <br />
-        
-        <%--
-        <br />
-        <div>
-            <asp:ImageButton ID="btnAddOther" runat="server" ImageUrl="/images/buttons/AddPicturesFromOthers.gif"
-                OnClick="btnAddOther_Click" />
-            <asp:ImageButton ID="btnAddPicture" runat="server" ImageUrl="/images/buttons/AddNewPicture.gif"
-                OnClick="btnAddPicture_Click" />
-        </div>
-        <br />
-        <br />--%>
-        <asp:PlaceHolder ID="phAddShow" runat="server" Visible="false">
-            <div>
-                <h4>
-                    <a href='<%= LinkBuilder.AddMyShowLink(ShowId) %>'>Click Here to add this show to My
-                        Shows so you can add posters here.</a></h4>
-            </div>
-        </asp:PlaceHolder>
         <table>
-          
             <tr>
                 <td>
                     <uc:YearSelector id="yearSelector" OnYearSelected="yearSelector_YearSelected" runat="server">
@@ -95,7 +76,6 @@
                 </td>
             </tr>
             <tr>
-                
                 <td>
                     <button id="btnShowBrih2" onclick="return showPosters();">
                         Show Posters</button>
@@ -107,12 +87,18 @@
         Tip 1: Click the thumbnails or arrows to change pictures.
         <br />
         Tip 2: Click the large image to go to a page to delete it.</h4>
-        <br />
-    
-    
-        
-    <asp:LinkButton ID="lnkBrihbrih" OnClick="btnAddPicture_Click" runat="server" Text="Add a new Poster here!"></asp:LinkButton>
-    
+    <br />
+    <asp:PlaceHolder ID="phAddShow" runat="server" Visible="false">
+        <div>
+            <h4>
+                <asp:LinkButton ID="lnkAddMyShow" runat="server" OnClick="lnkAddMyShow_Click"></asp:LinkButton>
+                <br />
+                That will allow you to add posters to this show.
+            </h4>
+        </div>
+    </asp:PlaceHolder>
+    <asp:PlaceHolder ID="phAddPicture" runat="server" Visible="true">
+        <asp:LinkButton ID="lnkBrihbrih" OnClick="btnAddPicture_Click" runat="server" Text="Add a new Poster here!"></asp:LinkButton></asp:PlaceHolder>
     <div id="gallery">
         <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
         <%--<img src="/images/Shows/coretest2-634195715440294949.jpg" alt="blah" />--%>
@@ -169,5 +155,6 @@
     </asp:PlaceHolder>--%>
     <div id="hdnDiv">
         <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
+        <asp:HiddenField ID="hdnShowId" runat="server" Visible="false" />
     </div>
 </asp:Content>

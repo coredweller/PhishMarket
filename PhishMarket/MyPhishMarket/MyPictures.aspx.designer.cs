@@ -68,15 +68,6 @@ namespace PhishMarket.MyPhishMarket {
         protected global::System.Web.UI.WebControls.PlaceHolder phRemoveSuccess;
         
         /// <summary>
-        /// phAddShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder phAddShow;
-        
-        /// <summary>
         /// yearSelector control.
         /// </summary>
         /// <remarks>
@@ -95,6 +86,33 @@ namespace PhishMarket.MyPhishMarket {
         protected global::System.Web.UI.WebControls.DropDownList ddlShows;
         
         /// <summary>
+        /// phAddShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phAddShow;
+        
+        /// <summary>
+        /// lnkAddMyShow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkAddMyShow;
+        
+        /// <summary>
+        /// phAddPicture control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phAddPicture;
+        
+        /// <summary>
         /// hdnUserId control.
         /// </summary>
         /// <remarks>
@@ -102,5 +120,14 @@ namespace PhishMarket.MyPhishMarket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnUserId;
+        
+        /// <summary>
+        /// hdnShowId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnShowId;
     }
 }

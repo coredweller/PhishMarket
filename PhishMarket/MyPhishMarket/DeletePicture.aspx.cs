@@ -78,15 +78,26 @@ namespace PhishMarket.MyPhishMarket
             var posterId = new Guid(posterIdStr);
 
             var myShowPoster = GetPoster(posterId);
+            var myShowPosterId = myShowPoster.MyShowPosterId.ToString();
+            var photoId = myShowPoster.Poster.Photo.PhotoId.ToString();
+            var filename = myShowPoster.Poster.Photo.FileName.ToString();
 
-            //Since MyShowPoster allows for you to get the Poster and Photo objects
-            //  Consider in the future deleting those when the user deletes the MyShowPoster
-            //  Not handling it now b/c it might be rare and complicated
-
+            var posterService = new PosterService(Ioc.GetInstance<IPosterRepository>());
+            var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
             var myShowPosterService = new MyShowPosterService(Ioc.GetInstance<IMyShowPosterRepository>());
-            myShowPosterService.DeleteCommit(myShowPoster);
 
-            log.Write("Deleted myShowPoster Id: " + myShowPoster.MyShowPosterId.ToString());
+            using (IUnitOfWork uow = UnitOfWork.Begin())
+            {
+                photoService.Delete(myShowPoster.Poster.Photo);
+                posterService.Delete(myShowPoster.Poster);
+                myShowPosterService.Delete(myShowPoster);
+
+                uow.Commit();
+            }
+
+            log.WriteLine("Deleted myShowPoster Id: " + myShowPosterId);
+            log.WriteLine("Deleted photo Id: " + photoId + "and filename: " + filename);
+            log.WriteLine("Deleted picture Id: " + posterId);
 
             Response.Redirect(LinkBuilder.MyPostersLink(new Guid(hdnShowId.Value)));
 
@@ -97,15 +108,26 @@ namespace PhishMarket.MyPhishMarket
             var pictureId = new Guid(pictureIdStr);
 
             var myShowArt = GetPicture(pictureId);
+            var myShowArtId = myShowArt.MyShowArtId.ToString();
+            var photoId = myShowArt.Art.Photo.PhotoId.ToString();
+            var filename = myShowArt.Art.Photo.FileName.ToString();
 
-            //Since MyShowArt allows for you to get the Art and Photo objects
-            //  Consider in the future deleting those when the user deletes the MyShowArt
-            //  Not handling it now b/c it might be rare and complicated
-
+            var artService = new ArtService(Ioc.GetInstance<IArtRepository>());
+            var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
             var myShowArtService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
-            myShowArtService.DeleteCommit(myShowArt);
 
-            log.Write("Deleted myShowArt Id: " + myShowArt.MyShowArtId.ToString());
+            using (IUnitOfWork uow = UnitOfWork.Begin())
+            {
+                photoService.Delete(myShowArt.Art.Photo);
+                artService.Delete(myShowArt.Art);
+                myShowArtService.Delete(myShowArt);
+
+                uow.Commit();
+            }
+
+            log.WriteLine("Deleted myShowArt Id: " + myShowArtId);
+            log.WriteLine("Deleted photo Id: " + photoId + "and filename: " + filename);
+            log.WriteLine("Deleted picture Id: " + pictureId);
 
             Response.Redirect(LinkBuilder.MyPicturesLink(new Guid(hdnShowId.Value)));
         }
@@ -114,7 +136,7 @@ namespace PhishMarket.MyPhishMarket
         {
             var myShowArt = GetPicture(pictureId);
 
-            imgImage.ImageUrl = LinkBuilder.GetImageLink(myShowArt.Art.PhotoId);
+            imgImage.ImageUrl = LinkBuilder.GetImageLinkByFileName(myShowArt.Art.Photo.FileName);
 
             hdnId.Value = "picture=" + myShowArt.MyShowArtId.ToString();
         }
@@ -130,7 +152,7 @@ namespace PhishMarket.MyPhishMarket
         {
             var myShowPoster = GetPoster(posterId);
 
-            imgImage.ImageUrl = LinkBuilder.GetImageLink(myShowPoster.Poster.PhotoId);
+            imgImage.ImageUrl = LinkBuilder.GetImageLinkByFileName(myShowPoster.Poster.Photo.FileName);
 
             hdnId.Value = "poster=" + myShowPoster.MyShowPosterId.ToString();
         }

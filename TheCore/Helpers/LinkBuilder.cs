@@ -32,6 +32,11 @@ namespace TheCore.Helpers
             return string.Format("~/Handlers/ImageHandler2.ashx?id={0}", id);
         }
 
+        public string GetImageLinkByFileName(string fileName)
+        {
+            return string.Format("~/images/Shows/{0}", fileName);
+        }
+
         public string GetTicketStubLink(string fileName)
         {
             return string.Format("{0}{1}", DefaultTicketStubImageLocation, fileName);

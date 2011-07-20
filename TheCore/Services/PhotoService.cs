@@ -22,7 +22,7 @@ namespace TheCore.Services
 
         public IQueryable<IPhoto> GetAllPhotos()
         {
-            return _repo.FindAll();
+            return _repo.FindAll().Where(x => x.Deleted == false);
         }
 
         public IPhoto GetPhoto(Guid id)
@@ -114,8 +114,14 @@ namespace TheCore.Services
 
         }
 
-        //make it delete any shows it is related to.  or not if you want those always kept.
         public void Delete(IPhoto photo)
+        {
+            Checks.Argument.IsNotNull(photo, "photo");
+
+            _repo.Remove(photo);
+        }
+
+        public void DeleteCommit(IPhoto photo)
         {
             Checks.Argument.IsNotNull(photo, "photo");
 

@@ -68,19 +68,13 @@ namespace PhishMarket.MyPhishMarket
             if (myShowPosterThumbnail != null)
             {
                 phMyPoster.Visible = true;
-                imgPoster.ImageUrl = LinkBuilder.GetImageLink(myShowPosterThumbnail.Thumbnail.PhotoId);
+                imgPoster.ImageUrl = LinkBuilder.GetImageLinkByFileName(myShowPosterThumbnail.Thumbnail.FileName);
             }
-
-            //if (myShowTicketStubThumbnail != null)
-            //{
-            //    phTicketStub.Visible = true;
-            //    imgTicketStub.ImageUrl = LinkBuilder.GetImageLink(myShowTicketStubThumbnail.Thumbnail.PhotoId);
-            //}
 
             if (myShowArtThumbnail != null)
             {
                 phArt.Visible = true;
-                imgArt.ImageUrl = LinkBuilder.GetImageLink(myShowArtThumbnail.Thumbnail.PhotoId);
+                imgArt.ImageUrl = LinkBuilder.GetImageLinkByFileName(myShowArtThumbnail.Thumbnail.FileName);
             }
         }
 
