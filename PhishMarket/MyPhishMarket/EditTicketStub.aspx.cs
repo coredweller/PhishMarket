@@ -23,7 +23,7 @@ namespace PhishMarket.MyPhishMarket
 
         private void BindTicketStub()
         {
-            var ticketStubId = string.IsNullOrEmpty(Request.QueryString["id"]) ? new Guid() : new Guid(Request.QueryString["id"]);
+            var ticketStubId = string.IsNullOrEmpty(Request.QueryString["id"]) ? EmptyGuid : new Guid(Request.QueryString["id"]);
 
             if (ticketStubId == EmptyGuid)
             {

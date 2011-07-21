@@ -25,7 +25,7 @@ namespace PhishMarket.MyPhishMarket
 
         private void BindPoster()
         {
-            var posterId = string.IsNullOrEmpty(Request.QueryString["id"]) ? new Guid() : new Guid(Request.QueryString["id"]);
+            var posterId = string.IsNullOrEmpty(Request.QueryString["id"]) ? EmptyGuid : new Guid(Request.QueryString["id"]);
 
             if (posterId == EmptyGuid)
             {

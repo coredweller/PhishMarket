@@ -42,6 +42,30 @@ namespace PhishMarket.MyPhishMarket
             }
 
             Response.Redirect(LinkBuilder.DashboardLink());
+            
+        }
+
+        public void btnEditPicture_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(hdnId.Value))
+            {
+                var type = hdnId.Value.Split('=')[0];
+                var id = hdnId.Value.Split('=')[1];
+
+                switch (type)
+                {
+                    case "picture":
+                        var myShowArtService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
+                        var myShowArt = myShowArtService.GetMyShowArt(new Guid(id));
+                        Response.Redirect(LinkBuilder.EditArtLink(myShowArt.ArtId));
+                        break;
+                    case "poster":
+                        var myShowPosterService = new MyShowPosterService(Ioc.GetInstance<IMyShowPosterRepository>());
+                        var myShowPoster = myShowPosterService.GetMyShowPoster(new Guid(id));
+                        Response.Redirect(LinkBuilder.EditPosterLink(myShowPoster.PosterId));
+                        break;
+                }
+            }
         }
 
         public void btnNo_Click(object sender, EventArgs e)

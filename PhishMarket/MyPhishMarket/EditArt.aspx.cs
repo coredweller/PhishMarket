@@ -24,7 +24,7 @@ namespace PhishMarket.MyPhishMarket
 
         private void BindArt()
         {
-            var artId = string.IsNullOrEmpty(Request.QueryString["id"]) ? new Guid() : new Guid(Request.QueryString["id"]);
+            var artId = string.IsNullOrEmpty(Request.QueryString["id"]) ? EmptyGuid : new Guid(Request.QueryString["id"]);
 
             if (artId == EmptyGuid)
             {
