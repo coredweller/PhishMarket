@@ -2,15 +2,13 @@
     MasterPageFile="~/Master/Shadowed.Master" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-        <h2 class="tTip" id="cloud1" title="Use this section to show your favorite things about Phish">
-                My Profile</h2>
-                <%--<asp:Image ID="imgLeftArrow" runat="server" ImageUrl="/images/SmallLeftArrowLight.jpg" />
-                <asp:Image ID="Image1" runat="server" ImageUrl="/images/SmallLeftArrowLight.jpg" />--%>
-        
-        <h4 >
-            <asp:HyperLink ID="lnkChangeProfile" runat="server" Text="Change Profile"></asp:HyperLink>&nbsp|&nbsp<asp:HyperLink
-                ID="lnkViewProfile" runat="server" Text="View Profile"></asp:HyperLink>
-        </h4>
+    <h2 class="tTip" id="cloud1" title="Use this section to show your favorite things about Phish">
+        My Profile</h2>
+    <b>
+        <asp:HyperLink ID="lnkChangeProfile" runat="server" Text="Change Profile"></asp:HyperLink>&nbsp|&nbsp<asp:HyperLink
+            ID="lnkViewProfile" runat="server" Text="View Profile"></asp:HyperLink></b>
+    <br />
+    <br />
     <div>
         <table>
             <tr>
@@ -69,80 +67,6 @@
                     <asp:Label ID="lblFavoriteAlbum" runat="server"></asp:Label>
                 </td>
             </tr>
-            <%-- <tr>
-                <td>
-                    Favorite Tour:
-                </td>
-                <td>
-                    <asp:Label ID="lblFavoriteTour" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Favorite Live Show:
-                </td>
-                <td>
-                    <asp:Label ID="lblFavoriteLiveShow" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Favorite Studio Song:
-                </td>
-                <td>
-                    <asp:Label ID="lblFavoriteStudioSong" runat="server"></asp:Label>
-                </td>
-            </tr>--%>
-        </table>
-        <br />
-        <br />
-        <hr />
-        <br />
-        <br />
-        <div class="tTip" id="Div1" title="View and Add your posters or pictures HERE">
-            <h2>
-                My Stuff</h2>
-        </div>
-        <table>
-            <tr>
-                <td>
-                    <a href='<%= LinkBuilder.MyPostersLink() %>'>All My Posters
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:PlaceHolder ID="phMyPoster" runat="server" Visible="false">
-                        <asp:Image ID="imgPoster" runat="server" />
-                    </asp:PlaceHolder>
-                    </a>
-                </td>
-            </tr>
-            <%--<tr>
-                <td>
-                    <a href='<%= LinkBuilder.MyTicketStubsLink() %>'>All My Ticket Stubs
-                </td>
-            </tr>--%>
-            <%-- <tr>
-                <td>
-                    <asp:PlaceHolder ID="phTicketStub" runat="server" Visible="false">
-                        <asp:Image ID="imgTicketStub" runat="server" />
-                    </asp:PlaceHolder>
-                    </a>
-                </td>
-            </tr>--%>
-            <tr>
-                <td>
-                    <a href='<%= LinkBuilder.MyPicturesLink() %>'>All My Show Pictures
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:PlaceHolder ID="phArt" runat="server" Visible="false">
-                        <asp:Image ID="imgArt" runat="server" />
-                    </asp:PlaceHolder>
-                    </a>
-                </td>
-            </tr>
         </table>
     </div>
     <br />
@@ -151,25 +75,19 @@
     <br />
     <br />
     <div>
-        <div class="tTip" id="Div2" title="These shows you have been to or written reviews for. You can add posters, pictures, and analysis for each one.">
-            <h2 class="DashLeft">
-                My Shows
-                <asp:Image ID="Image2" runat="server" ImageUrl="/images/SmallLeftArrowLight.jpg" />
-                <asp:Image ID="Image3" runat="server" ImageUrl="/images/SmallLeftArrowLight.jpg" />
-            </h2>
-        </div>
-        <h3 class="DashLeft">
-            <a href='<%= LinkBuilder.AddMyShowLink() %>'>Add shows HERE!</a>
-        </h3>
+        <h2 class="tTip" id="Div2" title="These shows you have been to or written reviews for. You can add posters, pictures, and analysis for each one.">
+            My Shows
+        </h2>
+        <b><a href='<%= LinkBuilder.AddMyShowLink() %>'>Add shows to My Shows HERE!</a> </b>
     </div>
-    <br />
-    <br />
-    <br />
-    <div class="ClearBoth">
+    <br /><br />
+    <div>
+    <b>
         <uc:YearSelector id="yearSelector" OnYearSelected="yearSelector_YearSelected" runat="server">
         </uc:YearSelector>
+        </b>
     </div>
-    <br />
+    <br /><br />
     <div>
         <asp:Repeater ID="rptShows" runat="server" OnItemCommand="rptShows_ItemCommand">
             <HeaderTemplate>

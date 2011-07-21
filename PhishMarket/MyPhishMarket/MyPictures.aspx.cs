@@ -154,7 +154,7 @@ namespace PhishMarket.MyPhishMarket
 
         private void ShowNotSelectedMessage()
         {
-            var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "To add pictures please choose a show below.");
+            var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "To add pictures please click a year and then choose a show.");
             Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
         }
         

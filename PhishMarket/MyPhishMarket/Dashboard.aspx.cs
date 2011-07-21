@@ -35,7 +35,6 @@ namespace PhishMarket.MyPhishMarket
         private void Bind()
         {
             BindProfile();
-            BindMyShowItems();
             
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
 
@@ -54,29 +53,6 @@ namespace PhishMarket.MyPhishMarket
 
             rptShows.DataSource = shows;
             rptShows.DataBind();
-        }
-
-        private void BindMyShowItems()
-        {
-            var myShowPosterService = new MyShowPosterService(Ioc.GetInstance<IMyShowPosterRepository>());
-            //var myShowTicketStubService = new MyShowTicketStubService(Ioc.GetInstance<IMyShowTicketStubRepository>());
-            var myShowArtService = new MyShowArtService(Ioc.GetInstance<IMyShowArtRepository>());
-
-            var myShowPosterThumbnail = myShowPosterService.GetAnyMyShowPosterForUser(userId);
-            //var myShowTicketStubThumbnail = myShowTicketStubService.GetAnyMyShowTicketStubForUser(userId);
-            var myShowArtThumbnail = myShowArtService.GetAnyMyShowArtForUser(userId);
-
-            if (myShowPosterThumbnail != null)
-            {
-                phMyPoster.Visible = true;
-                imgPoster.ImageUrl = LinkBuilder.GetImageLinkByFileName(myShowPosterThumbnail.Thumbnail.FileName);
-            }
-
-            if (myShowArtThumbnail != null)
-            {
-                phArt.Visible = true;
-                imgArt.ImageUrl = LinkBuilder.GetImageLinkByFileName(myShowArtThumbnail.Thumbnail.FileName);
-            }
         }
 
         public void BindProfile()
