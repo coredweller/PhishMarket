@@ -88,8 +88,11 @@ namespace PhishMarket.MyPhishMarket
 
             using (IUnitOfWork uow = UnitOfWork.Begin())
             {
-                photoService.Delete(myShowPoster.Poster.Photo);
-                posterService.Delete(myShowPoster.Poster);
+                var photo = myShowPoster.Poster.Photo;
+                var poster = myShowPoster.Poster;
+
+                photoService.Delete(photo);
+                posterService.Delete(poster);
                 myShowPosterService.Delete(myShowPoster);
 
                 uow.Commit();

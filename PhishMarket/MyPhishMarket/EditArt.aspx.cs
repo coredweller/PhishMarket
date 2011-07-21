@@ -3,6 +3,7 @@ using System.Web.UI.WebControls;
 using TheCore.Services;
 using TheCore.Infrastructure;
 using TheCore.Repository;
+using PhishPond.Concrete;
 
 namespace PhishMarket.MyPhishMarket
 {
@@ -42,7 +43,7 @@ namespace PhishMarket.MyPhishMarket
 
             txtNotes.Text = art.Notes;
             ddlShow.SelectedValue = photo.ShowId.ToString();
-            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLink(art.PhotoId);
+            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLinkByFileName(photo.FileName);
             txtCreator.Text = art.Creator;
         }
 

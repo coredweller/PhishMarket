@@ -42,7 +42,7 @@ namespace PhishMarket.MyPhishMarket
 
             var photo = photoService.GetPhoto(poster.PhotoId);
 
-            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLink(poster.PhotoId);
+            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLinkByFileName(photo.FileName);
 
             ddlShow.SelectedValue = photo.ShowId.ToString();
 

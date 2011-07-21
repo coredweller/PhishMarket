@@ -26,12 +26,6 @@ namespace TheCore.Helpers
             return string.Format("{0}{1}", defaultShowImageLocation, fileName);
         }
 
-        public string GetImageLink(Guid id)
-        {
-            //return string.Format("~/Handlers/tmpImage.axd?id={0}", id);
-            return string.Format("~/Handlers/ImageHandler2.ashx?id={0}", id);
-        }
-
         public string GetImageLinkByFileName(string fileName)
         {
             return string.Format("~/images/Shows/{0}", fileName);

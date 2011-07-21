@@ -84,8 +84,7 @@ namespace TheCore.Services
             }
         }
 
-        //make it delete any shows it is related to.  or not if you want those always kept.
-        public void Delete(IPoster poster)
+        public void DeleteCommit(IPoster poster)
         {
             Checks.Argument.IsNotNull(poster, "poster");
 
@@ -94,6 +93,13 @@ namespace TheCore.Services
                 _repo.Remove(poster);
                 u.Commit();
             }
+        }
+
+        public void Delete(IPoster poster)
+        {
+            Checks.Argument.IsNotNull(poster, "poster");
+
+            _repo.Remove(poster);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace PhishMarket.MyPhishMarket
 
             txtNotes.Text = ticketStub.Notes;
             ddlShow.SelectedValue = photo.ShowId.ToString();
-            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLink(ticketStub.PhotoId);
+            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLinkByFileName(photo.FileName);
             chkPTBM.Checked = ticketStub.Original;
         }
 
