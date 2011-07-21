@@ -110,49 +110,6 @@
         NOTE: If using IE you may need to clear the cache if you add or delete a picture
         to see the most accurate set of pictures. Or you could use Firefox ;)
     </p>
-    <%--<asp:PlaceHolder ID="phMain" runat="server" Visible="true">
-        <div>
-            <asp:Repeater ID="rptPoster" runat="server" OnItemCommand="rptPoster_ItemCommand">
-                <HeaderTemplate>
-                    <table>
-                </HeaderTemplate>
-                <ItemTemplate>
-                    <tr>
-                        <td>
-                            <asp:Image ID="imgArt" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink((((PhishPond.Concrete.Poster)Container.DataItem).PhotoId)) %>' />
-                        </td>
-                        <td>
-                            <asp:LinkButton ID="lnkRemove" CommandArgument='<%# (((PhishPond.Concrete.Poster)Container.DataItem).PosterId) %>' CommandName="REMOVE" runat="server" Text="Remove"></asp:LinkButton>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            by
-                            <%# (((PhishPond.Concrete.Poster)Container.DataItem).Creator) %>&nbsp;&nbsp;<%# (((PhishPond.Concrete.Poster)Container.DataItem).Number)%>\<%# (((PhishPond.Concrete.Poster)Container.DataItem).Total)%>&nbsp;&nbsp;<%# (((PhishPond.Concrete.Poster)Container.DataItem).Length)%>&nbsp;x&nbsp;<%# (((PhishPond.Concrete.Poster)Container.DataItem).Width) %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <%# (((PhishPond.Concrete.Poster)Container.DataItem).Notes) %>
-                        </td>
-                    </tr>
-                </ItemTemplate>
-                <FooterTemplate>
-                    </table></FooterTemplate>
-            </asp:Repeater>
-            <br />
-            <asp:PlaceHolder ID="phNoImages" runat="server" Visible="false">
-                <h3>
-                    You have no images for this show!
-                </h3>
-                <br />
-                <h4>
-                    Add a new picture of your own or pick one someone else has added.
-                    <br />
-                    Use the buttons above!</h4>
-            </asp:PlaceHolder>
-        </div>
-    </asp:PlaceHolder>--%>
     <div id="hdnDiv">
         <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
         <asp:HiddenField ID="hdnShowId" runat="server" Visible="false" />

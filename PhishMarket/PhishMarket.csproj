@@ -264,13 +264,6 @@
     <Compile Include="MyPhishMarket\EditTicketStub.aspx.designer.cs">
       <DependentUpon>EditTicketStub.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MyPhishMarket\FindForShow.aspx.cs">
-      <DependentUpon>FindForShow.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MyPhishMarket\FindForShow.aspx.designer.cs">
-      <DependentUpon>FindForShow.aspx</DependentUpon>
-    </Compile>
     <Compile Include="MyPhishMarket\FullShowReview.aspx.cs">
       <DependentUpon>FullShowReview.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -319,13 +312,6 @@
     </Compile>
     <Compile Include="MyPhishMarket\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="MyPhishMarket\MyPicturesByShow.aspx.cs">
-      <DependentUpon>MyPicturesByShow.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MyPhishMarket\MyPicturesByShow.aspx.designer.cs">
-      <DependentUpon>MyPicturesByShow.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyPhishMarket\Profile\Step2.aspx.cs">
       <DependentUpon>Step2.aspx</DependentUpon>
@@ -668,7 +654,6 @@
     <Content Include="MyPhishMarket\EditArt.aspx" />
     <Content Include="MyPhishMarket\EditPoster.aspx" />
     <Content Include="MyPhishMarket\EditTicketStub.aspx" />
-    <Content Include="MyPhishMarket\FindForShow.aspx" />
     <Content Include="MyPhishMarket\FullShowReview.aspx" />
     <Content Include="MyPhishMarket\MyPictures.aspx" />
     <Content Include="MyPhishMarket\MyPosters.aspx" />
@@ -676,7 +661,6 @@
     <Content Include="MyPhishMarket\Profile\ChangeProfile.aspx" />
     <Content Include="MyPhishMarket\Profile\Step1.aspx" />
     <Content Include="MyPhishMarket\Dashboard.aspx" />
-    <Content Include="MyPhishMarket\MyPicturesByShow.aspx" />
     <Content Include="MyPhishMarket\Profile\Step2.aspx" />
     <Content Include="MyPhishMarket\Profile\Step3.aspx" />
     <Content Include="MyPhishMarket\ShowAnalysis.aspx" />

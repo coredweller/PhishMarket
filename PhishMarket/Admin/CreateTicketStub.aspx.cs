@@ -187,7 +187,6 @@ namespace PhishMarket.Admin
 
                                     if (valid)
                                     {
-                                        //imgDisplayThumb.ImageUrl = LinkBuilder.GetImageLink(thumbImageId);
                                         imgTheImage.ImageUrl = LinkBuilder.GetTicketStubLink(fullImage.FileName);
 
                                         thumbImageTemp.Image = null;

@@ -156,8 +156,7 @@
                                     <ItemTemplate>
                                         <tr>
                                             <td>
-                                            
-                                                <asp:Image ID="imgArt1" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink( (((PhishPond.Concrete.Poster)Container.DataItem).PhotoId) ) %>' />
+                                                <asp:Image ID="imgArt1" runat="server" ImageUrl='<%# LinkBuilder.GetImageLinkByFileName( (((PhishPond.Concrete.Poster)Container.DataItem).Photo.FileName) ) %>' />
                                             </td>
                                         </tr>
                                         <tr>
@@ -179,36 +178,6 @@
                         </asp:PlaceHolder>
                     </Content>
                 </ajaxToolkit:AccordionPane>
-               <%-- <ajaxToolkit:AccordionPane ID="AccordionPane2" runat="server">
-                    <Header>
-                        <h2>TICKET STUBS</h2></Header>
-                    <Content>
-                        <asp:PlaceHolder ID="PlaceHolder1" runat="server" Visible="true">
-                            <div>
-                                <asp:Repeater ID="rptTicketStubs" runat="server">
-                                    <HeaderTemplate>
-                                        <table>
-                                    </HeaderTemplate>
-                                    <ItemTemplate>
-                                        <tr>
-                                            <td>
-                                            
-                                                <asp:Image ID="imgArt2" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink( (((PhishPond.Concrete.TicketStub)Container.DataItem).PhotoId) ) %>' />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <%# (((PhishPond.Concrete.TicketStub)Container.DataItem).Notes)%>
-                                            </td>
-                                        </tr>
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        </table></FooterTemplate>
-                                </asp:Repeater>
-                            </div>
-                        </asp:PlaceHolder>
-                    </Content>
-                </ajaxToolkit:AccordionPane>--%>
                 <ajaxToolkit:AccordionPane ID="AccordionPane3" runat="server">
                     <Header>
                         <h2>PICTURES</h2></Header>
@@ -223,7 +192,7 @@
                                         <tr>
                                             <td>
                                             
-                                                <asp:Image ID="imgArt3" runat="server" ImageUrl='<%# LinkBuilder.GetImageLink( (((PhishPond.Concrete.Art)Container.DataItem).PhotoId) ) %>' />
+                                                <asp:Image ID="imgArt3" runat="server" ImageUrl='<%# LinkBuilder.GetImageLinkByFileName( (((PhishPond.Concrete.Art)Container.DataItem).Photo.FileName) ) %>' />
                                             </td>
                                         </tr>
                              
