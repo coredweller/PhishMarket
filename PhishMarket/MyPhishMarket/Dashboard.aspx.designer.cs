@@ -14,24 +14,6 @@ namespace PhishMarket.MyPhishMarket {
     public partial class Dashboard {
         
         /// <summary>
-        /// imgLeftArrow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgLeftArrow;
-        
-        /// <summary>
-        /// Image1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
-        
-        /// <summary>
         /// lnkChangeProfile control.
         /// </summary>
         /// <remarks>
@@ -39,6 +21,15 @@ namespace PhishMarket.MyPhishMarket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkChangeProfile;
+        
+        /// <summary>
+        /// lnkViewProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkViewProfile;
         
         /// <summary>
         /// lblName control.

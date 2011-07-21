@@ -24,6 +24,7 @@ namespace PhishMarket.MyPhishMarket
             userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
 
             lnkChangeProfile.NavigateUrl = LinkBuilder.ProfileStep1Link();
+            lnkViewProfile.NavigateUrl = LinkBuilder.ViewProfileLink(userId);
 
             if (!IsPostBack)
             {

@@ -2,24 +2,16 @@
     MasterPageFile="~/Master/Shadowed.Master" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <%--<div>--%>
-    <%--<h2>
-            My Phish Market</h2>--%>
-    <%--<div>--%>
+        <h2 class="tTip" id="cloud1" title="Use this section to show your favorite things about Phish">
+                My Profile</h2>
+                <%--<asp:Image ID="imgLeftArrow" runat="server" ImageUrl="/images/SmallLeftArrowLight.jpg" />
+                <asp:Image ID="Image1" runat="server" ImageUrl="/images/SmallLeftArrowLight.jpg" />--%>
+        
+        <h4 >
+            <asp:HyperLink ID="lnkChangeProfile" runat="server" Text="Change Profile"></asp:HyperLink>&nbsp|&nbsp<asp:HyperLink
+                ID="lnkViewProfile" runat="server" Text="View Profile"></asp:HyperLink>
+        </h4>
     <div>
-        <h2 class="DashLeft">
-            <div class="tTip" id="cloud1" title="Use this section to show your favorite things about Phish">
-                My Profile
-                <asp:Image ID="imgLeftArrow" runat="server" ImageUrl="/images/SmallLeftArrowLight.jpg" />
-                <asp:Image ID="Image1" runat="server" ImageUrl="/images/SmallLeftArrowLight.jpg" /></div>
-        </h2>
-        <h3 class="DashLeft">
-            <asp:HyperLink ID="lnkChangeProfile" runat="server" Text="Change your Profile HERE"></asp:HyperLink>
-        </h3>
-    </div>
-    <div class="ClearBoth" style="">
-        <%--<br />--%>
-        <br />
         <table>
             <tr>
                 <td>
@@ -77,7 +69,7 @@
                     <asp:Label ID="lblFavoriteAlbum" runat="server"></asp:Label>
                 </td>
             </tr>
-           <%-- <tr>
+            <%-- <tr>
                 <td>
                     Favorite Tour:
                 </td>
