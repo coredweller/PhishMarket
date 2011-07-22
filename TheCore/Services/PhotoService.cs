@@ -60,6 +60,18 @@ namespace TheCore.Services
             }
         }
 
+        public void SaveCommit(IPhoto photo, out bool success)
+        {
+            using (var unitOfWork = UnitOfWork.Begin())
+            {
+                Save(photo, out success);
+                if (success)
+                {
+                    unitOfWork.Commit();
+                }
+            }
+        }
+
         //consider changing the out parameter to a validation type object
         //public void Save(IPhoto photo, out bool success)
         //{

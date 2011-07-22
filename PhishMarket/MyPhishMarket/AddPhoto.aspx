@@ -1,12 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddPhoto.aspx.cs" Inherits="PhishMarket.MyPhishMarket.AddPhoto"
     MasterPageFile="~/Master/Shadowed.Master" %>
-    
-    <%@ Register TagPrefix="Upload" Namespace="Brettle.Web.NeatUpload"
-             Assembly="Brettle.Web.NeatUpload" %>
 
+<%@ Register TagPrefix="Upload" Namespace="Brettle.Web.NeatUpload" Assembly="Brettle.Web.NeatUpload" %>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <h2>
         Add Photo</h2>
+    <div id="alertDiv" style="padding: 10px; float: left;">
+    </div>
     <div>
         <asp:HyperLink ID="lnkReturn" runat="server" Text="Return to previous page"></asp:HyperLink>
     </div>
@@ -19,19 +19,23 @@
         <asp:PlaceHolder ID="phNoImageSelectedError" runat="server" Visible="false">You must
             select an image to continue.</asp:PlaceHolder>
     </div>
+    <br />
+    <div>
+        <Upload:InputFile ID="uploadedFile" runat="server" />
+        <Upload:ProgressBar ID="progressBarId" runat="server" Inline="true" />
+    </div>
+    <br />
     <div>
         <table>
-            <tr>
+            <%--<tr>
                 <td>
                     Picture:
                 </td>
                 <td>
-                    <%--<asp:FileUpload ID="fuPicture" runat="server" />--%>
+                    <%--<asp:FileUpload ID="fuPicture" runat="server" />
                     
-                    <Upload:InputFile ID="uploadedFile" runat="server" />
-                    <Upload:ProgressBar id="progressBarId" runat="server" inline="true" />
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td colspan="2">
                     <%--<asp:RequiredFieldValidator ID="rfvPicture" runat="server" ControlToValidate="fuPicture"

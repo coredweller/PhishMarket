@@ -11,6 +11,7 @@ using System.Web.Security;
 using PhishPond.Concrete;
 using TheCore.Repository;
 using Brettle.Web.NeatUpload;
+using TheCore.Helpers;
 
 namespace PhishMarket.MyPhishMarket
 {
@@ -70,11 +71,15 @@ namespace PhishMarket.MyPhishMarket
             IPhotoRepository photoRepo = Ioc.GetInstance<IPhotoRepository>();
 
             ImageResizerService imageResizerService = new ImageResizerService();
-            PhotoService photoService = new PhotoService(photoRepo);
-
+            
             bool compiledSuccess = true;
 
-            if (!uploadedFile.HasFile) return; //and throw error
+            if (!uploadedFile.HasFile)
+            {
+                var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "Please choose a file to upload.");
+                Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
+                return;
+            }
 
             log.WriteLine("Submitted a picture with name " + uploadedFile.FileName);
 
@@ -86,108 +91,68 @@ namespace PhishMarket.MyPhishMarket
             Guid fullImageId = Guid.NewGuid();
 
             if (string.IsNullOrEmpty(fileExt) || !imageMediaFormats.HasExtension(fileExt))
-             {
-                 return;
-                //ERROR MESSAGE
-                //return new FileUploadJsonResult { Data = new { Src = "", ErrorMessage = "File was not uploaded." } };
+            {
+                var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "This file does not have a valid extension.  Please enter a correct file.");
+                Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
+                return;
             }
 
-            //save file 
             var newFileName = userName + "-" + ticks + fileExt;
             log.WriteLine("thumb image New file name: " + newFileName);
 
             if (uploadedFile.ContentLength > 0)
             {
-
-                //try to resize the image
-                //var tmpResizeBuffer = new byte[posted.ContentLength];
-                //posted.InputStream.Read(tmpResizeBuffer, 0, posted.ContentLength);
-                //var thumbResizedBuffer = imageResizerService.ResizeImage(tmpResizeBuffer, new ThumbnailSize(), mediaFormat);
-                //var fullResizedBuffer = imageResizerService.ResizeImage(tmpResizeBuffer, new FullImageSize(), mediaFormat);
-
-
-                IPhoto thumbImage = null;
-                IPhoto fullImage = null;
-                //TODO: save fullImage
-
-                using (var unitOfWork = TheCore.Infrastructure.UnitOfWork.Begin())
+                int intContentLength;
+                if(!int.TryParse(uploadedFile.ContentLength.ToString(), out intContentLength))
                 {
-                    Guid? showId = new Guid(hdnShowId.Value);
-
-
-
-                    /*
-                     * fullsize
-                     */
-
-
-                    log.WriteLine("About to create full image");
-                    fullImage = new Photo
-                    {
-                        PhotoId = fullImageId,
-                        CreatedDate = DateTime.Now,
-                        UserId = userID,
-                        FileName = newFileName,
-                        ContentType = uploadedFile.ContentType,
-                        Type = short.Parse(hdnPhotoType.Value),
-                        NickName = txtNickName.Text.Trim(),
-                        Notes = txtNotes.Text.Trim(),
-                        Quality = short.Parse(ddlQuality.SelectedValue),
-                        Thumbnail = false,
-                        ShowId = showId
-                    };
-
-                    bool success = false;
-                    log.WriteLine("full image created, about to save full image");
-                    photoService.Save(fullImage, out success);
-                    log.WriteLine("Saved full image, success = " + success.ToString());
-
-                    log.WriteLine("Compiled success = " + compiledSuccess.ToString());
-
-                    if (!success)
-                    {
-                        //log.Error("The following validation conditions cased the offering image upload to fail during a call to CreateOfferingImageUpload: {0}".FormatWith(validationState.GetMessages()));
-                        //ERROR MESSAGE NEEDED
-                        //return new FileUploadJsonResult { Data = new { Src = "", ErrorMessage = "An error occurred while trying to save you upload. Please try again." } };
-                    }
-                    else
-                    {
-                        log.WriteLine("Compiled success was true, about to commit the unit of work");
-                        unitOfWork.Commit();
-                        log.WriteLine("Unit of work is committed");
-
-                        bool valid = false;
-
-                        var fullImageTemp = photoService.GetPhoto(fullImageId);
-
-                        string destDir = Path.Combine(Request.PhysicalApplicationPath, "images\\Shows");
-                        string destPath = Path.Combine(destDir, fullImageTemp.FileName);
-
-                        log.WriteLine("Saving image to the path = " + destPath);
-                        
-                        log.WriteLine("Saving full image to the path");
-                        uploadedFile.MoveTo(destPath, MoveToOptions.Overwrite);
-                        log.WriteLine("Saving full image was valid = " + valid.ToString());
-
-                        if (valid)
-                        {
-                            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLinkByFileName(fullImageTemp.FileName);
-
-                            fullImageTemp.Image = null;
-
-                            DetermineTypeOfPhoto(fullImage, showId);
-                        }
-                        else
-                        {
-                            //FREAK OUT!!
-                        }
-
-                    }
+                    var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "This file is too large.  Please try another photo.");
+                    Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
+                    return;
                 }
+               
+
+
+                IPhoto fullImage = null;
+
+                Guid? showId = new Guid(hdnShowId.Value);
+
+                log.WriteLine("About to create full image");
+                fullImage = new Photo
+                {
+                    PhotoId = fullImageId,
+                    CreatedDate = DateTime.Now,
+                    UserId = userID,
+                    FileName = newFileName,
+                    ContentType = uploadedFile.ContentType,
+                    Type = short.Parse(hdnPhotoType.Value),
+                    NickName = txtNickName.Text.Trim(),
+                    Notes = txtNotes.Text.Trim(),
+                    Quality = short.Parse(ddlQuality.SelectedValue),
+                    Thumbnail = false,
+                    ShowId = showId
+                };
+
+                string destDir = Path.Combine(Request.PhysicalApplicationPath, "images\\Shows");
+                string destPath = Path.Combine(destDir, newFileName);
+                
+                log.WriteLine("Saving image to the path = " + destPath);
+
+                var phishMarketInputFile = new PhishMarketInputFile(uploadedFile);
+
+                uploadedFile.MoveTo(destPath, MoveToOptions.Overwrite);
+
+                log.WriteLine("Image saved to the path and now determining what type of photo it is");
+                DetermineTypeOfPhoto(fullImage, showId);
+
+                imgDisplayFull.ImageUrl = LinkBuilder.GetImageLinkByFileName(newFileName);
+
+                var scriptHelper2 = new ScriptHelper("SuccessAlert", "alertDiv", "You have successfully saved the image.");
+                Page.RegisterStartupScript(scriptHelper2.ScriptName, scriptHelper2.GetSuccessScript());
+                return;
             }
 
-            //ERROR MESSAGE NEEDED
-            //return new FileUploadJsonResult { Data = new { Src = "", ErrorMessage = "No file uploaded." } };
+            var scriptHelper3 = new ScriptHelper("ErrorAlert", "alertDiv", "There was an error and the picture could not be uploaded.");
+            Page.RegisterStartupScript(scriptHelper3.ScriptName, scriptHelper3.GetFatalScript());
         }
 
         public void DetermineTypeOfPhoto(IPhoto photo, Guid? showId)
@@ -196,9 +161,6 @@ namespace PhishMarket.MyPhishMarket
             {
                 case PhotoType.Poster:
                     CreatePoster(photo, showId);
-                    break;
-                case PhotoType.TicketStub:
-                    CreateTicketStub(photo, showId);
                     break;
                 case PhotoType.Art:
                     CreateArt(photo, showId);
@@ -238,9 +200,17 @@ namespace PhishMarket.MyPhishMarket
 
             using (IUnitOfWork uow = UnitOfWork.Begin())
             {
-
+                var combinedSuccess = true;
                 bool success = false;
+
+                PhotoService photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
+                photoService.Save(photo, out success);
+
+                combinedSuccess = combinedSuccess && success;
+                
                 posterService.Save(p, out success);
+
+                combinedSuccess = combinedSuccess && success;
 
                 MyShowPoster myShowPoster = new MyShowPoster
                 {
@@ -250,75 +220,17 @@ namespace PhishMarket.MyPhishMarket
                     PosterId = posterId
                 };
 
-                bool secondSuccess = false;
-                spService.Save(myShowPoster, out secondSuccess);
+                spService.Save(myShowPoster, out success);
 
-                final = success && secondSuccess;
+                combinedSuccess = combinedSuccess && success;
+
+                final = combinedSuccess;
 
                 if (final)
                 {
                     uow.Commit();
                     lnkEditPoster.NavigateUrl = LinkBuilder.EditPosterLink(posterId);
                     phEditPoster.Visible = true;
-                }
-            }
-
-            return final;
-        }
-
-        public bool CreateTicketStub(IPhoto photo, Guid? showId)
-        {
-            bool final = false;
-            var ticketStubId = Guid.NewGuid();
-
-            var ticketStubService = new TicketStubService(Ioc.GetInstance<ITicketStubRepository>());
-            var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
-            var spService = new MyShowTicketStubService(Ioc.GetInstance<IMyShowTicketStubRepository>());
-
-            var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
-            var myShowId = myShowService.GetMyShow(showId.Value, userId).MyShowId;
-
-            TicketStub p = new TicketStub
-            {
-                CreatedDate = DateTime.Now,
-                PhotoId = photo.PhotoId,
-                TicketStubId = ticketStubId,
-                Notes = photo.Notes,
-                UserId = photo.UserId,
-                ShowId = showId
-                //Creator = txtCreator.Text,
-                //Length = string.IsNullOrEmpty(txtLength.Text) ? 0 : double.Parse(txtLength.Text),
-                //Width = string.IsNullOrEmpty(txtWidth.Text) ? 0 : double.Parse(txtWidth.Text),
-                //Total = string.IsNullOrEmpty(txtTotal.Text) ? 0 : int.Parse(txtTotal.Text),
-                //Number = string.IsNullOrEmpty(txtNumber.Text) ? 0 : int.Parse(txtNumber.Text),
-                //Technique = txtTechnique.Text,
-                //Title = txtTitle.Text
-            };
-
-            using (IUnitOfWork uow = UnitOfWork.Begin())
-            {
-
-                bool success = false;
-                ticketStubService.Save(p, out success);
-
-                MyShowTicketStub myShowTicketStub = new MyShowTicketStub
-                {
-                    CreatedDate = DateTime.Now,
-                    MyShowId = myShowId,
-                    MyShowTicketStubId = Guid.NewGuid(),
-                    TicketStubId = ticketStubId
-                };
-
-                bool secondSuccess = false;
-                spService.Save(myShowTicketStub, out secondSuccess);
-
-                final = success && secondSuccess;
-
-                if (final)
-                {
-                    uow.Commit();
-                    lnkEditTicketStub.NavigateUrl = LinkBuilder.EditTicketStubLink(ticketStubId);
-                    phEditTicketStub.Visible = true;
                 }
             }
 
@@ -345,20 +257,21 @@ namespace PhishMarket.MyPhishMarket
                 Notes = photo.Notes,
                 UserId = photo.UserId,
                 ShowId = showId
-                //Creator = txtCreator.Text,
-                //Length = string.IsNullOrEmpty(txtLength.Text) ? 0 : double.Parse(txtLength.Text),
-                //Width = string.IsNullOrEmpty(txtWidth.Text) ? 0 : double.Parse(txtWidth.Text),
-                //Total = string.IsNullOrEmpty(txtTotal.Text) ? 0 : int.Parse(txtTotal.Text),
-                //Number = string.IsNullOrEmpty(txtNumber.Text) ? 0 : int.Parse(txtNumber.Text),
-                //Technique = txtTechnique.Text,
-                //Title = txtTitle.Text
             };
 
             using (IUnitOfWork uow = UnitOfWork.Begin())
             {
-
+                var combinedSuccess = true;
                 bool success = false;
+
+                PhotoService photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
+                photoService.Save(photo, out success);
+
+                combinedSuccess = combinedSuccess && success;
+
                 artService.Save(p, out success);
+
+                combinedSuccess = combinedSuccess && success;
 
                 MyShowArt myShowArt = new MyShowArt
                 {
@@ -368,10 +281,11 @@ namespace PhishMarket.MyPhishMarket
                     ArtId = artId
                 };
 
-                bool secondSuccess = false;
-                spService.Save(myShowArt, out secondSuccess);
+                spService.Save(myShowArt, out success);
 
-                final = success && secondSuccess;
+                combinedSuccess = combinedSuccess && success;
+
+                final = combinedSuccess;
 
                 if (final)
                 {
@@ -382,11 +296,6 @@ namespace PhishMarket.MyPhishMarket
             }
 
             return final;
-        }
-
-        public void CreateCompanyImageUpload(HttpPostedFile fileData)
-        {
-
         }
     }
 }
