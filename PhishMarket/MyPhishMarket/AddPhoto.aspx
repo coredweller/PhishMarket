@@ -1,5 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddPhoto.aspx.cs" Inherits="PhishMarket.MyPhishMarket.AddPhoto"
     MasterPageFile="~/Master/Shadowed.Master" %>
+    
+    <%@ Register TagPrefix="Upload" Namespace="Brettle.Web.NeatUpload"
+             Assembly="Brettle.Web.NeatUpload" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <h2>
@@ -23,13 +26,16 @@
                     Picture:
                 </td>
                 <td>
-                    <asp:FileUpload ID="fuPicture" runat="server" />
+                    <%--<asp:FileUpload ID="fuPicture" runat="server" />--%>
+                    
+                    <Upload:InputFile ID="uploadedFile" runat="server" />
+                    <Upload:ProgressBar id="progressBarId" runat="server" inline="true" />
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:RequiredFieldValidator ID="rfvPicture" runat="server" ControlToValidate="fuPicture"
-                        ErrorMessage="You must choose a picture" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <%--<asp:RequiredFieldValidator ID="rfvPicture" runat="server" ControlToValidate="fuPicture"
+                        ErrorMessage="You must choose a picture" Display="Dynamic"></asp:RequiredFieldValidator>--%>
                 </td>
             </tr>
             <%--<tr>

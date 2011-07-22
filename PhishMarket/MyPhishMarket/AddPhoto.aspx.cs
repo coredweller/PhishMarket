@@ -10,6 +10,7 @@ using TheCore.Interfaces;
 using System.Web.Security;
 using PhishPond.Concrete;
 using TheCore.Repository;
+using Brettle.Web.NeatUpload;
 
 namespace PhishMarket.MyPhishMarket
 {
@@ -73,205 +74,107 @@ namespace PhishMarket.MyPhishMarket
 
             bool compiledSuccess = true;
 
-            var posted = fuPicture.PostedFile;
+            if (!uploadedFile.HasFile) return; //and throw error
 
-            if (posted == null)
+            log.WriteLine("Submitted a picture with name " + uploadedFile.FileName);
+
+
+            Guid userID = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
+            string userName = Membership.GetUser(User.Identity.Name).UserName;
+            var ticks = DateTime.Now.Ticks;
+            Guid thumbImageId = Guid.NewGuid();
+            Guid fullImageId = Guid.NewGuid();
+
+            //save file 
+            //var newFileName = userName + "-" + ticks + fileExt;
+            //log.WriteLine("thumb image New file name: " + newFileName);
+
+            if (uploadedFile.ContentLength > 0)
             {
 
-                return;
-                //ERROR MESSAGE
-                //return new FileUploadJsonResult { Data = new { Src = "", ErrorMessage = "File was not uploaded." } };
-            }
+                //try to resize the image
+                //var tmpResizeBuffer = new byte[posted.ContentLength];
+                //posted.InputStream.Read(tmpResizeBuffer, 0, posted.ContentLength);
+                //var thumbResizedBuffer = imageResizerService.ResizeImage(tmpResizeBuffer, new ThumbnailSize(), mediaFormat);
+                //var fullResizedBuffer = imageResizerService.ResizeImage(tmpResizeBuffer, new FullImageSize(), mediaFormat);
 
-            var fileExt = Path.GetExtension(posted.FileName.ToLower());
 
-            log.WriteLine("Submitted a picture with name " + posted.FileName);
+                IPhoto thumbImage = null;
+                IPhoto fullImage = null;
+                //TODO: save fullImage
 
-            if (string.IsNullOrEmpty(fileExt))
-            {
-                //ERROR MESSAGE
-                //return new FileUploadJsonResult { Data = new { Src = "", ErrorMessage = "File was not uploaded." } };
-            }
-            else
-            { //check type
-                if (imageMediaFormats.HasExtension(fileExt))
+                using (var unitOfWork = TheCore.Infrastructure.UnitOfWork.Begin())
                 {
-                    log.WriteLine("There is a file extension of " + fileExt);
-                    var mediaFormat = imageMediaFormats.GetSpecByExtension(fileExt);
+                    Guid? showId = new Guid(hdnShowId.Value);
 
-                    Guid userID = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
-                    string userName = Membership.GetUser(User.Identity.Name).UserName;
-                    var ticks = DateTime.Now.Ticks;
-                    Guid thumbImageId = Guid.NewGuid();
-                    Guid fullImageId = Guid.NewGuid();
 
-                    //save file 
-                    var newFileName = userName + "-" + ticks + fileExt;
-                    log.WriteLine("thumb image New file name: " + newFileName);
 
-                    if (posted.ContentLength > 0)
+                    /*
+                     * fullsize
+                     */
+
+
+                    log.WriteLine("About to create full image");
+                    fullImage = new Photo
                     {
+                        PhotoId = fullImageId,
+                        CreatedDate = DateTime.Now,
+                        UserId = userID,
+                        FileName = uploadedFile.FileName,
+                        ContentType = uploadedFile.ContentType,
+                        Type = short.Parse(hdnPhotoType.Value),
+                        NickName = txtNickName.Text.Trim(),
+                        Notes = txtNotes.Text.Trim(),
+                        Quality = short.Parse(ddlQuality.SelectedValue),
+                        Thumbnail = false,
+                        ShowId = showId
+                    };
 
-                        //try to resize the image
-                        var tmpResizeBuffer = new byte[posted.ContentLength];
-                        posted.InputStream.Read(tmpResizeBuffer, 0, posted.ContentLength);
-                        var thumbResizedBuffer = imageResizerService.ResizeImage(tmpResizeBuffer, new ThumbnailSize(), mediaFormat);
-                        var fullResizedBuffer = imageResizerService.ResizeImage(tmpResizeBuffer, new FullImageSize(), mediaFormat);
+                    bool success = false;
+                    log.WriteLine("full image created, about to save full image");
+                    photoService.Save(fullImage, out success);
+                    log.WriteLine("Saved full image, success = " + success.ToString());
 
+                    log.WriteLine("Compiled success = " + compiledSuccess.ToString());
 
-                        IPhoto thumbImage = null;
-                        IPhoto fullImage = null;
-                        //TODO: save fullImage
-
-                        using (var unitOfWork = TheCore.Infrastructure.UnitOfWork.Begin())
-                        {
-                            log.WriteLine("About to create thumb image");
-                            Guid? showId = new Guid(hdnShowId.Value);
-                            /*
-                             * thumbnail
-                             */
-                            //try to retrieve the thumbnail image
-                            //thumbImage = tempImageStorageService.GetImage(tempThumbId);
-
-                            //if not found, create a new entity for the thumbnail image
-                            if (thumbImage == null)
-                            {
-                                thumbImage = new Photo
-                                {
-                                    PhotoId = thumbImageId,
-                                    CreatedDate = DateTime.Now,
-                                    UserId = userID,
-                                    FileName = newFileName,
-                                    ContentType = mediaFormat.ContentType,
-                                    ContentLength = thumbResizedBuffer.Length,
-                                    //Image = new byte[thumbResizedBuffer.Length],
-                                    Type = short.Parse(hdnPhotoType.Value),
-                                    NickName = txtNickName.Text.Trim(),
-                                    Notes = txtNotes.Text.Trim(),
-                                    Quality = short.Parse(ddlQuality.SelectedValue),
-                                    Thumbnail = true,
-                                    ShowId = showId
-                                };
-                            }
-                            else
-                            { //update entity
-                                thumbImage.ContentType = mediaFormat.ContentType;
-                                thumbImage.ContentLength = thumbResizedBuffer.Length;
-                            }
-
-                            log.WriteLine("Thumb image created, about to save thumb image");
-                            bool success = false;
-                            photoService.Save(thumbImage, mediaFormat, out success);
-                            log.WriteLine("Saved thumb image, success = " + success.ToString());
-
-                            compiledSuccess = compiledSuccess && success;
-
-                            /*
-                             * fullsize
-                             */
-                            //try to retrieve the image
-                            //fullImage = tempImageStorageService.GetImage(tempId);
-
-                            //if not found, create a new entity for the image
-                            if (fullImage == null)
-                            {
-
-                                newFileName = userName + "-" + DateTime.Now.Ticks + fileExt;
-                                log.WriteLine("Full image new file name: " + newFileName);
-                                log.WriteLine("About to create full image");
-                                fullImage = new Photo
-                                {
-                                    PhotoId = fullImageId,
-                                    CreatedDate = DateTime.Now,
-                                    UserId = userID,
-                                    FileName = newFileName,
-                                    ContentType = mediaFormat.ContentType,
-                                    ContentLength = fullResizedBuffer.Length,
-                                    //Image = new byte[fullResizedBuffer.Length],
-                                    Type = short.Parse(hdnPhotoType.Value),
-                                    NickName = txtNickName.Text.Trim(),
-                                    Notes = txtNotes.Text.Trim(),
-                                    Quality = short.Parse(ddlQuality.SelectedValue),
-                                    Thumbnail = false,
-                                    ShowId = showId
-                                };
-                            }
-                            else
-                            { //update entity
-                                fullImage.ContentType = mediaFormat.ContentType;
-                                fullImage.ContentLength = fullResizedBuffer.Length;
-                            }
-
-                            log.WriteLine("full image created, about to save full image");
-                            photoService.Save(fullImage, mediaFormat, out success);
-                            log.WriteLine("Saved full image, success = " + success.ToString());
-
-                            compiledSuccess = compiledSuccess && success;
-                            log.WriteLine("Compiled success = " + compiledSuccess.ToString());
-
-                            if (!compiledSuccess)
-                            {
-                                //log.Error("The following validation conditions cased the offering image upload to fail during a call to CreateOfferingImageUpload: {0}".FormatWith(validationState.GetMessages()));
-                                //ERROR MESSAGE NEEDED
-                                //return new FileUploadJsonResult { Data = new { Src = "", ErrorMessage = "An error occurred while trying to save you upload. Please try again." } };
-                            }
-                            else
-                            {
-                                log.WriteLine("Compiled success was true, about to commit the unit of work");
-                                unitOfWork.Commit();
-                                log.WriteLine("Unit of work is committed");
-
-                                var thumbImageTemp = photoService.GetPhoto(thumbImageId);
-                                thumbImageTemp.Image = thumbResizedBuffer;
-
-                                string path = string.Format("{0}{1}", DefaultShowImageLocation, thumbImageTemp.FileName);
-                                log.WriteLine("Saving image to the path = " + path);
-
-                                log.WriteLine("Saving thumb image to the path");
-                                bool valid = photoService.SaveAs(thumbImageTemp, HttpContext.Current.Server.MapPath(path));
-                                log.WriteLine("Saving thumb image was valid = " + valid.ToString());
-
-                                if (valid)
-                                {
-                                    var fullImageTemp = photoService.GetPhoto(fullImageId);
-                                    fullImageTemp.Image = fullResizedBuffer;
-
-                                    path = string.Format("{0}{1}", DefaultShowImageLocation, fullImageTemp.FileName);
-                                    log.WriteLine("Saving image to the path = " + path);
-
-                                    log.WriteLine("Saving full image to the path");
-                                    valid = photoService.SaveAs(fullImageTemp, HttpContext.Current.Server.MapPath(path));
-                                    log.WriteLine("Saving full image was valid = " + valid.ToString());
-
-                                    if (valid)
-                                    {
-                                        imgDisplayThumb.ImageUrl = LinkBuilder.GetImageLinkByFileName(thumbImageTemp.FileName);
-                                        imgDisplayFull.ImageUrl = LinkBuilder.GetImageLinkByFileName(fullImageTemp.FileName);
-
-                                        thumbImageTemp.Image = null;
-                                        fullImageTemp.Image = null;
-
-                                        DetermineTypeOfPhoto(fullImage, showId);
-                                    }
-                                    else
-                                    {
-                                        //FREAK OUT!!
-                                    }
-                                }
-                            }
-                        }
+                    if (!success)
+                    {
+                        //log.Error("The following validation conditions cased the offering image upload to fail during a call to CreateOfferingImageUpload: {0}".FormatWith(validationState.GetMessages()));
+                        //ERROR MESSAGE NEEDED
+                        //return new FileUploadJsonResult { Data = new { Src = "", ErrorMessage = "An error occurred while trying to save you upload. Please try again." } };
                     }
+                    else
+                    {
+                        log.WriteLine("Compiled success was true, about to commit the unit of work");
+                        unitOfWork.Commit();
+                        log.WriteLine("Unit of work is committed");
 
-                    //ERROR MESSAGE NEEDED
-                    //return new FileUploadJsonResult { Data = new { Src = Url.TempImages(tempId), ErrorMessage = "" } };
+                        bool valid = false;
 
+                        var fullImageTemp = photoService.GetPhoto(fullImageId);
+
+                        var path = string.Format("{0}{1}", "/images/Shows/", fullImageTemp.FileName);
+                        log.WriteLine("Saving image to the path = " + path);
+
+                        log.WriteLine("Saving full image to the path");
+                        uploadedFile.MoveTo(path, MoveToOptions.Overwrite);
+                        log.WriteLine("Saving full image was valid = " + valid.ToString());
+
+                        if (valid)
+                        {
+                            imgDisplayFull.ImageUrl = LinkBuilder.GetImageLinkByFileName(fullImageTemp.FileName);
+
+                            fullImageTemp.Image = null;
+
+                            DetermineTypeOfPhoto(fullImage, showId);
+                        }
+                        else
+                        {
+                            //FREAK OUT!!
+                        }
+
+                    }
                 }
-                else
-                {
-                    //ERROR MESSAGE NEEDED
-                    //return new FileUploadJsonResult { Data = new { Src = "", ErrorMessage = "The image you are trying to upload is listed as an invalid image type.  Please use the approved types:{0}".FormatWith(_imageMediaFormats.ImageFormatSpecs.ToDebugString(",")) } };
-                }
-
             }
 
             //ERROR MESSAGE NEEDED

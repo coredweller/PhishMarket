@@ -114,6 +114,38 @@ namespace TheCore.Services
 
         }
 
+        public void Save(IPhoto photo, out bool success)
+        {
+            success = false;
+            Checks.Argument.IsNotNull(photo, "photo");
+
+
+            //ValidateTempImageStorage(tempImageStorage, out validationState);
+
+            //if (!validationState.IsValid)
+            //{
+            //    return;
+            //}
+
+            if (null == this.GetPhoto(photo.PhotoId))
+            {
+                try
+                {
+
+                    _repo.Add(photo);
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    success = false;
+                    //var valState = new ValidationState();
+                    //valState.Errors.Add(new ValidationError("Id.AlreadyExists", tempImageStorage, ex.Message));
+                    //validationState.Append(typeof(ITempImageStorage), valState);
+                }
+            }
+
+        }
+
         public void Delete(IPhoto photo)
         {
             Checks.Argument.IsNotNull(photo, "photo");
