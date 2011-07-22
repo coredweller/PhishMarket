@@ -78,16 +78,23 @@ namespace PhishMarket.MyPhishMarket
 
             log.WriteLine("Submitted a picture with name " + uploadedFile.FileName);
 
-
+            var fileExt = Path.GetExtension(uploadedFile.FileName.ToLower());
             Guid userID = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
             string userName = Membership.GetUser(User.Identity.Name).UserName;
             var ticks = DateTime.Now.Ticks;
             Guid thumbImageId = Guid.NewGuid();
             Guid fullImageId = Guid.NewGuid();
 
+            if (string.IsNullOrEmpty(fileExt) || !imageMediaFormats.HasExtension(fileExt))
+             {
+                 return;
+                //ERROR MESSAGE
+                //return new FileUploadJsonResult { Data = new { Src = "", ErrorMessage = "File was not uploaded." } };
+            }
+
             //save file 
-            //var newFileName = userName + "-" + ticks + fileExt;
-            //log.WriteLine("thumb image New file name: " + newFileName);
+            var newFileName = userName + "-" + ticks + fileExt;
+            log.WriteLine("thumb image New file name: " + newFileName);
 
             if (uploadedFile.ContentLength > 0)
             {
@@ -120,7 +127,7 @@ namespace PhishMarket.MyPhishMarket
                         PhotoId = fullImageId,
                         CreatedDate = DateTime.Now,
                         UserId = userID,
-                        FileName = uploadedFile.FileName,
+                        FileName = newFileName,
                         ContentType = uploadedFile.ContentType,
                         Type = short.Parse(hdnPhotoType.Value),
                         NickName = txtNickName.Text.Trim(),
@@ -153,11 +160,13 @@ namespace PhishMarket.MyPhishMarket
 
                         var fullImageTemp = photoService.GetPhoto(fullImageId);
 
-                        var path = string.Format("{0}{1}", "/images/Shows/", fullImageTemp.FileName);
-                        log.WriteLine("Saving image to the path = " + path);
+                        string destDir = Path.Combine(Request.PhysicalApplicationPath, "images\\Shows");
+                        string destPath = Path.Combine(destDir, fullImageTemp.FileName);
 
+                        log.WriteLine("Saving image to the path = " + destPath);
+                        
                         log.WriteLine("Saving full image to the path");
-                        uploadedFile.MoveTo(path, MoveToOptions.Overwrite);
+                        uploadedFile.MoveTo(destPath, MoveToOptions.Overwrite);
                         log.WriteLine("Saving full image was valid = " + valid.ToString());
 
                         if (valid)
