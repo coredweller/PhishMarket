@@ -94,7 +94,6 @@
     <Compile Include="Infrastructure\Images\ImageFormatSpec.cs" />
     <Compile Include="Infrastructure\Images\ImageMediaFormats.cs" />
     <Compile Include="Infrastructure\Images\ImageSize.cs" />
-    <Compile Include="Infrastructure\Images\PhishMarketInputFile.cs" />
     <Compile Include="Infrastructure\Images\ThumbnailSize.cs" />
     <Compile Include="Infrastructure\IoC\DependencyResolver.cs" />
     <Compile Include="Infrastructure\IoC\DependencyResolverFactory.cs" />

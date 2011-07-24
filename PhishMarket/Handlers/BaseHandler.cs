@@ -5,6 +5,7 @@
 
 using System.Net;
 using System.Web;
+using TheCore.Helpers;
 
 
 namespace PhishMarket.Handlers
@@ -41,9 +42,25 @@ namespace PhishMarket.Handlers
             return notModified;
         }
 
-        public string NoImagesLocation
+        protected string NoImagesLocation
         {
             get { return System.Configuration.ConfigurationManager.AppSettings.Get("SlideServiceNoImagesFoundLocation") ?? string.Empty; }
+        }
+
+        protected bool EmptyNullUndefined(string brih)
+        {
+            if (string.IsNullOrEmpty(brih) || brih == "undefined")
+                return true;
+
+            return false;
+        }
+
+        protected string GetNoImagesFound()
+        {
+            var json = new ImageJSONifier("records");
+            var loc = NoImagesLocation;
+            json.Add(new ImageItem { Image = loc, Thumb = loc, Title = "No Images Found", Description = "Upload posters or pictures of your own so everyone can see what this show was like" });
+            return json.GetFinalizedJSON();
         }
 
         //protected static UrlHelper CreateUrlHelper(HttpContextBase context)

@@ -86,22 +86,6 @@ namespace PhishMarket.Handlers
 
         }
 
-        private bool EmptyNullUndefined(string brih)
-        {
-            if (string.IsNullOrEmpty(brih) || brih == "undefined")
-                return true;
-
-            return false;
-        }
-
-        private string GetNoImagesFound()
-        {
-            var json = new ImageJSONifier("records");
-            var loc = NoImagesLocation;
-            json.Add(new ImageItem { Image = loc, Thumb = loc, Title = "No Images Found", Description = "Upload images from others or upload your own above" });
-            return json.GetFinalizedJSON();
-        }
-
-        public override bool IsReusable { get { return false; } }
+        public override bool IsReusable { get { return true; } }
     }
 }

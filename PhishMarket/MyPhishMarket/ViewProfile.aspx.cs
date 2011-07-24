@@ -84,8 +84,8 @@ namespace PhishMarket.MyPhishMarket
 
             var art = artService.GetArtByUser(userId).ToList();
 
-            rptArt.DataSource = art;
-            rptArt.DataBind();
+            //rptArt.DataSource = art;
+            //rptArt.DataBind();
         }
 
         //private void BindTicketStubs(Guid userId)
@@ -104,8 +104,8 @@ namespace PhishMarket.MyPhishMarket
 
             var posters = posterService.GetByUser(userId);
 
-            rptPoster.DataSource = posters;
-            rptPoster.DataBind();
+            //rptPoster.DataSource = posters;
+            //rptPoster.DataBind();
         }
 
         private Guid? BindProfile(Guid userId, string userName)

@@ -61,9 +61,9 @@
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td>
+                        <%--<td>
                             <asp:Image ID="imgArt" runat="server" ImageUrl='<%# LinkBuilder.GetImageLinkByFileName((((PhishPond.Concrete.TicketStub)Container.DataItem).Photo.FileName)) %>' />
-                        </td>
+                        </td>--%>
                         <td>
                             <asp:LinkButton ID="lnkRemove" CommandArgument='<%# (((PhishPond.Concrete.TicketStub)Container.DataItem).TicketStubId) %>'
                                 CommandName="REMOVE" runat="server" Text="Remove"></asp:LinkButton>

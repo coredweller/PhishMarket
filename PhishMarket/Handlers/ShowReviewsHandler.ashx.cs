@@ -92,23 +92,6 @@ namespace PhishMarket.Handlers
             response.Write(final);
         }
 
-        private bool EmptyNullUndefined(string brih)
-        {
-            if (string.IsNullOrEmpty(brih) || brih == "undefined")
-                return true;
-
-            return false;
-        }
-
-    
-        private string GetNoImagesFound()
-        {
-            var json = new ImageJSONifier("records");
-            var loc = NoImagesLocation;
-            json.Add(new ImageItem { Image = loc, Thumb = loc, Title = "No Images Found", Description = "Upload posters or pictures of your own so everyone can see what this show was like" });
-            return json.GetFinalizedJSON();
-        }
-
         public bool IsReusable { get { return true; } }
     }
 }

@@ -136,15 +136,13 @@ namespace PhishMarket.MyPhishMarket
                 string destPath = Path.Combine(destDir, newFileName);
                 
                 log.WriteLine("Saving image to the path = " + destPath);
-
-                var phishMarketInputFile = new PhishMarketInputFile(uploadedFile);
-
+                
                 uploadedFile.MoveTo(destPath, MoveToOptions.Overwrite);
 
                 log.WriteLine("Image saved to the path and now determining what type of photo it is");
                 DetermineTypeOfPhoto(fullImage, showId);
 
-                imgDisplayFull.ImageUrl = LinkBuilder.GetImageLinkByFileName(newFileName);
+                //imgDisplayFull.ImageUrl = LinkBuilder.GetImageLinkByFileName(newFileName);
 
                 var scriptHelper2 = new ScriptHelper("SuccessAlert", "alertDiv", "You have successfully saved the image.");
                 Page.RegisterStartupScript(scriptHelper2.ScriptName, scriptHelper2.GetSuccessScript());
