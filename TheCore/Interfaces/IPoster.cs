@@ -9,7 +9,7 @@ namespace TheCore.Interfaces
         string Notes { get; set; }
         Guid PhotoId { get; set; }
 
-        //For example number/total 1;23/500 which is #123 out of 500 total pieces of released art
+        //For example number/total 123/500 which is #123 out of 500 total pieces of released art
         int? Total { get; set; }
         int? Number { get; set; }
 

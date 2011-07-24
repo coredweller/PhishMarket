@@ -80,9 +80,7 @@ namespace PhishMarket.MyPhishMarket
 
         private void BindArt(Guid userId)
         {
-            ArtService artService = new ArtService(Ioc.GetInstance<IArtRepository>());
-
-            var art = artService.GetArtByUser(userId).ToList();
+            
 
             //rptArt.DataSource = art;
             //rptArt.DataBind();
