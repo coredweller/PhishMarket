@@ -1,6 +1,30 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewProfile.aspx.cs" Inherits="PhishMarket.MyPhishMarket.ViewProfile"
     MasterPageFile="~/Master/Shadowed.Master" %>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
+
+    <script type="text/javascript" src="/javascript/galleria/galleria-1.2.2.min.js"></script>
+
+    <script type="text/javascript">
+
+        //Absolutely needed for Galleria to work on this page
+        Galleria.loadTheme('/javascript/galleria/classic/galleria.classic.min.js');
+
+        //When the page loads, if there is a showId in the URL
+        //  this function will load the pictures for this user if available
+        $(function() {
+            var userClientId = $('#<%= hdnUserId.ClientID %>');
+            var userId = $(userClientId).val();
+
+            callViewProfileHandler(userId);
+
+            return false;
+        });
+
+    </script>
+
+</asp:Content>
+
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <h2 title="Basic Information about the user." class="tTip" id="cloud3">
@@ -135,5 +159,11 @@
         <FooterTemplate>
             </table></FooterTemplate>
     </asp:Repeater>
+    <br /><br />
+    <div id="gallery">
+        <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
+        <%--<img src="/images/Shows/coretest2-634195715440294949.jpg" alt="blah" />--%>
+    </div>
     
+    <asp:HiddenField ID="hdnUserId" runat="server" Visible="true" />
 </asp:Content>

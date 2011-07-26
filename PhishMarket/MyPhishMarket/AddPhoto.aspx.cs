@@ -109,8 +109,6 @@ namespace PhishMarket.MyPhishMarket
                     Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
                     return;
                 }
-               
-
 
                 IPhoto fullImage = null;
 
@@ -171,7 +169,6 @@ namespace PhishMarket.MyPhishMarket
             bool final = false;
             var posterId = Guid.NewGuid();
 
-
             var posterService = new PosterService(Ioc.GetInstance<IPosterRepository>());
             var myShowService = new MyShowService(Ioc.GetInstance<IMyShowRepository>());
             var spService = new MyShowPosterService(Ioc.GetInstance<IMyShowPosterRepository>());
@@ -201,7 +198,7 @@ namespace PhishMarket.MyPhishMarket
                 var combinedSuccess = true;
                 bool success = false;
 
-                PhotoService photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
+                var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
                 photoService.Save(photo, out success);
 
                 combinedSuccess = combinedSuccess && success;
@@ -210,9 +207,12 @@ namespace PhishMarket.MyPhishMarket
 
                 combinedSuccess = combinedSuccess && success;
 
-                MyShowPoster myShowPoster = new MyShowPoster
+                var date = DateTime.Now;
+
+                var myShowPoster = new MyShowPoster
                 {
-                    CreatedDate = DateTime.Now,
+                    CreatedDate = date,
+                    UpdatedDate = date,
                     MyShowId = myShowId,
                     MyShowPosterId = Guid.NewGuid(),
                     PosterId = posterId
@@ -247,9 +247,12 @@ namespace PhishMarket.MyPhishMarket
             var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
             var myShowId = myShowService.GetMyShow(showId.Value, userId).MyShowId;
 
+            var date = DateTime.Now;
+
             Art p = new Art
             {
-                CreatedDate = DateTime.Now,
+                CreatedDate = date,
+                UpdatedDate = date,
                 PhotoId = photo.PhotoId,
                 ArtId = artId,
                 Notes = photo.Notes,
@@ -262,7 +265,7 @@ namespace PhishMarket.MyPhishMarket
                 var combinedSuccess = true;
                 bool success = false;
 
-                PhotoService photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
+                var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
                 photoService.Save(photo, out success);
 
                 combinedSuccess = combinedSuccess && success;
@@ -271,7 +274,7 @@ namespace PhishMarket.MyPhishMarket
 
                 combinedSuccess = combinedSuccess && success;
 
-                MyShowArt myShowArt = new MyShowArt
+                var myShowArt = new MyShowArt
                 {
                     CreatedDate = DateTime.Now,
                     MyShowId = myShowId,

@@ -17,13 +17,13 @@ namespace TheCore.Helpers
             BuildTemplate();
         }
 
-        public ImageJSONifier(string collectionName, ImageItem image)
+        public ImageJSONifier(string collectionName, IEnumerable<ImageItem> images)
         {
             CollectionName = collectionName;
             FirstAdd = true;
 
             BuildTemplate();
-            Add(image);
+            Add(images);
         }
 
         protected new void BuildTemplate()
@@ -71,6 +71,14 @@ namespace TheCore.Helpers
             else
             {
                 Builder.Append("," + temp5);
+            }
+        }
+
+        public void Add(IEnumerable<ImageItem> images)
+        {
+            foreach (var i in images)
+            {
+                Add(i);
             }
         }
     }

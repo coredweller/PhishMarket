@@ -37,7 +37,7 @@ function callMyPictureHandler(showId, userId) {
                 });
         }
 		
-		//ShowReviewws.aspx
+//ShowReviewws.aspx
 //Calls a handler to get images back for galleria
 function callShowReviewsHandler(showId, showDate) {
 
@@ -62,6 +62,25 @@ function callMyPostersHandler(showId, userId) {
 
             $.getJSON("/Handlers/MyPostersHandler.ashx",
                 { s: showId, u: userId },
+
+                function(data) {
+                    $('#gallery').galleria({
+                        data_source: data.records,
+						transition: 'fade',
+						maxScaleRatio: 1,
+                        width: 600,
+                        height: 600
+                    });
+
+                });
+        }
+		
+//ViewProfile.aspx
+//Calls a handler to get images back for galleria
+function callViewProfileHandler(userId) {
+
+            $.getJSON("/Handlers/ViewProfileHandler.ashx",
+                { u: userId },
 
                 function(data) {
                     $('#gallery').galleria({

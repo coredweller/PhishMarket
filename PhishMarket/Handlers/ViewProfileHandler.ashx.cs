@@ -37,8 +37,9 @@ namespace PhishMarket.Handlers
             var artService = new ArtService(Ioc.GetInstance<IArtRepository>());
             var posterService = new PosterService(Ioc.GetInstance<IPosterRepository>());
 
-            var art = artService.GetArtByUser(userId).Cast<Art>().OrderBy(x=> x.Show.ShowDate).ToList();
-            var posters = posterService.GetByUser(userId).Cast<Poster>().OrderBy(x => x.Show.ShowDate).ToList();
+            var art = artService.GetArtByUser(userId).Cast<Art>().Where(y => y.Show != null).OrderBy(x=> x.Show.ShowDate.Value).ToList();
+            var posters = posterService.GetByUser(userId).Cast<Poster>().ToList();  /// LEFT OFF HERE TRYING TO FIGURE OUT WHY SHOW IS NULL FOR ALL THE POSTERS
+            var posters2 = posters.Where(z => z.Show != null).OrderBy(v => v.Show.ShowDate.Value).ToList();
 
             //If there are no art or posters then return no images found
             if ((art == null && posters == null) || (art.Count <= 0 && posters.Count <= 0))
@@ -51,27 +52,32 @@ namespace PhishMarket.Handlers
                 response.End();
             }
 
-            ///LEFT OFF HERE
-            ///Must parse all the art and posters into imageitems then sort by showdate and then put into json
+            var allImages = (from a in art
+                             select new ImageItem
+                             {
+                                 Image = ShowImagesFolder + a.Photo.FileName,
+                                 Description = a.Photo.Notes,
+                                 Title = a.Photo.NickName,
+                                 ShowDate = a.Show.ShowDate.Value
+                             });
+
+            allImages.Concat(from p in posters
+                                select new ImageItem
+                                {
+                                    Image = ShowImagesFolder + p.Photo.FileName,
+                                    Description = p.Photo.Notes,
+                                    Title = p.Photo.NickName,
+                                    ShowDate = p.Show.ShowDate.Value
+                                });
+
             
-            var json = new ImageJSONifier("records");
+            var json = new ImageJSONifier("records", allImages.OrderBy(y => y.ShowDate));
 
-            //foreach (var photo in photos)
-            //{
-            //    var path = (PhotoType)photo.Type != PhotoType.TicketStub ? ShowImagesFolder : TicketStubImagesFolder;
+            final = json.GetFinalizedJSON();
 
-            //    json.Add(new ImageItem
-            //    {
-            //        Image = path + photo.FileName,
-            //        Description = photo.Notes,
-            //        Title = photo.NickName,
-            //        //Thumb =  //This is a consideration.  If we want to go through the trouble of using the thumb or not
-            //    });
-            //}
-
-            //final = json.GetFinalizedJSON();
-
-
+            response.ContentType = "application/json";
+            response.ContentEncoding = Encoding.UTF8;
+            response.Write(final);
         }
 
         public bool IsReusable

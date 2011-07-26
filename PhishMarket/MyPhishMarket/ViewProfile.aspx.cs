@@ -14,6 +14,7 @@ namespace PhishMarket.MyPhishMarket
 {
     public partial class ViewProfile : PhishMarketBasePage
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -35,6 +36,7 @@ namespace PhishMarket.MyPhishMarket
                 return;
 
             Guid userId = Request.QueryString["userId"] != null ? new Guid(Request.QueryString["userId"]) : GetUserIdFromYafId(Request.QueryString["u"]);
+            hdnUserId.Value = userId.ToString();
 
             var userService = new PhishMarketUserService(Ioc.GetInstance<IPhishMarketUserRepository>());
 
