@@ -37,9 +37,8 @@ namespace PhishMarket.Handlers
             var artService = new ArtService(Ioc.GetInstance<IArtRepository>());
             var posterService = new PosterService(Ioc.GetInstance<IPosterRepository>());
 
-            var art = artService.GetArtByUser(userId).Cast<Art>().Where(y => y.Show != null).OrderBy(x=> x.Show.ShowDate.Value).ToList();
-            var posters = posterService.GetByUser(userId).Cast<Poster>().ToList();  /// LEFT OFF HERE TRYING TO FIGURE OUT WHY SHOW IS NULL FOR ALL THE POSTERS
-            var posters2 = posters.Where(z => z.Show != null).OrderBy(v => v.Show.ShowDate.Value).ToList();
+            var art = artService.GetArtByUser(userId).Cast<Art>().Where(y => y.Show != null).ToList();
+            var posters = posterService.GetByUser(userId).Cast<Poster>().Where(z => z.ShowId != null).ToList();
 
             //If there are no art or posters then return no images found
             if ((art == null && posters == null) || (art.Count <= 0 && posters.Count <= 0))
@@ -59,18 +58,17 @@ namespace PhishMarket.Handlers
                                  Description = a.Photo.Notes,
                                  Title = a.Photo.NickName,
                                  ShowDate = a.Show.ShowDate.Value
-                             });
+                             }).ToList();
 
-            allImages.Concat(from p in posters
+            allImages.AddRange((from p in posters
                                 select new ImageItem
                                 {
                                     Image = ShowImagesFolder + p.Photo.FileName,
                                     Description = p.Photo.Notes,
                                     Title = p.Photo.NickName,
                                     ShowDate = p.Show.ShowDate.Value
-                                });
+                                }).ToList());
 
-            
             var json = new ImageJSONifier("records", allImages.OrderBy(y => y.ShowDate));
 
             final = json.GetFinalizedJSON();

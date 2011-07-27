@@ -924,7 +924,7 @@ namespace PhishPond.Concrete
 			}
 		}
 		
-		[Association(Name="Show_Poster", Storage="_Posters", ThisKey="ShowId", OtherKey="PhotoId")]
+		[Association(Name="Show_Poster", Storage="_Posters", ThisKey="ShowId", OtherKey="ShowId")]
 		public EntitySet<Poster> Posters
 		{
 			get
@@ -6754,7 +6754,7 @@ namespace PhishPond.Concrete
 			{
 				if ((this._PhotoId != value))
 				{
-					if (this._Show.HasLoadedOrAssignedValue)
+					if (this._Photo.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -7027,7 +7027,7 @@ namespace PhishPond.Concrete
 			}
 		}
 		
-		[Column(Storage="_ShowId")]
+		[Column(Storage="_ShowId", DbType="UniqueIdentifier")]
 		public System.Nullable<System.Guid> ShowId
 		{
 			get
@@ -7038,6 +7038,10 @@ namespace PhishPond.Concrete
 			{
 				if ((this._ShowId != value))
 				{
+					if (this._Show.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnShowIdChanging(value);
 					this.SendPropertyChanging();
 					this._ShowId = value;
@@ -7060,7 +7064,7 @@ namespace PhishPond.Concrete
 			}
 		}
 		
-		[Association(Name="Show_Poster", Storage="_Show", ThisKey="PhotoId", OtherKey="ShowId", IsForeignKey=true)]
+		[Association(Name="Show_Poster", Storage="_Show", ThisKey="ShowId", OtherKey="ShowId", IsForeignKey=true)]
 		public Show Show
 		{
 			get
@@ -7083,11 +7087,11 @@ namespace PhishPond.Concrete
 					if ((value != null))
 					{
 						value.Posters.Add(this);
-						this._PhotoId = value.ShowId;
+						this._ShowId = value.ShowId;
 					}
 					else
 					{
-						this._PhotoId = default(System.Guid);
+						this._ShowId = default(Nullable<System.Guid>);
 					}
 					this.SendPropertyChanged("Show");
 				}

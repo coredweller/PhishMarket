@@ -45,7 +45,7 @@
         <classShapeMoniker Id="330fa0a8-1e9f-4fb7-ac24-f3df9dd1ddc0" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.375 : 6.77789768949604); (16.875 : 6.77789768949604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(7.375 : 6.77789768949604); (9.41666666666667 : 6.77789768949604 : JumpStart); (9.58333333333333 : 6.77789768949604 : JumpEnd); (16.875 : 6.77789768949604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Show/Show_Photo" />
       <nodes>
         <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
@@ -189,7 +189,7 @@
         <elementListCompartment Id="64efe084-ad1d-44b3-8ef6-fb5551e9eb37" absoluteBounds="7.6400000000000006, 0.96, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.375 : 6.87985589181038); (10.75 : 6.87985589181038); (10.75 : 8.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(7.375 : 6.87985589181038); (9.41666666666667 : 6.87985589181038 : JumpStart); (9.58333333333333 : 6.87985589181038 : JumpEnd); (10.75 : 6.87985589181038); (10.75 : 8.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Show/Show_Poster" />
       <nodes>
         <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
@@ -222,7 +222,7 @@
         <elementListCompartment Id="bbb13082-11db-4391-90ca-436017aba5fa" absoluteBounds="13.39, 1.585, 1.9700000000000002, 2.8370157877604165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.375 : 3.625); (6.375 : 3.375); (6.82291866666667 : 3.375 : JumpStart); (6.98958533333333 : 3.375 : JumpEnd); (7.94791666666667 : 3.375 : JumpStart); (8.11458333333333 : 3.375 : JumpEnd); (13 : 3.375); (13 : 3.94301068200299); (13.375 : 3.94301068200299)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.375 : 3.625); (6.375 : 3.375); (6.82291866666667 : 3.375 : JumpStart); (6.98958533333333 : 3.375 : JumpEnd); (7.94791666666667 : 3.375 : JumpStart); (8.11458333333333 : 3.375 : JumpEnd); (13 : 3.375); (13 : 3.94301068200299); (13.375 : 3.94301068200299)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/PhishDatabase/Show/Show_MyShow" />
       <nodes>
         <classShapeMoniker Id="dacb00fd-2840-4830-8016-7e6b021171a3" />
@@ -301,14 +301,14 @@
         <elementListCompartment Id="1c0520db-9304-4739-838b-483149142825" absoluteBounds="19.765, 10.085, 1.9700000000000002, 2.015279134114583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(16.875 : 7.7073347257487); (16.7083333333333 : 7.7073347257487 : JumpStart); (16.5416666666667 : 7.7073347257487 : JumpEnd); (10.8333333333333 : 7.7073347257487 : JumpStart); (10.6666666666667 : 7.7073347257487 : JumpEnd); (9.5 : 7.7073347257487); (9.5 : 6.28593180338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(16.875 : 7.7073347257487); (9.5 : 7.7073347257487); (9.5 : 6.28593180338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Photo/Photo_Art" />
       <nodes>
         <classShapeMoniker Id="6715e7d9-b028-4358-867c-b65466fafa81" />
         <classShapeMoniker Id="3d70842f-bbc2-438c-8d5d-a2fb5eedfb57" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(18.40625 : 8.01505777994792); (18.40625 : 9.1562505); (15.7083333333333 : 9.1562505 : JumpStart); (15.5416666666667 : 9.1562505 : JumpEnd); (11 : 9.1562505)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(18.40625 : 8.01505777994792); (18.40625 : 9.1562505); (11 : 9.1562505)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PhishDatabase/Photo/Photo_Poster" />
       <nodes>
         <classShapeMoniker Id="6715e7d9-b028-4358-867c-b65466fafa81" />
