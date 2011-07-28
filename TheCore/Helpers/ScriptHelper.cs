@@ -7,11 +7,12 @@ namespace TheCore.Helpers
 {
     public class ScriptHelper
     {
+        //Used when Registering a Startup Script
         public string ScriptName { get; set; }
+        //Used to determine which Div the alert appears in
         public string DivName { get; set; }
+        //The message the you want the user to see
         public string Message { get; set; }
-
-        private string Script { get; set; }
 
         public ScriptHelper(string scriptName, string divName, string message)
         {

@@ -21,7 +21,8 @@
     </div>
     <br />
     <div>
-        <Upload:InputFile ID="uploadedFile" runat="server" />
+        <%--<Upload:InputFile ID="uploadedFile" runat="server" />--%>
+        <Upload:MultiFile ID="uploadedFiles" UseFlashIfAvailable="true" runat="server" />
         <Upload:ProgressBar ID="progressBarId" runat="server" Inline="true" />
     </div>
     <br />

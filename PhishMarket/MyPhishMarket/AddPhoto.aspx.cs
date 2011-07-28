@@ -12,6 +12,7 @@ using PhishPond.Concrete;
 using TheCore.Repository;
 using Brettle.Web.NeatUpload;
 using TheCore.Helpers;
+using TheCore.Validators;
 
 namespace PhishMarket.MyPhishMarket
 {
@@ -67,47 +68,66 @@ namespace PhishMarket.MyPhishMarket
         {
             ResetPanels();
 
-            IImageMediaFormats imageMediaFormats = Ioc.GetInstance<IImageMediaFormats>();
-            IPhotoRepository photoRepo = Ioc.GetInstance<IPhotoRepository>();
-
-            ImageResizerService imageResizerService = new ImageResizerService();
-            
             bool compiledSuccess = true;
 
-            if (!uploadedFile.HasFile)
+            if (uploadedFiles.Files.Count() <= 0)
             {
                 var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "Please choose a file to upload.");
                 Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
                 return;
             }
 
-            log.WriteLine("Submitted a picture with name " + uploadedFile.FileName);
+            using (IUnitOfWork uow = UnitOfWork.Begin())
+            {
+                foreach (var file in uploadedFiles.Files)
+                {
+                    var validator = ProcessFile(file);
 
-            var fileExt = Path.GetExtension(uploadedFile.FileName.ToLower());
-            Guid userID = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
-            string userName = Membership.GetUser(User.Identity.Name).UserName;
+                    if (validator.Success)
+                    {
+                        var scriptHelper2 = new ScriptHelper("SuccessAlert", "alertDiv", validator.Message);
+                        Page.RegisterStartupScript(scriptHelper2.ScriptName, scriptHelper2.GetSuccessScript());
+                    }
+                    else
+                    {
+                        var scriptHelper3 = new ScriptHelper("ErrorAlert", "alertDiv", validator.Message);
+                        Page.RegisterStartupScript(scriptHelper3.ScriptName, scriptHelper3.GetFatalScript());
+                        return;
+                    }
+                }
+
+                uow.Commit();
+            }
+        }
+
+        private ImageItemValidator ProcessFile(UploadedFile file)
+        {
+            var imageMediaFormats = Ioc.GetInstance<IImageMediaFormats>();
+            var photoRepo = Ioc.GetInstance<IPhotoRepository>();
+
+            log.WriteLine("Submitted a picture with name " + file.FileName);
+
+            var fileExt = Path.GetExtension(file.FileName.ToLower());
+            var userID = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
+            var userName = Membership.GetUser(User.Identity.Name).UserName;
             var ticks = DateTime.Now.Ticks;
-            Guid thumbImageId = Guid.NewGuid();
-            Guid fullImageId = Guid.NewGuid();
+            var thumbImageId = Guid.NewGuid();
+            var fullImageId = Guid.NewGuid();
 
             if (string.IsNullOrEmpty(fileExt) || !imageMediaFormats.HasExtension(fileExt))
             {
-                var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "This file does not have a valid extension.  Please enter a correct file.");
-                Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
-                return;
+                return new ImageItemValidator(false, "This file does not have a valid extension.  Please enter a correct file.");
             }
 
             var newFileName = userName + "-" + ticks + fileExt;
             log.WriteLine("thumb image New file name: " + newFileName);
 
-            if (uploadedFile.ContentLength > 0)
+            if (file.ContentLength > 0)
             {
                 int intContentLength;
-                if(!int.TryParse(uploadedFile.ContentLength.ToString(), out intContentLength))
+                if (!int.TryParse(file.ContentLength.ToString(), out intContentLength))
                 {
-                    var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "This file is too large.  Please try another photo.");
-                    Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
-                    return;
+                    return new ImageItemValidator(false, "This file is too large.  Please try another photo.");
                 }
 
                 IPhoto fullImage = null;
@@ -121,7 +141,7 @@ namespace PhishMarket.MyPhishMarket
                     CreatedDate = DateTime.Now,
                     UserId = userID,
                     FileName = newFileName,
-                    ContentType = uploadedFile.ContentType,
+                    ContentType = file.ContentType,
                     Type = short.Parse(hdnPhotoType.Value),
                     NickName = txtNickName.Text.Trim(),
                     Notes = txtNotes.Text.Trim(),
@@ -132,36 +152,34 @@ namespace PhishMarket.MyPhishMarket
 
                 string destDir = Path.Combine(Request.PhysicalApplicationPath, "images\\Shows");
                 string destPath = Path.Combine(destDir, newFileName);
-                
+
                 log.WriteLine("Saving image to the path = " + destPath);
-                
-                uploadedFile.MoveTo(destPath, MoveToOptions.Overwrite);
+
+                file.MoveTo(destPath, MoveToOptions.Overwrite);
 
                 log.WriteLine("Image saved to the path and now determining what type of photo it is");
                 DetermineTypeOfPhoto(fullImage, showId);
 
                 //imgDisplayFull.ImageUrl = LinkBuilder.GetImageLinkByFileName(newFileName);
 
-                var scriptHelper2 = new ScriptHelper("SuccessAlert", "alertDiv", "You have successfully saved the image.");
-                Page.RegisterStartupScript(scriptHelper2.ScriptName, scriptHelper2.GetSuccessScript());
-                return;
+
+                return new ImageItemValidator(true, "You have successfully saved " + file.FileName);
             }
 
-            var scriptHelper3 = new ScriptHelper("ErrorAlert", "alertDiv", "There was an error and the picture could not be uploaded.");
-            Page.RegisterStartupScript(scriptHelper3.ScriptName, scriptHelper3.GetFatalScript());
+            return new ImageItemValidator(false, "There was an error processing " + file.FileName);
         }
 
-        public void DetermineTypeOfPhoto(IPhoto photo, Guid? showId)
+        public bool DetermineTypeOfPhoto(IPhoto photo, Guid? showId)
         {
             switch ((PhotoType)(int.Parse(hdnPhotoType.Value)))
             {
                 case PhotoType.Poster:
-                    CreatePoster(photo, showId);
-                    break;
+                    return CreatePoster(photo, showId);
                 case PhotoType.Art:
-                    CreateArt(photo, showId);
-                    break;
+                    return CreateArt(photo, showId);
             }
+
+            return false;
         }
 
         public bool CreatePoster(IPhoto photo, Guid? showId)
@@ -175,6 +193,8 @@ namespace PhishMarket.MyPhishMarket
 
             var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
             var myShowId = myShowService.GetMyShow(showId.Value, userId).MyShowId;
+
+            var date = DateTime.UtcNow;
 
             Poster p = new Poster
             {
@@ -193,46 +213,32 @@ namespace PhishMarket.MyPhishMarket
                 ShowId = showId
             };
 
-            using (IUnitOfWork uow = UnitOfWork.Begin())
+            var combinedSuccess = true;
+            bool success = false;
+
+            var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
+            photoService.Save(photo, out success);
+
+            combinedSuccess = combinedSuccess && success;
+
+            posterService.Save(p, out success);
+
+            combinedSuccess = combinedSuccess && success;
+
+            var myShowPoster = new MyShowPoster
             {
-                var combinedSuccess = true;
-                bool success = false;
+                CreatedDate = date,
+                UpdatedDate = date,
+                MyShowId = myShowId,
+                MyShowPosterId = Guid.NewGuid(),
+                PosterId = posterId
+            };
 
-                var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
-                photoService.Save(photo, out success);
+            spService.Save(myShowPoster, out success);
 
-                combinedSuccess = combinedSuccess && success;
-                
-                posterService.Save(p, out success);
+            combinedSuccess = combinedSuccess && success;
 
-                combinedSuccess = combinedSuccess && success;
-
-                var date = DateTime.Now;
-
-                var myShowPoster = new MyShowPoster
-                {
-                    CreatedDate = date,
-                    UpdatedDate = date,
-                    MyShowId = myShowId,
-                    MyShowPosterId = Guid.NewGuid(),
-                    PosterId = posterId
-                };
-
-                spService.Save(myShowPoster, out success);
-
-                combinedSuccess = combinedSuccess && success;
-
-                final = combinedSuccess;
-
-                if (final)
-                {
-                    uow.Commit();
-                    lnkEditPoster.NavigateUrl = LinkBuilder.EditPosterLink(posterId);
-                    phEditPoster.Visible = true;
-                }
-            }
-
-            return final;
+            return combinedSuccess;
         }
 
         public bool CreateArt(IPhoto photo, Guid? showId)
@@ -247,7 +253,7 @@ namespace PhishMarket.MyPhishMarket
             var userId = new Guid(Membership.GetUser(User.Identity.Name).ProviderUserKey.ToString());
             var myShowId = myShowService.GetMyShow(showId.Value, userId).MyShowId;
 
-            var date = DateTime.Now;
+            var date = DateTime.UtcNow;
 
             Art p = new Art
             {
@@ -260,43 +266,33 @@ namespace PhishMarket.MyPhishMarket
                 ShowId = showId
             };
 
-            using (IUnitOfWork uow = UnitOfWork.Begin())
+
+            var combinedSuccess = true;
+            bool success = false;
+
+            var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
+            photoService.Save(photo, out success);
+
+            combinedSuccess = combinedSuccess && success;
+
+            artService.Save(p, out success);
+
+            combinedSuccess = combinedSuccess && success;
+
+            var myShowArt = new MyShowArt
             {
-                var combinedSuccess = true;
-                bool success = false;
+                CreatedDate = date,
+                UpdatedDate = date,
+                MyShowId = myShowId,
+                MyShowArtId = Guid.NewGuid(),
+                ArtId = artId
+            };
 
-                var photoService = new PhotoService(Ioc.GetInstance<IPhotoRepository>());
-                photoService.Save(photo, out success);
+            spService.Save(myShowArt, out success);
 
-                combinedSuccess = combinedSuccess && success;
+            combinedSuccess = combinedSuccess && success;
 
-                artService.Save(p, out success);
-
-                combinedSuccess = combinedSuccess && success;
-
-                var myShowArt = new MyShowArt
-                {
-                    CreatedDate = DateTime.Now,
-                    MyShowId = myShowId,
-                    MyShowArtId = Guid.NewGuid(),
-                    ArtId = artId
-                };
-
-                spService.Save(myShowArt, out success);
-
-                combinedSuccess = combinedSuccess && success;
-
-                final = combinedSuccess;
-
-                if (final)
-                {
-                    uow.Commit();
-                    lnkEditArt.NavigateUrl = LinkBuilder.EditArtLink(artId);
-                    phEditArt.Visible = true;
-                }
-            }
-
-            return final;
+            return combinedSuccess;
         }
     }
 }
