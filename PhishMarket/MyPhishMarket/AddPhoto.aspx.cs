@@ -134,6 +134,8 @@ namespace PhishMarket.MyPhishMarket
 
                 Guid? showId = new Guid(hdnShowId.Value);
 
+                var notes = Request.Form["txtNotes"].ToString();
+
                 log.WriteLine("About to create full image");
                 fullImage = new Photo
                 {
@@ -144,7 +146,7 @@ namespace PhishMarket.MyPhishMarket
                     ContentType = file.ContentType,
                     Type = short.Parse(hdnPhotoType.Value),
                     NickName = txtNickName.Text.Trim(),
-                    Notes = txtNotes.Text.Trim(),
+                    Notes = notes,
                     Quality = short.Parse(ddlQuality.SelectedValue),
                     Thumbnail = false,
                     ShowId = showId

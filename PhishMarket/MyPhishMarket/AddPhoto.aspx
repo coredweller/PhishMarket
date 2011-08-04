@@ -2,6 +2,30 @@
     MasterPageFile="~/Master/Shadowed.Master" %>
 
 <%@ Register TagPrefix="Upload" Namespace="Brettle.Web.NeatUpload" Assembly="Brettle.Web.NeatUpload" %>
+<asp:Content ContentPlaceHolderID="Head" runat="server">
+
+    <script type="text/javascript" src="/javascript/jquery.jqEasyCharCounter.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+        $('#txtNotes').jqEasyCounter({
+            'maxChars': 200,
+            'maxCharsWarning': 150,
+            'msgFontSize': '12px',
+            'msgFontColor': '#000',
+            'msgFontFamily': 'Arial',
+            'msgTextAlign': 'left',
+            'msgWarningColor': '#F00',
+            'msgAppendMethod': 'insertBefore'
+        });
+
+            
+        });
+    </script>
+
+</asp:Content>
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <h2>
         Add Photo</h2>
@@ -71,13 +95,13 @@
                     Notes:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Rows="6" Columns="40"
-                        MaxLength="200"></asp:TextBox>
+                    <textarea id="txtNotes" name="txtNotes" cols="40" rows="6"></textarea>
+                    <%--<asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Rows="6" Columns="40"></asp:TextBox>--%>
                 </td>
                 <td>
-                    <asp:RegularExpressionValidator ID="rgConclusionValidator2" ControlToValidate="txtNotes"
+                    <%--<asp:RegularExpressionValidator ID="rgConclusionValidator2" ControlToValidate="txtNotes"
                         ErrorMessage="Notes cannot exceed 200 characters" ValidationExpression="^[\s\S]{0,200}$"
-                        runat="server" SetFocusOnError="true" />
+                        runat="server" SetFocusOnError="true" />--%>
                 </td>
             </tr>
             <tr>
