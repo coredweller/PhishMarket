@@ -8,7 +8,7 @@
     <script type="text/javascript">
 
         //Absolutely needed for Galleria to work on this page
-        Galleria.loadTheme('/javascript/galleria/classic/galleria.classic.min.js');
+        Galleria.loadTheme('/javascript/galleria/classic/galleria.classic.js');
 
         //When the page loads, if there is a showId in the URL
         //  this function will load the pictures for this user if available
@@ -101,8 +101,7 @@
     <asp:PlaceHolder ID="phAddPicture" runat="server" Visible="true">
         <asp:LinkButton OnClick="btnAddPicture_Click" runat="server" Text="Add a new Picture here!"></asp:LinkButton></asp:PlaceHolder>
     <div id="gallery">
-        <%--<img src="/../images/Shows/coretest2-634195715440294949.jpg" alt="Minibri" title="Title of all titles" />--%>
-        <%--<img src="/images/Shows/coretest2-634195715440294949.jpg" alt="blah" />--%>
+        
     </div>
     <br />
     <br />

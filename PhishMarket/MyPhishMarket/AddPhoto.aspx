@@ -71,7 +71,13 @@
                     Notes:
                 </td>
                 <td>
-                    <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Rows="6" Columns="40"></asp:TextBox>
+                    <asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Rows="6" Columns="40"
+                        MaxLength="200"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:RegularExpressionValidator ID="rgConclusionValidator2" ControlToValidate="txtNotes"
+                        ErrorMessage="Notes cannot exceed 200 characters" ValidationExpression="^[\s\S]{0,200}$"
+                        runat="server" SetFocusOnError="true" />
                 </td>
             </tr>
             <tr>

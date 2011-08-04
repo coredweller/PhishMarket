@@ -31,7 +31,8 @@ function callMyPictureHandler(showId, userId) {
 						transition: 'fade',
 						maxScaleRatio: 1,
                         width: 600,
-                        height: 600
+                        height: 600,
+						thumbnails: "numbers"
                     });
 
                 });
