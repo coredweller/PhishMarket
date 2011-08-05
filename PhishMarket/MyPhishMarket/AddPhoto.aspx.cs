@@ -77,24 +77,32 @@ namespace PhishMarket.MyPhishMarket
                 return;
             }
 
+            var errorMessage = string.Empty;
+
             using (IUnitOfWork uow = UnitOfWork.Begin())
             {
                 foreach (var file in uploadedFiles.Files)
                 {
                     var validator = ProcessFile(file);
 
-                    if (validator.Success)
+                    compiledSuccess = compiledSuccess && validator.Success;
+
+                    if (!compiledSuccess)
                     {
-                        var scriptHelper2 = new ScriptHelper("SuccessAlert", "alertDiv", validator.Message);
-                        Page.RegisterStartupScript(scriptHelper2.ScriptName, scriptHelper2.GetSuccessScript());
-                    }
-                    else
-                    {
-                        var scriptHelper3 = new ScriptHelper("ErrorAlert", "alertDiv", validator.Message);
-                        Page.RegisterStartupScript(scriptHelper3.ScriptName, scriptHelper3.GetFatalScript());
-                        return;
+                        errorMessage = validator.Message;
+                        break;
                     }
                 }
+
+                if (!compiledSuccess)
+                {
+                    var scriptHelper3 = new ScriptHelper("ErrorAlert", "alertDiv", errorMessage + "Please try again without that image.");
+                    Page.RegisterStartupScript(scriptHelper3.ScriptName, scriptHelper3.GetFatalScript());
+                    return;
+                }
+
+                var scriptHelper2 = new ScriptHelper("SuccessAlert", "alertDiv", "You have successfully saved the images");
+                Page.RegisterStartupScript(scriptHelper2.ScriptName, scriptHelper2.GetSuccessScript());
 
                 uow.Commit();
             }
@@ -116,7 +124,7 @@ namespace PhishMarket.MyPhishMarket
 
             if (string.IsNullOrEmpty(fileExt) || !imageMediaFormats.HasExtension(fileExt))
             {
-                return new ImageItemValidator(false, "This file does not have a valid extension.  Please enter a correct file.");
+                return new ImageItemValidator(false, file.FileName + " does not have a valid extension. ");
             }
 
             var newFileName = userName + "-" + ticks + fileExt;
@@ -127,7 +135,7 @@ namespace PhishMarket.MyPhishMarket
                 int intContentLength;
                 if (!int.TryParse(file.ContentLength.ToString(), out intContentLength))
                 {
-                    return new ImageItemValidator(false, "This file is too large.  Please try another photo.");
+                    return new ImageItemValidator(false, file.FileName + " is too large. ");
                 }
 
                 IPhoto fullImage = null;
@@ -168,7 +176,7 @@ namespace PhishMarket.MyPhishMarket
                 return new ImageItemValidator(true, "You have successfully saved " + file.FileName);
             }
 
-            return new ImageItemValidator(false, "There was an error processing " + file.FileName);
+            return new ImageItemValidator(false, "There was an error processing " + file.FileName + ". ");
         }
 
         public bool DetermineTypeOfPhoto(IPhoto photo, Guid? showId)

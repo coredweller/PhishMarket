@@ -203,24 +203,6 @@ namespace PhishMarket.MyPhishMarket {
         protected global::System.Web.UI.WebControls.HiddenField hdnPhotoType;
         
         /// <summary>
-        /// imgDisplayThumb control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgDisplayThumb;
-        
-        /// <summary>
-        /// imgDisplayFull control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgDisplayFull;
-        
-        /// <summary>
         /// phEditPoster control.
         /// </summary>
         /// <remarks>

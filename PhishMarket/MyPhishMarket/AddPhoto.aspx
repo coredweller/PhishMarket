@@ -98,11 +98,11 @@
                     <textarea id="txtNotes" name="txtNotes" cols="40" rows="6"></textarea>
                     <%--<asp:TextBox ID="txtNotes" runat="server" TextMode="MultiLine" Rows="6" Columns="40"></asp:TextBox>--%>
                 </td>
-                <td>
-                    <%--<asp:RegularExpressionValidator ID="rgConclusionValidator2" ControlToValidate="txtNotes"
+                <%--<td>
+                    <asp:RegularExpressionValidator ID="rgConclusionValidator2" ControlToValidate="txtNotes"
                         ErrorMessage="Notes cannot exceed 200 characters" ValidationExpression="^[\s\S]{0,200}$"
-                        runat="server" SetFocusOnError="true" />--%>
-                </td>
+                        runat="server" SetFocusOnError="true" />
+                </td>--%>
             </tr>
             <tr>
                 <td>
@@ -240,14 +240,14 @@
     <br />
     <br />
     <br />
-    <div>
+    <%--<div>
         <asp:Image runat="server" ID="imgDisplayThumb" />
         <br />
         <asp:Image runat="server" ID="imgDisplayFull" />
     </div>
     <br />
     <br />
-    <br />
+    <br />--%>
     <asp:PlaceHolder ID="phEditPoster" runat="server" Visible="false">
         <asp:HyperLink ID="lnkEditPoster" runat="server" Text="Edit Poster"></asp:HyperLink>
     </asp:PlaceHolder>
