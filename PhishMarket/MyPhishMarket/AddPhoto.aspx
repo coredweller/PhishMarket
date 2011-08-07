@@ -10,18 +10,16 @@
 
         $(document).ready(function() {
 
-        $('#txtNotes').jqEasyCounter({
-            'maxChars': 200,
-            'maxCharsWarning': 150,
-            'msgFontSize': '12px',
-            'msgFontColor': '#000',
-            'msgFontFamily': 'Arial',
-            'msgTextAlign': 'left',
-            'msgWarningColor': '#F00',
-            'msgAppendMethod': 'insertBefore'
-        });
-
-            
+            $('#txtNotes').jqEasyCounter({
+                'maxChars': 200,
+                'maxCharsWarning': 150,
+                'msgFontSize': '12px',
+                'msgFontColor': '#000',
+                'msgFontFamily': 'Arial',
+                'msgTextAlign': 'left',
+                'msgWarningColor': '#F00',
+                'msgAppendMethod': 'insertBefore'
+            });
         });
     </script>
 
@@ -236,25 +234,4 @@
         <asp:HiddenField ID="hdnShowId" Visible="false" runat="server" />
         <asp:HiddenField ID="hdnPhotoType" Visible="false" runat="server" />
     </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <%--<div>
-        <asp:Image runat="server" ID="imgDisplayThumb" />
-        <br />
-        <asp:Image runat="server" ID="imgDisplayFull" />
-    </div>
-    <br />
-    <br />
-    <br />--%>
-    <asp:PlaceHolder ID="phEditPoster" runat="server" Visible="false">
-        <asp:HyperLink ID="lnkEditPoster" runat="server" Text="Edit Poster"></asp:HyperLink>
-    </asp:PlaceHolder>
-    <asp:PlaceHolder ID="phEditTicketStub" runat="server" Visible="false">
-        <asp:HyperLink ID="lnkEditTicketStub" runat="server" Text="Edit Ticket Stub"></asp:HyperLink>
-    </asp:PlaceHolder>
-    <asp:PlaceHolder ID="phEditArt" runat="server" Visible="false">
-        <asp:HyperLink ID="lnkEditArt" runat="server" Text="Edit Art"></asp:HyperLink>
-    </asp:PlaceHolder>
 </asp:Content>

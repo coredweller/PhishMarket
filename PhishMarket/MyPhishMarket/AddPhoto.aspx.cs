@@ -58,9 +58,9 @@ namespace PhishMarket.MyPhishMarket
 
         private void ResetPanels()
         {
-            phEditArt.Visible = false;
-            phEditPoster.Visible = false;
-            phEditTicketStub.Visible = false;
+            //phEditArt.Visible = false;
+            //phEditPoster.Visible = false;
+            //phEditTicketStub.Visible = false;
             phError.Visible = false;
         }
 

@@ -128,7 +128,7 @@
         <br />
         <br />
         <div>
-            <asp:Image runat="server" ID="imgDisplayFull" />
+            <asp:Image runat="server" Height="600" Width="600" ID="imgDisplayFull" />
         </div>
         <asp:HiddenField ID="hdnId" runat="server" Visible="false" />
     </asp:PlaceHolder>

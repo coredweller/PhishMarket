@@ -32,7 +32,8 @@ function callMyPictureHandler(showId, userId) {
 						maxScaleRatio: 1,
                         width: 600,
                         height: 600,
-						thumbnails: "numbers"
+						thumbnails: "numbers",
+						_toggleInfo: true
                     });
 
                 });

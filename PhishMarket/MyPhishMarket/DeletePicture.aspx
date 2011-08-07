@@ -3,7 +3,7 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <br />
-    <asp:Image ID="imgImage" runat="server" />
+    <asp:Image ID="imgImage" Height="600" Width="600" runat="server" />
     <br />
     <br />
     <center>
