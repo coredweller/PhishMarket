@@ -8,7 +8,7 @@
     <script type="text/javascript">
 
         //Absolutely needed for Galleria to work on this page
-        Galleria.loadTheme('/javascript/galleria/classic/galleria.classic.min.js');
+        Galleria.loadTheme('/javascript/galleria/classic/galleria.classic.js');
 
         //When the page loads, if there is a showId or showDate in the URL
         //  this function will load the photos for this show if available

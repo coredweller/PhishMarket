@@ -1,3 +1,5 @@
+
+//This extends jquery to help get the GET variables for use in javascript/jquery
 $.extend({
   getUrlVars: function(){
     var vars = [], hash;
@@ -15,14 +17,22 @@ $.extend({
   }
 });
 
-
-
-
+		
 //MyPictures.aspx
 //Calls a handler to get images back for galleria
 function callMyPictureHandler(showId, userId) {
+            callHandler("/Handlers/MyPicturesHandler.ashx", showId, userId);
+        }
+		
+//MyPosters.aspx
+//Calls a handler to get images back for galleria
+function callMyPostersHandler(showId, userId) {
+			callHandler("/Handlers/MyPostersHandler.ashx", showId, userId);
+        }
+		
+function callHandler(handler, showId, userId) {
 
-            $.getJSON("/Handlers/MyPicturesHandler.ashx",
+			$.getJSON(handler,
                 { s: showId, u: userId },
 
                 function(data) {
@@ -31,13 +41,13 @@ function callMyPictureHandler(showId, userId) {
 						transition: 'fade',
 						maxScaleRatio: 1,
                         width: 600,
-                        height: 600,
+                        height: 675,
 						thumbnails: "numbers",
-						_toggleInfo: true
                     });
 
                 });
-        }
+
+		}
 		
 //ShowReviewws.aspx
 //Calls a handler to get images back for galleria
@@ -52,26 +62,8 @@ function callShowReviewsHandler(showId, showDate) {
 						transition: 'fade',
 						maxScaleRatio: 1,
                         width: 600,
-                        height: 600
-                    });
-
-                });
-        }
-		
-//MyPosters.aspx
-//Calls a handler to get images back for galleria
-function callMyPostersHandler(showId, userId) {
-
-            $.getJSON("/Handlers/MyPostersHandler.ashx",
-                { s: showId, u: userId },
-
-                function(data) {
-                    $('#gallery').galleria({
-                        data_source: data.records,
-						transition: 'fade',
-						maxScaleRatio: 1,
-                        width: 600,
-                        height: 600
+                        height: 675,
+						thumbnails: "numbers",
                     });
 
                 });
@@ -90,7 +82,8 @@ function callViewProfileHandler(userId) {
 						transition: 'fade',
 						maxScaleRatio: 1,
                         width: 600,
-                        height: 600
+                        height: 675,
+						thumbnails: "numbers",
                     });
 
                 });
