@@ -42,10 +42,19 @@
             select an image to continue.</asp:PlaceHolder>
     </div>
     <br />
+    <h4>
+        Upload up to 2 pictures with the same nick name.</h4>
+    <br />
     <div>
+        <asp:FileUpload ID="fileUpload1" runat="server" /><br />
+        <asp:FileUpload ID="fileUpload2" runat="server" />
+        <%--<asp:FileUpload ID="fileUpload3" runat="server" />
+    <asp:FileUpload ID="fileUpload4" runat="server" />
+    <asp:FileUpload ID="fileUpload5" runat="server" />
+    <asp:FileUpload ID="fileUpload6" runat="server" />--%>
         <%--<Upload:InputFile ID="uploadedFile" runat="server" />--%>
-        <Upload:MultiFile ID="uploadedFiles" UseFlashIfAvailable="true" runat="server" />
-        <Upload:ProgressBar ID="progressBarId" runat="server" Inline="true" />
+        <%--<Upload:MultiFile ID="uploadedFiles" UseFlashIfAvailable="true" runat="server" />
+        <Upload:ProgressBar ID="progressBarId" runat="server" Inline="true" />--%>
     </div>
     <br />
     <div>

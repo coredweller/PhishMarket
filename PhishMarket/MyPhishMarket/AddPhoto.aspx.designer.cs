@@ -59,22 +59,22 @@ namespace PhishMarket.MyPhishMarket {
         protected global::System.Web.UI.WebControls.PlaceHolder phNoImageSelectedError;
         
         /// <summary>
-        /// uploadedFiles control.
+        /// fileUpload1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Brettle.Web.NeatUpload.MultiFile uploadedFiles;
+        protected global::System.Web.UI.WebControls.FileUpload fileUpload1;
         
         /// <summary>
-        /// progressBarId control.
+        /// fileUpload2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Brettle.Web.NeatUpload.ProgressBar progressBarId;
+        protected global::System.Web.UI.WebControls.FileUpload fileUpload2;
         
         /// <summary>
         /// txtNickName control.

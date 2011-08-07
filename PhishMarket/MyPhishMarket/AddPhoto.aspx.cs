@@ -13,6 +13,7 @@ using TheCore.Repository;
 using Brettle.Web.NeatUpload;
 using TheCore.Helpers;
 using TheCore.Validators;
+using System.Collections.Generic;
 
 namespace PhishMarket.MyPhishMarket
 {
@@ -20,6 +21,7 @@ namespace PhishMarket.MyPhishMarket
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            log.WriteLine("Add Photo in pageload beginning");
             SetPageTitle("Add a Photo");
 
             if (!IsPostBack)
@@ -29,6 +31,8 @@ namespace PhishMarket.MyPhishMarket
 
                 var showId = new Guid(Request.QueryString["showId"]);
                 var photoType = (PhotoType)(int.Parse(Request.QueryString["type"]));
+
+                log.WriteLine("parsed showId and phototype");
 
                 switch (photoType)
                 {
@@ -43,10 +47,16 @@ namespace PhishMarket.MyPhishMarket
 
                 lnkReturn.NavigateUrl = Request.QueryString["returnUrl"];
 
+                log.WriteLine("return url is set");
+
                 hdnShowId.Value = showId.ToString();
                 hdnPhotoType.Value = (int.Parse(Request.QueryString["type"]).ToString());
 
+                log.WriteLine("Hiddens set");
+
                 ddlQuality.Items.AddRange(GetDropDownFromEnum(typeof(PhotoQuality), 1, "Please choose a quality"));
+
+                log.WriteLine("Quality set");
             }
         }
 
@@ -64,13 +74,37 @@ namespace PhishMarket.MyPhishMarket
             phError.Visible = false;
         }
 
-        public void btnSubmit_Click(object sender, EventArgs e)
+        private bool AnyInputHasFile()
         {
+            return fileUpload1.HasFile || fileUpload2.HasFile; // || fileUpload3.HasFile || fileUpload4.HasFile || fileUpload5.HasFile || fileUpload6.HasFile;
+        }
+
+        private List<FileUpload> GetFileList()
+        {
+            var list = new List<FileUpload>();
+
+            if (fileUpload1.HasFile) list.Add(fileUpload1);
+
+            if (fileUpload2.HasFile) list.Add(fileUpload2);
+
+            //if (fileUpload3.HasFile) list.Add(fileUpload3);
+
+            //if (fileUpload4.HasFile) list.Add(fileUpload4);
+
+            //if (fileUpload5.HasFile) list.Add(fileUpload5);
+
+            //if (fileUpload6.HasFile) list.Add(fileUpload6);
+
+            return list;
+        }
+
+        public void btnSubmit_Click(object sender, EventArgs e)
+        { 
             ResetPanels();
 
             bool compiledSuccess = true;
 
-            if (uploadedFiles.Files.Count() <= 0)
+            if (!AnyInputHasFile())
             {
                 var scriptHelper = new ScriptHelper("ErrorAlert", "alertDiv", "Please choose a file to upload.");
                 Page.RegisterStartupScript(scriptHelper.ScriptName, scriptHelper.GetFatalScript());
@@ -79,36 +113,38 @@ namespace PhishMarket.MyPhishMarket
 
             var errorMessage = string.Empty;
 
-            using (IUnitOfWork uow = UnitOfWork.Begin())
-            {
-                foreach (var file in uploadedFiles.Files)
+                using (IUnitOfWork uow = UnitOfWork.Begin())
                 {
-                    var validator = ProcessFile(file);
+                    var fileList = GetFileList();
 
-                    compiledSuccess = compiledSuccess && validator.Success;
+                    foreach (var file in fileList)
+                    {
+                        var validator = ProcessFile(file);
+
+                        compiledSuccess = compiledSuccess && validator.Success;
+
+                        if (!compiledSuccess)
+                        {
+                            errorMessage = validator.Message;
+                            break;
+                        }
+                    }
 
                     if (!compiledSuccess)
                     {
-                        errorMessage = validator.Message;
-                        break;
+                        var scriptHelper3 = new ScriptHelper("ErrorAlert", "alertDiv", errorMessage + "Please try again without that image.");
+                        Page.RegisterStartupScript(scriptHelper3.ScriptName, scriptHelper3.GetFatalScript());
+                        return;
                     }
+
+                    var scriptHelper2 = new ScriptHelper("SuccessAlert", "alertDiv", "You have successfully saved the images");
+                    Page.RegisterStartupScript(scriptHelper2.ScriptName, scriptHelper2.GetSuccessScript());
+
+                    uow.Commit();
                 }
-
-                if (!compiledSuccess)
-                {
-                    var scriptHelper3 = new ScriptHelper("ErrorAlert", "alertDiv", errorMessage + "Please try again without that image.");
-                    Page.RegisterStartupScript(scriptHelper3.ScriptName, scriptHelper3.GetFatalScript());
-                    return;
-                }
-
-                var scriptHelper2 = new ScriptHelper("SuccessAlert", "alertDiv", "You have successfully saved the images");
-                Page.RegisterStartupScript(scriptHelper2.ScriptName, scriptHelper2.GetSuccessScript());
-
-                uow.Commit();
-            }
         }
 
-        private ImageItemValidator ProcessFile(UploadedFile file)
+        private ImageItemValidator ProcessFile(FileUpload file)
         {
             var imageMediaFormats = Ioc.GetInstance<IImageMediaFormats>();
             var photoRepo = Ioc.GetInstance<IPhotoRepository>();
@@ -130,10 +166,10 @@ namespace PhishMarket.MyPhishMarket
             var newFileName = userName + "-" + ticks + fileExt;
             log.WriteLine("thumb image New file name: " + newFileName);
 
-            if (file.ContentLength > 0)
+            if (file.FileBytes.Length > 0)
             {
                 int intContentLength;
-                if (!int.TryParse(file.ContentLength.ToString(), out intContentLength))
+                if (!int.TryParse(file.FileBytes.Length.ToString(), out intContentLength))
                 {
                     return new ImageItemValidator(false, file.FileName + " is too large. ");
                 }
@@ -151,7 +187,7 @@ namespace PhishMarket.MyPhishMarket
                     CreatedDate = DateTime.Now,
                     UserId = userID,
                     FileName = newFileName,
-                    ContentType = file.ContentType,
+                    ContentType = fileExt,
                     Type = short.Parse(hdnPhotoType.Value),
                     NickName = txtNickName.Text.Trim(),
                     Notes = notes,
@@ -165,7 +201,9 @@ namespace PhishMarket.MyPhishMarket
 
                 log.WriteLine("Saving image to the path = " + destPath);
 
-                file.MoveTo(destPath, MoveToOptions.Overwrite);
+                file.SaveAs(destPath);
+
+                //file.MoveTo(destPath, MoveToOptions.Overwrite);
 
                 log.WriteLine("Image saved to the path and now determining what type of photo it is");
                 DetermineTypeOfPhoto(fullImage, showId);
