@@ -30,6 +30,11 @@ namespace TheCore.Services
             return _repo.FindByPhotoId(id);
         }
 
+        public IQueryable<IPhoto> GetRecentlyAddedPhotos()
+        {
+            return _repo.FindAll().OrderByDescending(x => x.CreatedDate).Take(10);
+        }
+
         public IList<IPhoto> GetPhotosByUserAndShow(Guid userId, Guid showId)
         {
             return _repo.FindAllByUserIdAndShowId(userId, showId);

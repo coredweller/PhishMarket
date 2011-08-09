@@ -4,6 +4,8 @@
 <%@ Register TagPrefix="uc" TagName="RecentTopicsControl" Src="~/Controls/RecentTopics.ascx" %>
 <%@ Register TagPrefix="uc" TagName="AdminMenu" Src="~/Controls/AdminMenu.ascx" %>
 <%@ Register TagPrefix="uc" TagName="RecentShowReviewsControl" Src="~/Controls/RecentShowReviews.ascx" %>
+<%@ Register TagPrefix="uc" TagName="RecentlyAddedPicturesControl" Src="~/Controls/RecentlyAddedPictures.ascx" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">--%>
 <!--
@@ -98,6 +100,7 @@ Released   : 20100613
                         <asp:ContentPlaceHolder ID="LeftSideBar" runat="server">
                             <uc:RecentTopicsControl ID="RecentTopicsControl1" runat="server" />
                             <uc:RecentShowReviewsControl ID="RecentShowReviewsControl1" runat="server" />
+                            <uc:RecentlyAddedPicturesControl ID="RecentlyAddedPicturesControl1" runat="server" />
                         </asp:ContentPlaceHolder>
                         </b>
                         <%--

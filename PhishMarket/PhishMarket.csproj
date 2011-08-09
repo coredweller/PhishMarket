@@ -171,6 +171,13 @@
     <Compile Include="Controls\AdminMenu.ascx.designer.cs">
       <DependentUpon>AdminMenu.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RecentlyAddedPictures.ascx.cs">
+      <DependentUpon>RecentlyAddedPictures.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\RecentlyAddedPictures.ascx.designer.cs">
+      <DependentUpon>RecentlyAddedPictures.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RecentShowReviews.ascx.cs">
       <DependentUpon>RecentShowReviews.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -631,6 +638,7 @@
     <Content Include="Admin\Shows.aspx" />
     <Content Include="AboutUs.aspx" />
     <Content Include="Controls\AdminMenu.ascx" />
+    <Content Include="Controls\RecentlyAddedPictures.ascx" />
     <Content Include="Controls\RecentShowReviews.ascx" />
     <Content Include="Controls\SelectAlbumControl.ascx" />
     <Content Include="Controls\YearSelector.ascx" />

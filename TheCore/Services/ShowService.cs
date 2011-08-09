@@ -40,6 +40,12 @@ namespace TheCore.Services
                          select GetShow(date)).ToList();
         }
 
+        public IList<IShow> GetShows(IList<Guid> showIds)
+        {
+            return (from showId in showIds
+                    select GetShow(showId)).ToList();
+        }
+
         public IQueryable<IShow> GetShowsByYear(int year)
         {
             if (year != 2003)

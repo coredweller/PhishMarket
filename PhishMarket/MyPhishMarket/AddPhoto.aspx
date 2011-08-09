@@ -46,8 +46,8 @@
         Upload up to 2 pictures with the same nick name.</h4>
     <br />
     <div>
-        <asp:FileUpload ID="fileUpload1" runat="server" /><br />
-        <asp:FileUpload ID="fileUpload2" runat="server" />
+        <asp:FileUpload ID="fileUpload1" runat="server" /><%--<br />
+        <asp:FileUpload ID="fileUpload2" runat="server" />--%>
         <%--<asp:FileUpload ID="fileUpload3" runat="server" />
     <asp:FileUpload ID="fileUpload4" runat="server" />
     <asp:FileUpload ID="fileUpload5" runat="server" />

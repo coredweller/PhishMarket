@@ -76,7 +76,7 @@ namespace PhishMarket.MyPhishMarket
 
         private bool AnyInputHasFile()
         {
-            return fileUpload1.HasFile || fileUpload2.HasFile; // || fileUpload3.HasFile || fileUpload4.HasFile || fileUpload5.HasFile || fileUpload6.HasFile;
+            return fileUpload1.HasFile; // || fileUpload2.HasFile; // || fileUpload3.HasFile || fileUpload4.HasFile || fileUpload5.HasFile || fileUpload6.HasFile;
         }
 
         private List<FileUpload> GetFileList()
@@ -85,7 +85,7 @@ namespace PhishMarket.MyPhishMarket
 
             if (fileUpload1.HasFile) list.Add(fileUpload1);
 
-            if (fileUpload2.HasFile) list.Add(fileUpload2);
+            //if (fileUpload2.HasFile) list.Add(fileUpload2);
 
             //if (fileUpload3.HasFile) list.Add(fileUpload3);
 
@@ -137,7 +137,7 @@ namespace PhishMarket.MyPhishMarket
                         return;
                     }
 
-                    var scriptHelper2 = new ScriptHelper("SuccessAlert", "alertDiv", "You have successfully saved the images");
+                    var scriptHelper2 = new ScriptHelper("SuccessAlert", "alertDiv", "You have successfully saved the image");
                     Page.RegisterStartupScript(scriptHelper2.ScriptName, scriptHelper2.GetSuccessScript());
 
                     uow.Commit();
