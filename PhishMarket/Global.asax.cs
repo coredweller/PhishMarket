@@ -60,7 +60,14 @@ namespace PhishMarket
             System.Exception ex = Context.Server.GetLastError();
 
             writer.WriteLine("THERE WAS AN ERROR");
-            writer.WriteLine(ex);
+
+            string errorInfo =
+                "<br>Offending URL: " + context.Request.Url.ToString() +
+                "<br>Source: " + ex.Source +
+                "<br>Message: " + ex.Message +
+                "<br>Stack trace: " + ex.StackTrace;
+
+            writer.WriteLine(errorInfo);
 
             context.Server.ClearError();
 
