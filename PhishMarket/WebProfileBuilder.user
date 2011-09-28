@@ -1,6 +1,6 @@
 <profile enabled="true" defaultProvider="YafProfileProvider" inherits="YAF.Classes.Utils.YafUserProfile">
-      <providers>
-        <clear/>
-        <add connectionStringName="yafnet" applicationName="YetAnotherForum" name="YafProfileProvider" type="YAF.Providers.Profile.YafProfileProvider"/>
-      </providers>
-    </profile>
+			<providers>
+				<clear/>
+				<add connectionStringName="yafnet" applicationName="YetAnotherForum" name="YafProfileProvider" type="YAF.Providers.Profile.YafProfileProvider"/>
+			</providers>
+		</profile>

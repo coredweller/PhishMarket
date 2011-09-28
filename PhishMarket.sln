@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhishMarket", "PhishMarket\PhishMarket.csproj", "{E2B6FCAE-F877-4ADA-8049-8B24506D9F84}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{00000000-0000-0000-0000-000000000000}") = "PhishMarket", "PhishMarket\PhishMarket.csproj", "{E2B6FCAE-F877-4ADA-8049-8B24506D9F84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhishPond", "PhishPond\PhishPond.csproj", "{4C136CF5-71C5-4E33-A77A-F4B74E9545AD}"
 EndProject
